@@ -1,0 +1,9 @@
+{
+  "name": "qilin.cord-web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ProtocolONE/qilin.cord-web.git",
+  "author": "borisbutenko <iamborisbutenko@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
