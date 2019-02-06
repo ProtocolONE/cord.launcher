@@ -1,9 +1,41 @@
 {
   "name": "qilin.cord-web",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:ProtocolONE/qilin.cord-web.git",
+  "version": "0.0.1",
+  "description": "",
+  "productName": "qilin.cord-web",
+  "cordovaId": "",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
-  "license": "MIT",
-  "private": true
+  "private": true,
+  "scripts": {
+    "start": "quasar dev -m ssr",
+    "lint": "eslint --ext .js,.vue src"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "vue-i18n": "^7.3.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.18.2",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-vue": "^4.3.0",
+    "quasar-cli": "^0.17.0",
+    "strip-ansi": "=3.0.1"
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.6.0",
+    "yarn": ">= 1.6.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ]
 }
