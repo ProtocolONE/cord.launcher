@@ -13,13 +13,13 @@
   <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
     <ul class="list">
       <li v-for="{ name, url, target } in links" :key="name">
-        <a :href="url" :target="target">{{ name }}</a>
+        <a :href="url" :target="target">{{ $t(name) }}</a>
       </li>
     </ul>
   </div>
 
   <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
-    <p class="copyright">{{ copyright }}</p>
+    <p class="copyright">{{ $t('copyright') }}</p>
     <div class="row gutter-sm justify-lg-center">
       <div v-for="{ name, url } in icons" :key="name">
         <a :href="url">
@@ -55,12 +55,11 @@ export default {
     return {
       links: [
         { name: 'Super.com', url: 'http://super.com', target: '_blank' },
-        { name: 'Vacancies', url: 'javascript:void(0)' },
-        { name: 'Company', url: 'javascript:void(0)' },
-        { name: 'Terms & Conditions', url: 'javascript:void(0)' },
-        { name: 'Legal Agreement', url: 'javascript:void(0)' }
+        { name: 'vacancies', url: 'javascript:void(0)' },
+        { name: 'company', url: 'javascript:void(0)' },
+        { name: 'terms', url: 'javascript:void(0)' },
+        { name: 'legalAgreement', url: 'javascript:void(0)' }
       ],
-      copyright: '© 2018, Super.com, Experiments for discovering such facts. But all that is valuable in each, in that part of the octagon-shaped wall he found another Besides ways of being conscious. These ways, taken together, are called the cognitive elements in mind, and it concealed her face. She carried a bucket.',
       icons: [
         { name: 'youtube', url: 'javascript:void(0)' },
         { name: 'twitter', url: 'javascript:void(0)' },
