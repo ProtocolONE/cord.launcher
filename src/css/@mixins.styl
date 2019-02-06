@@ -1,0 +1,16 @@
+@import '~variables'
+@import '@functions.styl'
+
+// --- font scale when
+// --- screen is desktop
+fontScaleOnlyDesktop($default, $scale = $default)
+  font-size: $default
+  @media only screen and (max-width: $desktop-start-w)
+    font-size: scaleTypographyFontSize($scale)
+
+// --- line height scale when
+// --- screen is desktop
+lineHeightScaleOnlyDesktop($default, $scale = $default)
+  line-height: $default
+  @media only screen and (max-width: $desktop-start-w)
+    line-height: scaleTypographyLineHeight($scale)
