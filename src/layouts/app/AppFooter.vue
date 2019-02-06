@@ -12,8 +12,10 @@
 
   <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
     <ul class="list">
-      <li v-for="{ name, url, target } in links" :key="name">
-        <a :href="url" :target="target">{{ $t(name) }}</a>
+      <li v-for="{ name, trans, url, target } in links" :key="name">
+        <a :href="url" :target="target">
+          {{ (trans) ? $t(trans) : name }}
+        </a>
       </li>
     </ul>
   </div>
@@ -55,10 +57,10 @@ export default {
     return {
       links: [
         { name: 'Super.com', url: 'http://super.com', target: '_blank' },
-        { name: 'vacancies', url: 'javascript:void(0)' },
-        { name: 'company', url: 'javascript:void(0)' },
-        { name: 'terms', url: 'javascript:void(0)' },
-        { name: 'legalAgreement', url: 'javascript:void(0)' }
+        { trans: 'vacancies', url: 'javascript:void(0)' },
+        { trans: 'company', url: 'javascript:void(0)' },
+        { trans: 'terms', url: 'javascript:void(0)' },
+        { trans: 'legalAgreement', url: 'javascript:void(0)' }
       ],
       icons: [
         { name: 'youtube', url: 'javascript:void(0)' },
