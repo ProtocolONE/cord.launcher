@@ -1,5 +1,5 @@
 <template>
-<section class="row gutter-sm q-pa-lg app-footer">
+<section class="row q-pa-lg app-footer">
 
   <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 row">
     <div class="col-12">
@@ -24,7 +24,7 @@
     <p class="copyright">{{ $t('copyright') }}</p>
     <div class="row gutter-sm justify-lg-center">
       <div v-for="{ name, url } in icons" :key="name">
-        <a :href="url" class="icon-box-item">
+        <a :href="url" class="icon-box-link">
           <icon-box>
             <icon :name="name" fill="#818181"/>
           </icon-box>
@@ -95,14 +95,4 @@ export default {
 
   margin-bottom: 3rem
   color: $text-color-light-2
-
-.icon-box-item
-  transition: opacity .3s linear
-  svg
-    transition: fill .3s linear
-
-  &:hover
-    opacity: .7
-    svg
-      fill: $white
 </style>

@@ -12,7 +12,7 @@ body
   font-family: Lato, 'Lucida Grande', Tahoma, Sans-Serif
   font-weight: normal
   fontScaleOnlyDesktop(1.4rem)
-  lineHeightScaleOnlyDesktop(1.5em)
+  lineHeightScaleOnlyDesktop(1.5)
 
 a[class]:hover
   color: inherit
@@ -26,3 +26,15 @@ a[class]:hover
   margin: 0
   padding: 0
   list-style-type: none
+
+// --- links
+.icon-box-link
+  color: $white
+  transition: opacity .3s linear
+  svg
+    transition: fill .3s linear
+  &:hover
+    color: $white
+    opacity: .7
+    svg
+      fill: $white

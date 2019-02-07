@@ -1,27 +1,19 @@
-export const initial = {
-  logo: null
-  // ...
-}
-
-export const shop = {
-  games: {
-    popular: [],
-    recommended: [],
-    friends: [],
-    updates: []
+export const game = {
+  name: 'Shattered Planet',
+  developer: 'Kitfoxgames',
+  publisher: 'Kitfoxgames',
+  rating: 5,
+  tags: ['STRATEGY', 'SCI-FI', 'ISOMETRIC'],
+  releaseDate: 1549531304775,
+  availablePlatforms: {
+    linux: false,
+    apple: true,
+    windows: true
   },
-  categories: [],
-  special: {}
-  // ...
+  recommended: 3272,
+  price: 99.99
 }
-
-export const game = {}
-
-export const profile = {}
 
 export default {
-  initial,
-  shop,
-  game,
-  profile
+  game
 }

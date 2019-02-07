@@ -45,7 +45,10 @@ module.exports = function (ctx) {
           '@components': path.resolve(__dirname, './src/components'),
           '@layouts': path.resolve(__dirname, './src/layouts'),
           '@pages': path.resolve(__dirname, './src/pages'),
-          '@plugins': path.resolve(__dirname, './src/plugins')
+          '@plugins': path.resolve(__dirname, './src/plugins'),
+
+          // --- test data
+          '@test-data': path.resolve(__dirname, './src/test-data.js')
         }
       }
     },

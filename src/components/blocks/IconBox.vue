@@ -23,9 +23,24 @@ export default {
     style () {
       let props = { ...this.$attrs, ...this.$props }
       let { width, height, size, background } = props
+
+      if (width) {
+        width = (Number(width)) ? `${ width }px` : width
+      }
+      else {
+        width = size + 'px'
+      }
+
+      if (height) {
+        height = (Number(height)) ? `${ height }px` : height
+      }
+      else {
+        height = size + 'px'
+      }
+
       return {
-        width: `${ width || size }px`,
-        height: `${ height || size }px`,
+        width,
+        height,
         backgroundColor: background
       }
     }
