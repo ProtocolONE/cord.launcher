@@ -14,7 +14,7 @@
     <ul class="list">
       <li v-for="{ name, trans, url, target } in links" :key="name">
         <a :href="url" :target="target">
-          {{ (trans) ? $t(trans) : name }}
+          {{ name }}
         </a>
       </li>
     </ul>
@@ -24,9 +24,9 @@
     <p class="copyright">{{ $t('copyright') }}</p>
     <div class="row gutter-sm justify-lg-center">
       <div v-for="{ name, url } in icons" :key="name">
-        <a :href="url">
+        <a :href="url" class="icon-box-item">
           <icon-box>
-            <icon :name="name"/>
+            <icon :name="name" fill="#818181"/>
           </icon-box>
         </a>
       </div>
@@ -54,13 +54,14 @@ export default {
   },
 
   data () {
+    let $t = this.$t
     return {
       links: [
         { name: 'Super.com', url: 'http://super.com', target: '_blank' },
-        { trans: 'vacancies', url: 'javascript:void(0)' },
-        { trans: 'company', url: 'javascript:void(0)' },
-        { trans: 'terms', url: 'javascript:void(0)' },
-        { trans: 'legalAgreement', url: 'javascript:void(0)' }
+        { name: $t('vacancies'), url: 'javascript:void(0)' },
+        { name: $t('company'), url: 'javascript:void(0)' },
+        { name: $t('terms'), url: 'javascript:void(0)' },
+        { name: $t('legalAgreement'), url: 'javascript:void(0)' }
       ],
       icons: [
         { name: 'youtube', url: 'javascript:void(0)' },
@@ -77,10 +78,12 @@ export default {
 @import '~styl/@mixins'
 
 .list
-  a
-    fontScaleOnlyDesktop(1.6rem, 1.6rem / 1.5)
-    lineHeightScaleOnlyDesktop(2.5em)
+  fontScaleOnlyDesktop(1.6rem, 1.6rem / 1.5)
+  lineHeightScaleOnlyDesktop(2.5em)
 
+  font-weight: bold
+
+  a
     color: $white
     letter-spacing: -.02em
 
@@ -92,4 +95,14 @@ export default {
 
   margin-bottom: 3rem
   color: $text-color-light-2
+
+.icon-box-item
+  transition: opacity .3s linear
+  svg
+    transition: fill .3s linear
+
+  &:hover
+    opacity: .7
+    svg
+      fill: $white
 </style>
