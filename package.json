@@ -8,6 +8,8 @@
   "private": true,
   "scripts": {
     "start": "quasar dev -m ssr",
+    "build": "quasar build",
+    "build:ssr": "quasar build -m ssr",
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {

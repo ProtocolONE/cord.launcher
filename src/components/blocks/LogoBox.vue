@@ -2,7 +2,7 @@
 <icon-box v-bind="{ ...$props, ...$attrs }" class="b-logo-box">
   <div v-if="logo"></div>
   <span v-else class="b-logo-box__text">
-    {{ emptyText }}
+    {{ $t('logo') }}
   </span>
 </icon-box>
 </template>
@@ -19,12 +19,6 @@ export default {
     logo: {
       type: null,
       required: true
-    }
-  },
-
-  data () {
-    return {
-      emptyText: 'Logo'
     }
   }
 }
