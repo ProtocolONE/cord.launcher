@@ -12,19 +12,21 @@
 
   <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
     <ul class="list">
-      <li v-for="{ name, url, target } in links" :key="name">
-        <a :href="url" :target="target">{{ name }}</a>
+      <li v-for="{ name, trans, url, target } in links" :key="name">
+        <a :href="url" :target="target">
+          {{ name }}
+        </a>
       </li>
     </ul>
   </div>
 
   <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
-    <p class="copyright">{{ copyright }}</p>
+    <p class="copyright">{{ $t('copyright') }}</p>
     <div class="row gutter-sm justify-lg-center">
       <div v-for="{ name, url } in icons" :key="name">
-        <a :href="url">
+        <a :href="url" class="icon-box-item">
           <icon-box>
-            <icon :name="name"/>
+            <icon :name="name" fill="#818181"/>
           </icon-box>
         </a>
       </div>
@@ -52,15 +54,15 @@ export default {
   },
 
   data () {
+    let $t = this.$t
     return {
       links: [
         { name: 'Super.com', url: 'http://super.com', target: '_blank' },
-        { name: 'Vacancies', url: 'javascript:void(0)' },
-        { name: 'Company', url: 'javascript:void(0)' },
-        { name: 'Terms & Conditions', url: 'javascript:void(0)' },
-        { name: 'Legal Agreement', url: 'javascript:void(0)' }
+        { name: $t('vacancies'), url: 'javascript:void(0)' },
+        { name: $t('company'), url: 'javascript:void(0)' },
+        { name: $t('terms'), url: 'javascript:void(0)' },
+        { name: $t('legalAgreement'), url: 'javascript:void(0)' }
       ],
-      copyright: '© 2018, Super.com, Experiments for discovering such facts. But all that is valuable in each, in that part of the octagon-shaped wall he found another Besides ways of being conscious. These ways, taken together, are called the cognitive elements in mind, and it concealed her face. She carried a bucket.',
       icons: [
         { name: 'youtube', url: 'javascript:void(0)' },
         { name: 'twitter', url: 'javascript:void(0)' },
@@ -76,10 +78,12 @@ export default {
 @import '~styl/@mixins'
 
 .list
-  a
-    fontScaleOnlyDesktop(1.6rem, 1.6rem / 1.5)
-    lineHeightScaleOnlyDesktop(2.5em)
+  fontScaleOnlyDesktop(1.6rem, 1.6rem / 1.5)
+  lineHeightScaleOnlyDesktop(2.5em)
 
+  font-weight: bold
+
+  a
     color: $white
     letter-spacing: -.02em
 
@@ -91,4 +95,14 @@ export default {
 
   margin-bottom: 3rem
   color: $text-color-light-2
+
+.icon-box-item
+  transition: opacity .3s linear
+  svg
+    transition: fill .3s linear
+
+  &:hover
+    opacity: .7
+    svg
+      fill: $white
 </style>

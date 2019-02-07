@@ -3,6 +3,7 @@
  * when building for PRODUCTION
  */
 
+/*
 import { register } from 'register-service-worker'
 
 register(process.env.SERVICE_WORKER_FILE, {
@@ -28,5 +29,6 @@ register(process.env.SERVICE_WORKER_FILE, {
     console.error('Error during service worker registration:', err)
   }
 })
+*/
 
 // ServiceWorkerRegistration: https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration
