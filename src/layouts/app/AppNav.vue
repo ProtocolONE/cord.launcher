@@ -1,26 +1,27 @@
 <template>
 <q-tabs :class="$style.app_nav" color="transparent">
   <q-route-tab
-      v-for="{ name, path } in pages"
+      v-for="{ name, path } in links"
       :key="name"
       :name="name"
       :to="path"
       class="app-nav__item"
-      slot="title">
+      slot="title"
+      exact>
     {{ $t(name) }}
   </q-route-tab>
 </q-tabs>
 </template>
 
 <script>
-import { pages } from '@src/router/routes'
+import { navigationLinks } from '@src/router/routes'
 
 export default {
   name: 'AppNav',
 
   data () {
     return {
-      pages
+      links: navigationLinks
     }
   }
 }
