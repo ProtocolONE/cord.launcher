@@ -3,7 +3,7 @@
 
   <div class="col row items-center icons">
     <div v-for="platform in platforms" :key="platform" class="icons__item">
-      <icon :name="platform" fill="#FFF"/>
+      <icon :name="platform" :size="iconsSize" :fill="iconsFill"/>
     </div>
   </div>
 
@@ -15,7 +15,7 @@
 
     <a href="javascript:void(0)" class="col-auto icon-box-link">
       <icon-box width="100%" height="48" class="icon-box icon-box--recommended">
-        <icon name="heart" fill="#FFF"/>
+        <icon name="heart" :size="iconsSize" :fill="iconsFill"/>
         {{ recommended }}
       </icon-box>
     </a>
@@ -48,6 +48,13 @@ export default {
     price: [String, Number]
   },
 
+  data () {
+    return {
+      iconsSize: 20,
+      iconsFill: '#FFF'
+    }
+  },
+
   computed: {
     platforms () {
       return keys(
@@ -64,7 +71,7 @@ export default {
 .l-game-info
   background-color: $bg-dark
   @media (min-width $breakpoint-lg-min)
-    $p = 3.2rem
+    $p = ($space-base * 2)
     padding-top: $p
     padding-bottom $p
 

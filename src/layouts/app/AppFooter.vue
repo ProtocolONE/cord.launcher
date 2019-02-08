@@ -26,7 +26,7 @@
       <div v-for="{ name, url } in icons" :key="name">
         <a :href="url" class="icon-box-link">
           <icon-box>
-            <icon :name="name" fill="#818181"/>
+            <icon :name="name" :size="iconsSize" :fill="iconsFill"/>
           </icon-box>
         </a>
       </div>
@@ -67,7 +67,9 @@ export default {
         { name: 'youtube', url: 'javascript:void(0)' },
         { name: 'twitter', url: 'javascript:void(0)' },
         { name: 'facebook', url: 'javascript:void(0)' }
-      ]
+      ],
+      iconsSize: 30,
+      iconsFill: '#818181'
     }
   }
 }

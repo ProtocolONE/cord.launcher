@@ -11,7 +11,7 @@
           :key="label"
           class="col-lg-6 col-md-6 col-sm-6 col-xs-12 liked-tags__item">
         <icon-box size="48" radius="50%">
-          <icon :name="icon"/>
+          <icon :name="icon" :size="iconsSize" :fill="iconsFill"/>
         </icon-box>
         <span class="liked-tags__label">{{ label }}</span>
       </div>
@@ -94,6 +94,13 @@ export default {
     friends: Array,
     bestReview: Object,
     info: Object
+  },
+
+  data () {
+    return {
+      iconsSize: 24,
+      iconsFill: '#FFF'
+    }
   },
 
   computed: {
