@@ -16,17 +16,44 @@ export default {
     background: {
       type: String,
       default: 'rgba(0, 0, 0, 0.5)'
+    },
+    radius: {
+      type: [String, Number],
+      default: 4
     }
   },
 
   computed: {
     style () {
       let props = { ...this.$attrs, ...this.$props }
-      let { width, height, size, background } = props
+      let { width, height, size, background, radius } = props
+
+      if (width) {
+        width = (Number(width)) ? `${ width }px` : width
+      }
+      else {
+        width = size + 'px'
+      }
+
+      if (height) {
+        height = (Number(height)) ? `${ height }px` : height
+      }
+      else {
+        height = size + 'px'
+      }
+
+      if (radius) {
+        radius = (Number(radius)) ? `${ radius }px` : radius
+      }
+      else {
+        radius = radius + 'px'
+      }
+
       return {
-        width: `${ width || size }px`,
-        height: `${ height || size }px`,
-        backgroundColor: background
+        width,
+        height,
+        backgroundColor: background,
+        borderRadius: radius
       }
     }
   }
@@ -38,5 +65,4 @@ export default {
 
 .b-icon-box
   display: inline-flex
-  border-radius: $border-radius
 </style>

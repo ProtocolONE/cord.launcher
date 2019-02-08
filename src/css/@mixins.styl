@@ -5,12 +5,16 @@
 // --- screen is desktop
 fontScaleOnlyDesktop($default, $scale = $default)
   font-size: $default
-  @media only screen and (max-width: $desktop-start-w)
+  @media (max-width $breakpoint-md-min)
     font-size: scaleTypographyFontSize($scale)
 
 // --- line height scale when
 // --- screen is desktop
 lineHeightScaleOnlyDesktop($default, $scale = $default)
   line-height: $default
-  @media only screen and (max-width: $desktop-start-w)
+  @media (max-width $breakpoint-md-min)
     line-height: scaleTypographyLineHeight($scale)
+
+// --- set opacity
+doOpacity($value)
+  opacity: $value

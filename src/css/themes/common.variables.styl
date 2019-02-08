@@ -16,21 +16,24 @@
 
 // --- root
 :root
+  // viewport
   --vw: 100vw
   --vh: 100vh
+
+  // mobile bar offset
   --vh-offset: 0
 
 // --- Theme colors
-$primary   = #027be3
-$secondary = #26A69A
-$tertiary  = #555
+$primary    = #027be3
+$secondary  = #26A69A
+$tertiary   = rgba(0, 0, 0, .3)
 
 // --- Alert colors
-$neutral   = #E0E1E2
-$positive  = #21BA45
-$negative  = #DB2828
-$info      = #31CCEC
-$warning   = #F2C037
+$neutral    = #E0E1E2
+$positive   = #21BA45
+$negative   = #DB2828
+$info       = #31CCEC
+$warning    = #F2C037
 
 // --- Viewport
 $vw = var(--vw)
@@ -42,19 +45,18 @@ $black   = #000
 
 // --- Backgrounds colors
 $bg-black          = #080808
+$bg-dark           = #262626
+$bg-dark-1         = #242424
 $body-background   = #E5E5E5
 $page-background   = #434343
-$header-background = #262626
-$footer-background = #262626
+$header-background = $bg-dark
+$footer-background = $bg-dark
 
 // --- Text colors
 $text-color-light-1 = #909090
 $text-color-light-2 = #818181
 $text-color-light-3 = #A9A9A9
-
-// --- media
-// --- desktop started width
-$desktop-start-w = 1024px
+$text-color-gray-1  = rgba(144, 144, 144, .4)
 
 // --- borders
 $border-radius = 4px

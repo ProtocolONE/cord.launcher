@@ -1,8 +1,7 @@
 export default {
   /**
    * Logo url
-   * @type {String}
-   * @default null
+   * @type {String|null}
    */
   logo: null
 }

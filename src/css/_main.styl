@@ -12,17 +12,46 @@ body
   font-family: Lato, 'Lucida Grande', Tahoma, Sans-Serif
   font-weight: normal
   fontScaleOnlyDesktop(1.4rem)
-  lineHeightScaleOnlyDesktop(1.5em)
+  lineHeightScaleOnlyDesktop(1.3em)
 
-a[class]:hover
+a
   color: inherit
-  text-decoration: none
+  &:hover
+    color: inherit
+    &[class]
+      text-decoration: none
 
-.q-layout-page
-  padding
+// --- cord padding
+.cord-padding
+  @media (max-width $breakpoint-sm-max)
+   padding: ($space-base / 2)
+  @media (min-width $breakpoint-md-min) and (max-width $breakpoint-md-max)
+    padding: $space-base
+  @media (min-width $breakpoint-lg-min) and (max-width $breakpoint-lg-max)
+    padding: ($space-base * 1.5)
+  @media (min-width $breakpoint-xl-min)
+    padding: ($space-base * 3)
 
 // --- lists
 .list
   margin: 0
   padding: 0
   list-style-type: none
+
+// --- links
+.icon-box-link
+  color: $white
+  transition: opacity .3s linear
+  &:hover
+    color: $white
+    opacity: .7
+
+// --- paragraph
+.paragraph
+  font-family: Lato
+  font-style: normal
+  font-weight: normal
+  line-height: 3.2rem
+  font-size: 1.6rem
+  letter-spacing: -.02em
+  color: $text-color-light-1

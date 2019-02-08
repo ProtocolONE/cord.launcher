@@ -10,7 +10,7 @@
 
   <!-- body -->
   <q-page-container class="app-layout__container">
-    <q-page padding>
+    <q-page>
       <slot/>
     </q-page>
   </q-page-container>
