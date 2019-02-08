@@ -1,7 +1,11 @@
 <template>
-<object :data="iconSrc" type="image/svg+xml" class="c-icon">
-  <img :src="iconSrc" :alt="name">
-</object>
+<svg
+    :width="width || size"
+    :height="height || size"
+    :fill="fill"
+    class="c-icon">
+  <use :xlink:href="`#${ name }`"/>
+</svg>
 </template>
 
 <script>
@@ -13,18 +17,10 @@ export default {
       type: String,
       required: true
     },
-    extension: {
-      type: String,
-      default: 'svg'
-    }
-  },
-
-  computed: {
-    iconSrc () {
-      let { name, extension: ext } = this
-      let icon = `${ name }.${ ext }`
-      return `statics/${ ext }/${ icon }`
-    }
+    width: [String, Number],
+    height: [String, Number],
+    size: [String, Number],
+    fill: String
   }
 }
 </script>

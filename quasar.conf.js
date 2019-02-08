@@ -1,9 +1,19 @@
 const path = require('path')
 
+// --- set app root dirname
+global.appRoot = path.resolve(__dirname)
+
+const { initIcons } = require('./src/assets/nodejs')
+
 // Configuration for your app
 
 module.exports = function (ctx) {
   return {
+    // -- custom html variables
+    htmlVariables: {
+      icons: initIcons()
+    },
+
     // app plugins (/src/plugins)
     plugins: [
       'i18n',
