@@ -7,6 +7,14 @@ export default {
   shop: 'Магазин',
   library: 'Библиотека',
 
+  // --- game
+  likeGameTitle: 'Почему игра понравится вам',
+  followingTagsTitle: 'Вы так же играли в игры со следующими тегами',
+  friendAlsoPlayingTitle: 'Ваши друзья тоже играют',
+  bestReviewTitle: 'Лучший отзыв',
+  reviews: 'Отзывов',
+  readMoreLabel: 'Читать далее',
+
   // --- footer
   vacancies: 'Вакансии',
   company: 'О компании',

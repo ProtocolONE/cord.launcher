@@ -2,14 +2,15 @@
 <article id="game">
 
   // --- slider
-
   <game-info v-bind="gameInfo"/>
+  <game-preview v-bind="gamePreview"/>
 
 </article>
 </template>
 
 <script>
 import GameInfo from '@layouts/game/GameInfo'
+import GamePreview from '@layouts/game/GamePreview'
 
 import { game } from '@test-data'
 import { mapMutations, mapGetters } from 'vuex'
@@ -19,11 +20,12 @@ import { pick } from 'lodash'
 export default {
   name: 'Game',
 
-  components: { GameInfo },
+  components: { GameInfo, GamePreview },
 
   data () {
     return {
-      gameInfoPaths: ['availablePlatforms', 'recommended', 'price']
+      gameInfoPaths: ['availablePlatforms', 'recommended', 'price'],
+      gamePreviewPaths: ['likeTags', 'followTags', 'friends', 'bestReview', 'info']
     }
   },
 
@@ -36,6 +38,10 @@ export default {
 
     gameInfo () {
       return pick(this.getFullGameData, this.gameInfoPaths)
+    },
+
+    gamePreview () {
+      return pick(this.getFullGameData, this.gamePreviewPaths)
     }
   },
 

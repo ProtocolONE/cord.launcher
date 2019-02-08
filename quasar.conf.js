@@ -13,8 +13,8 @@ module.exports = function (ctx) {
       'app.styl'
     ],
     extras: [
-      ctx.theme.mat ? 'roboto-font' : null,
-      'material-icons' // optional, you are not bound to it
+      // ctx.theme.mat? 'roboto-font' : null
+      // 'material-icons', // optional, you are not bound to it
       // 'ionicons',
       // 'mdi',
       // 'fontawesome'
@@ -42,6 +42,7 @@ module.exports = function (ctx) {
           // --- for js
           // --- ex: import [a from] '@src/...'
           '@src': path.resolve(__dirname, './src'),
+          '@assets': path.resolve(__dirname, './src/assets'),
           '@components': path.resolve(__dirname, './src/components'),
           '@layouts': path.resolve(__dirname, './src/layouts'),
           '@pages': path.resolve(__dirname, './src/pages'),
@@ -66,7 +67,8 @@ module.exports = function (ctx) {
         'QPageContainer',
         'QPage',
         'QTabs',
-        'QRouteTab'
+        'QRouteTab',
+        'QBtn'
       ],
       // Quasar directives
       directives: [],
