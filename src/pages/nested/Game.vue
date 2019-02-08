@@ -12,10 +12,10 @@
 import GameInfo from '@layouts/game/GameInfo'
 import GamePreview from '@layouts/game/GamePreview'
 
-import { game } from '@test-data'
+import { game, initial } from '@test-data'
 import { mapMutations, mapGetters } from 'vuex'
 
-import { pick } from 'lodash'
+import { merge, pick } from 'lodash'
 
 export default {
   name: 'Game',
@@ -24,6 +24,7 @@ export default {
 
   data () {
     return {
+      initialPaths: ['locale'],
       gameInfoPaths: ['availablePlatforms', 'recommended', 'price'],
       gamePreviewPaths: ['likeTags', 'followTags', 'friends', 'bestReview', 'info']
     }
@@ -37,7 +38,10 @@ export default {
     },
 
     gameInfo () {
-      return pick(this.getFullGameData, this.gameInfoPaths)
+      return merge(
+        pick(initial, this.initialPaths),
+        pick(this.getFullGameData, this.gameInfoPaths)
+      )
     },
 
     gamePreview () {

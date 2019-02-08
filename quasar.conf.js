@@ -80,6 +80,7 @@ module.exports = function (ctx) {
         'QRouteTab',
         'QBtn'
       ],
+      cssAddon: true,
       // Quasar directives
       directives: [],
       // Quasar plugins

@@ -1,3 +1,8 @@
+export const initial = {
+  logo: null,
+  locale: 'en-us'
+}
+
 export const game = {
   name: 'Shattered Planet',
   info: {
@@ -47,5 +52,6 @@ export const game = {
 }
 
 export default {
+  initial,
   game
 }

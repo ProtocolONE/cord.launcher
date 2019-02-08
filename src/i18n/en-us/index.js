@@ -2,6 +2,10 @@ export default {
   // --- initial
   logo: 'Logo',
 
+  // --- locales
+  'en-us': 'English',
+  'ru-ru': 'Russian',
+
   // --- nav
   home: 'Home',
   shop: 'Shop',
