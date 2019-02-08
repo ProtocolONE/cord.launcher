@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 row items-center justify-end no-wrap">
+  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 row items-center justify-md-end no-wrap">
 
     <a href="javascript:void(0)" class="col-auto icon-box-link">
       <icon-box width="100%" height="48" class="icon-box icon-box--recommended">
