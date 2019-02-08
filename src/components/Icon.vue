@@ -3,6 +3,7 @@
     :width="width || size"
     :height="height || size"
     :fill="fill"
+    :stroke="stroke"
     class="c-icon">
   <use :xlink:href="`#${ name }`"/>
 </svg>
@@ -20,7 +21,12 @@ export default {
     width: [String, Number],
     height: [String, Number],
     size: [String, Number],
-    fill: String
+    fill: String,
+    stroke: String
+  },
+
+  created () {
+    console.log(this.stroke)
   }
 }
 </script>
