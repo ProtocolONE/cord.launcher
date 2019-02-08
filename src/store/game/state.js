@@ -6,6 +6,18 @@ export default {
   name: null,
 
   /**
+   * Game info
+   * @type {Object}
+   */
+  info: {
+    banner: null,
+    title: null,
+    description: null,
+    bannerUrl: null,
+    readMoreUrl: null
+  },
+
+  /**
    * Game developer
    * @type {String|null}
    */
@@ -25,9 +37,45 @@ export default {
 
   /**
    * Game tags
-   * @type {Array}
+   * @type {Array} String array
+   * @example {String} 'tag-1' 'tag-2' ... 'tag-n'
    */
   tags: [],
+
+  /**
+   * Like game tags
+   * @type {Array} Object array
+   * @example {Object} { icon: <String>, label: <String> }
+   */
+  likeTags: [],
+
+  /**
+   * Friends also playing
+   * @type {Array} Object array
+   * @example {Object} { name: <String>, logo: <String>, url: <String> }
+   */
+  friends: [],
+
+  /**
+   * Best review from user
+   * @type {Object} Review info
+   */
+  bestReview: {
+    label: null,
+    user: {
+      name: null,
+      logo: null,
+      url: null,
+      reviews: null
+    }
+  },
+
+  /**
+   * Follow game tags
+   * @type {Array} Object array
+   * @example {String} 'tag-1' 'tag-2' ... 'tag-n'
+   */
+  followTags: [],
 
   /**
    * Game's release date

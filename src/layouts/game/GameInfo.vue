@@ -1,5 +1,5 @@
 <template>
-<section class="row q-pa-lg l-game-info">
+<section class="row cord-padding l-game-info">
 
   <div class="col row items-center icons">
     <div v-for="platform in platforms" :key="platform" class="icons__item">
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import Icon from '@components/icons'
+import Icon from '@components/Icon'
 import IconBox from '@components/blocks/IconBox'
 
 import { keys, pickBy } from 'lodash'
@@ -63,6 +63,10 @@ export default {
 
 .l-game-info
   background-color: $bg-dark
+  @media (min-width $breakpoint-lg-min)
+    $p = 3.2rem
+    padding-top: $p
+    padding-bottom $p
 
 .icons__item:not(:last-child)
   margin-right: 3.4rem
@@ -78,7 +82,7 @@ export default {
   &--recommended
     justify-content: center
     font-family: Roboto
-    svg
+    .c-icon
       margin-right: $space-base
 
   &--price

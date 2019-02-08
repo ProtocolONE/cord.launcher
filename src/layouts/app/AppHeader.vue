@@ -1,5 +1,5 @@
 <template>
-<section class="row q-pa-lg app-header row">
+<section class="row cord-padding app-header">
 
   <div class="col-lg-1 col-md-2">
     <logo-box :logo="logo" height="48" background="rgba(8, 8, 8, .35)"/>
@@ -55,6 +55,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '~variables'
+
 .app-header
   font-family: Roboto
+  @media (min-width $breakpoint-lg-min)
+    $p = 3.6rem
+    padding-top: $p
+    padding-bottom $p
 </style>

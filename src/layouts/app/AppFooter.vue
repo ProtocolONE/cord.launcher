@@ -1,5 +1,5 @@
 <template>
-<section class="row q-pa-lg app-footer">
+<section class="row cord-padding app-footer">
 
   <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 row">
     <div class="col-12">
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import Icon from '@components/icons'
+import Icon from '@components/Icon'
 import IconBox from '@components/blocks/IconBox'
 import LogoBox from '@components/blocks/LogoBox'
 

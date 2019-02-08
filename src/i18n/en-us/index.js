@@ -7,6 +7,14 @@ export default {
   shop: 'Shop',
   library: 'Library',
 
+  // --- game
+  likeGameTitle: 'Why do I like the game',
+  followingTagsTitle: 'You’ve also played games with following tags',
+  friendAlsoPlayingTitle: 'Your friends are also playing',
+  bestReviewTitle: 'Best review',
+  reviews: 'Reviews',
+  readMoreLabel: 'Read more',
+
   // --- footer
   vacancies: 'Vacancies',
   company: 'Company',
