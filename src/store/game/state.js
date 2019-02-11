@@ -78,6 +78,13 @@ export default {
   followTags: [],
 
   /**
+   * Follow social links
+   * @type {Array} social links
+   * @example {Object} { icon: 'facebook', url: 'url' }
+   */
+  followSocial: [],
+
+  /**
    * Game's release date
    * @type {Date|null}
    */

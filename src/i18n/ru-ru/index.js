@@ -18,6 +18,7 @@ export default {
   bestReviewTitle: 'Лучший отзыв',
   reviews: 'Отзывов',
   readMoreLabel: 'Читать далее',
+  followSocialTitle: 'Присоединиться к',
 
   // --- footer
   vacancies: 'Вакансии',

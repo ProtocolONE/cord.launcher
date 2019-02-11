@@ -14,6 +14,28 @@ body
   fontScaleOnlyDesktop(1.4rem)
   lineHeightScaleOnlyDesktop(1.3em)
 
+// --- colors
+.color
+  color: inherit
+  &-gray-1
+    color: $text-color-gray-1
+  &-light-1
+    color: $text-color-light-1
+  &-light-2
+    color: $text-color-light-2
+  &-light-3
+    color: $text-color-light-3
+
+// --- titles
+.title
+  font-size: 3.2rem
+  font-weight: 300
+  letter-spacing: -.02em
+
+  &--bold
+    font-weight: bold
+
+// --- links
 a
   color: inherit
   &:hover
@@ -41,7 +63,7 @@ a
 // --- links
 .icon-box-link
   color: $white
-  transition: opacity .3s linear
+  transition: opacity $transition-duration linear
   &:hover
     color: $white
     opacity: .7

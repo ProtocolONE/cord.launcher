@@ -1,16 +1,16 @@
 <template>
 <section class="row cord-padding app-footer">
 
-  <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 row">
+  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 row">
     <div class="col-12">
       <logo-box :logo="logo"/>
     </div>
     <div class="col-12">
-      <icon-box background="transparent">2019</icon-box>
+      <icon-box background>2019</icon-box>
     </div>
   </div>
 
-  <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+  <div class="col-lg-2 col-md-4 col-sm-9 col-xs-8">
     <ul class="list">
       <li v-for="{ name, trans, url, target } in links" :key="name">
         <a :href="url" :target="target">
@@ -20,9 +20,9 @@
     </ul>
   </div>
 
-  <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
+  <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 order-xs-first order-md-none q-mb-xs-md q-mb-md-none">
     <p class="copyright">{{ $t('copyright') }}</p>
-    <div class="row gutter-sm justify-lg-center">
+    <div class="row gutter-sm">
       <div v-for="{ name, url } in icons" :key="name">
         <a :href="url" class="icon-box-link">
           <icon-box>
