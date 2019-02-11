@@ -48,7 +48,16 @@ export const game = {
     windows: true
   },
   recommended: 3272,
-  price: 99.99
+  price: 99.99,
+  followSocial: [
+    { icon: 'facebook', url: 'javascript:void(0)' },
+    { icon: 'instagram', url: 'javascript:void(0)' },
+    { icon: 'twitter', url: 'javascript:void(0)' },
+    { icon: 'youtube', url: 'javascript:void(0)' },
+    { icon: 'ok', url: 'javascript:void(0)' },
+    { icon: 'vk', url: 'javascript:void(0)' },
+    { icon: 'facebook-messenger', url: 'javascript:void(0)' }
+  ]
 }
 
 export default {

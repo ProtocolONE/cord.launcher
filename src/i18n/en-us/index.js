@@ -18,6 +18,7 @@ export default {
   bestReviewTitle: 'Best review',
   reviews: 'Reviews',
   readMoreLabel: 'Read more',
+  followSocialTitle: 'Follow',
 
   // --- footer
   vacancies: 'Vacancies',

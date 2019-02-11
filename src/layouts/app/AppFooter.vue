@@ -6,7 +6,7 @@
       <logo-box :logo="logo"/>
     </div>
     <div class="col-12">
-      <icon-box background="transparent">2019</icon-box>
+      <icon-box background>2019</icon-box>
     </div>
   </div>
 
