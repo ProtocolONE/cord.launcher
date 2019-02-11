@@ -35,7 +35,7 @@
           v-for="{ name, logo, url } in friends"
           :key="name"
           :href="url"
-          class="col-auto hover-opacity friends__item">
+          class="col-auto t-hover-opacity friends__item">
         <div class="friends__logo" :style="{ backgroundImage: `url(${ logo })` }"></div>
         {{ name }}
       </a>
@@ -44,7 +44,7 @@
     <div class="best-review">
       <h6 class="col-12 l-game-preview__title--sm">{{ $t('bestReviewTitle') }}</h6>
       <p class="paragraph best-review__label">{{ bestReview.label }}</p>
-      <a :href="bestReviewUser.url" class="hover-opacity best-review__user">
+      <a :href="bestReviewUser.url" class="t-hover-opacity best-review__user">
         <div
             class="best-review__user-logo"
             :style="{ backgroundImage: `url(${ bestReviewUser.logo })` }">
@@ -63,7 +63,7 @@
   <div class="col-lg-7 info">
 
     <div class="col-12 shadow-10 info__banner">
-      <a :href="info.bannerUrl" class="hover-opacity">
+      <a :href="info.bannerUrl" class="t-hover-opacity">
         <img :src="info.banner" alt="game banner">
       </a>
     </div>

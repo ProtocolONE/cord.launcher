@@ -46,7 +46,7 @@ export default {
     text-transform: capitalize
 
     border-radius: 10rem
-    transition: background .3s linear .3s, color .3s linear
+    transition: background $transition-duration linear $transition-duration, color $transition-duration linear
 
     &::before
       border-radius: 10rem
