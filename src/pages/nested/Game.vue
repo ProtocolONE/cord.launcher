@@ -1,15 +1,14 @@
 <template>
 <article id="game">
-
-  // --- slider
+  <game-slider v-bind="gameSlider"/>
   <game-info v-bind="gameInfo"/>
   <game-preview v-bind="gamePreview"/>
   <game-social v-bind="gameSocial"/>
-
 </article>
 </template>
 
 <script>
+import GameSlider from '@layouts/game/GameSlider'
 import GameInfo from '@layouts/game/GameInfo'
 import GamePreview from '@layouts/game/GamePreview'
 import GameSocial from '@layouts/game/GameSocial'
@@ -22,11 +21,17 @@ import { merge, pick } from 'lodash'
 export default {
   name: 'Game',
 
-  components: { GameInfo, GamePreview, GameSocial },
+  components: {
+    GameSlider,
+    GameInfo,
+    GamePreview,
+    GameSocial
+  },
 
   data () {
     return {
       initialPaths: ['locale'],
+      gameSliderPaths: ['name', 'preview', 'rating', 'followTags', 'releaseDate', 'developer', 'publisher'],
       gameInfoPaths: ['availablePlatforms', 'recommended', 'price'],
       gamePreviewPaths: ['likeTags', 'followTags', 'friends', 'bestReview', 'info'],
       gameSocialPaths: ['name', 'followSocial']
@@ -38,6 +43,10 @@ export default {
 
     gameId () {
       return this.$route.params.id
+    },
+
+    gameSlider () {
+      return pick(this.getFullGameData, this.gameSliderPaths)
     },
 
     gameInfo () {

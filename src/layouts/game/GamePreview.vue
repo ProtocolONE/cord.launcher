@@ -156,7 +156,7 @@ export default {
     margin-bottom: $space-base
 
     &:not(:last-child)
-      margin-right: .6rem
+      margin-right: ($space-base / 2)
 
   &__btn
     height: 4rem
