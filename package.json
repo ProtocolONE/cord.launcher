@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "lodash": "^4.17.11",
+    "moment": "^2.24.0",
     "vue-i18n": "^7.3.3"
   },
   "devDependencies": {

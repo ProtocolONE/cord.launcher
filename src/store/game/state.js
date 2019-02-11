@@ -6,6 +6,12 @@ export default {
   name: null,
 
   /**
+   * Game image preview url
+   * @type {String|null}
+   */
+  preview: null,
+
+  /**
    * Game info
    * @type {Object}
    */
@@ -86,7 +92,7 @@ export default {
 
   /**
    * Game's release date
-   * @type {Date|null}
+   * @type {String|Number|Date|null}
    */
   releaseDate: null,
 

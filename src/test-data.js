@@ -5,6 +5,7 @@ export const initial = {
 
 export const game = {
   name: 'Shattered Planet',
+  preview: 'statics/game/game-preview.jpg',
   info: {
     banner: 'statics/game/game-banner.jpg',
     title: 'Explore a dangerous planet that\'s different every time and try to survive!',
@@ -14,7 +15,7 @@ export const game = {
   },
   developer: 'Kitfoxgames',
   publisher: 'Kitfoxgames',
-  rating: 5,
+  rating: 4,
   tags: ['STRATEGY', 'SCI-FI', 'ISOMETRIC'],
   likeTags: [
     { icon: 'rocket', label: 'SOME KIND OF TAG' },

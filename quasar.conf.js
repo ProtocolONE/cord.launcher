@@ -24,8 +24,8 @@ module.exports = function (ctx) {
     ],
     extras: [
       // ctx.theme.mat? 'roboto-font' : null
-      // 'material-icons', // optional, you are not bound to it
-      // 'ionicons',
+      'material-icons' // optional, you are not bound to it
+      // 'ionicons'
       // 'mdi',
       // 'fontawesome'
     ],
@@ -78,14 +78,15 @@ module.exports = function (ctx) {
         'QPage',
         'QTabs',
         'QRouteTab',
-        'QBtn'
+        'QBtn',
+        'QRating'
       ],
       cssAddon: true,
       // Quasar directives
       directives: [],
       // Quasar plugins
       plugins: [],
-      // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
+      iconSet: 'material-icons',
       // Quasar language
       i18n: 'en-us'
     },

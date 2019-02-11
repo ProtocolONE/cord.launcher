@@ -23,10 +23,6 @@ export default {
     size: [String, Number],
     fill: String,
     stroke: String
-  },
-
-  created () {
-    console.log(this.stroke)
   }
 }
 </script>
