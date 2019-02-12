@@ -1,7 +1,7 @@
 <template>
 <section class="row cord-padding l-game-social">
 
-  <h2 class="col-lg-5 col-md-6 col-sm-12 col-xs-12 title color-light-3">{{ title }}</h2>
+  <h2 class="col-lg-5 col-md-6 col-sm-12 col-xs-12 title title--light color-light-3">{{ title }}</h2>
 
   <div class="no-wrap q-ml-lg-auto q-ma-md-none">
     <icon-box v-for="{ icon, url } in followSocial" :key="icon" background>

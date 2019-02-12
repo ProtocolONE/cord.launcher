@@ -26,6 +26,17 @@ export default {
   byGameOwners: 'By game owners',
   reviewsBestLabel: 'Best',
   reviewsAllLabel: 'All',
+  systemRequirementsTitle: 'System requirements',
+  languageSupportTitle: 'Language support',
+  ratingTitle: 'Rating',
+  minimalLabel: 'Minimal',
+  recommendedLabel: 'Recommended',
+  OS: 'OS',
+  CPU: 'CPU',
+  RAM: 'RAM',
+  GPU: 'Graphics',
+  diskSpace: 'Disk space',
+  audioLabel: 'Audio',
 
   // --- footer
   vacancies: 'Vacancies',
@@ -37,5 +48,7 @@ export default {
   // --- other
   back: 'Back',
   more: 'More',
-  reviews: 'Reviews'
+  reviews: 'Reviews',
+  language: 'Language',
+  text: 'Text'
 }

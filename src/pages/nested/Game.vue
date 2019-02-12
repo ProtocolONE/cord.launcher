@@ -4,6 +4,7 @@
   <game-info v-bind="gameInfo"/>
   <game-preview v-bind="gamePreview"/>
   <game-reviews v-bind="gameReviews"/>
+  <game-requirements v-bind="gameRequirements"/>
   <game-social v-bind="gameSocial"/>
   <game-line-more v-bind="gameLineMoreByDeveloper"/>
   <game-line-more v-bind="gameLineMoreByUser" class="q-mb-lg"/>
@@ -17,6 +18,7 @@ import GamePreview from '@layouts/game/GamePreview'
 import GameSocial from '@layouts/game/GameSocial'
 import GameLineMore from '@layouts/game/GameLineMore'
 import GameReviews from '@layouts/game/GameReviews'
+import GameRequirements from '@layouts/game/GameRequirements'
 
 import { game, initial } from '@test-data'
 import { mapMutations, mapGetters } from 'vuex'
@@ -32,7 +34,8 @@ export default {
     GamePreview,
     GameSocial,
     GameLineMore,
-    GameReviews
+    GameReviews,
+    GameRequirements
   },
 
   data () {
@@ -41,6 +44,7 @@ export default {
       gameSliderPaths: ['name', 'preview', 'rating', 'followTags', 'releaseDate', 'developer', 'publisher'],
       gameInfoPaths: ['availablePlatforms', 'recommended', 'price'],
       gamePreviewPaths: ['likeTags', 'followTags', 'friends', 'bestReview', 'info'],
+      gameRequirementsPaths: ['requirements'],
       gameSocialPaths: ['name', 'followSocial'],
       gameReviewsPaths: ['gameRating', 'reviews']
     }
@@ -66,6 +70,10 @@ export default {
 
     gamePreview () {
       return pick(this.getFullGameData, this.gamePreviewPaths)
+    },
+
+    gameRequirements () {
+      return pick(this.getFullGameData, this.gameRequirementsPaths)
     },
 
     gameSocial () {

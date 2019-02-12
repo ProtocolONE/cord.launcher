@@ -152,5 +152,30 @@ export default {
    *    user: { name: <user_name>, logo: <user_logo>, url: <user_profile> }
    *  }
    */
-  reviews: []
+  reviews: [],
+
+  /**
+   * requirements, languages & support
+   * @type {Object}
+   */
+  requirements: {
+    languagesSupport: {
+      // --- audio support list
+      audio: [],
+      // --- text support list
+      text: []
+    },
+    // --- rating
+    rating: null,
+    // --- system requirements
+    systems: {
+      /*
+        apple: {
+          minimal: {},
+          recommended: {}
+        }
+        ... etc
+      */
+    }
+  }
 }

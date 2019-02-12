@@ -2,7 +2,7 @@
 <section class="cord-padding l-game-line-more">
 
   <header v-if="title" class="l-game-line-more__header">
-    <h2 v-if="title" class="title color-light-3">
+    <h2 v-if="title" class="title title--light color-light-3">
       {{ title }}
       <q-icon v-if="tooltip" :name="tooltipIcon" size=".7em" class="more-icon">
         <q-tooltip>{{ tooltip }}</q-tooltip>
@@ -74,7 +74,7 @@ export default {
     position: relative
     display: inline-flex
     width: 100%
-    height: calc(100vh / 4)
+    height: $block-md
     max-height: 25rem
     background-repeat: no-repeat
     background-position: center
