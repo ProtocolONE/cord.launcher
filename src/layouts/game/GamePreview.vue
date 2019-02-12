@@ -3,7 +3,7 @@
 
   <div class="col-lg-4 preview">
 
-    <h5 class="col-12 l-game-preview__title">{{ $t('likeGameTitle') }}</h5>
+    <h5 class="col-12 title l-game-preview__title">{{ $t('likeGameTitle') }}</h5>
 
     <div class="col-12 row liked-tags">
       <div
@@ -120,9 +120,6 @@ export default {
 
 .l-game-preview
   &__title
-    font-size: 2.4rem
-    font-weight: normal
-    letter-spacing: -.02em
     line-height: 4rem
     &--sm
       font-size: 1.6rem

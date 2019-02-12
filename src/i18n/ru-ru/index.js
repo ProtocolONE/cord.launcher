@@ -26,6 +26,17 @@ export default {
   byGameOwners: 'От игроков',
   reviewsBestLabel: 'Лучшие',
   reviewsAllLabel: 'Все',
+  systemRequirementsTitle: 'Системные требования',
+  languageSupportTitle: 'Языки',
+  ratingTitle: 'Рейтинг',
+  minimalLabel: 'Минимальные',
+  recommendedLabel: 'Рекомендуемые',
+  OS: 'Система',
+  CPU: 'Процессор',
+  RAM: 'Память',
+  GPU: 'Графика',
+  diskSpace: 'Хранение',
+  audioLabel: 'Озвучка',
 
   // --- footer
   vacancies: 'Вакансии',
@@ -37,5 +48,7 @@ export default {
   // --- other
   back: 'Назад',
   more: 'Еще',
-  reviews: 'Отзывы'
+  reviews: 'Отзывы',
+  language: 'Язык',
+  text: 'Текст'
 }

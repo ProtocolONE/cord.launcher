@@ -3,7 +3,7 @@
 
   <header class="row l-game-reviews__header">
     <div class="col-lg-3 col-12">
-      <h2 class="title color-light-3">
+      <h2 class="title title--light color-light-3">
         {{ $t('reviews') }}
       </h2>
     </div>
@@ -85,7 +85,7 @@ export default {
 @import '~variables'
 
 .l-game-reviews
-  background: linear-gradient(360deg, rgba(62, 62, 62, .5) 50%, rgba(0, 0, 0, 0) 120%)
+  background-color: rgba(18, 18, 18, .05)
   &__header
     margin-bottom: ($space-base * 2)
   @media (max-width $breakpoint-sm-min)

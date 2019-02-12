@@ -89,7 +89,7 @@ export const game = {
     },
     {
       review: 'Shattered Planet is a strategic tactics game, the kind that implores you to choose your turns and decisions carefully. Explore planet surfaces and return with loot to empower your next missions.',
-      rating: 3,
+      rating: 4,
       user: {
         name: 'Petr Petrovich',
         logo: null,
@@ -99,7 +99,7 @@ export const game = {
     },
     {
       review: 'Shattered Planet is a strategic tactics game, the kind that implores you to choose your turns and decisions carefully. Explore planet surfaces and return with loot to empower your next missions.',
-      rating: 3,
+      rating: 5,
       user: {
         name: 'Anton Frolov',
         logo: 'statics/game/user-logo.jpg',
@@ -107,7 +107,64 @@ export const game = {
         reviews: 13
       }
     }
-  ]
+  ],
+  requirements: {
+    languagesSupport: {
+      audio: ['English', 'Deutsch', 'italiano'],
+      text: ['English', 'Русский', 'Deutsch', 'Español', 'Français', 'italiano', '中文(简体)']
+    },
+    rating: 'statics/game/game-rating.jpg',
+    systems: {
+      apple: {
+        minimal: {
+          OS: 'MacOS Sierra',
+          CPU: 'Quad core, 2.0 HHz',
+          RAM: '4 Gb',
+          GPU: '1 Gb RAM, Open GL 3.0',
+          diskSpace: '60 Gb'
+        },
+        recommended: {
+          OS: 'MacOS Sierra',
+          CPU: 'Quad core, 3.0 HHz',
+          RAM: '8 Gb',
+          GPU: '2 Gb RAM, Open GL 3.0',
+          diskSpace: '60 Gb'
+        }
+      },
+      windows: {
+        minimal: {
+          OS: 'Windows 7, SP1',
+          CPU: 'Quad core, 2.0 HHz',
+          RAM: '4 Gb',
+          GPU: '1 Gb RAM, Open GL 3.0',
+          diskSpace: '60 Gb'
+        },
+        recommended: {
+          OS: 'Windows 7, SP1',
+          CPU: 'Quad core, 3.0 HHz',
+          RAM: '8 Gb',
+          GPU: '2 Gb RAM, Open GL 3.0',
+          diskSpace: '60 Gb'
+        }
+      },
+      linux: {
+        minimal: {
+          OS: 'Ubuntu 16.04 LTS',
+          CPU: 'Quad core, 2.0 HHz',
+          RAM: '4 Gb',
+          GPU: '1 Gb RAM, Open GL 3.0',
+          diskSpace: '60 Gb'
+        },
+        recommended: {
+          OS: 'Ubuntu 16.04 LTS',
+          CPU: 'Quad core, 3.0 HHz',
+          RAM: '8 Gb',
+          GPU: '2 Gb RAM, Open GL 3.0',
+          diskSpace: '60 Gb'
+        }
+      }
+    }
+  }
 }
 
 export default {
