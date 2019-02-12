@@ -31,7 +31,8 @@ export const game = {
     {
       name: 'Petr Petrovich',
       logo: null,
-      url: 'javascript:void(0)' }
+      url: 'javascript:void(0)'
+    }
   ],
   bestReview: {
     label: 'Shattered Planet is a strategic tactics game, the kind that implores you to choose your turns and decisions carefully. Explore planet surfaces and return with loot to empower your next missions.',
@@ -70,6 +71,42 @@ export const game = {
     { name: 'Deer', preview: 'statics/game/game-deer.jpg', url: '/' },
     { name: 'Forza', preview: 'statics/game/game-forza.jpg', url: '/' },
     { name: 'Deer', preview: 'statics/game/game-deer.jpg', url: '/' }
+  ],
+  gameRating: {
+    overall: 3.8,
+    owners: 4.3
+  },
+  reviews: [
+    {
+      review: 'Shattered Planet is a strategic tactics game, the kind that implores you to choose your turns and decisions carefully. Explore planet surfaces and return with loot to empower your next missions.',
+      rating: 3,
+      user: {
+        name: 'Anton Frolov',
+        logo: 'statics/game/user-logo.jpg',
+        url: 'javascript:void(0)',
+        reviews: 800
+      }
+    },
+    {
+      review: 'Shattered Planet is a strategic tactics game, the kind that implores you to choose your turns and decisions carefully. Explore planet surfaces and return with loot to empower your next missions.',
+      rating: 3,
+      user: {
+        name: 'Petr Petrovich',
+        logo: null,
+        url: 'javascript:void(0)',
+        reviews: 300
+      }
+    },
+    {
+      review: 'Shattered Planet is a strategic tactics game, the kind that implores you to choose your turns and decisions carefully. Explore planet surfaces and return with loot to empower your next missions.',
+      rating: 3,
+      user: {
+        name: 'Anton Frolov',
+        logo: 'statics/game/user-logo.jpg',
+        url: 'javascript:void(0)',
+        reviews: 13
+      }
+    }
   ]
 }
 

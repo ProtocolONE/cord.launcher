@@ -51,7 +51,7 @@
         </div>
         <span class="best-review__user-name">{{ bestReviewUser.name }}</span>
         <span class="best-review__user-count">
-          {{ bestReviewUser.reviews }} {{ $t('reviews').toLowerCase() }}
+          {{ bestReviewUser.reviews }} {{ $t('gameReviewsLabel').toLowerCase() }}
         </span>
       </a>
     </div>

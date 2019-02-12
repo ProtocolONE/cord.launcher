@@ -16,12 +16,16 @@ export default {
   followingTagsTitle: 'You’ve also played games with following tags',
   friendAlsoPlayingTitle: 'Your friends are also playing',
   bestReviewTitle: 'Best review',
-  reviews: 'Reviews',
+  gameReviewsLabel: 'Reviews',
   readMoreLabel: 'Read more',
   followSocialTitle: 'Follow',
   releasedOn: 'Released on',
   gamesByLabel: 'Games by',
   gamesLikesByUserTitle: 'You might also like',
+  overall: 'Overall',
+  byGameOwners: 'By game owners',
+  reviewsBestLabel: 'Best',
+  reviewsAllLabel: 'All',
 
   // --- footer
   vacancies: 'Vacancies',
@@ -32,5 +36,6 @@ export default {
 
   // --- other
   back: 'Back',
-  more: 'More'
+  more: 'More',
+  reviews: 'Reviews'
 }

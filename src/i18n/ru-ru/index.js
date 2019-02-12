@@ -16,12 +16,16 @@ export default {
   followingTagsTitle: 'Вы так же играли в игры со следующими тегами',
   friendAlsoPlayingTitle: 'Ваши друзья тоже играют',
   bestReviewTitle: 'Лучший отзыв',
-  reviews: 'Отзывов',
+  gameReviewsLabel: 'Отзывов',
   readMoreLabel: 'Читать далее',
   followSocialTitle: 'Присоединиться к',
   releasedOn: 'Дата выхода',
   gamesByLabel: 'Игры от',
   gamesLikesByUserTitle: 'Вам так же понравится',
+  overall: 'Общий',
+  byGameOwners: 'От игроков',
+  reviewsBestLabel: 'Лучшие',
+  reviewsAllLabel: 'Все',
 
   // --- footer
   vacancies: 'Вакансии',
@@ -32,5 +36,6 @@ export default {
 
   // --- other
   back: 'Назад',
-  more: 'Еще'
+  more: 'Еще',
+  reviews: 'Отзывы'
 }

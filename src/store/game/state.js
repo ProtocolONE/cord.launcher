@@ -131,5 +131,26 @@ export default {
    * @type {Array}
    * @example {Object} { name: '<game_name>', preview: '<game_preview>', url: '<game_url>' }
    */
-  gamesLikes: []
+  gamesLikes: [],
+
+  /**
+   * Game rating
+   * @type {Object}
+   */
+  gameRating: {
+    overall: null,
+    owners: null
+  },
+
+  /**
+   * Game reviews
+   * @type {Array}
+   * @example {Object}
+   *  {
+   *    review: {String},
+   *    rating: {String|Number},
+   *    user: { name: <user_name>, logo: <user_logo>, url: <user_profile> }
+   *  }
+   */
+  reviews: []
 }
