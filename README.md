@@ -14,7 +14,7 @@ npm install
 ```bash
 yarn start
 /* or */
-npm startn
+npm start
 ```
 ###### build
 ```bash

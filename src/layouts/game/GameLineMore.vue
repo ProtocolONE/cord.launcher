@@ -2,7 +2,7 @@
 <section class="cord-padding l-game-line-more">
 
   <header v-if="title" class="l-game-line-more__header">
-    <h2 v-if="title" class="col-lg-5 col-md-6 col-sm-12 col-xs-12 title color-light-3">
+    <h2 v-if="title" class="title color-light-3">
       {{ title }}
       <q-icon v-if="tooltip" :name="tooltipIcon" size=".7em" class="more-icon">
         <q-tooltip>{{ tooltip }}</q-tooltip>
@@ -11,7 +11,7 @@
     <q-btn v-if="more" :label="$t('more')" class="more-btn" @click="$router.push(more)"/>
   </header>
 
-  <div class="row gutter-md more-list">
+  <div class="row gutter-sm more-list">
     <div
         v-for="{ name, preview, url } in list"
         :key="`${ name }-${ _uid }`"

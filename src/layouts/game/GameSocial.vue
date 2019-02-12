@@ -55,5 +55,5 @@ export default {
     align-items: center
     height: 8.4rem
     margin-bottom: 0
-    line-height: inherit
+    line-height: normal
 </style>
