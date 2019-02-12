@@ -4,6 +4,8 @@
   <game-info v-bind="gameInfo"/>
   <game-preview v-bind="gamePreview"/>
   <game-social v-bind="gameSocial"/>
+  <game-line-more v-bind="gameLineMoreByDeveloper"/>
+  <game-line-more v-bind="gameLineMoreByUser"/>
 </article>
 </template>
 
@@ -12,6 +14,7 @@ import GameSlider from '@layouts/game/GameSlider'
 import GameInfo from '@layouts/game/GameInfo'
 import GamePreview from '@layouts/game/GamePreview'
 import GameSocial from '@layouts/game/GameSocial'
+import GameLineMore from '@layouts/game/GameLineMore'
 
 import { game, initial } from '@test-data'
 import { mapMutations, mapGetters } from 'vuex'
@@ -25,7 +28,8 @@ export default {
     GameSlider,
     GameInfo,
     GamePreview,
-    GameSocial
+    GameSocial,
+    GameLineMore
   },
 
   data () {
@@ -34,7 +38,8 @@ export default {
       gameSliderPaths: ['name', 'preview', 'rating', 'followTags', 'releaseDate', 'developer', 'publisher'],
       gameInfoPaths: ['availablePlatforms', 'recommended', 'price'],
       gamePreviewPaths: ['likeTags', 'followTags', 'friends', 'bestReview', 'info'],
-      gameSocialPaths: ['name', 'followSocial']
+      gameSocialPaths: ['name', 'followSocial'],
+      gameLineMorePaths: ['developer', 'gamesMore']
     }
   },
 
@@ -62,6 +67,24 @@ export default {
 
     gameSocial () {
       return pick(this.getFullGameData, this.gameSocialPaths)
+    },
+
+    gameLineMoreByDeveloper () {
+      let { developer, gamesMore } = this.getFullGameData
+      return {
+        title: `${ this.$t('gamesByLabel') } ${ developer }`,
+        list: gamesMore,
+        more: '/'
+      }
+    },
+
+    gameLineMoreByUser () {
+      return {
+        title: this.$t('gamesLikesByUserTitle'),
+        list: this.getFullGameData.gamesMore,
+        tooltip: this.$t('gamesLikesByUserTitle'),
+        more: '/'
+      }
     }
   },
 

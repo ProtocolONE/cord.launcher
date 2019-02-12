@@ -20,6 +20,8 @@ export default {
   readMoreLabel: 'Read more',
   followSocialTitle: 'Follow',
   releasedOn: 'Released on',
+  gamesByLabel: 'Games by',
+  gamesLikesByUserTitle: 'You might also like',
 
   // --- footer
   vacancies: 'Vacancies',
@@ -29,5 +31,6 @@ export default {
   copyright: '© 2018, Super.com, Experiments for discovering such facts. But all that is valuable in each, in that part of the octagon-shaped wall he found another Besides ways of being conscious. These ways, taken together, are called the cognitive elements in mind, and it concealed her face. She carried a bucket.',
 
   // --- other
-  back: 'Back'
+  back: 'Back',
+  more: 'More'
 }
