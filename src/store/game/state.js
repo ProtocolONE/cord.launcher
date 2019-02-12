@@ -117,5 +117,19 @@ export default {
    * Game price
    * @type {Number|String|Null}
    */
-  price: null
+  price: null,
+
+  /**
+   * More games by developer
+   * @type {Array}
+   * @example {Object} { name: '<game_name>', preview: '<game_preview>', url: '<game_url>' }
+   */
+  gamesMore: [],
+
+  /**
+   * More likes games by user
+   * @type {Array}
+   * @example {Object} { name: '<game_name>', preview: '<game_preview>', url: '<game_url>' }
+   */
+  gamesLikes: []
 }

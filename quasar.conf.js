@@ -79,7 +79,9 @@ module.exports = function (ctx) {
         'QTabs',
         'QRouteTab',
         'QBtn',
-        'QRating'
+        'QRating',
+        'QIcon',
+        'QTooltip'
       ],
       cssAddon: true,
       // Quasar directives

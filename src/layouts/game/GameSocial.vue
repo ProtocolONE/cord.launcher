@@ -49,7 +49,7 @@ export default {
 .l-game-social
   background-color: rgba(18, 18, 18, .15)
   @media (min-width $breakpoint-xl-min)
-    padding: ($space-base * 1.5)
+    padding: ($space-base * 1.5) ($space-base * 2.4)
   .title
     display: inline-flex
     align-items: center

@@ -58,6 +58,18 @@ export const game = {
     { icon: 'ok', url: 'javascript:void(0)' },
     { icon: 'vk', url: 'javascript:void(0)' },
     { icon: 'facebook-messenger', url: 'javascript:void(0)' }
+  ],
+  gamesMore: [
+    { name: 'Forza', preview: 'statics/game/game-forza.jpg', url: '/' },
+    { name: 'Deer', preview: 'statics/game/game-deer.jpg', url: '/' },
+    { name: 'Forza', preview: 'statics/game/game-forza.jpg', url: '/' },
+    { name: 'Deer', preview: 'statics/game/game-deer.jpg', url: '/' }
+  ],
+  gamesLikes: [
+    { name: 'Forza', preview: 'statics/game/game-forza.jpg', url: '/' },
+    { name: 'Deer', preview: 'statics/game/game-deer.jpg', url: '/' },
+    { name: 'Forza', preview: 'statics/game/game-forza.jpg', url: '/' },
+    { name: 'Deer', preview: 'statics/game/game-deer.jpg', url: '/' }
   ]
 }
 
