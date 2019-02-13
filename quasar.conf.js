@@ -83,7 +83,8 @@ module.exports = function (ctx) {
         'QBtn',
         'QRating',
         'QIcon',
-        'QTooltip'
+        'QTooltip',
+        'QVideo'
       ],
       cssAddon: true,
       // Quasar directives

@@ -177,5 +177,24 @@ export default {
         ... etc
       */
     }
-  }
+  },
+
+  /**
+   * Game gallery
+   * @type {Array}
+   */
+  gallery: [
+    /*
+        isVideo: Boolean,
+        isImage: Boolean,
+        video: {
+          type: String,
+          url: String
+        },
+        image: {
+          tmp200: String,
+          tmp1000: String
+        }
+      */
+  ]
 }
