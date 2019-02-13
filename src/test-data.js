@@ -285,6 +285,56 @@ export const shop = {
   popularCategories: [
     'Free', 'Top sellers', 'New',
     'Free', 'Top sellers', 'New'
+  ],
+  friendsGames: [
+    {
+      name: 'Forza',
+      preview: 'statics/game/game-forza.jpg',
+      url: '/',
+      price: 99.99,
+      platforms: ['windows', 'apple', 'linux'],
+      users: [
+        {
+          name: 'Anton Frolov',
+          logo: 'statics/game/user-logo.jpg',
+          url: 'javascript:void(0)'
+        },
+        {
+          name: 'Anton Frolov',
+          logo: 'statics/game/user-logo.jpg',
+          url: 'javascript:void(0)'
+        },
+        {
+          name: 'Anton Frolov',
+          logo: 'statics/game/user-logo.jpg',
+          url: 'javascript:void(0)'
+        }
+      ]
+    },
+    {
+      name: 'Deer',
+      preview: 'statics/game/game-deer.jpg',
+      url: '/',
+      price: 99.99,
+      platforms: ['windows', 'apple', 'linux'],
+      users: [
+        {
+          name: 'Anton Frolov',
+          logo: 'statics/game/user-logo.jpg',
+          url: 'javascript:void(0)'
+        },
+        {
+          name: 'Anton Frolov',
+          logo: 'statics/game/user-logo.jpg',
+          url: 'javascript:void(0)'
+        },
+        {
+          name: 'Anton Frolov',
+          logo: 'statics/game/user-logo.jpg',
+          url: 'javascript:void(0)'
+        }
+      ]
+    }
   ]
 }
 
