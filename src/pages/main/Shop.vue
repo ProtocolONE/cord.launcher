@@ -6,14 +6,16 @@
       {{ $t('popularAndRecommendedTitle') }}
     </h2>
     <shop-slider1
-        v-bind="shopPopular"
+        v-bind="shopPopularGames"
         class="col-lg-8 col-12 q-pr-lg-md q-mb-xs-md q-mb-lg-none"
     />
     <shop-slider2
-        v-bind="shopRecommended"
+        v-bind="shopRecommendedGames"
         class="col-lg-4 col-12 q-mb-xs-md q-mb-lg-none"
     />
   </div>
+
+  <shop-popular-categories v-bind="shopPopularCategories"/>
 
 </article>
 </template>
@@ -21,6 +23,7 @@
 <script>
 import ShopSlider1 from '@layouts/shop/ShopSlider1'
 import ShopSlider2 from '@layouts/shop/ShopSlider2'
+import ShopPopularCategories from '@layouts/shop/ShopPopularCategories'
 
 import { shop } from '@test-data'
 import { mapMutations, mapGetters } from 'vuex'
@@ -32,27 +35,43 @@ export default {
 
   components: {
     ShopSlider1,
-    ShopSlider2
+    ShopSlider2,
+    ShopPopularCategories
   },
 
   data () {
     return {
-      shopPopularPaths: ['popular'],
-      shopRecommendedPaths: ['recommended']
+      shopPopularGamesPaths: ['popularGames'],
+      shopRecommendedGamesPaths: ['recommendedGames'],
+      shopPopularCategoriesPath: ['popularCategories']
     }
   },
 
   computed: {
     ...mapGetters('shop', ['getFullShopData']),
 
-    shopPopular () {
-      let { popular: items } = pick(this.getFullShopData, this.shopPopularPaths)
+    shopPopularGames () {
+      let { popularGames: items } = pick(
+        this.getFullShopData,
+        this.shopPopularGamesPaths
+      )
       return { items }
     },
 
-    shopRecommended () {
-      let { recommended: items } = pick(this.getFullShopData, this.shopRecommendedPaths)
+    shopRecommendedGames () {
+      let { recommendedGames: items } = pick(
+        this.getFullShopData,
+        this.shopRecommendedGamesPaths
+      )
       return { items }
+    },
+
+    shopPopularCategories () {
+      let { popularCategories: categories } = pick(
+        this.getFullShopData,
+        this.shopPopularCategoriesPath
+      )
+      return { categories }
     }
   },
 

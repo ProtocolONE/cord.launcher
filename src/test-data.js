@@ -242,7 +242,7 @@ export const game = {
 }
 
 export const shop = {
-  popular: [
+  popularGames: [
     {
       name: 'Hitman 2',
       url: '/game/1',
@@ -262,7 +262,7 @@ export const shop = {
       platforms: ['windows', 'apple', 'linux']
     }
   ],
-  recommended: [
+  recommendedGames: [
     {
       name: 'Red Dead Redemption 2',
       url: '/game/1',
@@ -281,6 +281,10 @@ export const shop = {
       preview: 'statics/shop/shop-slider-2.jpg',
       platforms: ['windows', 'apple', 'linux']
     }
+  ],
+  popularCategories: [
+    'Free', 'Top sellers', 'New',
+    'Free', 'Top sellers', 'New'
   ]
 }
 

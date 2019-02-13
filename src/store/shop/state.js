@@ -3,11 +3,17 @@ export default {
    * Popular games
    * @type {Array}
    */
-  popular: [],
+  popularGames: [],
 
   /**
    * Recommended games
    * @type {Array}
    */
-  recommended: []
+  recommendedGames: [],
+
+  /**
+   * Popular games categories
+   * @type {Array}
+   */
+  popularCategories: []
 }

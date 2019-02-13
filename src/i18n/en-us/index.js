@@ -14,6 +14,7 @@ export default {
   // --- shop
   popularAndRecommendedTitle: 'Popular & Recommended',
   mightFollowingTagsLabel: 'You might also like it, because you’ve played games with following tags:',
+  popularCategoriesTitle: 'Popular categories',
 
   // --- game
   likeGameTitle: 'Why do I like the game',
