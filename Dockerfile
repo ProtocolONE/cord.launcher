@@ -4,14 +4,14 @@ FROM node:10.12-alpine AS node
 #RUN npm i webpack webpack-cli -g
 
 WORKDIR /app
-COPY package.json  /app/
+COPY package.json yarn.lock /app/
 
-RUN npm i
+RUN yarn 
 
 COPY . /app/
 
-RUN npm run build:ssr
-
-CMD node ./dist/ssr-mat/server
+RUN yarn build:ssr
 
 EXPOSE 8080
+
+CMD node ./dist/ssr-mat/server
