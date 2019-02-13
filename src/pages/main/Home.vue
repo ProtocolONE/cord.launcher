@@ -1,7 +1,7 @@
 <template>
-<section id="home">
+<article id="home">
   Home
-</section>
+</article>
 </template>
 
 <script>

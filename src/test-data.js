@@ -241,6 +241,49 @@ export const game = {
   ]
 }
 
+export const shop = {
+  popular: [
+    {
+      name: 'Hitman 2',
+      url: '/game/1',
+      rating: 4.5,
+      tags: ['strategy', 'sci-fi', 'isometric'],
+      price: 99.99,
+      preview: 'statics/shop/shop-slider-1.jpg',
+      platforms: ['windows', 'apple', 'linux']
+    },
+    {
+      name: 'Hitman 2',
+      url: '/game/1',
+      rating: 4.5,
+      tags: ['strategy', 'sci-fi', 'isometric'],
+      price: 99.99,
+      preview: 'statics/shop/shop-slider-1.jpg',
+      platforms: ['windows', 'apple', 'linux']
+    }
+  ],
+  recommended: [
+    {
+      name: 'Red Dead Redemption 2',
+      url: '/game/1',
+      label: 'H2 Header',
+      description: 'Place for additional text for terms, Additional text might be even here.',
+      rating: 3,
+      preview: 'statics/shop/shop-slider-2.jpg',
+      platforms: ['windows', 'apple', 'linux']
+    },
+    {
+      name: 'Red Dead Redemption 2',
+      url: '/game/1',
+      label: 'H2 Header',
+      description: 'Place for additional text for terms, Additional text might be even here.',
+      rating: 5,
+      preview: 'statics/shop/shop-slider-2.jpg',
+      platforms: ['windows', 'apple', 'linux']
+    }
+  ]
+}
+
 export default {
   initial,
   game

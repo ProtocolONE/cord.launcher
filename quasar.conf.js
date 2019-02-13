@@ -84,7 +84,10 @@ module.exports = function (ctx) {
         'QRating',
         'QIcon',
         'QTooltip',
-        'QVideo'
+        'QVideo',
+        'QCarousel',
+        'QCarouselSlide',
+        'QCarouselControl'
       ],
       cssAddon: true,
       // Quasar directives

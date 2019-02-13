@@ -11,6 +11,10 @@ export default {
   shop: 'Shop',
   library: 'Library',
 
+  // --- shop
+  popularAndRecommendedTitle: 'Popular & Recommended',
+  mightFollowingTagsLabel: 'You might also like it, because you’ve played games with following tags:',
+
   // --- game
   likeGameTitle: 'Why do I like the game',
   followingTagsTitle: 'You’ve also played games with following tags',

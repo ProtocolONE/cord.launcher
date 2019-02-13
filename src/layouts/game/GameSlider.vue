@@ -26,7 +26,7 @@
           class="col-auto following-tags__item">
         <q-btn
             :label="tag"
-            color="rgba(0, 0, 0, 0.15)"
+            style="background-color:rgba(0, 0, 0, 0.15)"
             rounded
             class="following-tags__btn"/>
       </div>

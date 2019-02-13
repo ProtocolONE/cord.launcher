@@ -11,6 +11,10 @@ export default {
   shop: 'Магазин',
   library: 'Библиотека',
 
+  // --- shop
+  popularAndRecommendedTitle: 'Популярное и рекомендуемое',
+  mightFollowingTagsLabel: 'Вам также могут понравиться, потому что вы играли в игры со следующими тегами:',
+
   // --- game
   likeGameTitle: 'Почему игра понравится вам',
   followingTagsTitle: 'Вы так же играли в игры со следующими тегами',
