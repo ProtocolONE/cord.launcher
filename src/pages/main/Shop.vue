@@ -15,6 +15,19 @@
     />
   </div>
 
+  <div class="row carousel-row">
+    <games-carousel
+      v-bind="shopFriendsGamesAndInfo"
+      classes="col-lg-12 col-md-6 col-sm-12 col-xs-12"
+      class="col-lg-7 col-12"
+    />
+    <games-carousel
+        v-bind="shopUpdatesAndExpansionsGames"
+        classes="col-lg-6 col-md-6 col-sm-6 col-xs-12"
+        class="col-lg-5 col-12"
+    />
+  </div>
+
   <shop-popular-categories v-bind="shopPopularCategories"/>
   <games-carousel v-bind="shopFriendsGames"/>
   <games-carousel v-bind="shopFriendsGames"/>
@@ -71,6 +84,22 @@ export default {
       return { items }
     },
 
+    shopFriendsGamesAndInfo () {
+      return {
+        ...this.shopFriendsGames,
+        tooltip: null,
+        list: this.getFullShopData.friendsGames
+      }
+    },
+
+    shopUpdatesAndExpansionsGames () {
+      return {
+        title: this.$t('updatesAndExpansionsTitle'),
+        list: game.gamesMore,
+        more: '/'
+      }
+    },
+
     shopFriendsGames () {
       return {
         title: this.$t('friendsGamesTitle'),
@@ -98,3 +127,19 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+@import '~variables'
+
+.carousel-row
+  > *
+    padding-top: 0
+    &:first-child
+      padding-right: 0
+      @media (min-width $breakpoint-sm-min)
+        padding-right: $space-base
+    &:last-child
+      padding-left: $space-base
+      @media (min-width $breakpoint-lg-min)
+        padding-left: 0
+</style>

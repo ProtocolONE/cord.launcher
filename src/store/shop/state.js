@@ -15,5 +15,11 @@ export default {
    * Popular games categories
    * @type {Array}
    */
-  popularCategories: []
+  popularCategories: [],
+
+  /**
+   * Friends games
+   * @type {Array}
+   */
+  friendsGames: []
 }
