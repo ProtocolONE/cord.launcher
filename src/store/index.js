@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 // --- modules
 import initial from './initial'
 import game from './game'
+import shop from './shop'
 
 Vue.use(Vuex)
 
@@ -16,7 +17,8 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       initial,
-      game
+      game,
+      shop
     }
   })
 
