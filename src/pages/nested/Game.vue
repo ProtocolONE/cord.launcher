@@ -7,8 +7,8 @@
   <game-reviews v-bind="gameReviews"/>
   <game-requirements v-bind="gameRequirements"/>
   <game-social v-bind="gameSocial"/>
-  <game-line-more v-bind="gameLineMoreByDeveloper"/>
-  <game-line-more v-bind="gameLineMoreByUser" class="q-mb-lg"/>
+  <games-carousel v-bind="gamesCarouselByDeveloper"/>
+  <games-carousel v-bind="gamesCarouselByUser" class="q-mb-lg"/>
 </article>
 </template>
 
@@ -20,7 +20,7 @@ import GameGallery from '@layouts/game/GameGallery'
 import GameSocial from '@layouts/game/GameSocial'
 import GameReviews from '@layouts/game/GameReviews'
 import GameRequirements from '@layouts/game/GameRequirements'
-import GameLineMore from '@layouts/game/GameLineMore'
+import GamesCarousel from '@layouts/common/GamesCarousel'
 
 import { game, initial } from '@test-data'
 import { mapMutations, mapGetters } from 'vuex'
@@ -38,7 +38,7 @@ export default {
     GameSocial,
     GameReviews,
     GameRequirements,
-    GameLineMore
+    GamesCarousel
   },
 
   data () {
@@ -88,7 +88,7 @@ export default {
       return pick(this.getFullGameData, this.gameSocialPaths)
     },
 
-    gameLineMoreByDeveloper () {
+    gamesCarouselByDeveloper () {
       let { developer, gamesMore } = this.getFullGameData
       return {
         title: `${ this.$t('gamesByLabel') } ${ developer }`,
@@ -97,7 +97,7 @@ export default {
       }
     },
 
-    gameLineMoreByUser () {
+    gamesCarouselByUser () {
       return {
         title: this.$t('gamesLikesByUserTitle'),
         list: this.getFullGameData.gamesMore,

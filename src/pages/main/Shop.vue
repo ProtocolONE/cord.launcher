@@ -16,6 +16,9 @@
   </div>
 
   <shop-popular-categories v-bind="shopPopularCategories"/>
+  <games-carousel v-bind="shopFriendsGames"/>
+  <games-carousel v-bind="shopFriendsGames"/>
+  <games-carousel v-bind="shopFriendsGames"/>
 
 </article>
 </template>
@@ -24,8 +27,9 @@
 import ShopSlider1 from '@layouts/shop/ShopSlider1'
 import ShopSlider2 from '@layouts/shop/ShopSlider2'
 import ShopPopularCategories from '@layouts/shop/ShopPopularCategories'
+import GamesCarousel from '@layouts/common/GamesCarousel'
 
-import { shop } from '@test-data'
+import { shop, game } from '@test-data'
 import { mapMutations, mapGetters } from 'vuex'
 
 import { pick } from 'lodash'
@@ -36,7 +40,8 @@ export default {
   components: {
     ShopSlider1,
     ShopSlider2,
-    ShopPopularCategories
+    ShopPopularCategories,
+    GamesCarousel
   },
 
   data () {
@@ -64,6 +69,15 @@ export default {
         this.shopRecommendedGamesPaths
       )
       return { items }
+    },
+
+    shopFriendsGames () {
+      return {
+        title: this.$t('friendsGamesTitle'),
+        list: game.gamesMore,
+        tooltip: this.$t('friendsGamesTitle'),
+        more: '/'
+      }
     },
 
     shopPopularCategories () {
