@@ -10,7 +10,7 @@
 <script>
 import AppLayout from '@layouts/app/AppLayout'
 
-if (process.env.NODE_ENV === 'development') { // production
+if (process.env.NODE_ENV === 'production') {
   const Vue = require('vue').default
   const Raven = require('raven-js')
   const RavenVue = require('raven-js/plugins/vue')
