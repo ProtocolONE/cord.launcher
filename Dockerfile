@@ -14,4 +14,4 @@ RUN yarn build:ssr
 
 EXPOSE 8080
 
-CMD node ./dist/ssr-mat/server
+CMD node ./dist/ssr-mat/server --port 8080
