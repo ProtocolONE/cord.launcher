@@ -164,7 +164,81 @@ export const game = {
         }
       }
     }
-  }
+  },
+  gallery: [
+    {
+      isVideo: false,
+      isImage: true,
+      video: {},
+      image: {
+        tmp200: 'statics/game/game-deer.jpg',
+        tmp1000: 'statics/game/game-deer.jpg'
+      }
+    },
+    {
+      isVideo: false,
+      isImage: true,
+      video: {},
+      image: {
+        tmp200: 'statics/game/game-forza.jpg',
+        tmp1000: 'statics/game/game-forza.jpg'
+      }
+    },
+    {
+      isVideo: false,
+      isImage: true,
+      video: {},
+      image: {
+        tmp200: 'statics/game/game-car-1.jpg',
+        tmp1000: 'statics/game/game-car-1.jpg'
+      }
+    },
+    {
+      isVideo: false,
+      isImage: true,
+      video: {},
+      image: {
+        tmp200: 'statics/game/game-car-2.jpg',
+        tmp1000: 'statics/game/game-car-2.jpg'
+      }
+    },
+    {
+      isVideo: true,
+      isImage: false,
+      video: {
+        type: 'mpeg4',
+        url: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0'
+      },
+      image: {}
+    },
+    {
+      isVideo: true,
+      isImage: false,
+      video: {
+        type: 'mpeg4',
+        url: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0'
+      },
+      image: {}
+    },
+    {
+      isVideo: true,
+      isImage: false,
+      video: {
+        type: 'mpeg4',
+        url: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0'
+      },
+      image: {}
+    },
+    {
+      isVideo: true,
+      isImage: false,
+      video: {
+        type: 'mpeg4',
+        url: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0'
+      },
+      image: {}
+    }
+  ]
 }
 
 export default {
