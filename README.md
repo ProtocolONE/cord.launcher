@@ -1,6 +1,6 @@
 # Cord-store
 
-WIP
+https://qilincord.tst.protocol.one/
 
 ### Install
 ##### yarn (recommended) or npm
