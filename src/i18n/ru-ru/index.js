@@ -57,5 +57,6 @@ export default {
   more: 'Еще',
   reviews: 'Отзывы',
   language: 'Язык',
-  text: 'Текст'
+  text: 'Текст',
+  specialOffer: 'Специальное предложение'
 }

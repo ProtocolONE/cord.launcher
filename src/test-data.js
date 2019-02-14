@@ -289,7 +289,7 @@ export const shop = {
   friendsGames: [
     {
       name: 'Forza',
-      preview: 'statics/game/game-forza.jpg',
+      preview: 'statics/shop/shop-game-1.jpg',
       url: '/',
       price: 99.99,
       platforms: ['windows', 'apple', 'linux'],
@@ -313,7 +313,7 @@ export const shop = {
     },
     {
       name: 'Deer',
-      preview: 'statics/game/game-deer.jpg',
+      preview: 'statics/shop/shop-game-1.jpg',
       url: '/',
       price: 99.99,
       platforms: ['windows', 'apple', 'linux'],
@@ -335,7 +335,14 @@ export const shop = {
         }
       ]
     }
-  ]
+  ],
+  specialOffer: {
+    name: 'Battlefield V',
+    url: '/game/1',
+    rating: 5,
+    price: 99.99,
+    preview: 'statics/shop/shop-special-offer.jpg'
+  }
 }
 
 export default {

@@ -30,8 +30,24 @@
 
   <shop-popular-categories v-bind="shopPopularCategories"/>
   <games-carousel v-bind="shopFriendsGames"/>
+  <shop-special-offer v-bind="shopSpecialOffer"/>
   <games-carousel v-bind="shopFriendsGames"/>
+
+  <div class="row carousel-row">
+    <games-carousel
+      v-bind="shopFriendsGamesAndInfo"
+      classes="col-lg-12 col-md-6 col-sm-12 col-xs-12"
+      class="col-lg-7 col-12"
+    />
+    <games-carousel
+      v-bind="shopUpdatesAndExpansionsGames"
+      classes="col-lg-6 col-md-6 col-sm-6 col-xs-12"
+      class="col-lg-5 col-12"
+    />
+  </div>
+
   <games-carousel v-bind="shopFriendsGames"/>
+  <shop-popular-categories v-bind="shopPopularCategories"/>
 
 </article>
 </template>
@@ -41,6 +57,7 @@ import ShopSlider1 from '@layouts/shop/ShopSlider1'
 import ShopSlider2 from '@layouts/shop/ShopSlider2'
 import ShopPopularCategories from '@layouts/shop/ShopPopularCategories'
 import GamesCarousel from '@layouts/common/GamesCarousel'
+import ShopSpecialOffer from '@layouts/shop/ShopSpecialOffer'
 
 import { shop, game } from '@test-data'
 import { mapMutations, mapGetters } from 'vuex'
@@ -54,7 +71,8 @@ export default {
     ShopSlider1,
     ShopSlider2,
     ShopPopularCategories,
-    GamesCarousel
+    GamesCarousel,
+    ShopSpecialOffer
   },
 
   data () {
@@ -115,6 +133,10 @@ export default {
         this.shopPopularCategoriesPath
       )
       return { categories }
+    },
+
+    shopSpecialOffer () {
+      return this.getFullShopData.specialOffer
     }
   },
 

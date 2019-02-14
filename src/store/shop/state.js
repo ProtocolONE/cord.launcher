@@ -21,5 +21,17 @@ export default {
    * Friends games
    * @type {Array}
    */
-  friendsGames: []
+  friendsGames: [],
+
+  /**
+   * Special offer
+   * @type {Object}
+   */
+  specialOffer: {
+    name: null,
+    url: null,
+    rating: null,
+    price: null,
+    preview: null
+  }
 }

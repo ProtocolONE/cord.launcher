@@ -184,7 +184,10 @@ export default {
     justify-content: center
     width: $count-size
     height: $count-size
-    letter-spacing: .08em
     border-radius: 50%
     background-color: rgba(29, 29, 29, .4)
+    font-family: Roboto
+    font-weight: bold
+    font-size: 1.6rem
+    letter-spacing: -.05em
 </style>
