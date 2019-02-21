@@ -1,7 +1,7 @@
 <template>
 <section class="row cord-padding l-game-info">
 
-  <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 row items-center icons">
+  <div class="col-lg-2 col-md-2 col-sm-6 col-xs-5 row items-center icons">
     <div v-for="platform in platforms" :key="platform" class="icons__item">
       <icon :name="platform" :size="iconsSize" :fill="iconsColor"/>
     </div>
@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 row items-center justify-md-end no-wrap">
+  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-7 row items-center justify-md-end no-wrap">
 
     <a href="javascript:void(0)" class="col-auto icon-box-link">
       <icon-box width="100%" height="48" class="icon-box icon-box--recommended">
@@ -113,6 +113,8 @@ export default {
     font-family: Roboto
     .c-icon
       margin-right: $space-base
+      @media (max-width: $breakpoint-sm-max)
+        margin-right: ($space-base / 2)
 
   &--price
     justify-content: center
