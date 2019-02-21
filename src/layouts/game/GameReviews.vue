@@ -116,6 +116,10 @@ export default {
     line-height: normal
   @media (min-width $breakpoint-lg-min)
     padding-left: ($space-base * 4)
+  @media (max-width $breakpoint-sm-max)
+    justify-content: center
+    &:not(:last-child)
+      margin-bottom: $space-base
 
 .reviews-link
   margin-bottom: $space-base
