@@ -5,7 +5,7 @@
 >
 
   <q-btn
-    class="l-shop-special-offer__btn"
+    class="l-shop-special-offer__btn text-bold roboto"
     :label="$t('specialOffer')"
     style="background-color:rgba(0, 0, 0, 0.5)"
     rounded
@@ -68,6 +68,8 @@ $btn-h = 3.6rem
 
   &__btn
     height: $btn-h
+    letter-spacing: .1em
+    font-size: 1.2rem
 
   &__content
     height: 100%
