@@ -174,6 +174,7 @@ export default {
   &__container
     width: 100%
     height: $block-md
+    min-height: 12rem
     max-height: 20rem
     margin-top: ($space-base * 1.5)
     background-repeat: no-repeat
