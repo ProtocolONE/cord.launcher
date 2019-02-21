@@ -9,29 +9,19 @@
     <app-nav/>
   </div>
 
-  <!--<div class="col">-->
-    <!--logo-->
-  <!--</div>-->
-
-  <!--<div class="col">-->
-    <!--col-->
-  <!--</div>-->
-
-  <!--<nav>-->
-    <!--menu-->
-  <!--</nav>-->
-
-  <!--<div>-->
-    <!--search-->
-  <!--</div>-->
-
-  <!--<div>-->
-    <!--icons-->
-  <!--</div>-->
-
-  <!--<div>-->
-    <!--user-->
-  <!--</div>-->
+  <div class="col-auto flex column justify-center q-ml-auto">
+    <q-select
+      v-model="$i18n.locale"
+      color="orange"
+      separator
+      inverted-light
+      :options="[
+        { label: $t('en-us'), value: 'en-us' },
+        { label: $t('ru-ru'), value: 'ru-ru' },
+      ]"
+      :stack-label="$t('language')"
+    />
+  </div>
 
 </section>
 </template>
@@ -63,4 +53,10 @@ export default {
     $p = 3.6rem
     padding-top: $p
     padding-bottom $p
+</style>
+
+<style lang="stylus">
+.q-popover {
+  background-color: #000
+}  
 </style>

@@ -87,7 +87,8 @@ module.exports = function (ctx) {
         'QVideo',
         'QCarousel',
         'QCarouselSlide',
-        'QCarouselControl'
+        'QCarouselControl',
+        'QSelect'
       ],
       cssAddon: true,
       // Quasar directives

@@ -44,9 +44,6 @@ export default {
 
   computed: {
     containerStyle () {
-      console.log(
-        this.$props
-      )
       return { backgroundImage: `url(${ this.preview })` }
     }
   }
