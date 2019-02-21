@@ -102,12 +102,13 @@ export default {
     @media (max-width $breakpoint-sm-max)
       margin-bottom: $space-base
   &__icon
-    margin-right: ($space-base * 1.5)
+    margin-right: ($space-base / 2)
   &__rating
     font-weight: bold
     font-size: 3.2rem
     letter-spacing: -.02em
     line-height: normal
+    text-align: center
   &__label
     font-weight: bold
     font-size: 1.4rem
