@@ -39,6 +39,22 @@
 
     </q-carousel-slide>
 
+    <q-btn
+      slot="quick-nav"
+      slot-scope="props"
+      color="white"
+      flat
+      dense
+      class="quick-nav"
+      :class="{
+        'quick-nav--active': props.current
+      }"
+      @click="props.goToSlide()"
+    >
+      <q-icon name="lens" class="inactive-icon"/>
+      <q-icon name="lens" class="active-icon"/>
+    </q-btn>
+
   </q-carousel>
 
 </section>
@@ -76,6 +92,25 @@ export default {
   &__caption
     flex: 1 0 50%
     background-color: $bg-dark-4
+
+.quick-nav
+  position: relative
+
+  .active-icon
+    position: absolute
+    color: $white
+    font-size: .8rem !important
+    opacity: 0
+    transition: opacity .2s linear
+
+  .inactive-icon
+    color: $bg-dark-3
+
+  &--active
+    opacity: .8
+
+    .active-icon
+      opacity: 1
 </style>
 
 <style lang="stylus" module>

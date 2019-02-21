@@ -14,10 +14,10 @@
         v-for="(item, index) in items"
         :key="`${ item.name }-${ _uid }-${ index }`"
         :img-src="item.preview"
-        class="flex column justify-between"
+        class="flex column justify-between q-pa-none"
     >
 
-      <header class="row gutter-sm justify-between">
+      <header class="row justify-between q-pa-md l-shop-slider__header">
         <div class="col-auto">
           <h5 class="title title--bold">
             <router-link :to="item.url">
@@ -50,7 +50,7 @@
         </div>
       </header>
 
-      <footer class="row justify-between">
+      <footer class="row justify-between q-pa-md">
         <div class="flex items-center">
           <icon
               v-for="icon in item.platforms"
@@ -78,6 +78,22 @@
 
     </q-carousel-slide>
 
+    <q-btn
+      slot="quick-nav"
+      slot-scope="props"
+      color="white"
+      flat
+      dense
+      class="quick-nav"
+      :class="{
+        'quick-nav--active': props.current
+      }"
+      @click="props.goToSlide()"
+    >
+      <q-icon name="lens" class="inactive-icon"/>
+      <q-icon name="lens" class="active-icon"/>
+    </q-btn>
+
   </q-carousel>
 
 </section>
@@ -101,9 +117,32 @@ export default {
 <style lang="stylus" scoped>
 @import '~variables'
 
+.l-shop-slider__header
+  width: 100%
+  background-color: rgba(38, 38, 38, .5)
+
 .following-tags
   &__item:not(:last-child)
       margin-right: ($space-base / 2)
+
+.quick-nav
+  position: relative
+
+  .active-icon
+    position: absolute
+    color: $white
+    font-size: .8rem !important
+    opacity: 0
+    transition: opacity .2s linear
+
+  .inactive-icon
+    color: $bg-dark-3
+
+  &--active
+    opacity: .8
+
+    .active-icon
+      opacity: 1
 </style>
 
 <style lang="stylus" module>
