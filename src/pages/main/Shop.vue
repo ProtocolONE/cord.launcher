@@ -158,7 +158,7 @@ export default {
     padding-top: 0
     &:first-child
       padding-right: 0
-      @media (min-width $breakpoint-sm-min)
+      @media (min-width $breakpoint-xs-min)
         padding-right: $space-base
     &:last-child
       padding-left: $space-base
