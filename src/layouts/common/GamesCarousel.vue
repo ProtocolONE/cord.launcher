@@ -142,9 +142,6 @@ export default {
     footer
       width: 100%
       margin-top: auto
-  &__item
-    @media (min-width $breakpoint-xs-min)
-      padding-left: ($space-base / 2)
   &__link
     font-size: 2.4rem
     letter-spacing: -.02em

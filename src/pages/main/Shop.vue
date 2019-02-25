@@ -22,9 +22,9 @@
       class="col-lg-7 col-12"
     />
     <games-carousel
-        v-bind="shopUpdatesAndExpansionsGames"
-        classes="col-lg-6 col-md-6 col-sm-6 col-xs-12"
-        class="col-lg-5 col-12"
+      v-bind="shopUpdatesAndExpansionsGames"
+      classes="col-lg-6 col-md-6 col-sm-6 col-xs-12 shop-more-updates"
+      class="col-lg-5 col-12"
     />
   </div>
 
@@ -159,7 +159,6 @@ export default {
     &:first-child
       padding-right: 0
       @media (min-width $breakpoint-xs-min)
-        padding-left: $space-base
         padding-right: ($space-base / 2)
       @media (min-width $breakpoint-sm-max)
         padding-right: $space-base
@@ -167,4 +166,15 @@ export default {
       padding-left: $space-base
       @media (min-width $breakpoint-lg-min)
         padding-left: 0
+</style>
+
+<style lang="stylus">
+@import '~variables'
+
+.shop-more-updates
+  @media (min-width $breakpoint-xs-min) and (max-width $breakpoint-sm-max)
+    &:nth-child(2n - 1)
+      padding-left: ($space-base / 2)
+  @media (max-width $breakpoint-xs-max)
+    padding-left: ($space-base / 2) !important
 </style>
