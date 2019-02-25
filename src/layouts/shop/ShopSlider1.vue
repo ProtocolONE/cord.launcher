@@ -7,7 +7,6 @@
       height="460px"
       quick-nav
       infinite
-      autoplay
   >
 
     <q-carousel-slide
@@ -90,8 +89,8 @@
       }"
       @click="props.goToSlide()"
     >
-      <q-icon name="lens" class="inactive-icon"/>
-      <q-icon name="lens" class="active-icon"/>
+      <icon name="circle" size="16" fill="#121212" class="inactive-icon"/>
+      <icon name="circle" size="8" fill="white" class="active-icon"/>
     </q-btn>
 
   </q-carousel>
