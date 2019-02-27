@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import LogoBox from '@components/blocks/LogoBox'
+import LogoBox from '@/components/blocks/LogoBox'
 import AppNav from './AppNav'
 
 export default {

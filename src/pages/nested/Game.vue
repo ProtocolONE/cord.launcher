@@ -13,16 +13,16 @@
 </template>
 
 <script>
-import GameSlider from '@layouts/game/GameSlider'
-import GameInfo from '@layouts/game/GameInfo'
-import GamePreview from '@layouts/game/GamePreview'
-import GameGallery from '@layouts/game/GameGallery'
-import GameSocial from '@layouts/game/GameSocial'
-import GameReviews from '@layouts/game/GameReviews'
-import GameRequirements from '@layouts/game/GameRequirements'
-import GamesCarousel from '@layouts/common/GamesCarousel'
+import GameSlider from '@/layouts/game/GameSlider'
+import GameInfo from '@/layouts/game/GameInfo'
+import GamePreview from '@/layouts/game/GamePreview'
+import GameGallery from '@/layouts/game/GameGallery'
+import GameSocial from '@/layouts/game/GameSocial'
+import GameReviews from '@/layouts/game/GameReviews'
+import GameRequirements from '@/layouts/game/GameRequirements'
+import GamesCarousel from '@/layouts/common/GamesCarousel'
 
-import { game, initial } from '@test-data'
+import { game, initial } from '@/test-data'
 import { mapMutations, mapGetters } from 'vuex'
 
 import { merge, pick } from 'lodash'

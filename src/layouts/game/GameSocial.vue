@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import Icon from '@components/Icon'
-import IconBox from '@components/blocks/IconBox'
+import Icon from '@/components/Icon'
+import IconBox from '@/components/blocks/IconBox'
 
 export default {
   name: 'GameSocial',

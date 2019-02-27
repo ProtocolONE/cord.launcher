@@ -37,9 +37,9 @@
 </template>
 
 <script>
-import Icon from '@components/Icon'
-import IconBox from '@components/blocks/IconBox'
-import LogoBox from '@components/blocks/LogoBox'
+import Icon from '@/components/Icon'
+import IconBox from '@/components/blocks/IconBox'
+import LogoBox from '@/components/blocks/LogoBox'
 
 export default {
   name: 'AppFooter',

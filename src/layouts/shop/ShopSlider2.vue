@@ -61,8 +61,8 @@
 </template>
 
 <script>
-import Icon from '@components/Icon'
-import IconBox from '@components/blocks/IconBox'
+import Icon from '@/components/Icon'
+import IconBox from '@/components/blocks/IconBox'
 
 export default {
   name: 'ShopSlider2',
@@ -101,7 +101,7 @@ export default {
     color: $white
     font-size: .8rem !important
     opacity: 0
-    transition: opacity .2s linear
+    transition: opacity $transition-duration linear
 
   .inactive-icon
     color: $bg-dark-3

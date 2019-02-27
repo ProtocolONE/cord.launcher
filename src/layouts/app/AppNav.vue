@@ -1,27 +1,28 @@
 <template>
 <q-tabs :class="$style.app_nav" color="transparent">
   <q-route-tab
-      v-for="{ name, path } in links"
-      :key="name"
-      :name="name"
-      :to="path"
-      class="app-nav__item"
-      slot="title"
-      exact>
+    v-for="{ name, path } in links"
+    :key="name"
+    :name="name"
+    :to="path"
+    class="app-nav__item"
+    slot="title"
+    exact
+  >
     {{ $t(name) }}
   </q-route-tab>
 </q-tabs>
 </template>
 
 <script>
-import { navigationLinks } from '@src/router/routes'
+import navigationList from '@/router/navigation-list'
 
 export default {
   name: 'AppNav',
 
   data () {
     return {
-      links: navigationLinks
+      links: navigationList
     }
   }
 }
@@ -54,7 +55,7 @@ export default {
     &:not(:last-child)
       margin-right: 2.4rem
 
-    &[class~="active"]
+    &[class~="q-router-link-active"]
       background: $bg-black
       color: $white
 

@@ -1,31 +1,96 @@
+// --- dependencies
+const fs = require('fs')
 const path = require('path')
 
 // --- set app root dirname
-global.appRoot = path.resolve(__dirname)
+const __root = global.__root = path.resolve(__dirname)
 
-const { initIcons } = require('./src/assets/nodejs')
+// --- functions
+function filterBySvgExtension (filePath) {
+  return path.extname(filePath) === '.svg'
+}
+
+function getWrappedSvg (filePath) {
+  let file = path.resolve(__root, `${ iconsPath }/${ filePath }`)
+  let fileName = path.basename(file, '.svg')
+  let html = fs.readFileSync(file, encoding)
+  let matches = getAllSvgMatches(html)
+
+  try {
+    let viewBox = getViewBox(matches)
+    let svgContent = getSvgContent(matches)
+    return `
+      <symbol id="${ fileName }" viewBox="${ viewBox }">
+        ${ svgContent }
+      </symbol>
+    `
+  }
+  catch (error) {
+    // --- skip
+    console.error(error)
+  }
+
+  return ''
+}
+
+function getAllSvgMatches (html) {
+  let pattern = /(<([^>]+)>)/ig
+  return html.match(pattern)
+}
+
+function getSvgContent (matches = []) {
+  return matches.splice(1, matches.length - 2)
+}
+
+function getViewBox (matches = []) {
+  let pattern = /viewBox="([^"]*)"/
+  let viewBoxes = matches[0].match(pattern)
+  return (Array.isArray(viewBoxes)) ? viewBoxes[1] : ''
+}
+
+function getIconsAsHTML () {
+  let html = icons.map(getWrappedSvg).join('')
+  return `
+    <svg xmlns="http://www.w3.org/2000/svg" hidden>
+      ${ html }
+    </svg>
+  `
+}
+
+function addAliasesToWebpack (cfg) {
+  cfg.resolve.alias = {
+    ...cfg.resolve.alias,
+    '@': path.resolve(__root, './src'),
+    'styl': path.resolve(__root, './src/css'),
+    'utils': path.resolve(__root, './src/assets/utils')
+  }
+}
+
+// --- other variables
+const [iconsPath, encoding] = ['./src/assets/icons', 'utf-8']
+const folder = path.resolve(__root, iconsPath)
+const icons = fs.readdirSync(folder).filter(filterBySvgExtension)
 
 // Configuration for your app
-
 module.exports = function (ctx) {
   return {
     // -- custom html variables
     htmlVariables: {
-      icons: initIcons()
+      icons: getIconsAsHTML()
     },
-
     // app plugins (/src/plugins)
     plugins: [
       'i18n',
-      'axios'
+      'axios',
+      'utils'
     ],
     css: [
       'app.styl'
     ],
     extras: [
-      // ctx.theme.mat? 'roboto-font' : null
+      // ctx.theme.mat ? 'roboto-font' : null,
       'material-icons' // optional, you are not bound to it
-      // 'ionicons'
+      // 'ionicons',
       // 'mdi',
       // 'fontawesome'
     ],
@@ -44,23 +109,7 @@ module.exports = function (ctx) {
           loader: 'eslint-loader',
           exclude: /node_modules/
         })
-        cfg.resolve.alias = {
-          ...cfg.resolve.alias,
-          // --- for <style> blocks in vue
-          // --- ex: @import '~styl/...'
-          'styl': path.resolve(__dirname, './src/css'),
-          // --- for js
-          // --- ex: import [a from] '@src/...'
-          '@src': path.resolve(__dirname, './src'),
-          '@assets': path.resolve(__dirname, './src/assets'),
-          '@components': path.resolve(__dirname, './src/components'),
-          '@layouts': path.resolve(__dirname, './src/layouts'),
-          '@pages': path.resolve(__dirname, './src/pages'),
-          '@plugins': path.resolve(__dirname, './src/plugins'),
-
-          // --- test data
-          '@test-data': path.resolve(__dirname, './src/test-data.js')
-        }
+        void addAliasesToWebpack(cfg)
       }
     },
     devServer: {
@@ -91,7 +140,6 @@ module.exports = function (ctx) {
         'QSelect'
       ],
       cssAddon: true,
-      // Quasar directives
       directives: [],
       // Quasar plugins
       plugins: [],
@@ -150,7 +198,7 @@ module.exports = function (ctx) {
     electron: {
       // bundler: 'builder', // or 'packager'
       extendWebpack (cfg) {
-        // do something with Electron process Webpack cfg
+        void addAliasesToWebpack(cfg)
       },
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options

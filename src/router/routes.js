@@ -1,33 +1,26 @@
-export const navigationLinks = [
-  { name: 'home', path: '/' },
-  { name: 'shop', path: '/shop' },
-  { name: 'library', path: '/library' }
-]
+import navigationList from './navigation-list'
+import { replaceFirstChar } from 'utils'
 
-const mainPages = navigationLinks.map(link => {
-  let componentName = link.name.replace(/^\w/, c => c.toUpperCase())
-  link.component = () => import(`pages/main/${ componentName }`)
+const main = navigationList.map(link => {
+  let componentName = replaceFirstChar(link.name, char => char.toUpperCase())
+  link.component = () => import(`@/pages/main/${ componentName }`)
   return link
 })
 
-const nestedPages = [
+const nested = [
   {
     name: 'game',
     path: '/game/:id',
-    component: () => import('pages/nested/Game')
+    component: () => import('@/pages/nested/Game')
   }
 ]
 
-const errorPages = [
+const errors = [
   {
     name: '404',
     path: '*',
-    component: () => import('pages/errors/Error404.vue')
+    component: () => import('@/pages/errors/Error404.vue')
   }
 ]
 
-export default [
-  ...mainPages,
-  ...nestedPages,
-  ...errorPages
-]
+export default [...main, ...nested, ...errors]

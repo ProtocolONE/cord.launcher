@@ -2,18 +2,19 @@
 <section class="l-shop-slider">
 
   <q-carousel
-      :class="$style.slider"
-      class="text-white"
-      height="460px"
-      quick-nav
-      infinite
+    :class="$style.slider"
+    class="text-white"
+    height="460px"
+    quick-nav
+    infinite
+    autoplay
   >
 
     <q-carousel-slide
-        v-for="(item, index) in items"
-        :key="`${ item.name }-${ _uid }-${ index }`"
-        :img-src="item.preview"
-        class="flex column justify-between q-pa-none"
+      v-for="(item, index) in items"
+      :key="`${ item.name }-${ _uid }-${ index }`"
+      :img-src="item.preview"
+      class="flex column justify-between q-pa-none"
     >
 
       <header class="row justify-between q-pa-md l-shop-slider__header">
@@ -52,12 +53,12 @@
       <footer class="row justify-between q-pa-md">
         <div class="flex items-center">
           <icon
-              v-for="icon in item.platforms"
-              :key="icon"
-              :name="icon"
-              size="20"
-              fill="white"
-              class="q-mr-md"
+            v-for="icon in item.platforms"
+            :key="icon"
+            :name="icon"
+            size="20"
+            fill="white"
+            class="q-mr-md"
           />
         </div>
         <div class="flex items-center">
@@ -99,8 +100,8 @@
 </template>
 
 <script>
-import Icon from '@components/Icon'
-import IconBox from '@components/blocks/IconBox'
+import Icon from '@/components/Icon'
+import IconBox from '@/components/blocks/IconBox'
 
 export default {
   name: 'ShopSlider1',
@@ -132,7 +133,7 @@ export default {
     color: $white
     font-size: .8rem !important
     opacity: 0
-    transition: opacity .2s linear
+    transition: opacity $transition-duration linear
 
   .inactive-icon
     color: $bg-dark-3

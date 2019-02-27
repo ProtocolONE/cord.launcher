@@ -53,13 +53,13 @@
 </template>
 
 <script>
-import ShopSlider1 from '@layouts/shop/ShopSlider1'
-import ShopSlider2 from '@layouts/shop/ShopSlider2'
-import ShopPopularCategories from '@layouts/shop/ShopPopularCategories'
-import GamesCarousel from '@layouts/common/GamesCarousel'
-import ShopSpecialOffer from '@layouts/shop/ShopSpecialOffer'
+import ShopSlider1 from '@/layouts/shop/ShopSlider1'
+import ShopSlider2 from '@/layouts/shop/ShopSlider2'
+import ShopPopularCategories from '@/layouts/shop/ShopPopularCategories'
+import GamesCarousel from '@/layouts/common/GamesCarousel'
+import ShopSpecialOffer from '@/layouts/shop/ShopSpecialOffer'
 
-import { shop, game } from '@test-data'
+import { shop, game } from '@/test-data'
 import { mapMutations, mapGetters } from 'vuex'
 
 import { pick } from 'lodash'

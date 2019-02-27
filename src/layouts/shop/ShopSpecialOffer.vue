@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import IconBox from '@components/blocks/IconBox'
+import IconBox from '@/components/blocks/IconBox'
 
 export default {
   name: 'ShopSpecialOffer',

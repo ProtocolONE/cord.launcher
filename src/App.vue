@@ -1,14 +1,15 @@
 <template>
 <app-layout id="q-app">
-  <!-- TODO: keep-alive ? -->
-  <!-- TODO: transition -->
-  <!--<keep-alive>-->
-  <router-view/>
+  <keep-alive>
+    <!--<transition>-->
+      <router-view/>
+    <!--</transition>-->
+  </keep-alive>
 </app-layout>
 </template>
 
 <script>
-import AppLayout from '@layouts/app/AppLayout'
+import AppLayout from '@/layouts/app/AppLayout'
 
 if (process.env.NODE_ENV === 'production') {
   const Vue = require('vue').default

@@ -96,8 +96,8 @@
 <script>
 import GameRequirementsTable from './GameRequirementsTable'
 
-import Icon from '@components/Icon'
-import IconBox from '@components/blocks/IconBox'
+import Icon from '@/components/Icon'
+import IconBox from '@/components/blocks/IconBox'
 
 import { union, includes } from 'lodash'
 
@@ -197,7 +197,7 @@ $tab-size = 8.4rem
     height: $tab-size
     padding: 0
     opacity: .4
-    transition: opacity .3s linear
+    transition: opacity $transition-duration linear
     &:hover,
     &[class~="active"]
       opacity: 1
