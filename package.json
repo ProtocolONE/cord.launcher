@@ -6,16 +6,20 @@
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
   "private": true,
   "scripts": {
-    "serve": "quasar dev -m ssr",
-    "electron": "quasar dev -m electron",
-    "build:ssr": "quasar build -m ssr",
+    "serve": "quasar dev -m ssr -t mat",
+    "electron": "quasar dev -m electron -t mat",
+    "build": "quasar build -t mat",
+    "build:ssr": "quasar build -m ssr -t mat",
+    "build:electron": "quasar build -m electron -t mat",
+    "build:electron:linux": "quasar build -m electron linux -t mat -b builder",
+    "build:electron:win32": "quasar build -m electron win32 -t mat -b builder",
     "lint": "eslint --ext .js,.vue src",
-    "test": "echo \"No test specified\" && exit 0"
+    "lint:fix": "eslint --ext .js,.vue src --fix"
   },
   "dependencies": {
     "@vue/eslint-config-standard": "^4.0.0",
     "axios": "^0.18.0",
-    "lodash": "^4.17.11",
+    "lodash-es": "^4.17.11",
     "moment": "^2.24.0",
     "raven-js": "^3.27.0",
     "vue-i18n": "^7.3.3"
@@ -26,6 +30,7 @@
     "electron": "3.0.8",
     "electron-debug": "2.0.0",
     "electron-devtools-installer": "2.2.4",
+    "electron-packager": "^12.0.1",
     "eslint": "^4.18.2",
     "eslint-config-standard": "^12.0.0",
     "eslint-friendly-formatter": "^4.0.1",

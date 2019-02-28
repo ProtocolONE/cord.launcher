@@ -62,7 +62,7 @@ import ShopSpecialOffer from '@/layouts/shop/ShopSpecialOffer'
 import { shop, game } from '@/test-data'
 import { mapMutations, mapGetters } from 'vuex'
 
-import { pick } from 'lodash'
+import { pick } from 'lodash-es'
 
 export default {
   name: 'Shop',

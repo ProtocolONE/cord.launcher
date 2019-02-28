@@ -1,15 +1,24 @@
 <template>
-<app-layout id="q-app">
-  <keep-alive>
-    <!--<transition>-->
-      <router-view/>
-    <!--</transition>-->
-  </keep-alive>
-</app-layout>
+<transition name="fade" mode="out-in">
+
+  <app-layout v-if="loaded" id="q-app">
+    <keep-alive>
+      <transition name="fade" mode="out-in">
+        <router-view/>
+      </transition>
+    </keep-alive>
+  </app-layout>
+
+  <app-loader v-else/>
+
+</transition>
 </template>
 
 <script>
 import AppLayout from '@/layouts/app/AppLayout'
+import AppLoader from '@/layouts/app/AppLoader'
+
+import { mapState, mapMutations } from 'vuex'
 
 if (process.env.NODE_ENV === 'production') {
   const Vue = require('vue').default
@@ -37,12 +46,29 @@ function calculateViewportHeight (percent = 0.01) {
 export default {
   name: 'App',
 
-  components: { AppLayout },
+  components: { AppLayout, AppLoader },
+
+  computed: {
+    ...mapState('initial', ['loaded'])
+  },
 
   // --- TODO: вынести куда-то в более адекватное место
-  mounted () {
+  async mounted () {
+    let toggleState = new Promise(async resolve => {
+      await setTimeout(() => {
+        this.toggleLoadedState(true)
+        void resolve()
+      }, 1500)
+    })
+    toggleState.then(() => {
+      console.log(this.loaded)
+      void calculateViewportHeight()
+    })
     window.addEventListener('resize', calculateViewportHeight, false)
-    void calculateViewportHeight()
+  },
+
+  methods: {
+    ...mapMutations('initial', ['toggleLoadedState'])
   }
 }
 </script>

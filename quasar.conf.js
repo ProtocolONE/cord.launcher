@@ -2,8 +2,11 @@
 const fs = require('fs')
 const path = require('path')
 
-// --- set app root dirname
-const __root = global.__root = path.resolve(__dirname)
+// --- init root folder
+const __root = path.resolve(__dirname)
+
+// --- set app root dirname as global
+global.__root = __root
 
 // --- functions
 function filterBySvgExtension (filePath) {
@@ -137,7 +140,8 @@ module.exports = function (ctx) {
         'QCarousel',
         'QCarouselSlide',
         'QCarouselControl',
-        'QSelect'
+        'QSelect',
+        'QSpinnerGrid'
       ],
       cssAddon: true,
       directives: [],
