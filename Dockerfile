@@ -3,7 +3,8 @@ FROM node:10.10-alpine AS node
 RUN apk update && apk add --no-cache --update ca-certificates p7zip
 #RUN npm i webpack webpack-cli -g
 
-ENV PORT=8080
+ENV PORT=8080 \
+    USE_SYSTEM_7ZA=true
 
 WORKDIR /app
 COPY package.json yarn.lock /app/
