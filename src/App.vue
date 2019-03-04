@@ -30,8 +30,13 @@ if (process.env.NODE_ENV === 'production') {
 
 // --- TODO: вынести куда-то в более адекватное место
 function calculateViewportHeight (percent = 0.01) {
-  let vh = (window.innerHeight * percent)
-  document.documentElement.style.setProperty('--vh', `${ vh }px`)
+  try {
+    let vh = (window.innerHeight * percent)
+    document.documentElement.style.setProperty('--vh', `${ vh }px`)
+  }
+  catch (error) {
+    console.error(error)
+  }
 }
 
 export default {
@@ -41,8 +46,13 @@ export default {
 
   // --- TODO: вынести куда-то в более адекватное место
   mounted () {
-    window.addEventListener('resize', calculateViewportHeight, false)
-    calculateViewportHeight()
+    try {
+      window.addEventListener('resize', calculateViewportHeight, false)
+      calculateViewportHeight()
+    }
+    catch (error) {
+      console.error(error)
+    }
   }
 }
 </script>
