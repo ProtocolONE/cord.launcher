@@ -1,6 +1,6 @@
 FROM node:10.10-alpine AS node
 
-#RUN apk update && apk add --no-cache --update make gcc g++ libc-dev libpng-dev automake autoconf libtool
+RUN apk update && apk add --no-cache --update ca-certificates
 #RUN npm i webpack webpack-cli -g
 
 ENV PORT=8080
