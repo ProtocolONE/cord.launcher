@@ -1,6 +1,6 @@
 FROM node:10.10-alpine AS node
 
-RUN apk update && apk add --no-cache --update ca-certificates
+RUN apk update && apk add --no-cache --update ca-certificates p7zip
 #RUN npm i webpack webpack-cli -g
 
 ENV PORT=8080
