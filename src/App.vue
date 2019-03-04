@@ -11,7 +11,6 @@
 <script>
 import AppLayout from '@/layouts/app/AppLayout'
 
-// --- TODO: вынести куда-то в более адекватное место
 function calculateViewportHeight (percent = 0.01) {
   try {
     let vh = (window.innerHeight * percent)
@@ -30,7 +29,7 @@ export default {
   mounted () {
     this.handleEvents()
     if (process.env.NODE_ENV === 'production') {
-      this.enableRaven()
+      this.initRaven()
     }
   },
 
@@ -45,7 +44,7 @@ export default {
       }
     },
 
-    enableRaven () {
+    initRaven () {
       let Vue = require('vue').default
       let Raven = require('raven-js')
       let RavenVue = require('raven-js/plugins/vue')
