@@ -6,12 +6,13 @@
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
   "private": true,
   "scripts": {
-    "release": "yarn build:ssr && yarn build:electron",
+    "release": "yarn build:ssr && yarn build:electron:all",
     "serve": "quasar dev -m ssr -t mat",
     "electron": "quasar dev -m electron -t mat",
     "build": "quasar build -t mat",
     "build:ssr": "quasar build -m ssr -t mat",
-    "build:electron": "quasar build -m electron --target all --bundler builder -t mat",
+    "build:electron": "quasar build -m electron --bundler builder -t mat",
+    "build:electron:all": "quasar build -m electron --target all --bundler builder -t mat",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix"
   },
