@@ -8,11 +8,11 @@ ENV PORT=8080
 WORKDIR /app
 COPY package.json yarn.lock /app/
 
-RUN yarn 
+RUN yarn
 
 COPY . /app/
 
-RUN yarn build:ssr
+RUN yarn release
 
 EXPOSE 8080
 

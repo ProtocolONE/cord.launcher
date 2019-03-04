@@ -12,6 +12,11 @@ const nested = [
     name: 'game',
     path: '/game/:id',
     component: () => import('@/pages/nested/Game')
+  },
+  {
+    name: 'download',
+    path: '/download',
+    component: () => import('@/pages/nested/Download')
   }
 ]
 

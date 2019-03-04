@@ -1,11 +1,11 @@
 import {
   app,
+  dialog,
   BrowserWindow,
   Menu
 } from 'electron'
 
 import { autoUpdater } from 'electron-updater'
-import log from 'electron-log'
 import Store from '../store'
 
 const store = new Store({
@@ -19,12 +19,6 @@ const store = new Store({
     }
   }
 })
-
-autoUpdater.logger = log
-autoUpdater.logger.transports.file.level = 'info'
-autoUpdater.checkForUpdatesAndNotify()
-
-log.info('App starting...')
 
 Menu.setApplicationMenu(
   Menu.buildFromTemplate([
@@ -94,7 +88,34 @@ function handleClosed () {
   mainWindow = null
 }
 
-app.on('ready', createWindow)
+/**
+ * Auto Updater
+ *
+ * Uncomment the following code below and install `electron-updater` to
+ * support auto updating. Code Signing with a valid certificate is required.
+ * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
+ */
+autoUpdater.logger = require('electron-log')
+autoUpdater.logger.transports.file.level = 'info'
+
+autoUpdater.on('update-downloaded', () => {
+  console.log('update-downloaded lats quitAndInstall')
+
+  if (process.env.NODE_ENV === 'production') {
+    dialog.showMessageBox({
+      type: 'info',
+      title: 'Found Updates',
+      message: 'Found updates, do you want update now?',
+      buttons: ['Sure', 'No']
+    }, buttonIndex => {
+      if (buttonIndex === 0) {
+        let isSilent = true
+        let isForceRunAfter = true
+        autoUpdater.quitAndInstall(isSilent, isForceRunAfter)
+      }
+    })
+  }
+})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -106,4 +127,11 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow()
   }
+})
+
+app.on('ready', () => {
+  if (process.env.NODE_ENV === 'production') {
+    autoUpdater.checkForUpdates()
+  }
+  createWindow()
 })

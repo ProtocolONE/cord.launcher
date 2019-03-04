@@ -82,29 +82,15 @@ module.exports = function (ctx) {
       icons: getIconsAsHTML()
     },
     // app plugins (/src/plugins)
-    plugins: [
-      'i18n',
-      'axios',
-      'utils'
-    ],
-    css: [
-      'app.styl'
-    ],
-    extras: [
-      // ctx.theme.mat ? 'roboto-font' : null,
-      'material-icons' // optional, you are not bound to it
-      // 'ionicons',
-      // 'mdi',
-      // 'fontawesome'
-    ],
+    plugins: ['i18n', 'axios', 'utils'],
+    css: ['app.styl'],
+    extras: ['material-icons'],
     supportIE: false,
     build: {
       scopeHoisting: true,
-      // vueRouterMode: 'history',
-      // vueCompiler: true,
-      // gzip: true,
-      // analyze: true,
-      // extractCSS: false,
+      vueRouterMode: 'history',
+      vueCompiler: true,
+      extractCSS: true,
       extendWebpack (cfg) {
         cfg.module.rules.push({
           enforce: 'pre',
@@ -116,11 +102,9 @@ module.exports = function (ctx) {
       }
     },
     devServer: {
-      // https: true,
       port: 8080,
-      open: false // opens browser window automatically
+      open: false
     },
-    // framework: 'all' --- includes everything; for dev only!
     framework: {
       components: [
         'QLayout',
@@ -145,24 +129,19 @@ module.exports = function (ctx) {
       ],
       cssAddon: true,
       directives: [],
-      // Quasar plugins
       plugins: [],
       iconSet: 'material-icons',
-      // Quasar language
       i18n: 'en-us'
     },
-    // animations: 'all' --- includes all animations
     animations: [],
     ssr: {
       pwa: false
     },
     pwa: {
-      // workboxPluginMode: 'InjectManifest',
-      // workboxOptions: {},
       manifest: {
-        // name: 'Quasar App',
-        // short_name: 'Quasar-PWA',
-        // description: 'Best PWA App in town!',
+        name: 'cord.launcher',
+        short_name: 'cord.launcher-PWA',
+        description: 'Cord\'s web and electron app using PWA',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
@@ -196,30 +175,42 @@ module.exports = function (ctx) {
         ]
       }
     },
-    cordova: {
-      // id: 'org.cordova.quasar.app'
-    },
     electron: {
-      bundler: 'builder', // or 'packager'
-      extendWebpack (cfg) {
-
-      },
-      packager: {
-        // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
-        // OS X / Mac App Store
-        // appBundleId: '',
-        // appCategoryType: '',
-        // osxSign: '',
-        // protocol: 'myapp://path',
-
-        // Window only
-        // win32metadata: { ... }
-      },
+      bundler: 'builder',
+      extendWebpack (cfg) {},
       builder: {
         // https://www.electron.build/configuration/configuration
-
-        // appId: 'quasar-app'
+        appId: 'cord.launcher',
+        productName: 'cord.launcher',
+        artifactName: '${productName}-setup-${version}.${ext}',
+        mac: {
+          target: 'dmg'
+        },
+        win: {
+          target: 'msi'
+        },
+        linux: {
+          target: 'deb',
+          synopsis: 'cord'
+        },
+        dmg: {
+          contents: [
+            {
+              x: 410,
+              y: 150,
+              type: 'link',
+              path: '/Applications'
+            },
+            {
+              x: 130,
+              y: 150,
+              type: 'file'
+            }
+          ]
+        },
+        publish: {
+          provider: 'github'
+        }
       }
     }
   }
