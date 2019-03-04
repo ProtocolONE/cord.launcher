@@ -45,11 +45,6 @@
     "quasar-cli": "^0.17.0",
     "strip-ansi": "=3.0.1"
   },
-  "engines": {
-    "node": ">= 11.10.0",
-    "npm": ">= 6.7.0",
-    "yarn": ">= 1.13.0"
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",

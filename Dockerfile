@@ -1,4 +1,4 @@
-FROM node:11.10-alpine AS node
+FROM node:10.10-alpine AS node
 
 #RUN apk update && apk add --no-cache --update make gcc g++ libc-dev libpng-dev automake autoconf libtool
 #RUN npm i webpack webpack-cli -g
