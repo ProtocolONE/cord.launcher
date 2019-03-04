@@ -200,9 +200,9 @@ module.exports = function (ctx) {
       // id: 'org.cordova.quasar.app'
     },
     electron: {
-      // bundler: 'builder', // or 'packager'
+      bundler: 'builder', // or 'packager'
       extendWebpack (cfg) {
-        void addAliasesToWebpack(cfg)
+
       },
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options

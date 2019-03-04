@@ -19,6 +19,8 @@
   "dependencies": {
     "@vue/eslint-config-standard": "^4.0.0",
     "axios": "^0.18.0",
+    "electron-log": "^3.0.1",
+    "electron-updater": "^4.0.6",
     "lodash-es": "^4.17.11",
     "moment": "^2.24.0",
     "raven-js": "^3.27.0",

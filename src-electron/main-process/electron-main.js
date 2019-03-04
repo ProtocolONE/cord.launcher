@@ -1,4 +1,11 @@
-import { app, BrowserWindow } from 'electron'
+import {
+  app,
+  BrowserWindow,
+  Menu
+} from 'electron'
+
+import { autoUpdater } from 'electron-updater'
+import log from 'electron-log'
 import Store from '../store'
 
 const store = new Store({
@@ -12,6 +19,38 @@ const store = new Store({
     }
   }
 })
+
+autoUpdater.logger = log
+autoUpdater.logger.transports.file.level = 'info'
+autoUpdater.checkForUpdatesAndNotify()
+
+log.info('App starting...')
+
+Menu.setApplicationMenu(
+  Menu.buildFromTemplate([
+    {
+      label: 'View',
+      submenu: [
+        { role: 'reload' },
+        { role: 'forcereload' },
+        { role: 'toggledevtools' },
+        { type: 'separator' },
+        { role: 'resetzoom' },
+        { role: 'zoomin' },
+        { role: 'zoomout' },
+        { type: 'separator' },
+        { role: 'togglefullscreen' }
+      ]
+    },
+    {
+      role: 'window',
+      submenu: [
+        { role: 'minimize' },
+        { role: 'close' }
+      ]
+    }
+  ])
+)
 
 let mainWindow
 
