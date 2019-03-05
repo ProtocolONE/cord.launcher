@@ -52,6 +52,8 @@ module.exports = {
     'template-curly-spacing': 'off',
     'brace-style': 'off',
     'no-template-curly-in-string': 'off',
+    'no-return-await': 'off',
+    'no-inner-declarations': 'off',
 
     // allow console.log during development only
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',

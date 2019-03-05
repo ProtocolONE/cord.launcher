@@ -98,8 +98,9 @@ module.exports = function (ctx) {
           loader: 'eslint-loader',
           exclude: /node_modules/
         })
-        void addAliasesToWebpack(cfg)
-      }
+        addAliasesToWebpack(cfg)
+      },
+      env: {}
     },
     devServer: {
       port: 8080,
@@ -180,7 +181,7 @@ module.exports = function (ctx) {
       extendWebpack (cfg) {},
       builder: {
         // https://www.electron.build/configuration/configuration
-        appId: 'cord.launcher',
+        appId: 'com.github.ProtocolONE.cord.launcher',
         productName: 'cord.launcher',
         artifactName: '${productName}-setup-${version}.${ext}',
         mac: {
@@ -209,7 +210,9 @@ module.exports = function (ctx) {
           ]
         },
         publish: {
-          provider: 'github'
+          provider: 'github',
+          owner: 'ProtocolONE',
+          repo: 'cord.launcher'
         }
       }
     }
