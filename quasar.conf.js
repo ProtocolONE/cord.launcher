@@ -183,6 +183,9 @@ module.exports = function (ctx) {
         appId: 'cord.launcher',
         productName: 'cord.launcher',
         artifactName: '${productName}-setup-${version}.${ext}',
+        mac: {
+          target: 'dmg'
+        },
         win: {
           target: 'nsis'
         },
