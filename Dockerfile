@@ -12,7 +12,7 @@ RUN yarn
 
 COPY . /app/
 
-RUN yarn release
+RUN yarn build:ssr
 
 EXPOSE 8080
 
