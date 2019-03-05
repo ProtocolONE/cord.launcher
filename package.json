@@ -4,12 +4,12 @@
   "description": "Cord's web and electron app",
   "productName": "cord.launcher",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/ProtocolONE/cord.launcher.git"
   },
   "scripts": {
-    "release": "yarn build:ssr && yarn build:electron:all",
     "serve": "quasar dev -m ssr -t mat",
     "electron": "quasar dev -m electron -t mat",
     "build": "yarn build:ssr && yarn build:electron",
