@@ -4,7 +4,6 @@
   "description": "Cord's web and electron app",
   "productName": "cord.launcher",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
-  "private": true,
   "scripts": {
     "release": "yarn build:ssr && yarn build:electron:all",
     "publish": "yarn run release",
