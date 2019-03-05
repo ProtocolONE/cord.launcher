@@ -99,7 +99,7 @@ import GameRequirementsTable from './GameRequirementsTable'
 import Icon from '@/components/Icon'
 import IconBox from '@/components/blocks/IconBox'
 
-import { union, includes } from 'lodash-es'
+import { union, includes } from 'lodash'
 
 export default {
   name: 'GameRequirements',

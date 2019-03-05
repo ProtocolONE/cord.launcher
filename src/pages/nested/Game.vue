@@ -25,7 +25,7 @@ import GamesCarousel from '@/layouts/common/GamesCarousel'
 import { game, initial } from '@/test-data'
 import { mapMutations, mapGetters } from 'vuex'
 
-import { merge, pick } from 'lodash-es'
+import { merge, pick } from 'lodash'
 
 export default {
   name: 'Game',

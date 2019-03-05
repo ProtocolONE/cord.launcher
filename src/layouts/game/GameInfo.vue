@@ -41,7 +41,7 @@
 import Icon from '@/components/Icon'
 import IconBox from '@/components/blocks/IconBox'
 
-import { keys, pickBy } from 'lodash-es'
+import { keys, pickBy } from 'lodash'
 
 export default {
   name: 'GameInfo',
