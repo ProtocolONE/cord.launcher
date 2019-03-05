@@ -1,12 +1,13 @@
 {
   "name": "cord.launcher",
   "version": "0.1.0",
-  "description": "Cord"s web and electron app",
+  "description": "Cord's web and electron app",
   "productName": "cord.launcher",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
   "private": true,
   "scripts": {
     "release": "yarn build:ssr && yarn build:electron:all",
+    "publish": "yarn run release",
     "serve": "quasar dev -m ssr -t mat",
     "electron": "quasar dev -m electron -t mat",
     "build": "quasar build -t mat",
