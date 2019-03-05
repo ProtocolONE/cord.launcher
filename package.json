@@ -10,6 +10,7 @@
     "url": "git://github.com/ProtocolONE/cord.launcher.git"
   },
   "scripts": {
+    "release": "yarn build",
     "serve": "quasar dev -m ssr -t mat",
     "electron": "quasar dev -m electron -t mat",
     "build": "yarn build:ssr && yarn build:electron",
