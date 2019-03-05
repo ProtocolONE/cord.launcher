@@ -1925,9 +1925,9 @@ camelcase@^4.0.0, camelcase@^4.1.0:
   integrity sha1-1UVjW+HjPFQmScaRc+Xeas+uNN0=
 
 camelcase@^5.0.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.1.0.tgz#29e83b9cfaf7ad478f401a187ae089cf83c257ea"
-  integrity sha512-WP9f9OBL/TAbwOFBJL79FoS9UKUmnp82RWnhlwTgrAJeMq7lytHhe0Jzc6/P7Zq0+2oviXJuPlvkZalWUug9gg==
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.2.0.tgz#e7522abda5ed94cc0489e1b8466610e88404cf45"
+  integrity sha512-IXFsBS2pC+X0j0N/GE7Dm7j3bsEBp+oTpb7F50dwEVX7rf3IgwO9XatnegTsDtniKCUtEJH4fSU6Asw7uoVLfQ==
 
 caniuse-api@^3.0.0:
   version "3.0.0"
@@ -8423,11 +8423,6 @@ svgo@^1.0.0:
     stable "~0.1.6"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
-
-systeminformation@^4.0.15:
-  version "4.0.15"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.0.15.tgz#0f514208a78be0c2a13e16a841bd0574b5de977e"
-  integrity sha512-fnG0dDORrBHhF9IQzX4pMJzNuQnZvmepGqqv6a2J7VYGv/Z/8+E5Mrzbx4HLvVJZHhTcSe8szTWgLa1ALeh8lg==
 
 table@4.0.2:
   version "4.0.2"

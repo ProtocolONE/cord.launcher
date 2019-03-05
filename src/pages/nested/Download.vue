@@ -1,7 +1,7 @@
 <template>
 <section id="download" class="row cord-padding l-game-info">
 
-  <template v-if="OSName === 'win'">
+<!--  <template v-if="OSName === 'win'">
 
   </template>
 
@@ -15,7 +15,7 @@
 
   <p v-else-if="OSName">
     We could not determine your system
-  </p>
+  </p>-->
 
 </section>
 </template>
