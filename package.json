@@ -1,6 +1,6 @@
 {
   "name": "cord.launcher",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Cord's web and electron app",
   "productName": "cord.launcher",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
@@ -22,6 +22,7 @@
   "dependencies": {
     "@vue/eslint-config-standard": "^4.0.0",
     "axios": "^0.18.0",
+    "dotenv": "^6.2.0",
     "electron-log": "^3.0.1",
     "electron-updater": "^4.0.6",
     "lodash": "^4.17.11",

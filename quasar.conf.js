@@ -1,6 +1,8 @@
 // --- dependencies
 const fs = require('fs')
 const path = require('path')
+const DotEnv = require('dotenv')
+const parsedEnv = DotEnv.config().parsed
 
 // --- init root folder
 const __root = path.resolve(__dirname)
@@ -69,6 +71,15 @@ function addAliasesToWebpack (cfg) {
   }
 }
 
+function envparser () {
+  for (let key in parsedEnv) {
+    if (typeof parsedEnv[key] === 'string') {
+      parsedEnv[key] = JSON.stringify(parsedEnv[key])
+    }
+  }
+  return parsedEnv
+}
+
 // --- other variables
 const [iconsPath, encoding] = ['./src/assets/icons', 'utf-8']
 const folder = path.resolve(__root, iconsPath)
@@ -100,7 +111,7 @@ module.exports = function (ctx) {
         })
         addAliasesToWebpack(cfg)
       },
-      env: {}
+      env: envparser()
     },
     devServer: {
       port: 8080,
