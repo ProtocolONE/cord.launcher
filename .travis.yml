@@ -41,12 +41,6 @@ branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
 
-before_deploy:
-  - git config --local user.name "borisbutenko"
-  - git config --local user.email "iamborisbutenko@gmail.com"
-  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-  - git tag $TRAVIS_TAG
-
 deploy:
   provider: releases
   api_key: $GH_TOKEN
@@ -57,4 +51,4 @@ deploy:
     - "dist/electron-mat/Packaged/cord.launcher-setup-*.deb"
     - "dist/electron-mat/Packaged/cord.launcher-setup-*.dmg"
   on:
-    tags: true
+    tags: false
