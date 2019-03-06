@@ -46,9 +46,6 @@ deploy:
   api_key: $GH_TOKEN
   skip_cleanup: true
   file_glob: true
-  file:
-    - "dist/electron-mat/Packaged/cord.launcher-setup-*.exe"
-    - "dist/electron-mat/Packaged/cord.launcher-setup-*.deb"
-    - "dist/electron-mat/Packaged/cord.launcher-setup-*.dmg"
+  file: "dist/electron-mat/**/*"
   on:
-    tags: false
+    tags: true
