@@ -31,7 +31,7 @@ script:
           electronuserland/builder:wine \
           /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn release --linux --win"
     else
-      yarn build:electron
+      yarn release
     fi
 
 before_cache:
@@ -40,3 +40,16 @@ before_cache:
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
+
+
+deploy:
+  provider: releases
+  api_key: $GH_TOKEN
+  skip_cleanup: true
+  file_glob: true
+  file:
+    - "dist/electron-mat/Packaged/cord.launcher-setup-*.exe"
+    - "dist/electron-mat/Packaged/cord.launcher-setup-*.deb"
+    - "dist/electron-mat/Packaged/cord.launcher-setup-*.dmg"
+  on:
+    tags: true
