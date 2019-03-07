@@ -199,7 +199,9 @@ module.exports = function (ctx) {
           target: 'dmg'
         },
         win: {
-          target: 'nsis'
+          target: 'nsis',
+          publish: ['github'],
+          remoteReleases: 'git://github.com/ProtocolONE/cord.launcher.git'
         },
         linux: {
           target: 'deb',
@@ -221,9 +223,7 @@ module.exports = function (ctx) {
           ]
         },
         publish: {
-          provider: 'github',
-          owner: 'ProtocolONE',
-          repo: 'cord.launcher'
+          provider: 'github'
         }
       }
     }

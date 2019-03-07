@@ -5,10 +5,9 @@
   "productName": "cord.launcher",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/ProtocolONE/cord.launcher.git"
-  },
+  "repository": "git://github.com/ProtocolONE/cord.launcher.git",
+  "private": true,
+  "main": "./dist/ssr-mat/index.js",
   "scripts": {
     "release": "yarn build",
     "serve": "quasar dev -m ssr -t mat",
