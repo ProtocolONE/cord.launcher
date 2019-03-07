@@ -57,6 +57,8 @@ deploy:
   provider: releases
   api_key: $GH_TOKEN
   skip_cleanup: true
-  file_glob: true
-  file: "dist/electron-mat/**/*"
+  file:
+    - "dist/electron-mat/**/cord.launcher-setup-*.exe"
+    - "dist/electron-mat/**/cord.launcher-setup-*.dmg"
+    - "dist/electron-mat/**/cord.launcher-setup-*.deb"
   draft: true
