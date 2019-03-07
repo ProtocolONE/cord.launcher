@@ -10,6 +10,7 @@
   "main": "./dist/ssr-mat/index.js",
   "scripts": {
     "release": "yarn build",
+    "publish": "yarn build",
     "serve": "quasar dev -m ssr -t mat",
     "electron": "quasar dev -m electron -t mat",
     "build": "yarn build:ssr && yarn build:electron",

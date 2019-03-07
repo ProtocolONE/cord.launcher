@@ -31,7 +31,7 @@ branches:
     - /v\d+\.\d+[a-z]/
 
 install:
-  - npm install -g electron-forge
+  - sudo npm install -g electron-forge
   - npm install
 
 script:
@@ -47,7 +47,7 @@ script:
           electronuserland/builder:wine \
           /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn release --linux --win"
     else
-      npm install -g electron-forge && electron-forge publish
+      sudo npm install -g electron-forge && electron-forge publish
     fi
 
 deploy:
