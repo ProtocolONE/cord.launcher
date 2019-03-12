@@ -1,22 +1,21 @@
 {
   "name": "cord.launcher",
-  "version": "1.0.8",
+  "version": "0.0.1",
   "description": "Cord's web and electron app",
   "productName": "cord.launcher",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
   "license": "MIT",
   "repository": "git://github.com/ProtocolONE/cord.launcher.git",
-  "main": "/dist/ssr-mat/index.js",
+  "main": "src-electron/main-process/electron-main.js",
   "scripts": {
-    "test": "echo 'test'",
-    "release": "yarn build",
-    "serve": "quasar dev -m ssr -t mat",
-    "electron": "quasar dev -m electron -t mat",
+    "start:ssr": "quasar dev -m ssr -t mat",
+    "start:electron": "quasar dev -m electron -t mat",
     "build": "yarn build:ssr && yarn build:electron",
     "build:ssr": "quasar build -m ssr -t mat",
     "build:electron": "quasar build -m electron --target all --bundler builder -t mat",
     "lint": "eslint --ext .js,.vue src",
-    "lint:fix": "eslint --ext .js,.vue src --fix"
+    "lint:fix": "eslint --ext .js,.vue src --fix",
+    "publish": "build -p always"
   },
   "dependencies": {
     "@vue/eslint-config-standard": "^4.0.0",
