@@ -53,7 +53,7 @@ function createWindow () {
     // transparent: true
   })
 
-  mainWindow.loadURL(`${ process.env.APP_URL }#v${ app.getVersion() }`)
+  mainWindow.loadURL(process.env.APP_URL)
 
   mainWindow.on('moved', handleMovedOrResize)
   mainWindow.on('resize', handleMovedOrResize)
