@@ -198,7 +198,7 @@ module.exports = function (ctx) {
         copyright: 'Copyright © ' + new Date().getFullYear() + ' ${author}',
         mac: {
           category: 'qilincord.launcher',
-          target: ['zip', 'dmg']
+          target: 'dmg'
         },
         dmg: {
           contents: [

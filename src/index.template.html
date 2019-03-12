@@ -16,6 +16,29 @@
 <body>
   <%= htmlWebpackPlugin.options.icons %>
   <!-- DO NOT touch the following DIV -->
-  <div id="q-app"></div>
+
+  <div hidden>
+    <div id="q-app"></div>
+  </div>
+  <div>
+    Current version: <span id="version">vX.Y.Z</span>
+    <div id="messages"></div>
+  </div>
+  <script>
+    let { ipcRenderer } = require('electron')
+    let version = window.location.hash.substring(1)
+
+    document.getElementById('version').innerText = version
+
+    ipcRenderer.on('message', function(event, text) {
+      let container = document.getElementById('messages')
+      let message = document.createElement('div')
+
+      console.log(event, text)
+
+      message.innerHTML = text
+      container.appendChild(message)
+    })
+  </script>
 </body>
 </html>

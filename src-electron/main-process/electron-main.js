@@ -1,11 +1,14 @@
 import {
   app,
-  dialog,
+  // dialog,
   BrowserWindow,
   Menu
 } from 'electron'
 
 import { autoUpdater } from 'electron-updater'
+import log from 'electron-log'
+
+import templateMenu from './electron-menu'
 import Store from '../store'
 
 const store = new Store({
@@ -20,32 +23,6 @@ const store = new Store({
   }
 })
 
-Menu.setApplicationMenu(
-  Menu.buildFromTemplate([
-    {
-      label: 'View',
-      submenu: [
-        { role: 'reload' },
-        { role: 'forcereload' },
-        { role: 'toggledevtools' },
-        { type: 'separator' },
-        { role: 'resetzoom' },
-        { role: 'zoomin' },
-        { role: 'zoomout' },
-        { type: 'separator' },
-        { role: 'togglefullscreen' }
-      ]
-    },
-    {
-      role: 'window',
-      submenu: [
-        { role: 'minimize' },
-        { role: 'close' }
-      ]
-    }
-  ])
-)
-
 let mainWindow
 
 /**
@@ -54,6 +31,11 @@ let mainWindow
  */
 if (process.env.PROD) {
   global.__statics = require('path').join(__dirname, 'statics').replace(/\\/g, '\\\\')
+}
+
+function sendStatusToWindow (text) {
+  log.info(text)
+  mainWindow.webContents.send('message', text)
 }
 
 function createWindow () {
@@ -71,7 +53,7 @@ function createWindow () {
     // transparent: true
   })
 
-  mainWindow.loadURL(process.env.APP_URL)
+  mainWindow.loadURL(`${ process.env.APP_URL }#v${ app.getVersion() }`)
 
   mainWindow.on('moved', handleMovedOrResize)
   mainWindow.on('resize', handleMovedOrResize)
@@ -95,27 +77,27 @@ function handleClosed () {
  * support auto updating. Code Signing with a valid certificate is required.
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
  */
-autoUpdater.logger = require('electron-log')
-autoUpdater.logger.transports.file.level = 'info'
-
-autoUpdater.on('update-downloaded', () => {
-  console.log('update-downloaded lats quitAndInstall')
-
-  if (process.env.NODE_ENV === 'production') {
-    dialog.showMessageBox({
-      type: 'info',
-      title: 'Found Updates',
-      message: 'Found updates, do you want update now?',
-      buttons: ['Sure', 'No']
-    }, buttonIndex => {
-      if (buttonIndex === 0) {
-        let isSilent = true
-        let isForceRunAfter = true
-        autoUpdater.quitAndInstall(isSilent, isForceRunAfter)
-      }
-    })
-  }
-})
+// autoUpdater.logger = require('electron-log')
+// autoUpdater.logger.transports.file.level = 'info'
+//
+// autoUpdater.on('update-downloaded', () => {
+//   console.log('update-downloaded lats quitAndInstall')
+//
+//   if (process.env.NODE_ENV === 'production') {
+//     dialog.showMessageBox({
+//       type: 'info',
+//       title: 'Found Updates',
+//       message: 'Found updates, do you want update now?',
+//       buttons: ['Sure', 'No']
+//     }, buttonIndex => {
+//       if (buttonIndex === 0) {
+//         let isSilent = true
+//         let isForceRunAfter = true
+//         autoUpdater.quitAndInstall(isSilent, isForceRunAfter)
+//       }
+//     })
+//   }
+// })
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -130,8 +112,47 @@ app.on('activate', () => {
 })
 
 app.on('ready', () => {
-  if (process.env.NODE_ENV === 'production') {
-    autoUpdater.checkForUpdates()
-  }
+  Menu.setApplicationMenu(
+    Menu.buildFromTemplate(templateMenu)
+  )
   createWindow()
+})
+
+autoUpdater.logger = log
+autoUpdater.logger.transports.file.level = 'info'
+
+log.info('App starting...')
+
+autoUpdater.on('checking-for-update', () => {
+  sendStatusToWindow('Checking for update...')
+})
+
+autoUpdater.on('update-available', () => {
+  sendStatusToWindow('Update available.')
+})
+
+autoUpdater.on('update-not-available', () => {
+  sendStatusToWindow('Update not available.')
+})
+
+autoUpdater.on('error', error => {
+  sendStatusToWindow(`Error in auto-updater. ${ error }`)
+})
+
+autoUpdater.on('download-progress', (progressObj) => {
+  let { bytesPerSecond, percent, transferred, total } = progressObj
+  let logMessage = `Download speed: ${ bytesPerSecond }`
+
+  logMessage = `${ logMessage } - Downloaded ${ percent } %`
+  logMessage = `${ logMessage } (${ transferred }/${ total })`
+
+  sendStatusToWindow(logMessage)
+})
+
+autoUpdater.on('update-downloaded', () => {
+  sendStatusToWindow('Update downloaded')
+})
+
+app.on('ready', () => {
+  autoUpdater.checkForUpdatesAndNotify()
 })
