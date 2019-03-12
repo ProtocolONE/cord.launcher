@@ -192,9 +192,10 @@ module.exports = function (ctx) {
       extendWebpack (cfg) {},
       builder: {
         // https://www.electron.build/configuration/configuration
-        appId: 'com.github.ProtocolONE.cord.launcher',
-        productName: 'cord.launcher',
+        appId: 'com.electron.${name}',
+        productName: 'qilincord',
         artifactName: '${productName}-setup-${version}.${ext}',
+        copyright: 'Copyright © ${year} ${author}',
         mac: {
           target: 'dmg'
         },

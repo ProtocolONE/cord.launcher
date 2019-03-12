@@ -6,7 +6,7 @@
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
   "license": "MIT",
   "repository": "git://github.com/ProtocolONE/cord.launcher.git",
-  "main": "./dist/ssr-mat/index.js",
+  "main": "/dist/ssr-mat/index.js",
   "scripts": {
     "release": "yarn build",
     "serve": "quasar dev -m ssr -t mat",
