@@ -10,12 +10,14 @@
   "scripts": {
     "start:ssr": "quasar dev -m ssr -t mat",
     "start:electron": "quasar dev -m electron -t mat",
-    "build": "yarn build:ssr && yarn build:electron",
+    "build": "yarn build:ssr && yarn build:electron:all",
     "build:ssr": "quasar build -m ssr -t mat",
-    "build:electron": "quasar build -m electron --target all --bundler builder -t mat",
+    "build:electron:win": "quasar build -m electron --target win32 --bundler builder -t mat",
+    "build:electron:linux": "quasar build -m electron --target linux --bundler builder -t mat",
+    "build:electron:darwin": "quasar build -m electron --target darwin --bundler builder -t mat",
+    "build:electron:all": "quasar build -m electron --target all --bundler builder -t mat",
     "lint": "eslint --ext .js,.vue src",
-    "lint:fix": "eslint --ext .js,.vue src --fix",
-    "publish": "build -p always"
+    "lint:fix": "eslint --ext .js,.vue src --fix"
   },
   "dependencies": {
     "@vue/eslint-config-standard": "^4.0.0",
