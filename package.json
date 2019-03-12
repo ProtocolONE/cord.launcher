@@ -8,6 +8,7 @@
   "repository": "git://github.com/ProtocolONE/cord.launcher.git",
   "main": "/dist/ssr-mat/index.js",
   "scripts": {
+    "test": "echo 'test'",
     "release": "yarn build",
     "serve": "quasar dev -m ssr -t mat",
     "electron": "quasar dev -m electron -t mat",
