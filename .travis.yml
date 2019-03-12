@@ -47,6 +47,6 @@ deploy:
   skip_cleanup: true
   file_glob: true
   file:
-    - "dist/electron-mat/Packaged/**/*"
+    - "dist/electron-mat/Packaged/*"
   on:
     tags: true
