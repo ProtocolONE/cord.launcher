@@ -199,6 +199,21 @@ module.exports = function (ctx) {
         mac: {
           category: 'qilincord.launcher',
           target: ['zip', 'dmg']
+        },
+        dmg: {
+          contents: [
+            {
+              x: 410,
+              y: 150,
+              type: 'link',
+              path: '/Applications'
+            },
+            {
+              x: 130,
+              y: 150,
+              type: 'file'
+            }
+          ]
         }
       }
     }

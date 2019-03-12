@@ -1,6 +1,6 @@
 {
   "name": "cord.launcher",
-  "version": "0.0.3-beta",
+  "version": "0.0.3",
   "description": "Cord's web and electron app",
   "productName": "cord.launcher",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
@@ -13,10 +13,7 @@
     "start:electron": "quasar dev -m electron -t mat",
     "build": "yarn build:ssr && yarn build:electron:all",
     "build:ssr": "quasar build -m ssr -t mat",
-    "build:electron:win": "quasar build -m electron --target win32 --bundler builder -t mat",
-    "build:electron:linux": "quasar build -m electron --target linux --bundler builder -t mat",
-    "build:electron:darwin": "quasar build -m electron --target darwin --bundler builder -t mat",
-    "build:electron:all": "quasar build -m electron --target all --bundler builder -t mat",
+    "build:electron": "quasar build -m electron --target all --bundler builder -t mat",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix"
   },
