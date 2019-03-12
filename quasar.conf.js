@@ -196,6 +196,9 @@ module.exports = function (ctx) {
         productName: 'qilincord',
         artifactName: '${productName}-setup-${version}.${ext}',
         copyright: 'Copyright © ' + new Date().getFullYear() + ' ${author}',
+        linux: {
+          target: 'deb'
+        },
         mac: {
           category: 'qilincord.launcher',
           target: 'dmg'
