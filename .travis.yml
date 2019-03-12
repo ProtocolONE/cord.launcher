@@ -36,9 +36,9 @@ script:
           -v ~/.cache/electron:/root/.cache/electron \
           -v ~/.cache/electron-builder:/root/.cache/electron-builder \
           electronuserland/builder:wine \
-          /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build:ssr && yarn build:electron:linux && yarn build:electron:win"
+          /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build:electron:linux && yarn build:electron:win"
     else
-      yarn build
+      yarn build:electron:all
     fi
 
 deploy:
@@ -46,6 +46,7 @@ deploy:
   api_key: $GH_TOKEN
   skip_cleanup: true
   file_glob: true
-  file: "dist/electron-mat/Packaged/**/*"
+  file:
+    - "dist/electron-mat/Packaged/**/*"
   on:
     tags: true

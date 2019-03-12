@@ -1,6 +1,6 @@
 {
   "name": "cord.launcher",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Cord's web and electron app",
   "productName": "cord.launcher",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
@@ -8,6 +8,7 @@
   "repository": "git://github.com/ProtocolONE/cord.launcher.git",
   "main": "src-electron/main-process/electron-main.js",
   "scripts": {
+    "start": "quasar dev -t mat",
     "start:ssr": "quasar dev -m ssr -t mat",
     "start:electron": "quasar dev -m electron -t mat",
     "build": "yarn build:ssr && yarn build:electron:all",
