@@ -1,6 +1,6 @@
 {
   "name": "cord.launcher",
-  "version": "0.0.4-beta",
+  "version": "0.0.4",
   "description": "Cord's web and electron app",
   "productName": "cord.launcher",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",

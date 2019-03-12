@@ -1,6 +1,6 @@
 import {
   app,
-  // dialog,
+  dialog,
   BrowserWindow,
   Menu
 } from 'electron'
@@ -70,35 +70,6 @@ function handleClosed () {
   mainWindow = null
 }
 
-/**
- * Auto Updater
- *
- * Uncomment the following code below and install `electron-updater` to
- * support auto updating. Code Signing with a valid certificate is required.
- * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
- */
-// autoUpdater.logger = require('electron-log')
-// autoUpdater.logger.transports.file.level = 'info'
-//
-// autoUpdater.on('update-downloaded', () => {
-//   console.log('update-downloaded lats quitAndInstall')
-//
-//   if (process.env.NODE_ENV === 'production') {
-//     dialog.showMessageBox({
-//       type: 'info',
-//       title: 'Found Updates',
-//       message: 'Found updates, do you want update now?',
-//       buttons: ['Sure', 'No']
-//     }, buttonIndex => {
-//       if (buttonIndex === 0) {
-//         let isSilent = true
-//         let isForceRunAfter = true
-//         autoUpdater.quitAndInstall(isSilent, isForceRunAfter)
-//       }
-//     })
-//   }
-// })
-
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
@@ -118,6 +89,13 @@ app.on('ready', () => {
   createWindow()
 })
 
+/**
+ * Auto Updater
+ *
+ * Uncomment the following code below and install `electron-updater` to
+ * support auto updating. Code Signing with a valid certificate is required.
+ * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
+ */
 autoUpdater.logger = log
 autoUpdater.logger.transports.file.level = 'info'
 
@@ -150,7 +128,19 @@ autoUpdater.on('download-progress', (progressObj) => {
 })
 
 autoUpdater.on('update-downloaded', () => {
-  sendStatusToWindow('Update downloaded')
+  console.log('update-downloaded lats quitAndInstall')
+  dialog.showMessageBox({
+    type: 'info',
+    title: 'Found Updates',
+    message: 'Found updates, do you want update now?',
+    buttons: ['Sure', 'No']
+  }, buttonIndex => {
+    if (buttonIndex === 0) {
+      let isSilent = true
+      let isForceRunAfter = true
+      autoUpdater.quitAndInstall(isSilent, isForceRunAfter)
+    }
+  })
 })
 
 app.on('ready', () => {
