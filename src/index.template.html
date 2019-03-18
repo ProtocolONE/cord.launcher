@@ -16,17 +16,14 @@
 <body>
   <%= htmlWebpackPlugin.options.icons %>
   <!-- DO NOT touch the following DIV -->
-  <!--<div id="q-app"></div>-->
-  First update.
-  <div id="messages"></div>
+  <div id="q-app"></div>
   <script>
-    const { ipcRenderer } = require('electron')
-    ipcRenderer.on('message', (event, text) => {
-      let container = document.getElementById('messages')
-      let message = document.createElement('div')
-      message.innerHTML = text
-      container.appendChild(message)
-    })
+    try {
+      require('electron').ipcRenderer.on('message', (event, text) =>console.info(text))
+    }
+    catch (error) {
+      console.error(error)
+    }
   </script>
 </body>
 </html>
