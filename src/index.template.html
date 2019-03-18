@@ -19,10 +19,12 @@
   <div id="q-app"></div>
   <script>
     try {
+      console.info('Running launcher.')
       require('electron').ipcRenderer.on('message', (event, text) =>console.info(text))
     }
-    catch (error) {
-      console.error(error)
+    catch {
+      // --- skip
+      console.info('Running in the browser.')
     }
   </script>
 </body>

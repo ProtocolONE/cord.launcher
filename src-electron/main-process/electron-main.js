@@ -18,7 +18,8 @@ const store = new Store({
       x: 0,
       y: 0,
       width: 800,
-      height: 800
+      height: 800,
+      fullscreen: false
     }
   }
 })
@@ -39,13 +40,11 @@ function sendStatusToWindow (text) {
 }
 
 function createWindow () {
-  let { width, height } = store.get('windowBounds')
   /**
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    width,
-    height,
+    ...store.get('windowBounds'),
     useContentSize: true
     // --- TODO: do it in future !
     // --- TODO: app without frame with custom window
@@ -62,8 +61,10 @@ function createWindow () {
 }
 
 function handleMovedOrResize () {
-  let { x, y, width, height } = mainWindow.getBounds()
-  store.set('windowBounds', { x, y, width, height })
+  store.set('windowBounds', {
+    ...mainWindow.getBounds(),
+    fullscreen: mainWindow.isFullScreen()
+  })
 }
 
 function handleClosed () {

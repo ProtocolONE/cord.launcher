@@ -12,9 +12,9 @@
 
   <div class="col-lg-2 col-md-4 col-sm-9 col-xs-8">
     <ul class="list">
-      <li v-for="{ name, trans, url, target } in links" :key="name">
-        <a :href="url" :target="target">
-          {{ name }}
+      <li v-for="link in links" :key="link.name">
+        <a :href="link.url" :target="link.target" @click="openInBrowser($event, link)">
+          {{ link.name }}
         </a>
       </li>
     </ul>
@@ -70,6 +70,20 @@ export default {
       ],
       iconsSize: 30,
       iconsColor: '#818181'
+    }
+  },
+
+  methods: {
+    openInBrowser (e, { url, target }) {
+      // TODO: исправить на более лаконичный код
+      if (target !== '_blank') {
+        return
+      }
+      // --- if electron
+      if (window && window.process && window.process.type) {
+        e.preventDefault()
+        require('electron').shell.openExternal(url)
+      }
     }
   }
 }
