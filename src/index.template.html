@@ -17,10 +17,8 @@
   <%= htmlWebpackPlugin.options.icons %>
   <!-- DO NOT touch the following DIV -->
   <!--<div id="q-app"></div>-->
-  This text has been updated...
-
+  First release.
   <div id="messages"></div>
-
   <script>
     const { ipcRenderer } = require('electron')
     ipcRenderer.on('message', (event, text) => {
