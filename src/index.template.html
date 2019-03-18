@@ -16,10 +16,16 @@
 <body>
   <%= htmlWebpackPlugin.options.icons %>
   <!-- DO NOT touch the following DIV -->
-  <div id="q-app"></div>
+  <!--<div id="q-app"></div>-->
+  <div id="messages"></div>
   <script>
-    let { ipcRenderer } = require('electron')
-    ipcRenderer.on('message', (event, text) => console.info(text))
+    const { ipcRenderer } = require('electron')
+    ipcRenderer.on('message', (event, text) => {
+      let container = document.getElementById('messages')
+      let message = document.createElement('div')
+      message.innerHTML = text
+      container.appendChild(message)
+    })
   </script>
 </body>
 </html>
