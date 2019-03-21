@@ -29,6 +29,17 @@ export default [
     ])
   },
   {
+    path: '/user',
+    component: () => import('layouts/main'),
+    children: [
+      {
+        name: 'personal',
+        path: '/personal',
+        component: () => import('pages/user/personal')
+      }
+    ]
+  },
+  {
     name: '-404',
     path: '*',
     component: () => import('pages/errors/404')
