@@ -1,31 +1,36 @@
-import navigationList from './navigation-list'
-import { replaceFirstChar } from 'utils'
-
-const main = navigationList.map(link => {
-  let componentName = replaceFirstChar(link.name, char => char.toUpperCase())
-  link.component = () => import(`@/pages/main/${ componentName }`)
-  return link
-})
-
-const nested = [
+export const mainChildren = [
   {
-    name: 'game',
-    path: '/game/:id',
-    component: () => import('@/pages/nested/Game')
+    name: 'home',
+    path: '/',
+    component: () => import('pages/home')
   },
   {
-    name: 'download',
-    path: '/download',
-    component: () => import('@/pages/nested/Download')
-  }
-]
-
-const errors = [
+    name: 'shop',
+    path: '/shop',
+    component: () => import('pages/shop')
+  },
   {
-    name: '404',
-    path: '*',
-    component: () => import('@/pages/errors/Error404.vue')
+    name: 'library',
+    path: '/library',
+    component: () => import('pages/library')
   }
 ]
 
-export default [...main, ...nested, ...errors]
+export default [
+  {
+    path: '/',
+    component: () => import('layouts/main'),
+    children: mainChildren.concat([
+      {
+        name: 'game',
+        path: '/game/:id',
+        component: () => import('pages/game')
+      }
+    ])
+  },
+  {
+    name: '-404',
+    path: '*',
+    component: () => import('pages/errors/404')
+  }
+]

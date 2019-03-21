@@ -14,62 +14,12 @@
 // It's highly recommended to change the default colors
 // to match your app's branding.
 
-// --- root
-:root
-  // viewport
-  --vw: 100vw
-  --vh: 100vh
-
-  // mobile bar offset
-  --vh-offset: 0
-
-// --- Theme colors
 $primary    = #027be3
 $secondary  = #26A69A
-$tertiary   = rgba(0, 0, 0, .3)
+$tertiary   = #555
 
-// --- Alert colors
 $neutral    = #E0E1E2
 $positive   = #21BA45
 $negative   = #DB2828
 $info       = #31CCEC
 $warning    = #F2C037
-
-// --- Viewport
-$vw = var(--vw)
-$vh = calc(var(--vh) * 100 - var(--vh-offset))
-
-// --- blocks heights
-$block-xs = calc(var(--vw) / 10)
-$block-sm = calc(var(--vw) / 8)
-$block-md = calc(var(--vw) / 6)
-$block-lg = calc(var(--vw) / 4)
-$block-xl = calc(var(--vw) / 2)
-
-// --- Default colors
-$white   = #FFF
-$black   = #000
-
-// --- Backgrounds colors
-$bg-black          = #080808
-$bg-dark           = #262626
-$bg-dark-1         = #242424
-$bg-dark-2         = #373737
-$bg-dark-3         = #121212
-$bg-dark-4         = #484848
-$page-background   = #434343
-$header-background = $bg-dark
-$footer-background = $bg-dark
-
-// --- Text colors
-$text-color-light-1 = #909090
-$text-color-light-2 = #818181
-$text-color-light-3 = #A9A9A9
-$text-color-light-4 = #C4C4C4
-$text-color-gray-1  = rgba(144, 144, 144, .4)
-
-// --- borders
-$border-radius = 4px
-
-// --- transitions
-$transition-duration = .1s

@@ -11,18 +11,19 @@
  *   "src-ssr/extension.js"
  */
 
-const express = require('express')
-const compression = require('compression')
+const
+  express = require('express'),
+  compression = require('compression')
 
-const ssr = require('../ssr')
-const extension = require('./extension')
-const app = express()
-const port = process.env.PORT || 3000
+const
+  ssr = require('../ssr'),
+  extension = require('./extension'),
+  app = express(),
+  port = process.env.PORT || 3000
 
-function serve (path, cache) {
-  let maxAge = (cache) ? 1000 * 60 * 60 * 24 * 30 : 0
-  return express.static(ssr.resolveWWW(path), { maxAge })
-}
+const serve = (path, cache) => express.static(ssr.resolveWWW(path), {
+  maxAge: cache ? 1000 * 60 * 60 * 24 * 30 : 0
+})
 
 // gzip
 app.use(compression({ threshold: 0 }))

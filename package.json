@@ -1,16 +1,15 @@
 {
   "name": "cord.launcher",
-  "version": "0.0.2",
-  "description": "Cord's web and electron app",
-  "productName": "cord.launcher",
+  "version": "0.0.1",
+  "description": "Cord launcher based on Electron and Wep Application",
+  "productName": "Cord Launcher",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
   "license": "MIT",
   "repository": "git://github.com/ProtocolONE/cord.launcher.git",
-  "main": "src-electron/main-process/electron-main.js",
   "scripts": {
-    "start": "quasar dev -t mat",
-    "start:ssr": "quasar dev -m ssr -t mat",
-    "start:electron": "quasar dev -m electron -t mat",
+    "dev": "quasar dev -t mat",
+    "dev:ssr": "quasar dev -m ssr -t mat",
+    "dev:electron": "quasar dev -m electron -t mat",
     "build": "yarn build:ssr && yarn build:electron:all",
     "build:ssr": "quasar build -m ssr -t mat",
     "build:electron": "quasar build -m electron --target all --bundler builder -t mat",
@@ -18,56 +17,43 @@
     "lint:fix": "eslint --ext .js,.vue src --fix"
   },
   "dependencies": {
-    "@vue/eslint-config-standard": "^4.0.0",
     "axios": "^0.18.0",
-    "dotenv": "^6.2.0",
     "electron-log": "^3.0.1",
+    "electron-packager": "^13.1.1",
     "electron-updater": "^4.0.6",
-    "lodash": "^4.17.11",
-    "moment": "^2.24.0",
-    "raven-js": "^3.27.0",
+    "lodash-es": "^4.17.11",
     "vue-i18n": "^7.3.3"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.1",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/lodash-es": "^4.17.3",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "babel-eslint": "^10.0.1",
     "devtron": "1.4.0",
-    "electron": "3.0.8",
-    "electron-builder": "^20.38.5",
-    "electron-debug": "2.0.0",
+    "electron": "4.0.5",
+    "electron-debug": "2.1.0",
     "electron-devtools-installer": "2.2.4",
-    "electron-packager": "^12.0.1",
-    "eslint": "^4.18.2",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^2.0.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "eslint-plugin-vue": "^4.3.0",
+    "eslint": "^5.10.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-vue": "^5.0.0",
+    "pug": "^2.0.3",
+    "pug-plain-loader": "^1.0.0",
     "quasar-cli": "^0.17.0",
-    "strip-ansi": "=3.0.1"
+    "strip-ansi": "=3.0.1",
+    "ts-loader": "^5.3.3",
+    "tslint": "^5.14.0",
+    "typescript": "^3.3.3333",
+    "vue-class-component": "^7.0.1",
+    "vue-property-decorator": "^8.0.0",
+    "vuex-class": "^0.3.2"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 11"
+    "not ie <= 10"
   ],
-  "gitHooks": {
-    "pre-commit": "ESLINT_STRICT=true lint-staged",
-    "pre-push": "set \"NODE_PATH=./source\" mocha './source/**/*.spec.js' --require babel-register"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint"
-    ],
-    "*.ts": [
-      "eslint"
-    ],
-    "*.vue": [
-      "eslint"
-    ]
-  },
   "resolutions": {
     "ajv": "6.8.1"
   }

@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import defaultStore from './default-store'
+import state from './state'
+import mutations from './mutations'
 
-// --- modules
-import initial from './initial'
-import game from './game'
 import shop from './shop'
+import game from './game'
 
 Vue.use(Vuex)
 
@@ -17,11 +16,11 @@ Vue.use(Vuex)
 
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
-    ...defaultStore,
+    state,
+    mutations,
     modules: {
-      initial,
-      game,
-      shop
+      shop,
+      game
     }
   })
 
