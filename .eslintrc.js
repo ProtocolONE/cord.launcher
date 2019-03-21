@@ -3,11 +3,15 @@ module.exports = {
 
   parserOptions: {
     parser: 'babel-eslint',
-    sourceType: 'module'
+    sourceType: 'module',
+    ecmaFeatures: {
+      legacyDecorators: true
+    }
   },
 
   env: {
-    browser: true
+    browser: true,
+    node: true
   },
 
   extends: [
@@ -22,12 +26,6 @@ module.exports = {
   plugins: [
     'vue'
   ],
-
-  globals: {
-    'ga': false, // Google Analytics
-    'cordova': false,
-    '__statics': true
-  },
 
   // add your custom rules here
   rules: {

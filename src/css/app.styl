@@ -1,13 +1,24 @@
-@import '_bootstrap-reboot.css'
+// app global css
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700')
+@import '_fontawesome.styl'
 
-@import '~variables'
-@import '@fonts'
-@import '@functions'
-@import '@mixins'
+::-webkit-scrollbar
+  width: .45em
 
-@import '_main'
-@import '_quasar'
-@import '_layouts'
+::-webkit-scrollbar-track
+  -webkit-box-shadow: inset 0 0 6px rgba($black, .6s)
 
-@import '_hover-transitions'
-@import '_vue-transitions'
+::-webkit-scrollbar-thumb
+  background-color: rgba($grey, .8)
+  outline: 1px solid $grey
+
+.lato
+  font-family: Lato
+
+.roboto
+  font-family: Roboto
+
+.list
+  margin: 0
+  padding: 0
+  list-style-type: none

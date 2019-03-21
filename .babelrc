@@ -1,14 +1,22 @@
 {
   "presets": [
     [
-      "@babel/preset-env", {
+      "@babel/typescript",
+      {
+        "modules": false
+      }
+    ],
+    [
+      "@babel/preset-env",
+      {
         "modules": false,
         "loose": false,
         "useBuiltIns": "usage"
       }
     ],
     [
-      "@babel/preset-stage-2", {
+      "@babel/preset-stage-2",
+      {
         "modules": false,
         "loose": false,
         "useBuiltIns": true,
@@ -17,12 +25,9 @@
     ]
   ],
   "plugins": [
-    [
-      "@babel/transform-runtime", {
-        "polyfill": false,
-        "regenerator": false
-      }
-    ]
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    ["@babel/transform-runtime", { "polyfill": false, "regenerator": false }]
   ],
   "comments": false
 }
