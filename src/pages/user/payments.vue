@@ -6,5 +6,5 @@ q-page UserPayments
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component
-export default class UserPayments extends Vue {}
+export default class Payments extends Vue {}
 </script>

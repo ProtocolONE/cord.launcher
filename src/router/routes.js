@@ -1,42 +1,83 @@
-export const MAIN_ROUTES =
-  ['home', 'shop', 'library']
-    .map(name => ({
-      name,
-      path: (name === 'home') ? '/' : `/${ name }`,
-      component: () => import(`pages/${ name }`)
-    }))
+import Layout from 'layouts/main'
+import UserLayout from 'layouts/user'
+
+import Home from 'pages/home'
+import Shop from 'pages/shop'
+import Library from 'pages/library'
+
+import GamePreview from 'pages/game/preview'
+
+import UserPersonal from 'pages/user/personal'
+import UserAccount from 'pages/user/account'
+import UserSecurity from 'pages/user/security'
+import UserPayments from 'pages/user/payments'
+
+import Error404 from 'pages/errors/404'
+
+export const MAIN_ROUTES = [
+  {
+    name: 'home',
+    path: '/',
+    component: Home
+  },
+  {
+    name: 'shop',
+    path: '/shop',
+    component: Shop
+  },
+  {
+    name: 'library',
+    path: '/library',
+    component: Library
+  }
+]
 
 export const GAME_ROUTES = [
   {
     name: 'game-preview',
     path: '/game/:id',
-    component: () => import('pages/game/preview')
+    component: GamePreview
   }
 ]
 
-export const USER_ROUTES =
-  ['personal', 'account', 'security', 'payments']
-    .map(name => ({
-      name,
-      path: `/user/${ name }`,
-      component: () => import(`pages/user/${ name }`)
-    }))
+export const USER_ROUTES = [
+  {
+    name: 'personal',
+    path: '/user/personal',
+    component: UserPersonal
+  },
+  {
+    name: 'account',
+    path: '/user/account',
+    component: UserAccount
+  },
+  {
+    name: 'security',
+    path: '/user/security',
+    component: UserSecurity
+  },
+  {
+    name: 'payments',
+    path: '/user/payments',
+    component: UserPayments
+  }
+]
 
 export default [
   {
     path: '/',
-    component: () => import('layouts/main'),
+    component: Layout,
     children: MAIN_ROUTES.concat(GAME_ROUTES)
   },
   {
     path: '/user',
-    component: () => import('layouts/user'),
+    component: UserLayout,
     children: USER_ROUTES,
     redirect: USER_ROUTES[0].path
   },
   {
-    name: '-404',
+    name: 'error-404',
     path: '*',
-    component: () => import('pages/errors/404')
+    component: Error404
   }
 ]

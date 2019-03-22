@@ -15,7 +15,7 @@ import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
 import { BaseSelectOption } from 'interfaces'
 
 @Component
-export default class BaseSelect extends Vue {
+export default class Select extends Vue {
   @Prop(String) value: string
   @Prop(String) label: string
   @Prop(Boolean) disable: boolean

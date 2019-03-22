@@ -7,7 +7,7 @@ p.base-paragraph(:style="{ fontSize, color }")
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component
-export default class BaseParagraph extends Vue {
+export default class Paragraph extends Vue {
   @Prop({ type: String, default: '16' }) size: string
   @Prop({ type: String, default: '#909090' }) color: string
 

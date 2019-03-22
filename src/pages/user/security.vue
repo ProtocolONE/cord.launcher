@@ -6,5 +6,5 @@ q-page UserSecurity
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component
-export default class UserSecurity extends Vue {}
+export default class Security extends Vue {}
 </script>

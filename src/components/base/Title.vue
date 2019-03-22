@@ -11,7 +11,7 @@ component.base-title(
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component
-export default class BaseTitle extends Vue {
+export default class Title extends Vue {
   @Prop({
     type: String,
     default: '2',

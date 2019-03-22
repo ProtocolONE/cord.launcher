@@ -1,8 +1,8 @@
 <template lang="pug">
 q-layout.main
   q-layout-header.main-header: main-header
-  q-page-container.main-container: slot
-    keep-alive: router-view(:id="$route.name")
+  q-page-container.main-container
+    slot: router-view(:id="$route.name")
   q-layout-footer.main-footer: main-footer
 </template>
 
@@ -17,8 +17,3 @@ import MainFooter from 'components/MainFooter'
 })
 export default class MainLayout extends Vue {}
 </script>
-
-<style lang="stylus" scoped>
-.main-container
-  display: flex
-</style>

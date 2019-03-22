@@ -12,7 +12,7 @@ q-input(
 import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
 
 @Component
-export default class BaseInput extends Vue {
+export default class Input extends Vue {
   @Prop(String) value: string
   @Prop(String) label: string
 
