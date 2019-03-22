@@ -80,20 +80,20 @@ declare module 'interfaces' {
     map?: Function
   }
 
-  export interface User {
+  export interface UserPersonal {
     name: string
     lastName: string
-    dateBirth: UserDateBirth
-    address: UserAddress
+    dateBirth: UserPersonalDateBirth
+    address: UserPersonalAddress
   }
 
-  export interface UserDateBirth {
+  export interface UserPersonalDateBirth {
     day: string | number
     month: string | number
     year: string | number
   }
 
-  export interface UserAddress {
+  export interface UserPersonalAddress {
     country: string
     city: string
     region: string

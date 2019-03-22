@@ -6,5 +6,5 @@ q-page UserAccount
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component
-export default class UserAccount extends Vue {}
+export default class Account extends Vue {}
 </script>

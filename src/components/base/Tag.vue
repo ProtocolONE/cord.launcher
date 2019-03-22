@@ -27,7 +27,7 @@ import BoxIcon from 'components/BoxIcon'
 @Component({
   components: { BoxIcon }
 })
-export default class BaseTag extends Vue {
+export default class Tag extends Vue {
   @Prop({
     type: String,
     default: 'default',
@@ -38,7 +38,7 @@ export default class BaseTag extends Vue {
   type: string
 
   @Prop(String) icon: string
-  @Prop({ type: String, required: true }) label: string
+  @Prop({ type: null, required: true }) label: string | null
 }
 </script>
 

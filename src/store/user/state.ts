@@ -1,6 +1,6 @@
-import { User } from 'interfaces'
+import { UserPersonal } from 'interfaces'
 
-const user: User = {
+const personal: UserPersonal = {
   name: 'Michael',
   lastName: 'Smith',
   dateBirth: {
@@ -18,5 +18,5 @@ const user: User = {
 }
 
 export default {
-  ...user
+  personal
 }

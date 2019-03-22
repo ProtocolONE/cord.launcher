@@ -63,12 +63,14 @@ q-page.personal
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
-import { User } from 'interfaces'
+import { Vue, Component } from 'vue-property-decorator'
+import { namespace } from 'vuex-class'
+import { cloneDeep } from 'lodash'
+import { UserPersonal } from 'interfaces'
 
 @Component
-export default class UserPersonal extends Vue {
-  @Prop(Object) user: User
+export default class Personal extends Vue {
+  @namespace('user').State(state => cloneDeep(state.personal)) user: UserPersonal
 
   fieldBinding = { color: 'white', dark: true }
 

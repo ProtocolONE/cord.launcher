@@ -1,9 +1,15 @@
+import BaseTitle from 'components/base/Title'
+import BaseParagraph from 'components/base/Paragraph'
+import BaseTag from 'components/base/Tag'
+import BaseInput from 'components/base/Input'
+import BaseSelect from 'components/base/Select'
+
 const components = [
-  ['base-title', () => import('components/base/Title')],
-  ['base-paragraph', () => import('components/base/Paragraph')],
-  ['base-tag', () => import('components/base/Tag')],
-  ['base-input', () => import('components/base/Input')],
-  ['base-select', () => import('components/base/Select')]
+  ['base-title', BaseTitle],
+  ['base-paragraph', BaseParagraph],
+  ['base-tag', BaseTag],
+  ['base-input', BaseInput],
+  ['base-select', BaseSelect]
 ]
 
 export default ({ Vue }) => {
