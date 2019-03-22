@@ -11,7 +11,9 @@ export default {
     friendAlsoPlaying: 'Your friends are also playing',
     bestReview: 'Best review',
     followingTags: 'You’ve also played games with following tags',
-    userNameDate: 'Name & Date of birth'
+    userNameDate: 'Name & Date of birth',
+    accountName: 'Account name',
+    linkedAccounts: 'Linked accounts'
   },
   links: {
     home: 'Home',
@@ -54,12 +56,18 @@ export default {
     city: 'City',
     postalCode: 'Postal code',
     region: 'Region',
-    addressLine: 'Address line'
+    addressLine: 'Address line',
+    primaryLanguage: 'Primary language',
+    additionalLanguage: 'Additional language'
   },
   paragraphs: {
     nothingHere: 'Sorry, nothing here',
     gamesFollowingTags: 'You might also like it, because you’ve played games with following tags',
     copyright: '© 2018, Super.com, Experiments for discovering such facts. But all that is valuable in each, in that part of the octagon-shaped wall he found another Besides ways of being conscious. These ways, taken together, are called the cognitive elements in mind, and it concealed her face. She carried a bucket.'
+  },
+  buttons: {
+    change: 'Change',
+    add: 'Add'
   },
   system: {
     OS: 'OS',

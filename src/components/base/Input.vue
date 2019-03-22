@@ -2,6 +2,7 @@
 q-input(
   v-model="model"
   :float-label="label"
+  :readonly="readonly"
   :dark="true"
   color="white"
   @change="change"
@@ -15,6 +16,7 @@ import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
 export default class Input extends Vue {
   @Prop(String) value: string
   @Prop(String) label: string
+  @Prop(Boolean) readonly: boolean
 
   model = this.value || null
 

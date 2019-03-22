@@ -1,4 +1,4 @@
-import { UserPersonal } from 'interfaces'
+import { UserPersonal, UserAccount } from 'interfaces'
 
 const personal: UserPersonal = {
   name: 'Michael',
@@ -17,6 +17,17 @@ const personal: UserPersonal = {
   }
 }
 
+const account: UserAccount = {
+  name: 'Mesqualito_1920',
+  primaryLanguage: 'en-us',
+  additionalLanguages: ['ru-ru'],
+  linkedAccounts: [
+    { icon: 'fab fa-twitter', label: 'Mesqualito' },
+    { icon: 'fab fa-facebook-f', label: 'Mesqualito' }
+  ]
+}
+
 export default {
-  personal
+  personal,
+  account
 }
