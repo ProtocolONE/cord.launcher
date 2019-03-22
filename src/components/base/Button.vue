@@ -20,9 +20,13 @@ export default class Input extends Vue {
   @Prop(String) icon: string
   @Prop(Boolean) flat: boolean
   @Prop(Boolean) round: boolean
+  @Prop(Boolean) dark: boolean
   @Prop({ type: String, default: 'dark' }) color: string
 
+  iconColor = 'grey-10'
+
   get getColor () {
+    if (this.icon) return this.iconColor
     return (!this.flat) ? this.color : null
   }
 

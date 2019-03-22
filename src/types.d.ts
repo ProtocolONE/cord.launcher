@@ -114,4 +114,8 @@ declare module 'interfaces' {
     icon: string
     label: string
   }
+
+  export interface UserSecurity {
+
+  }
 }

@@ -13,7 +13,8 @@ export default {
     followingTags: 'You’ve also played games with following tags',
     userNameDate: 'Name & Date of birth',
     accountName: 'Account name',
-    linkedAccounts: 'Linked accounts'
+    linkedAccounts: 'Linked accounts',
+    password: 'Password'
   },
   links: {
     home: 'Home',
@@ -58,7 +59,8 @@ export default {
     region: 'Region',
     addressLine: 'Address line',
     primaryLanguage: 'Primary language',
-    additionalLanguage: 'Additional language'
+    additionalLanguage: 'Additional language',
+    changePassword: 'Change password'
   },
   paragraphs: {
     nothingHere: 'Sorry, nothing here',
