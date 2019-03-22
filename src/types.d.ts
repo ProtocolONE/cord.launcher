@@ -16,6 +16,7 @@ declare module 'interfaces' {
     value: string
   }
 
+  // --- pages
   export interface Game {
     name: string
     preview: string
@@ -100,5 +101,17 @@ declare module 'interfaces' {
     postalCode: string | number
     addressLine1?: string
     addressLine2?: string
+  }
+
+  export interface UserAccount {
+    name: string
+    primaryLanguage?: string
+    additionalLanguages?: Array<string>
+    linkedAccounts?: UserLinkedAccount[]
+  }
+
+  export interface UserLinkedAccount {
+    icon: string
+    label: string
   }
 }

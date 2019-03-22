@@ -54,12 +54,20 @@ export default {
     city: 'Город',
     postalCode: 'Почтовый индекс',
     region: 'Регион',
-    addressLine: 'Адресная строка'
+    addressLine: 'Адресная строка',
+    accountName: 'Имя пользователя',
+    linkedAccounts: 'Связанные аккаунты',
+    primaryLanguage: 'Основной язык',
+    additionalLanguage: 'Дополнительный язык'
   },
   paragraphs: {
     nothingHere: 'Извините, здесь ничего нет',
     gamesFollowingTags: 'Вам также могут понравиться, так как вы играли в игры со следующими тегами',
     copyright: '© 2018, Super.com, Experiments for discovering such facts. But all that is valuable in each, in that part of the octagon-shaped wall he found another Besides ways of being conscious. These ways, taken together, are called the cognitive elements in mind, and it concealed her face. She carried a bucket.'
+  },
+  buttons: {
+    change: 'Изменить',
+    add: 'Добавить'
   },
   system: {
     OS: 'Система',
