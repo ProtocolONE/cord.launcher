@@ -1,4 +1,8 @@
-import { UserPersonal, UserAccount } from 'interfaces'
+import {
+  UserPersonal,
+  UserAccount,
+  UserSecurity
+} from 'interfaces'
 
 const personal: UserPersonal = {
   name: 'Michael',
@@ -27,7 +31,12 @@ const account: UserAccount = {
   ]
 }
 
+const security: UserSecurity = {
+
+}
+
 export default {
   personal,
-  account
+  account,
+  security
 }

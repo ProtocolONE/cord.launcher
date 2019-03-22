@@ -35,8 +35,8 @@ q-page.row.gutter-sm.account
           box-icon(size="64" :icon="`${ icon } fa-2x`" background="#343434")
       .col-auto {{ label }}
       .col-auto.q-ml-auto
-        base-button.q-mr-sm(icon="fas fa-pen" flat round)
-        base-button(icon="far fa-times-circle" flat round)
+        base-button.q-mr-sm(icon="fas fa-pen" flat round dark)
+        base-button(icon="far fa-times-circle" flat round dark)
 
     .row: base-button.q-ml-auto {{ $trans('buttons', 'add') }}
 </template>

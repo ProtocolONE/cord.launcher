@@ -11,7 +11,8 @@ export default {
     friendAlsoPlaying: 'Ваши друзья также играют',
     bestReview: 'Лучший отзыв',
     followingTags: 'Вы также играли в игры со следующими тегами',
-    userNameDate: 'Имя и дата рождения'
+    userNameDate: 'Имя и дата рождения',
+    password: 'Пароль'
   },
   links: {
     home: 'Главная',
@@ -58,7 +59,8 @@ export default {
     accountName: 'Имя пользователя',
     linkedAccounts: 'Связанные аккаунты',
     primaryLanguage: 'Основной язык',
-    additionalLanguage: 'Дополнительный язык'
+    additionalLanguage: 'Дополнительный язык',
+    changePassword: 'Изменить пароль'
   },
   paragraphs: {
     nothingHere: 'Извините, здесь ничего нет',
