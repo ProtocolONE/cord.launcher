@@ -1,4 +1,3 @@
-// --- for webpack aliases
 declare module 'layouts/*'
 declare module 'components/*'
 declare module '@/*'
@@ -11,43 +10,10 @@ declare module 'quasar' {
 
 // --- interfaces
 declare module 'interfaces' {
-  export interface User {
-    name: string
-    url: string
-    logo?: string | null
-    reviews?: string
-  }
-
-  export interface SystemRequirements {
-    OS: string
-    CPU: string
-    RAM: string
-    GPU: string
-    diskSpace: string
-  }
-
-  export interface LanguagesSupport {
-    audio: Array<string>
-    text: Array<string>
-  }
-
-  export interface Requirements {
-    languages: LanguagesSupport
-    rating: string
-    systems: {
-      apple?: {
-        minimal: SystemRequirements
-        recommended: SystemRequirements
-      }
-      windows?: {
-        minimal: SystemRequirements
-        recommended: SystemRequirements
-      }
-      linux?: {
-        minimal: SystemRequirements
-        recommended: SystemRequirements
-      }
-    }
+  // --- base
+  export interface BaseSelectOption {
+    label: string
+    value: string
   }
 
   export interface Game {
@@ -60,16 +26,79 @@ declare module 'interfaces' {
     description?: string
     platforms?: Array<string>
     tags?: Array<string>
-    users?: User[],
+    users?: GameUser[],
     releaseDate?: string | Date
     developer?: string
     publisher?: string
-    requirements?: Requirements
+    requirements?: GameRequirements
+  }
+
+  export interface GameUser {
+    name: string
+    url: string
+    logo?: string | null
+    reviews?: string
+  }
+
+  export interface GameRequirements {
+    languages: LanguagesSupport
+    rating: string
+    systems: Systems
+  }
+
+  export interface LanguagesSupport {
+    audio: Array<string>
+    text: Array<string>
+  }
+
+  export interface Systems {
+    apple?: {
+      minimal: Requirements
+      recommended: Requirements
+    }
+    windows?: {
+      minimal: Requirements
+      recommended: Requirements
+    }
+    linux?: {
+      minimal: Requirements
+      recommended: Requirements
+    }
+  }
+
+  export interface Requirements {
+    OS: string
+    CPU: string
+    RAM: string
+    GPU: string
+    diskSpace: string
   }
 
   export interface Social {
     icon: string
     url?: string | undefined
     map?: Function
+  }
+
+  export interface User {
+    name: string
+    lastName: string
+    dateBirth: UserDateBirth
+    address: UserAddress
+  }
+
+  export interface UserDateBirth {
+    day: string | number
+    month: string | number
+    year: string | number
+  }
+
+  export interface UserAddress {
+    country: string
+    city: string
+    region: string
+    postalCode: string | number
+    addressLine1?: string
+    addressLine2?: string
   }
 }

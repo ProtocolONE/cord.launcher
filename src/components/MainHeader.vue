@@ -9,14 +9,14 @@
       :to="path"
       :label="label"
       :class="{ active: $route.name === name }"
-      :aria-label="$trans('links', name)"
+      :aria-label="label"
       flat
     )
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { mainChildren } from '@/router/routes'
+import { MAIN_ROUTES } from '@/router/routes'
 
 import BoxLogo from 'components/BoxLogo'
 
@@ -26,7 +26,7 @@ import BoxLogo from 'components/BoxLogo'
 
 export default class MainHeader extends Vue {
   get routes () {
-    return mainChildren.map(item => {
+    return MAIN_ROUTES.map(item => {
       item.label = this.$trans('links', item.name)
       return item
     })

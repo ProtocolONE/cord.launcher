@@ -10,10 +10,11 @@ module.exports = function (ctx) {
   return {
     // app plugins (/src/plugins)
     plugins: [
+      'moment',
       'i18n',
       'trans',
-      'locale',
-      'components'
+      'update-locale',
+      'base-components'
     ],
     css: [
       'app.styl'
@@ -99,6 +100,9 @@ module.exports = function (ctx) {
         'QTabs',
         'QTab',
         'QTabPane',
+
+        'QInput',
+        'QSelect',
 
         'QBtn',
         'QIcon',

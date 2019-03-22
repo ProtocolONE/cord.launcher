@@ -1,7 +1,9 @@
 const components = [
   ['base-title', () => import('components/base/Title')],
   ['base-paragraph', () => import('components/base/Paragraph')],
-  ['base-tag', () => import('components/base/Tag')]
+  ['base-tag', () => import('components/base/Tag')],
+  ['base-input', () => import('components/base/Input')],
+  ['base-select', () => import('components/base/Select')]
 ]
 
 export default ({ Vue }) => {

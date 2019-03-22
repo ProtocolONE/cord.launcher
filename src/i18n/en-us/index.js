@@ -10,7 +10,8 @@ export default {
     whyLikeGame: 'Why do i like the game',
     friendAlsoPlaying: 'Your friends are also playing',
     bestReview: 'Best review',
-    followingTags: 'You’ve also played games with following tags'
+    followingTags: 'You’ve also played games with following tags',
+    userNameDate: 'Name & Date of birth'
   },
   links: {
     home: 'Home',
@@ -19,7 +20,11 @@ export default {
     vacancies: 'Vacancies',
     company: 'Company',
     terms: 'Terms & Conditions',
-    agreement: 'Legal Agreement'
+    agreement: 'Legal Agreement',
+    personal: 'Personal',
+    account: 'Account',
+    security: 'Security',
+    payments: 'Payments'
   },
   labels: {
     more: 'More',
@@ -37,7 +42,19 @@ export default {
     best: 'Best',
     all: 'All',
     reviews: 'Reviews',
-    readMore: 'Read more'
+    readMore: 'Read more',
+    firstName: 'First name',
+    lastName: 'Last name',
+    dateBirth: 'Date of birth',
+    day: 'Day',
+    month: 'Month',
+    year: 'Year',
+    address: 'Address',
+    country: 'Country',
+    city: 'City',
+    postalCode: 'Postal code',
+    region: 'Region',
+    addressLine: 'Address line'
   },
   paragraphs: {
     nothingHere: 'Sorry, nothing here',

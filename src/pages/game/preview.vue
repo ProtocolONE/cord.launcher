@@ -29,6 +29,7 @@ q-page.game
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
+import { Game, Social } from 'interfaces'
 
 import Slider from 'components/game/Slider'
 import Info from 'components/game/Info'
@@ -55,10 +56,10 @@ import Games from 'components/common/Games'
     Games
   }
 })
-export default class Game extends Vue {
-  @namespace('game').State('game') game
-  @namespace('game').State('socials') socials
-  @namespace('shop').State('games') games
+export default class GamePreview extends Vue {
+  @namespace('game').State('game') game: Game
+  @namespace('game').State('socials') socials: Social[]
+  @namespace('shop').State('games') games: Game[]
 
   get requirements () {
     return this.game.requirements

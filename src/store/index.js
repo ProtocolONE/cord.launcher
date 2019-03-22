@@ -6,6 +6,7 @@ import mutations from './mutations'
 
 import shop from './shop'
 import game from './game'
+import user from './user'
 
 Vue.use(Vuex)
 
@@ -20,7 +21,8 @@ export default function (/* { ssrContext } */) {
     mutations,
     modules: {
       shop,
-      game
+      game,
+      user
     }
   })
 
