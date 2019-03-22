@@ -1,6 +1,6 @@
 {
   "name": "cord.launcher",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Cord launcher based on Electron and Wep Application",
   "productName": "Cord Launcher",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
@@ -38,6 +38,7 @@
     "eslint": "^5.10.0",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-vue": "^5.0.0",
+    "moment": "^2.24.0",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "quasar-cli": "^0.17.0",

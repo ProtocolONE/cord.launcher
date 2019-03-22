@@ -67,6 +67,7 @@ q-page.shop
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
+import { Game } from 'interfaces'
 
 import Slider from 'components/shop/Slider'
 import SpecialOffer from 'components/shop/SpecialOffer'
@@ -82,9 +83,9 @@ import Games from 'components/common/Games'
   }
 })
 export default class Shop extends Vue {
-  @namespace('shop').State('popularGames') popularGames
-  @namespace('shop').State('specialOffer') specialOffer
-  @namespace('shop').State('games') games
+  @namespace('shop').State('popularGames') popularGames: Game[]
+  @namespace('shop').State('specialOffer') specialOffer: Game
+  @namespace('shop').State('games') games: Game[]
 }
 </script>
 

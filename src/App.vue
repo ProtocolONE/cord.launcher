@@ -13,7 +13,7 @@ export default class App extends Vue {
 
   @Watch('locale', { immediate: true })
   onLocaleChanged (value: string) {
-    this.$locale(value)
+    this.$updateLocale(value)
   }
 }
 </script>

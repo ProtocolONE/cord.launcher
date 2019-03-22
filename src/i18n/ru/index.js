@@ -10,7 +10,8 @@ export default {
     whyLikeGame: 'Почему игра нравится мне',
     friendAlsoPlaying: 'Ваши друзья также играют',
     bestReview: 'Лучший отзыв',
-    followingTags: 'Вы также играли в игры со следующими тегами'
+    followingTags: 'Вы также играли в игры со следующими тегами',
+    userNameDate: 'Имя и дата рождения'
   },
   links: {
     home: 'Главная',
@@ -19,7 +20,11 @@ export default {
     vacancies: 'Вакансии',
     company: 'Компания',
     terms: 'Условия использования',
-    agreement: 'Юридическое соглашение'
+    agreement: 'Юридическое соглашение',
+    personal: 'Основное',
+    account: 'Аккаунт',
+    security: 'Безопасность',
+    payments: 'Платежи'
   },
   labels: {
     more: 'Больше',
@@ -37,7 +42,19 @@ export default {
     best: 'Лучшие',
     all: 'Все',
     reviews: 'Отзывов',
-    readMore: 'Читать далее'
+    readMore: 'Читать далее',
+    firstName: 'Имя',
+    lastName: 'Фамилия',
+    dateBirth: 'Дата рождения',
+    day: 'День',
+    month: 'Месяц',
+    year: 'Год',
+    address: 'Адрес',
+    country: 'Страна',
+    city: 'Город',
+    postalCode: 'Почтовый индекс',
+    region: 'Регион',
+    addressLine: 'Адресная строка'
   },
   paragraphs: {
     nothingHere: 'Извините, здесь ничего нет',
