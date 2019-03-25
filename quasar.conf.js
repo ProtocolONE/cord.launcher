@@ -32,10 +32,9 @@ module.exports = function (ctx) {
       vueCompiler: true,
       vueRouterMode: 'abstract',
 
-      analyze: true,
+      analyze: process.env.ANALYZE,
       preloadChunks: true,
 
-      gzip: isProd,
       minify: isProd,
       extractCSS: isProd,
 
