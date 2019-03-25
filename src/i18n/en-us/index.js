@@ -14,7 +14,9 @@ export default {
     userNameDate: 'Name & Date of birth',
     accountName: 'Account name',
     linkedAccounts: 'Linked accounts',
-    password: 'Password'
+    password: 'Password',
+    paymentMethods: 'Payment methods',
+    ordersHistory: 'Orders history'
   },
   links: {
     home: 'Home',
@@ -60,7 +62,11 @@ export default {
     addressLine: 'Address line',
     primaryLanguage: 'Primary language',
     additionalLanguage: 'Additional language',
-    changePassword: 'Change password'
+    changePassword: 'Change password',
+    search: 'Search',
+    view: 'View',
+    order: 'Order',
+    paidWith: 'Paid with'
   },
   paragraphs: {
     nothingHere: 'Sorry, nothing here',

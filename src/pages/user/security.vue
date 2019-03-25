@@ -1,6 +1,6 @@
 <template lang="pug">
 q-page.security
-  base-title.q-mb-lg.text-white.text-bold(level="5") {{ $trans('titles', 'password') }}
+  base-title.q-mb-lg.text-white(level="5") {{ $trans('titles', 'password') }}
   base-button.q-mb-xl {{ $trans('labels', 'changePassword') }}
 </template>
 

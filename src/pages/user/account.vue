@@ -3,7 +3,7 @@ q-page.row.gutter-sm.account
 
   .col-lg-6.col-md-6.col-sm-12.col-xs-12
     .row: .col-lg-8.col-12
-      base-title.q-mb-xl.text-white.text-bold(level="5") {{ $trans('titles', 'accountName') }}
+      base-title.q-mb-xl.text-white(level="5") {{ $trans('titles', 'accountName') }}
       base-input.q-mb-xl(v-model="account.name" readonly)
       base-button.q-mb-xl {{ $trans('buttons', 'change') }}
 

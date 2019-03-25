@@ -12,7 +12,9 @@ export default {
     bestReview: 'Лучший отзыв',
     followingTags: 'Вы также играли в игры со следующими тегами',
     userNameDate: 'Имя и дата рождения',
-    password: 'Пароль'
+    password: 'Пароль',
+    paymentMethods: 'Способы оплаты',
+    ordersHistory: 'История заказов'
   },
   links: {
     home: 'Главная',
@@ -60,7 +62,11 @@ export default {
     linkedAccounts: 'Связанные аккаунты',
     primaryLanguage: 'Основной язык',
     additionalLanguage: 'Дополнительный язык',
-    changePassword: 'Изменить пароль'
+    changePassword: 'Изменить пароль',
+    search: 'Поиск',
+    view: 'Посмотреть',
+    order: 'Заказ',
+    paidWith: 'Оплачено с'
   },
   paragraphs: {
     nothingHere: 'Извините, здесь ничего нет',
