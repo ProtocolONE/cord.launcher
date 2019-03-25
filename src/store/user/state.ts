@@ -1,7 +1,8 @@
 import {
   UserPersonal,
   UserAccount,
-  UserSecurity
+  UserSecurity,
+  UserPayments
 } from 'interfaces'
 
 const personal: UserPersonal = {
@@ -35,8 +36,42 @@ const security: UserSecurity = {
 
 }
 
+const payments: UserPayments = {
+  methods: [{ card: '1158 **** **** **62' }, { card: '1158 **** **** **62' }],
+  orders: [
+    {
+      name: '#5C214234',
+      date: '2 days ago',
+      type: 'credit card',
+      games: [
+        { name: 'Game 1', preview: 'statics/images/forza.jpg', price: 99.99, url: '/game/1' }
+      ]
+    },
+    {
+      name: '#5C214235',
+      date: '2 days ago',
+      type: 'credit card',
+      games: [
+        { name: 'Game 1', preview: 'statics/images/forza.jpg', price: 99.99, url: '/game/1' },
+        { name: 'Game 2', preview: 'statics/images/forza.jpg', price: 99.99, url: '/game/1' }
+      ]
+    },
+    {
+      name: '#5C214236',
+      date: '2 days ago',
+      type: 'credit card',
+      games: [
+        { name: 'Game 1', preview: 'statics/images/forza.jpg', price: 99.99, url: '/game/1' },
+        { name: 'Game 2', preview: 'statics/images/forza.jpg', price: 99.99, url: '/game/1' },
+        { name: 'Game 2', preview: 'statics/images/forza.jpg', price: 99.99, url: '/game/1' }
+      ]
+    }
+  ]
+}
+
 export default {
   personal,
   account,
-  security
+  security,
+  payments
 }

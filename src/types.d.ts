@@ -118,4 +118,20 @@ declare module 'interfaces' {
   export interface UserSecurity {
 
   }
+
+  export interface UserPayments {
+    methods: UserPaymentMethod[]
+    orders: UserOrder[]
+  }
+
+  export interface UserPaymentMethod {
+    card: string
+  }
+
+  export interface UserOrder {
+    name: string
+    date: string | Date
+    type: string
+    games: Game[]
+  }
 }

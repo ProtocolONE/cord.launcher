@@ -87,23 +87,36 @@ module.exports = function (ctx) {
     },
     framework: {
       components: [
+        // --- layouts
         'QLayout',
         'QLayoutHeader',
         'QLayoutFooter',
 
+        // --- pages
         'QPageContainer',
         'QPage',
 
+        // --- sliders
         'QCarousel',
         'QCarouselSlide',
 
+        // --- tabs
         'QTabs',
         'QTab',
         'QTabPane',
 
+        // --- cards
+        'QCard',
+        'QCardTitle',
+        'QCardSeparator',
+        'QCardMain',
+
+        // --- forms
         'QInput',
         'QSelect',
+        'QSearch',
 
+        // --- other components
         'QBtn',
         'QIcon',
         'QTooltip',
