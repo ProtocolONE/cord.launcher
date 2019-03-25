@@ -1,13 +1,13 @@
 <template lang="pug">
 main-layout
   .row.gutter-sm
-    .col-lg-2.col-md-3.col-sm-3.col-xs-12
+    .col-lg-2.col-12
       aside.user-nav
         ul.list
           li.text-bold.list__item(v-for="{ name, label, path } in routes" :key="name")
             router-link.q-link(:to="path" :aria-label="label" active-class="active")
               | {{ label }}
-    .col-lg-10.col-md-9.col-sm-9.col-xs-12
+    .col-lg-10.col-12
       router-view.user-view(:id="$route.name")
 </template>
 
@@ -34,21 +34,23 @@ export default class UserLayout extends Vue {
 .user-nav,
 .user-view
   padding: $base-padding
-  @media (max-width: $breakpoint-xs-max)
+  @media (max-width: $breakpoint-md-max)
     padding: ($base-padding / 2)
 
 .user-view
-  @media (max-width: $breakpoint-xs-max)
+  @media (max-width: $breakpoint-md-max)
     padding-top: 0
 
 .user-nav
   padding-top: 30px
-  @media (max-width: $breakpoint-xs-max)
+  @media (max-width: $breakpoint-md-max)
     padding: 15px
+    padding-top: 5px
     padding-bottom: 0
+    border-bottom: 1px solid
 
 .list
-  @media (max-width: $breakpoint-xs-max)
+  @media (max-width: $breakpoint-md-max)
     display: flex
     flex-wrap: wrap
     &__item
