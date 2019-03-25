@@ -13,7 +13,7 @@ q-page.personal
     | {{ $trans('labels', 'dateBirth') }}
 
   .row.gutter-sm
-    .col-lg-1.col-md-4.col-sm-4.col-xs-12
+    .col-lg-2.col-md-4.col-sm-4.col-xs-12
       base-select(
         v-model="user.dateBirth.day"
         :label="$trans('labels', 'day')"
@@ -26,7 +26,7 @@ q-page.personal
         :label="$trans('labels', 'month')"
         :options="months"
       )
-    .col-lg-1.col-md-4.col-sm-4.col-xs-12
+    .col-lg-2.col-md-4.col-sm-4.col-xs-12
       base-select(
         v-model="user.dateBirth.year"
         :label="$trans('labels', 'year')"
