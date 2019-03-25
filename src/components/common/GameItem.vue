@@ -1,13 +1,11 @@
 <template lang="pug">
-.game.flex.column.justify-between.q-pa-sm.shadow-10(:style="style")
+.game.shadow-10(:style="style")
+  router-link.q-link.q-pa-sm.flex.column.justify-between(:to="game.url")
+    header.flex.justify-between
 
-  header.flex.justify-between
+      base-title.text-bold(level="5" color="white") {{ game.name }}
 
-    base-title.text-bold(level="5" color="white")
-      router-link.q-link(:to="game.url") {{ game.name }}
-
-    .flex.justify-center.user(v-if="game.users")
-      router-link.q-link(:to="user.url")
+      .flex.justify-center.items-center.user(v-if="game.users")
         q-btn.q-mr-sm.user__btn(
           :style="{ backgroundImage: `url(${ user.logo })` }"
           rounded
@@ -20,16 +18,16 @@
           flat
         )
 
-  footer.row.items-center.justify-between(v-if="game.platforms || game.price")
+    footer.row.items-center.justify-between(v-if="game.platforms || game.price")
 
-    .col-auto.flex.items-center.justify-between
-      icons-list(v-if="game.platforms" :icons="game.platforms")
+      .col-auto.flex.items-center.justify-between
+        icons-list(v-if="game.platforms" :icons="game.platforms")
 
-    .col-auto.flex.items-center
-      q-btn.q-pa-none.q-mr-sm
-        box-icon(size="48" icon="fas fa-heart fa-lg" background="rgba(0, 0, 0, 0.3)")
-      q-btn.roboto.q-pa-none.text-bold.price(v-if="game.price" color="secondary")
-        box(width="96" height="48") $ {{ game.price }}
+      .col-auto.flex.items-center
+        q-btn.q-pa-none.q-mr-sm
+          box-icon(size="48" icon="fas fa-heart fa-lg" background="rgba(0, 0, 0, 0.3)")
+        q-btn.roboto.q-pa-none.text-bold.price(v-if="game.price" color="secondary")
+          box(width="96" height="48") $ {{ game.price }}
 </template>
 
 <script lang="ts">
@@ -61,11 +59,16 @@ export default class GameItem extends Vue {
 <style lang="stylus" scoped>
 .game
   width: 100%
+  height: 100%
   min-height: 200px
   background-repeat: no-repeat
   background-position: center
   background-size: cover
   border-radius: 6px
+
+.q-link
+  width: 100%
+  height: 100%
 
 .user
   font-size: 14px
