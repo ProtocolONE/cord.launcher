@@ -53,7 +53,7 @@ import BoxIcon from 'components/BoxIcon'
   components: { BoxIcon }
 })
 export default class Account extends Vue {
-  @State('locales') locales: Array<string>
+  @State('locales') locales: string[]
   @namespace('user').State(state => cloneDeep(state.account)) account: UserAccount
 
   get languagesList () {

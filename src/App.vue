@@ -9,7 +9,7 @@ import { State } from 'vuex-class'
 
 @Component
 export default class App extends Vue {
-  @State('locale') locale
+  @State('locale') locale: string | undefined
 
   @Watch('locale', { immediate: true })
   onLocaleChanged (value: string) {
