@@ -128,7 +128,7 @@ module.exports = function (ctx) {
       ],
       // Quasar plugins
       plugins: [
-
+        'Notify'
       ],
       iconSet: 'fontawesome',
       i18n: 'en-us' // Quasar language
