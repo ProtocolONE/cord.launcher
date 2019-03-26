@@ -2,71 +2,70 @@ language: node_js
 sudo: false
 node_js: node
 
-#stages:
-#  - test
-#  - name: deploy 
-#    if: branch = master 
+stages:
+  - test
+  - name: deploy 
+    if: branch = master 
 
-matrix:
+build_jobs: &build_jobs
+  before_cache:
+  - rm -rf $HOME/.cache/electron-builder/wine
+  cache:
+    directories:
+    - node_modules
+    - "$HOME/.cache/electron"
+    - "$HOME/.cache/electron-builder"
+  script:
+  - |
+    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      docker run --rm \
+          --env-file <(env | grep -vE '\r|\n' | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS_TAG|TRAVIS|TRAVIS_REPO_|TRAVIS_BUILD_|TRAVIS_BRANCH|TRAVIS_PULL_REQUEST_|APPVEYOR_|CSC_|GH_|GITHUB_|BT_|AWS_|STRIP|BUILD_') \
+          --env ELECTRON_CACHE="/root/.cache/electron" \
+          --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \
+          -v ${PWD}:/project \
+          -v ~/.cache/electron:/root/.cache/electron \
+          -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+          electronuserland/builder:wine \
+          /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build:electron"
+    else
+      yarn build:electron
+    fi
+  deploy:
+    provider: releases
+    api_key: "$GH_TOKEN"
+    skip_cleanup: true
+    file_glob: true
+    file:
+    - dist/electron-mat/Packaged/*
+    on:
+      tags: true
+
+jobs:
   include:
-  - os: osx
+  - stage: test
+    os: osx
     osx_image: xcode9.4
     language: node_js
     node_js: '10'
     env:
     - ELECTRON_CACHE=$HOME/.cache/electron
     - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-  - os: linux
+    <<: *build_jobs
+  - stage: test
+    os: linux
     services: docker
     language: generic
-
-before_cache:
-- rm -rf $HOME/.cache/electron-builder/wine
-cache:
-  directories:
-  - node_modules
-  - "$HOME/.cache/electron"
-  - "$HOME/.cache/electron-builder"
-script:
-- |
-  if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-    docker run --rm \
-        --env-file <(env | grep -vE '\r|\n' | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS_TAG|TRAVIS|TRAVIS_REPO_|TRAVIS_BUILD_|TRAVIS_BRANCH|TRAVIS_PULL_REQUEST_|APPVEYOR_|CSC_|GH_|GITHUB_|BT_|AWS_|STRIP|BUILD_') \
-        --env ELECTRON_CACHE="/root/.cache/electron" \
-        --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \
-        -v ${PWD}:/project \
-        -v ~/.cache/electron:/root/.cache/electron \
-        -v ~/.cache/electron-builder:/root/.cache/electron-builder \
-        electronuserland/builder:wine \
-        /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build:electron"
-  else
-    yarn build:electron
-  fi
-deploy:
-  provider: releases
-  api_key: "$GH_TOKEN"
-  skip_cleanup: true
-  file_glob: true
-  file:
-  - dist/electron-mat/Packaged/*
-  on:
-    tags: true
-
-#jobs:
-#  include:
-#  - stage: test
-#  - stage: deploy
-#    os: linux
-#    services: docker
-#    install: true
-#    script:
-#    #- 'curl -H "Content-Type: application/json;" -X POST -d "{\"PROJECT\": \"$TRAVIS_REPO_SLUG\", \"BRANCH\": \"$TRAVIS_BRANCH\"}" $JENKINS'
-#    - docker run -it
-#      -e JENKINS_AUTH_TOKEN=$JENKINS_AUTH_TOKEN
-#      -e JENKINS_BUILD_TOKEN=$JENKINS_BUILD_TOKEN
-#      -e JENKINS_BUILD_PROJECT=$TRAVIS_REPO_SLUG
-#      -e JENKINS_BUILD_BRANCH=$TRAVIS_BRANCH
-#      p1hub/p1jenkinstrigger 
+    <<: *build_jobs
+  - stage: deploy
+    services: docker
+    install: true
+    script:
+    - docker run -it
+      -e JENKINS_AUTH_TOKEN=$JENKINS_AUTH_TOKEN
+      -e JENKINS_BUILD_TOKEN=$JENKINS_BUILD_TOKEN
+      -e JENKINS_BUILD_PROJECT=$TRAVIS_REPO_SLUG
+      -e JENKINS_BUILD_BRANCH=$TRAVIS_BRANCH
+      p1hub/p1jenkinstrigger 
 
 notifications:
   slack:
