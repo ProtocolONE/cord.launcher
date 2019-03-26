@@ -4,16 +4,16 @@
 enableCertIssuer: true
 
 ingress:
-  hostname: qilincord.tst.protocol.one
+  hostname: cordlauncher.tst.protocol.one
   path: /
 
 certIssuer:
   email: admin@protocol.one
 
 frontend:
-  name: qilicordweb
+  name: nodejs
   role: frontend
-  image: "p1hub/qilin.cord-web"
+  image: "p1hub/cordlauncher"
   imageTag: latest
   port: 8080
   replicas: 1
