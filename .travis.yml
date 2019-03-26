@@ -2,51 +2,72 @@ language: node_js
 sudo: false
 node_js: node
 
+stages:
+  - test
+  - name: deploy 
+    if: branch = master 
+
 matrix:
   include:
-    - os: osx
-      osx_image: xcode9.4
-      language: node_js
-      node_js: "10"
-      env:
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+  - os: osx
+    osx_image: xcode9.4
+    language: node_js
+    node_js: '10'
+    env:
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+  - os: linux
+    services: docker
+    language: generic
 
-    - os: linux
-      services: docker
-      language: generic
+jobs:
+  include:
+  - stage: test 
+    before_cache:
+    - rm -rf $HOME/.cache/electron-builder/wine
+    cache:
+      directories:
+      - node_modules
+      - "$HOME/.cache/electron"
+      - "$HOME/.cache/electron-builder"
+    script:
+    - |
+      if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+        docker run --rm \
+            --env-file <(env | grep -vE '\r|\n' | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS_TAG|TRAVIS|TRAVIS_REPO_|TRAVIS_BUILD_|TRAVIS_BRANCH|TRAVIS_PULL_REQUEST_|APPVEYOR_|CSC_|GH_|GITHUB_|BT_|AWS_|STRIP|BUILD_') \
+            --env ELECTRON_CACHE="/root/.cache/electron" \
+            --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \
+            -v ${PWD}:/project \
+            -v ~/.cache/electron:/root/.cache/electron \
+            -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+            electronuserland/builder:wine \
+            /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build:electron"
+      else
+        yarn build:electron
+      fi
+    deploy:
+      provider: releases
+      api_key: "$GH_TOKEN"
+      skip_cleanup: true
+      file_glob: true
+      file:
+      - dist/electron-mat/Packaged/*
+      on:
+        tags: true
+  - stage: deploy
+    os: linux
+    services: docker
+    install: true
+    script:
+    #- 'curl -H "Content-Type: application/json;" -X POST -d "{\"PROJECT\": \"$TRAVIS_REPO_SLUG\", \"BRANCH\": \"$TRAVIS_BRANCH\"}" $JENKINS'
+    - docker run -it
+      -e JENKINS_AUTH_TOKEN=$JENKINS_AUTH_TOKEN
+      -e JENKINS_BUILD_TOKEN=$JENKINS_BUILD_TOKEN
+      -e JENKINS_BUILD_PROJECT=$TRAVIS_REPO_SLUG
+      -e JENKINS_BUILD_BRANCH=$TRAVIS_BRANCH
+      p1hub/p1jenkinstrigger 
 
-before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
 
-cache:
-  directories:
-    - node_modules
-    - $HOME/.cache/electron
-    - $HOME/.cache/electron-builder
-
-script:
-  - |
-    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      docker run --rm \
-          --env-file <(env | grep -vE '\r|\n' | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS_TAG|TRAVIS|TRAVIS_REPO_|TRAVIS_BUILD_|TRAVIS_BRANCH|TRAVIS_PULL_REQUEST_|APPVEYOR_|CSC_|GH_|GITHUB_|BT_|AWS_|STRIP|BUILD_') \
-          --env ELECTRON_CACHE="/root/.cache/electron" \
-          --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \
-          -v ${PWD}:/project \
-          -v ~/.cache/electron:/root/.cache/electron \
-          -v ~/.cache/electron-builder:/root/.cache/electron-builder \
-          electronuserland/builder:wine \
-          /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build:electron"
-    else
-      yarn build:electron
-    fi
-
-deploy:
-  provider: releases
-  api_key: $GH_TOKEN
-  skip_cleanup: true
-  file_glob: true
-  file:
-    - "dist/electron-mat/Packaged/*"
-  on:
-    tags: true
+notifications:
+  slack:
+    secure: d+/4dMle1E8GTbHuq1HJpco9RXZ/Gt0gGX7ngumpuV2T4B0H6gRWVsMB15Pa4sNEfnOTbRdQy7rvLtHIO/KYxbRIJ4qPN9vl9wPI1B2ehqU6+YJ2SBhinOI7iIdK099oxJJ6hx4LBhGfVOkWNjenkvbFifzg3dXeqqlrkyuTTSW2HDNDYWiFLQ3KKGO6nad5NQU3lSjgt/Y+CuDxE+5hA2kYl5s+PS6IrWjn01czm5FuSlhSvRZYZNGL9SMEHuZHGHN96qyKCA8zqtTB0+dpWajuRh/Lw2nyAHxXsgLNvzZ7N7k+teTq0QuWJ+4uk/L2q3JDTu/72c6EBxdrzM6sIw/RZFs5CjyF8EwiZqsPYYeSoHmmQ/g11u4v7ZUF3BH7yMH3xET33xBVT6O1o7+/C4UklSSRvfNmPgNe59Vv4PZy0TrfmKSYwOcjqSvqWlA1gatSf3GrbW8/jnqVDsflDPy7jOWrO6iOSUXksFZpAPGoGYReV9RHQEOHx+yauZnT/rR1K8h2C5HTtzqxpKXZaqFzrYu+zE9OR5o6pW5s3xNe8uCJAAl7KaBBHhFnHspdG4wOrv2bkP3mpNQYTulBK6LO4bG95xHEsbcLbbdGsudMCkBi6yLn5Wd0RBypjsmZ1MZvoVU8mkss6FZNuqK9mJ0nJej+QuH73F2SRe2rQr0=
