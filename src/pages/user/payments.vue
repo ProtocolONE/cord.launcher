@@ -70,10 +70,6 @@ export default class Payments extends Vue {
       return order
     })
   }
-
-  created () {
-    console.log(this.payments)
-  }
 }
 </script>
 

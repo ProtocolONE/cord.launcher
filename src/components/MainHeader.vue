@@ -1,6 +1,6 @@
 <template lang="pug">
 .main-header
-  nav.roboto
+  nav.roboto.flex
     q-btn.capitalize.q-pa-none.q-mr-lg(to="/" aria-label="logo" flat)
       box-logo.main-header__logo(background="rgba(8, 8, 8, .35)")
     q-btn.capitalize.q-mr-lg.nav__item(
@@ -10,6 +10,12 @@
       :label="label"
       :class="{ active: $route.name === name }"
       :aria-label="label"
+      flat
+    )
+    q-btn.q-ml-auto.capitalize.q-mr-lg.nav__item(
+      to="/user"
+      label="User (for test)"
+      aria-label="User (for test)"
       flat
     )
 </template>

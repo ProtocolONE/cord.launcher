@@ -5,16 +5,12 @@
     "target": "es5",
     "strict": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "module": "es2015",
     "moduleResolution": "node",
     "allowJs": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".quasar"
-  ]
+  "typeRoots": ["types"],
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }

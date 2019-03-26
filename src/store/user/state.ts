@@ -63,7 +63,7 @@ const payments: UserPayments = {
       games: [
         { name: 'Game 1', preview: 'statics/images/forza.jpg', price: 99.99, url: '/game/1' },
         { name: 'Game 2', preview: 'statics/images/forza.jpg', price: 99.99, url: '/game/1' },
-        { name: 'Game 2', preview: 'statics/images/forza.jpg', price: 99.99, url: '/game/1' }
+        { name: 'Game 3', preview: 'statics/images/forza.jpg', price: 99.99, url: '/game/1' }
       ]
     }
   ]

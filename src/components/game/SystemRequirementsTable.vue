@@ -11,10 +11,10 @@ table.requirements-table
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
-@Component()
+@Component
 export default class SystemRequirementsTable extends Vue {
   @Prop(String) label: string
-  @Prop(Object) requirements: Object
+  @Prop(Object) requirements: Record<string | any>
 }
 </script>
 

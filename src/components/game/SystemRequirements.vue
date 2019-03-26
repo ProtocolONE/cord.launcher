@@ -36,7 +36,7 @@ import BoxIcon from 'components/BoxIcon'
   components: { RequirementsTable, BoxIcon }
 })
 export default class SystemRequirements extends Vue {
-  @Prop(Object) requirements: Object
+  @Prop(Object) requirements: Record<string | any>
 }
 </script>
 

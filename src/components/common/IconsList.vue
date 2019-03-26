@@ -30,7 +30,7 @@ export default class Platforms extends Vue {
     type: Array,
     required: true
   })
-  icons: Social[] | Array<string>
+  icons: Social[] | string[]
 
   @Prop({
     type: Boolean,

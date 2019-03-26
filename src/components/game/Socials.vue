@@ -17,7 +17,7 @@ import IconsList from 'components/common/IconsList'
 })
 export default class Socials extends Vue {
   @Prop(String) gameName: string
-  @Prop(Array) socials: Array<string>
+  @Prop(Array) socials: string[]
 
   get title () {
     return `${ this.$trans('labels', 'follow') } ${ this.gameName }`

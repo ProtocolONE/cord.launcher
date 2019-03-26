@@ -15,7 +15,7 @@
           href="http://super.com"
           target="_blank"
           rel="noreferrer"
-          @click.prevent="openURL('http://super.com')"
+          @click.prevent="$openUrl('http://super.com')"
         )
           | Super.com
       li(v-for="{ name, url } in links" :key="name")
@@ -29,7 +29,6 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { openURL } from 'quasar'
 
 import Box from 'components/Box'
 import BoxLogo from 'components/BoxLogo'
@@ -37,8 +36,7 @@ import BoxIcon from 'components/BoxIcon'
 import Copyright from 'components/Copyright'
 
 @Component({
-  components: { Box, BoxLogo, BoxIcon, Copyright },
-  methods: { openURL }
+  components: { Box, BoxLogo, BoxIcon, Copyright }
 })
 export default class MainFooter extends Vue {
   currentYear = new Date().getFullYear()

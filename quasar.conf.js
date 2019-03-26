@@ -14,6 +14,7 @@ module.exports = function (ctx) {
       'i18n',
       'trans',
       'update-locale',
+      'open-url',
       'base-components'
     ],
     css: [
@@ -198,6 +199,22 @@ module.exports = function (ctx) {
         // https://www.electron.build/configuration/configuration
 
         // appId: 'quasar-app'
+
+        appId: 'com.qilincord.app',
+        productName: 'qilincord',
+        artifactName: '${productName}-${version}.${ext}',
+        copyright: 'Copyright © 2019 ${author}',
+        mac: {
+          category: 'qilincord',
+          target: ['zip', 'dmg']
+        },
+        linux: {
+          synopsis: 'qilincord',
+          target: ['zip', 'deb']
+        },
+        win: {
+          target: ['zip', 'nsis']
+        }
       }
     }
   }

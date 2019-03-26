@@ -1,14 +1,3 @@
-declare module 'layouts/*'
-declare module 'components/*'
-declare module '@/*'
-
-// --- quasar
-declare module 'quasar' {
-  export function openURL(url: string): void
-  export const format: any
-}
-
-// --- interfaces
 declare module 'interfaces' {
   // --- base
   export interface BaseSelectOption {
@@ -25,8 +14,8 @@ declare module 'interfaces' {
     rating?: number
     price?: number
     description?: string
-    platforms?: Array<string>
-    tags?: Array<string>
+    platforms?: string[]
+    tags?: string[]
     users?: GameUser[],
     releaseDate?: string | Date
     developer?: string
@@ -48,8 +37,8 @@ declare module 'interfaces' {
   }
 
   export interface LanguagesSupport {
-    audio: Array<string>
-    text: Array<string>
+    audio: string[]
+    text: string[]
   }
 
   export interface Systems {
@@ -106,17 +95,13 @@ declare module 'interfaces' {
   export interface UserAccount {
     name: string
     primaryLanguage?: string
-    additionalLanguages?: Array<string>
+    additionalLanguages?: string[]
     linkedAccounts?: UserLinkedAccount[]
   }
 
   export interface UserLinkedAccount {
     icon: string
     label: string
-  }
-
-  export interface UserSecurity {
-
   }
 
   export interface UserPayments {
