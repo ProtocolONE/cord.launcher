@@ -17,6 +17,7 @@ export default class App extends Vue {
   }
 
   created () {
+    console.log(process.env)
     if (process.env.MODE === 'electron') {
       try {
         // --- TODO: messages
