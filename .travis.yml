@@ -40,8 +40,9 @@ build_jobs: &build_jobs
     api_key: "$GH_TOKEN"
     skip_cleanup: true
     file_glob: true
+    draft: true
     file:
-    - dist/electron-mat/Packaged/*
+      - dist/electron-mat/Packaged/*
     on:
       tags: true
 
