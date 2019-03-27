@@ -2,7 +2,8 @@ import {
   app,
   dialog,
   BrowserWindow,
-  Menu
+  Menu,
+  ipcMain
 } from 'electron'
 
 import { autoUpdater } from 'electron-updater'
@@ -14,6 +15,7 @@ import Store from '../store'
 const store = new Store({
   configName: 'user-preferences',
   defaults: {
+    channel: 'latest',
     windowBounds: {
       x: 0,
       y: 0,
@@ -23,6 +25,8 @@ const store = new Store({
     }
   }
 })
+
+app.$store = store
 
 let mainWindow
 
@@ -99,6 +103,7 @@ app.on('ready', () => {
  */
 autoUpdater.logger = log
 autoUpdater.logger.transports.file.level = 'info'
+autoUpdater.channel = store.get('channel')
 
 log.info('App starting...')
 
@@ -142,6 +147,14 @@ autoUpdater.on('update-downloaded', () => {
       autoUpdater.quitAndInstall(isSilent, isForceRunAfter)
     }
   })
+})
+
+ipcMain.on('change-channel', (event, value) => {
+  store.set('channel', value)
+  autoUpdater.channel = value
+  // --- https://electronjs.org/docs/api/app#apprelaunchoptions
+  app.relaunch({ args: process.argv.slice(1).concat(['--relaunch']) })
+  app.exit(0)
 })
 
 app.on('ready', () => {

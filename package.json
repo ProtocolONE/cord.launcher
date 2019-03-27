@@ -1,8 +1,8 @@
 {
   "name": "cord.launcher",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Cord launcher based on Electron and Wep Application",
-  "productName": "Cord Launcher",
+  "productName": "qilincord",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
   "license": "MIT",
   "repository": "git://github.com/ProtocolONE/cord.launcher.git",

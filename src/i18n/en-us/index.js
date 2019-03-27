@@ -29,7 +29,8 @@ export default {
     personal: 'Personal',
     account: 'Account',
     security: 'Security',
-    payments: 'Payments'
+    payments: 'Payments',
+    launcher: 'Launcher'
   },
   labels: {
     more: 'More',
@@ -66,7 +67,8 @@ export default {
     search: 'Search',
     view: 'View',
     order: 'Order',
-    paidWith: 'Paid with'
+    paidWith: 'Paid with',
+    channel: 'Channel'
   },
   paragraphs: {
     nothingHere: 'Sorry, nothing here',

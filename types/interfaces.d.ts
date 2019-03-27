@@ -1,3 +1,4 @@
+// TODO: split into folders/files
 declare module 'interfaces' {
   // --- base
   export interface BaseSelectOption {
@@ -118,5 +119,9 @@ declare module 'interfaces' {
     date: string | Date
     type: string
     games: Game[]
+  }
+
+  export interface UserSecurity {
+    test?: any
   }
 }

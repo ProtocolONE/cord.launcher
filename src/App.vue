@@ -15,5 +15,23 @@ export default class App extends Vue {
   onLocaleChanged (value: string) {
     this.$updateLocale(value)
   }
+
+  created () {
+    if (process.env.MODE === 'electron') {
+      try {
+        // --- TODO: messages
+        let { ipcRenderer } = require('electron')
+        ipcRenderer.on('message', (event, text) => this.$q.notify({
+          message: text,
+          type: 'info',
+          position: 'top-right'
+        }))
+      }
+      catch (error) {
+        // --- skip
+        console.error(error)
+      }
+    }
+  }
 }
 </script>

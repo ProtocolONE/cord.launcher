@@ -51,9 +51,9 @@ import { UserPayments } from 'interfaces'
 
 @Component
 export default class Payments extends Vue {
-  @namespace('user').State(state => cloneDeep(state.payments)) payments: UserPayments
-
   query = ''
+
+  @namespace('user').State(state => cloneDeep(state.payments)) payments: UserPayments
 
   get methods () {
     return this.payments.methods

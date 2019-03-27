@@ -11,6 +11,7 @@ import UserPersonal from 'pages/user/personal'
 import UserAccount from 'pages/user/account'
 import UserSecurity from 'pages/user/security'
 import UserPayments from 'pages/user/payments'
+import UserLauncher from 'pages/user/launcher'
 
 import Error404 from 'pages/errors/404'
 
@@ -62,6 +63,14 @@ export const USER_ROUTES = [
     component: UserPayments
   }
 ]
+
+if (process.env.MODE === 'electron') {
+  USER_ROUTES.push({
+    name: 'launcher',
+    path: '/user/launcher',
+    component: UserLauncher
+  })
+}
 
 export default [
   {

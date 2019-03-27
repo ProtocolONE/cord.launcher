@@ -6,7 +6,7 @@ q-select(
   :disable="disable"
   :dark="true"
   color="white"
-  @change="change"
+  @input="change"
 )
 </template>
 
@@ -26,6 +26,7 @@ export default class Select extends Vue {
   @Emit()
   change (value: string) {
     this.model = value || null
+    this.$emit('input', this.model)
   }
 }
 </script>

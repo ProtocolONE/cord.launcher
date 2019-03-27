@@ -70,9 +70,9 @@ import { UserPersonal } from 'interfaces'
 
 @Component
 export default class Personal extends Vue {
-  @namespace('user').State(state => cloneDeep(state.personal)) user: UserPersonal
-
   fieldBinding = { color: 'white', dark: true }
+
+  @namespace('user').State(state => cloneDeep(state.personal)) user: UserPersonal
 
   get days () {
     let n = this.$moment().month(this.user.dateBirth.month).daysInMonth()
