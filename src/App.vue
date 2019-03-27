@@ -19,10 +19,12 @@ export default class App extends Vue {
   created () {
     if (process.env.MODE === 'electron') {
       try {
+        // --- TODO: messages
         let { ipcRenderer } = require('electron')
         ipcRenderer.on('message', (event, text) => this.$q.notify({
           message: text,
-          type: 'info'
+          type: 'info',
+          position: 'top-right'
         }))
       }
       catch (error) {

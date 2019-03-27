@@ -204,6 +204,9 @@ module.exports = function (ctx) {
         productName: 'qilincord',
         artifactName: '${productName}-${version}.${ext}',
         copyright: 'Copyright © 2019 ${author}',
+        compression: 'normal',
+        generateUpdatesFilesForAllChannels: true,
+        detectUpdateChannel: true,
         mac: {
           category: 'qilincord',
           target: ['zip', 'dmg']

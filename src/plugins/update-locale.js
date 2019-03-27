@@ -1,11 +1,12 @@
-export default ({ Vue }) => {
+export default ({ app, Vue }) => {
   /**
    * Change locale
    *
    * @param value {String}
    */
   Vue.prototype.$updateLocale = function (value) {
-    this.$q.i18n.set(
+    let $q = (this) ? this.$q : app.i18n._vm.$q
+    $q.i18n.set(
       require(`@/i18n/${ value }`).default
     )
   }

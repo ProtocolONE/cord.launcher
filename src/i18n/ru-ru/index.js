@@ -27,7 +27,8 @@ export default {
     personal: 'Основное',
     account: 'Аккаунт',
     security: 'Безопасность',
-    payments: 'Платежи'
+    payments: 'Платежи',
+    launcher: 'Приложение'
   },
   labels: {
     more: 'Больше',
@@ -66,7 +67,8 @@ export default {
     search: 'Поиск',
     view: 'Посмотреть',
     order: 'Заказ',
-    paidWith: 'Оплачено с'
+    paidWith: 'Оплачено с',
+    channel: 'Канал'
   },
   paragraphs: {
     nothingHere: 'Извините, здесь ничего нет',

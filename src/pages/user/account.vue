@@ -13,6 +13,7 @@ q-page.row.gutter-sm.account
         v-model="account.primaryLanguage"
         :label="$trans('labels', 'primaryLanguage')"
         :options="languagesList"
+        @change="$updateLocale"
       )
       base-select.q-mb-xl(
         v-for="(locale, i) in account.additionalLanguages"
@@ -44,7 +45,6 @@ q-page.row.gutter-sm.account
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { State, namespace } from 'vuex-class'
-import { cloneDeep } from 'lodash'
 import { UserAccount } from 'interfaces'
 
 import BoxIcon from 'components/BoxIcon'
@@ -54,7 +54,7 @@ import BoxIcon from 'components/BoxIcon'
 })
 export default class Account extends Vue {
   @State('locales') locales: string[]
-  @namespace('user').State(state => cloneDeep(state.account)) account: UserAccount
+  @namespace('user').State(state => state.account) account: UserAccount
 
   get languagesList () {
     return this.locales.map(locale => ({

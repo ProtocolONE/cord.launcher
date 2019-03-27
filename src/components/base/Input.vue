@@ -23,6 +23,7 @@ export default class Input extends Vue {
   @Emit()
   change (value: string) {
     this.model = value || null
+    this.$emit('input', this.model)
   }
 }
 </script>
