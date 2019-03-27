@@ -4,8 +4,8 @@ node_js: node
 
 branches:
   only:
-    - master
-    - /v\d+\.\d+\.\d+/ # v0.0.* | v0.0.*-beta | v1.0.*-alpha
+    - master # latest
+    - develop # beta
 
 stages:
   - test

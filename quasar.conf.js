@@ -8,6 +8,10 @@ global.__root = __root
 
 module.exports = function (ctx) {
   return {
+    // html vars
+    htmlVariables: {
+      title: 'qilincord ' + process.env.npm_package_version
+    },
     // app plugins (/src/plugins)
     plugins: [
       'moment',

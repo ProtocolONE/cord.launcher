@@ -14,7 +14,7 @@ import { remote, ipcRenderer } from 'electron'
 
 @Component
 export default class Launcher extends Vue {
-  channels = ['latest', 'beta', 'alpha'].map(c => ({ label: c, value: c }))
+  channels = ['latest', 'beta'].map(c => ({ label: c, value: c }))
   channel = remote.app.$store.get('channel') || this.channels[0].value
 
   handleChange (value) {
