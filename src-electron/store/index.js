@@ -12,7 +12,7 @@ function parseDataFile (filePath, defaults) {
 }
 
 export default
-class Index {
+class Store {
   constructor (options = {}) {
     let userDataPath = (electron.app || electron.remote.app).getPath('userData')
     this.path = path.join(userDataPath, options.configName + '.json')

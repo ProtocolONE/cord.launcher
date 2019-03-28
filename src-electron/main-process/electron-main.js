@@ -43,6 +43,17 @@ function sendStatusToWindow (text) {
   mainWindow.webContents.send('message', text)
 }
 
+function handleMovedOrResize () {
+  store.set('windowBounds', {
+    ...mainWindow.getBounds(),
+    fullscreen: mainWindow.isFullScreen()
+  })
+}
+
+function handleClosed () {
+  mainWindow = null
+}
+
 function createWindow () {
   /**
    * Initial window options
@@ -62,17 +73,6 @@ function createWindow () {
   mainWindow.on('resize', handleMovedOrResize)
 
   mainWindow.on('closed', handleClosed)
-}
-
-function handleMovedOrResize () {
-  store.set('windowBounds', {
-    ...mainWindow.getBounds(),
-    fullscreen: mainWindow.isFullScreen()
-  })
-}
-
-function handleClosed () {
-  mainWindow = null
 }
 
 app.on('window-all-closed', () => {
@@ -101,9 +101,17 @@ app.on('ready', () => {
  * support auto updating. Code Signing with a valid certificate is required.
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
  */
+const server = 'https://github.com/ProtocolONE/cord.launcher'
+
+require('update-electron-app')()
+
 autoUpdater.logger = log
 autoUpdater.logger.transports.file.level = 'info'
 autoUpdater.channel = store.get('channel')
+
+autoUpdater.setFeedURL(
+  `${ server }/${ process.platform }-${ process.arch }/${ app.getVersion() }`
+)
 
 log.info('App starting...')
 
@@ -158,5 +166,7 @@ ipcMain.on('change-channel', (event, value) => {
 })
 
 app.on('ready', () => {
-  autoUpdater.checkForUpdatesAndNotify()
+  setInterval(() => {
+    autoUpdater.checkForUpdatesAndNotify()
+  }, 1000)
 })
