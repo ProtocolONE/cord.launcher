@@ -1,11 +1,14 @@
 {
   "name": "cord.launcher",
-  "version": "0.0.2-beta",
+  "version": "0.0.2",
   "description": "Cord launcher based on Electron and Wep Application",
   "productName": "qilincord",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
   "license": "MIT",
-  "repository": "git://github.com/ProtocolONE/cord.launcher.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ProtocolONE/cord.launcher.git"
+  },
   "scripts": {
     "dev": "quasar dev -t mat",
     "dev:ssr": "quasar dev -m ssr -t mat",

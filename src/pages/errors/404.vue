@@ -5,7 +5,7 @@ main-layout: q-page.error-404: .row
       img.q-mb-lg.error-404__image(src="~assets/sad.svg" alt="error-404")
       figcaption
         | {{ $trans('paragraphs', 'nothingHere') }}... #[strong] (404)
-    q-btn.error-404__btn(color="secondary" @click="$router.go(-1)")
+    q-btn.error-404__btn(color="secondary" to="/")
       | {{ $trans('labels', 'goBack') }}
 </template>
 

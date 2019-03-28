@@ -16,6 +16,7 @@ module.exports = function (ctx) {
     },
     // app plugins (/src/plugins)
     plugins: [
+      'toggle-online-state',
       'moment',
       'i18n',
       'trans',
@@ -142,19 +143,18 @@ module.exports = function (ctx) {
     // animations: 'all' --- includes all animations
     animations: [],
     ssr: {
-      pwa: false
+      pwa: (process.env.MODE === 'electron')
     },
     pwa: {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {},
       manifest: {
-        // name: 'Quasar App',
-        // short_name: 'Quasar-PWA',
-        // description: 'Best PWA App in town!',
+        name: 'qilincord',
+        short_name: 'qilincord-PWA',
+        description: 'Cord launcher based on Electron and Wep Application',
         display: 'standalone',
-        orientation: 'portrait',
-        background_color: '#ffffff',
         theme_color: '#027be3',
+        background_color: '#ffffff',
         icons: [
           {
             'src': 'statics/icons/icon-128x128.png',

@@ -73,7 +73,8 @@ export default {
   paragraphs: {
     nothingHere: 'Sorry, nothing here',
     gamesFollowingTags: 'You might also like it, because you’ve played games with following tags',
-    copyright: '© 2018, Super.com, Experiments for discovering such facts. But all that is valuable in each, in that part of the octagon-shaped wall he found another Besides ways of being conscious. These ways, taken together, are called the cognitive elements in mind, and it concealed her face. She carried a bucket.'
+    copyright: '© 2018, Super.com, Experiments for discovering such facts. But all that is valuable in each, in that part of the octagon-shaped wall he found another Besides ways of being conscious. These ways, taken together, are called the cognitive elements in mind, and it concealed her face. She carried a bucket.',
+    offlineMode: 'Qilincord is currently in Offline Mode.'
   },
   buttons: {
     change: 'Change',
