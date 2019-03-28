@@ -1,7 +1,7 @@
 <template lang="pug">
 q-page.row.gutter-sm.payments
 
-  .col-lg-5.col-md-5.col-sm-12.col-xs-12
+  .col-lg-5.col-12
     .row: .col-lg-10.col-12
 
       header.payments__header
@@ -16,14 +16,14 @@ q-page.row.gutter-sm.payments
 
       base-button.q-mt-lg {{ $trans('buttons', 'add') }}
 
-  .col-lg-7.col-md-7.col-sm-12.col-xs-12
+  .col-lg-7.col-12
     header.row.justify-between.payments__header
-      .col-auto.flex
+      .col-lg.col-12.q-mb-md.q-mb-lg-none.flex
         base-title.q-mb-none.text-white(level="5") {{ $trans('titles', 'ordersHistory') }}
-      .col-auto.q-mr-auto.q-ml-auto
-        base-search(v-model="query")
-      .col-auto.flex.items-center
-        span.q-mr-sm(style="opacity:.5") {{ $trans('labels', 'view') }}:
+      .col-lg.col-12.q-mb-md.q-mb-lg-none
+        base-search.search(v-model="query")
+      .col-lg.col-12.flex.items-center
+        span.q-mr-sm.q-ml-lg-auto(style="opacity:.5") {{ $trans('labels', 'view') }}:
         base-select(value="all" :options="[{ label: 'All orders', value: 'all' }]")
 
     .orders-list
@@ -77,7 +77,7 @@ export default class Payments extends Vue {
 .payments
   &__header
     display: flex
-    height: 40px
+    min-height: 40px
     align-items: center
     margin-bottom: 30px
 
@@ -112,4 +112,7 @@ export default class Payments extends Vue {
   &__img
     max-width: 100%
     max-height: 100%
+
+.search
+  max-width: 145px
 </style>

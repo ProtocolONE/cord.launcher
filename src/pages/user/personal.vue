@@ -4,9 +4,9 @@ q-page.personal
   base-title.text-white(level="5") {{ $trans('titles', 'userNameDate') }}
 
   .row.gutter-sm
-    .col-lg-4.col-md-6.col-12
+    .col-lg-3.col-md-6.col-12
       base-input(v-model="user.name" :label="$trans('labels', 'firstName')")
-    .col-lg-4.col-md-6.col-12
+    .col-lg-3.col-md-6.col-12
       base-input(v-model="user.lastName" :label="$trans('labels', 'lastName')")
 
   base-title.text-bold.q-mt-lg.q-mb-lg(level="6")
@@ -20,7 +20,7 @@ q-page.personal
         :options="days"
         :disable="!user.dateBirth.month"
       )
-    .col-lg-3.col-md-4.col-sm-4.col-xs-12
+    .col-lg-2.col-md-4.col-sm-4.col-xs-12
       base-select(
         v-model="user.dateBirth.month"
         :label="$trans('labels', 'month')"
@@ -37,25 +37,25 @@ q-page.personal
   base-title.text-bold.text-white.q-mt-lg.q-mb-lg(level="5")
     | {{ $trans('labels', 'address') }}
 
-  .row.gutter-sm.q-mb-lg: .col-lg-4.col-md-6.col-12
+  .row.gutter-sm.q-mb-lg: .col-lg-6.col-md-6.col-12
     base-select(v-model="user.address.country" :label="$trans('labels', 'country')")
 
-  .row.gutter-sm.q-mb-lg: .col-lg-4.col-md-6.col-12
+  .row.gutter-sm.q-mb-lg: .col-lg-6.col-md-6.col-12
     base-select(v-model="user.address.city" :label="$trans('labels', 'city')")
 
   .row.gutter-sm.q-mb-lg
-    .col-lg-1.col-md-3.col-sm-6.col-xs-12
+    .col-lg-2.col-md-3.col-sm-6.col-xs-12
       base-input(v-model="user.address.postalCode" :label="$trans('labels', 'postalCode')")
-    .col-lg-3.col-md-3.col-sm-6.col-xs-12
+    .col-lg-4.col-md-3.col-sm-6.col-xs-12
       base-select(v-model="user.address.region" :label="$trans('labels', 'region')")
 
-  .row.gutter-sm.q-mb-lg: .col-lg-4.col-md-6.col-12
+  .row.gutter-sm.q-mb-lg: .col-lg-6.col-md-6.col-12
     base-input(
       v-model="user.address.addressLine1"
       :label="$trans('labels', 'addressLine') + ' 1'"
     )
 
-  .row.gutter-sm.q-mb-lg: .col-lg-4.col-md-6.col-12
+  .row.gutter-sm.q-mb-lg: .col-lg-6.col-md-6.col-12
     base-input(
       v-model="user.address.addressLine2"
       :label="$trans('labels', 'addressLine') + ' 2'"
