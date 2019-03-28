@@ -4,7 +4,7 @@ node_js: node
 
 stages:
   - test
-  - name: deploy
+  - deploy
 
 build_jobs: &build_jobs
   before_cache:
