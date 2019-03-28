@@ -10,7 +10,9 @@ module.exports = function (ctx) {
   return {
     // html vars
     htmlVariables: {
-      title: 'qilincord ' + process.env.npm_package_version
+      title: (process.env.MODE === 'electron')
+        ? 'qilincord ' + process.env.npm_package_version
+        : 'qilincord'
     },
     // app plugins (/src/plugins)
     plugins: [
