@@ -25,21 +25,19 @@ build_jobs: &build_jobs
           -v ~/.cache/electron:/root/.cache/electron \
           -v ~/.cache/electron-builder:/root/.cache/electron-builder \
           electronuserland/builder:wine \
-          /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build:electron"
+          /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn gh-publish"
     else
-      yarn build:electron
+      yarn gh-publish
     fi
-  deploy:
-    provider: releases
-    api_key: "$GH_TOKEN"
-    skip_cleanup: true
-    file_glob: true
-    prerelease:
-      if: branch = develop
-    file:
-      - dist/electron-mat/Packaged/*
-    on:
-      tags: true
+#  deploy:
+#    provider: releases
+#    api_key: "$GH_TOKEN"
+#    skip_cleanup: true
+#    file_glob: true
+#    file:
+#      - dist/*
+#    on:
+#      tags: true
 
 jobs:
   include:

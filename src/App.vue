@@ -23,6 +23,7 @@ export default class App extends Vue {
         try {
           // --- TODO: messages
           let { ipcRenderer } = require('electron')
+          console.log('ipcRenderer message init.')
           ipcRenderer.on('message', (event, text) => {
             console.info(text)
             this.$q.notify({
