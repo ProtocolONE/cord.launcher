@@ -101,8 +101,6 @@ app.on('ready', () => {
  * support auto updating. Code Signing with a valid certificate is required.
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
  */
-const server = 'https://github.com/ProtocolONE/cord.launcher/releases'
-
 require('update-electron-app')({
   repo: 'git@github.com:ProtocolONE/cord.launcher.git'
 })
@@ -110,8 +108,6 @@ require('update-electron-app')({
 autoUpdater.logger = log
 autoUpdater.logger.transports.file.level = 'info'
 autoUpdater.channel = store.get('channel')
-
-autoUpdater.setFeedURL(server)
 
 log.info('App starting...')
 
@@ -168,5 +164,5 @@ ipcMain.on('change-channel', (event, value) => {
 app.on('ready', () => {
   setInterval(() => {
     autoUpdater.checkForUpdatesAndNotify()
-  }, 1000)
+  }, 10 * 60 * 1000)
 })
