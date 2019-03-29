@@ -2,30 +2,26 @@ language: node_js
 sudo: false
 node_js: node
 
-stages:
-  - publish
-
-build_jobs:
-  before_cache:
-    - rm -rf $HOME/.cache/electron-builder/wine
-  cache:
-    directories:
-      - node_modules
-      - "$HOME/.cache/electron"
-      - "$HOME/.cache/electron-builder"
+build_jobs: &build_jobs
+  os: osx
+  osx_image: xcode9.4
+  language: node_js
+  node_js: '10'
+  env:
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
   script:
+    - yarn lint
     - yarn gh-publish
 
 jobs:
   include:
-    - stage: publish
-      os: osx
-      osx_image: xcode9.4
-      language: node_js
-      node_js: '10'
-      env:
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+    - name: dev
+      if: "(branch = develop) and (tag =~ ^v)"
+      <<: *build_jobs
+    - name: release
+      if: "(branch = master) and (tag =~ ^v)"
+      <<: *build_jobs
 
 notifications:
   slack:

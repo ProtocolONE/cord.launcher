@@ -11,7 +11,6 @@
     "url": "https://github.com/ProtocolONE/cord.launcher.git"
   },
   "scripts": {
-    "test": "echo \"Build & Publish has been started\"",
     "dev": "quasar dev -t mat",
     "dev:ssr": "quasar dev -m ssr -t mat",
     "dev:electron": "quasar dev -m electron -t mat",
