@@ -10,6 +10,13 @@ stages:
 jobs:
   include:
     - stage: test
+      os: osx
+      osx_image: xcode9.4
+      language: node_js
+      node_js: '10'
+      env:
+        - ELECTRON_CACHE=$HOME/.cache/electron
+        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
       script:
         - yarn lint
     - stage: deploy
@@ -20,6 +27,11 @@ jobs:
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+      cache:
+        directories:
+          - node_modules
+          - "$HOME/.cache/electron"
+          - "$HOME/.cache/electron-builder"
       script:
         - yarn gh-publish
 
