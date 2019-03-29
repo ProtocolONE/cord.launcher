@@ -203,27 +203,24 @@ module.exports = function (ctx) {
       },
       builder: {
         // https://www.electron.build/configuration/configuration
-
-        // appId: 'quasar-app'
-
-        appId: 'com.qilincord.app',
-        productName: 'qilincord',
-        artifactName: '${productName}-${version}.${ext}',
-        copyright: 'Copyright © 2019 ${author}',
-        compression: 'normal',
-        generateUpdatesFilesForAllChannels: true,
-        detectUpdateChannel: true,
-        mac: {
-          category: 'qilincord',
-          target: ['zip', 'dmg']
-        },
-        linux: {
-          synopsis: 'qilincord',
-          target: ['zip', 'deb']
-        },
-        win: {
-          target: ['zip', 'nsis']
-        }
+        // appId: 'com.qilincord.app',
+        // productName: 'qilincord',
+        // artifactName: '${productName}-${version}.${ext}',
+        // copyright: 'Copyright © 2019 ${author}',
+        // compression: 'normal',
+        // generateUpdatesFilesForAllChannels: true,
+        // detectUpdateChannel: true,
+        // mac: {
+        //   category: 'qilincord',
+        //   target: ['zip', 'dmg']
+        // },
+        // linux: {
+        //   synopsis: 'qilincord',
+        //   target: ['zip', 'deb']
+        // },
+        // win: {
+        //   target: ['zip', 'nsis']
+        // }
       }
     }
   }

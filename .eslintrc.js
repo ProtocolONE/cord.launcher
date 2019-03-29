@@ -61,6 +61,7 @@ module.exports = {
     'no-template-curly-in-string': 'off',
     'no-return-await': 'off',
     'no-inner-declarations': 'off',
+    'no-new': 'off',
 
     // --- typescript settings
     '@typescript-eslint/indent': ['error', 2],
