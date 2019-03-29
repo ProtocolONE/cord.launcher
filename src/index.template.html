@@ -18,5 +18,18 @@
   <body>
     <!-- DO NOT touch the following DIV -->
     <div id="q-app"></div>
+    <script>
+      try {
+        if (window && window.process && window.process.type) {
+          console.log('ipcRenderer message in body script init.')
+          require('electron').ipcRenderer.on('message', (event, text) => {
+            console.info(text)
+          })
+        }
+      }
+      catch (error) {
+        console.error(error)
+      }
+    </script>
   </body>
 </html>

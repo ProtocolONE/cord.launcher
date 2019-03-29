@@ -19,25 +19,25 @@ export default class App extends Vue {
   created () {
     if (process.env.CLIENT) {
       console.log(process.env)
-      if (process.env.MODE === 'electron') {
-        try {
-          // --- TODO: messages
-          let { ipcRenderer } = require('electron')
-          console.log('ipcRenderer message init.')
-          ipcRenderer.on('message', (event, text) => {
-            console.info(text)
-            this.$q.notify({
-              message: text,
-              type: 'info',
-              position: 'top-right'
-            })
-          })
-        }
-        catch (error) {
-          // --- skip
-          console.error(error)
-        }
-      }
+      // if (process.env.MODE === 'electron') {
+      //   try {
+      //     // --- TODO: messages
+      //     let { ipcRenderer } = require('electron')
+      //     console.log('ipcRenderer message init.')
+      //     ipcRenderer.on('message', (event, text) => {
+      //       console.info(text)
+      //       this.$q.notify({
+      //         message: text,
+      //         type: 'info',
+      //         position: 'top-right'
+      //       })
+      //     })
+      //   }
+      //   catch (error) {
+      //     // --- skip
+      //     console.error(error)
+      //   }
+      // }
     }
   }
 }

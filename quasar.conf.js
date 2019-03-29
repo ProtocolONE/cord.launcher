@@ -193,7 +193,7 @@ module.exports = function (ctx) {
         // https://www.electron.build/configuration/configuration
         appId: 'com.qilincord.app',
         productName: 'qilincord',
-        artifactName: '${productName}-${channel}.${ext}',
+        artifactName: '${productName}-${channel}-${version}.${ext}',
         copyright: 'Copyright © 2019 ${author}',
         compression: 'normal',
         generateUpdatesFilesForAllChannels: true,
