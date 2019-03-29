@@ -23,7 +23,16 @@ jobs:
           - "$HOME/.cache/electron-builder"
       script:
         - yarn lint
-        - yarn gh-publish
+        - yarn build:electron
+      deploy:
+        provider: releases
+        api_key: "$GH_TOKEN"
+        skip_cleanup: true
+        file_glob: true
+        file:
+          - dist/electron-mat/Packaged/*
+        on:
+          tags: true
 
 notifications:
   slack:

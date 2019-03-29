@@ -185,42 +185,34 @@ module.exports = function (ctx) {
       }
     },
     electron: {
-      // bundler: 'builder', // or 'packager'
+      bundler: 'builder',
       extendWebpack (cfg) {
         // do something with Electron process Webpack cfg
       },
-      packager: {
-        // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
-        // OS X / Mac App Store
-        // appBundleId: '',
-        // appCategoryType: '',
-        // osxSign: '',
-        // protocol: 'myapp://path',
-
-        // Window only
-        // win32metadata: { ... }
-      },
       builder: {
         // https://www.electron.build/configuration/configuration
-        // appId: 'com.qilincord.app',
-        // productName: 'qilincord',
-        // artifactName: '${productName}-${version}.${ext}',
-        // copyright: 'Copyright © 2019 ${author}',
-        // compression: 'normal',
-        // generateUpdatesFilesForAllChannels: true,
-        // detectUpdateChannel: true,
-        // mac: {
-        //   category: 'qilincord',
-        //   target: ['zip', 'dmg']
-        // },
-        // linux: {
-        //   synopsis: 'qilincord',
-        //   target: ['zip', 'deb']
-        // },
-        // win: {
-        //   target: ['zip', 'nsis']
-        // }
+        appId: 'com.qilincord.app',
+        productName: 'qilincord',
+        artifactName: '${productName}-${channel}.${ext}',
+        copyright: 'Copyright © 2019 ${author}',
+        compression: 'normal',
+        generateUpdatesFilesForAllChannels: true,
+        detectUpdateChannel: true,
+        dmg: {
+          contents: [
+            {
+              x: 410,
+              y: 150,
+              type: 'link',
+              path: '/Applications'
+            },
+            {
+              x: 130,
+              y: 150,
+              type: 'file'
+            }
+          ]
+        }
       }
     }
   }
