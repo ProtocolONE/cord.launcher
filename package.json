@@ -11,6 +11,7 @@
     "url": "https://github.com/ProtocolONE/cord.launcher.git"
   },
   "scripts": {
+    "test": "yarn lint",
     "dev": "quasar dev -t mat",
     "dev:ssr": "quasar dev -m ssr -t mat",
     "dev:electron": "quasar dev -m electron -t mat",
@@ -23,11 +24,15 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "devtron": "1.4.0",
+    "electron": "4.0.5",
+    "electron-builder": "^20.39.0",
+    "electron-debug": "2.1.0",
+    "electron-devtools-installer": "2.2.4",
     "electron-log": "^3.0.1",
     "electron-packager": "^13.1.1",
     "electron-updater": "^4.0.6",
     "lodash-es": "^4.17.11",
-    "update-electron-app": "^1.3.0",
     "vue-i18n": "^7.3.3"
   },
   "devDependencies": {
@@ -39,11 +44,6 @@
     "@typescript-eslint/parser": "^1.5.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
-    "devtron": "1.4.0",
-    "electron": "4.0.5",
-    "electron-builder": "^20.39.0",
-    "electron-debug": "2.1.0",
-    "electron-devtools-installer": "2.2.4",
     "eslint": "^5.15.3",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-vue": "^5.0.0",
