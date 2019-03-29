@@ -3,69 +3,29 @@ sudo: false
 node_js: node
 
 stages:
-  - test
-  # - deploy
+  - publish
 
-build_jobs: &build_jobs
+build_jobs:
   before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
+    - rm -rf $HOME/.cache/electron-builder/wine
   cache:
     directories:
-    - node_modules
-    - "$HOME/.cache/electron"
-    - "$HOME/.cache/electron-builder"
+      - node_modules
+      - "$HOME/.cache/electron"
+      - "$HOME/.cache/electron-builder"
   script:
     - yarn gh-publish
-#  - |
-#    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-#      docker run --rm \
-#          --env-file <(env | grep -vE '\r|\n' | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS_TAG|TRAVIS|TRAVIS_REPO_|TRAVIS_BUILD_|TRAVIS_BRANCH|TRAVIS_PULL_REQUEST_|APPVEYOR_|CSC_|GH_|GITHUB_|BT_|AWS_|STRIP|BUILD_') \
-#          --env ELECTRON_CACHE="/root/.cache/electron" \
-#          --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \
-#          -v ${PWD}:/project \
-#          -v ~/.cache/electron:/root/.cache/electron \
-#          -v ~/.cache/electron-builder:/root/.cache/electron-builder \
-#          electronuserland/builder:wine \
-#          /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn gh-publish"
-#    else
-#      yarn gh-publish
-#    fi
-#  deploy:
-#    provider: releases
-#    api_key: "$GH_TOKEN"
-#    skip_cleanup: true
-#    file_glob: true
-#    file:
-#      - dist/*
-#    on:
-#      tags: true
 
 jobs:
   include:
-  - stage: test
-    os: osx
-    osx_image: xcode9.4
-    language: node_js
-    node_js: '10'
-    env:
-      - ELECTRON_CACHE=$HOME/.cache/electron
-      - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-    <<: *build_jobs
-  - stage: test
-    os: linux
-    services: docker
-    language: generic
-    <<: *build_jobs
-  - stage: deploy
-    services: docker
-    install: true
-    script:
-    - docker run -it
-      -e JENKINS_AUTH_TOKEN=$JENKINS_AUTH_TOKEN
-      -e JENKINS_BUILD_TOKEN=$JENKINS_BUILD_TOKEN
-      -e JENKINS_BUILD_PROJECT=$TRAVIS_REPO_SLUG
-      -e JENKINS_BUILD_BRANCH=$TRAVIS_BRANCH
-      p1hub/p1jenkinstrigger
+    - stage: publish
+      os: osx
+      osx_image: xcode9.4
+      language: node_js
+      node_js: '10'
+      env:
+        - ELECTRON_CACHE=$HOME/.cache/electron
+        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
 notifications:
   slack:
