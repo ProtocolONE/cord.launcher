@@ -7,6 +7,7 @@ class AutoUpdaterManager {
   // --- TODO: changet fckng it
   constructor (mainWindow) {
     this.mainWindow = mainWindow
+    this.timeout = null
 
     app.on('remote-require', () => {
       autoUpdater.logger = log
@@ -65,10 +66,14 @@ class AutoUpdaterManager {
         app.exit(0)
       })
 
-      setInterval(() => {
-        autoUpdater.checkForUpdatesAndNotify()
-      }, 10 * 60 * 1000)
+      this.checkUpdates()
     })
+  }
+
+  checkUpdates () {
+    clearTimeout(this.timeout)
+    autoUpdater.checkForUpdatesAndNotify()
+    this.timeout = setTimeout(this.checkUpdates, 10 * 60 * 1000)
   }
 
   sendStatusToWindow (message) {
