@@ -1,6 +1,6 @@
 {
   "name": "cord.launcher",
-  "version": "0.0.3-beta",
+  "version": "0.0.3",
   "description": "Cord launcher based on Electron and Wep Application",
   "productName": "qilincord",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
