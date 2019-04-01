@@ -4,7 +4,7 @@ node_js: node
 
 stages:
   - name: deploy
-    if: (branch = master) or (tag =~ ^v)
+    if: (tag =~ ^v)
 
 jobs:
   include:
@@ -32,7 +32,7 @@ jobs:
         skip_cleanup: true
         file_glob: true
         draft: true
-          if: (branch = develop)
+          if: (tag =~ $beta)
         file:
           - dist/electron-mat/Packaged/*
         on:
