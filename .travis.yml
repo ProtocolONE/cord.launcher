@@ -4,7 +4,6 @@ node_js: node
 
 stages:
   - name: deploy
-    if: (tag =~ ^v)
 
 jobs:
   include:
@@ -32,7 +31,6 @@ jobs:
         skip_cleanup: true
         file_glob: true
         draft: true
-          if: (tag =~ $beta)
         file:
           - dist/electron-mat/Packaged/*
         on:
