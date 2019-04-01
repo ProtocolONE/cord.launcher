@@ -4,13 +4,13 @@
     "sourceMap": true,
     "target": "es5",
     "strict": true,
+    "noImplicitThis": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "module": "es2015",
     "moduleResolution": "node",
     "allowJs": true
   },
-  "typeRoots": ["types"],
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }

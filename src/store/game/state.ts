@@ -3,6 +3,25 @@ import { Game, Social } from 'interfaces'
 
 const { capitalize } = format
 
+function getSystemRequirements (os: string): Record<string, any> {
+  return {
+    minimal: {
+      OS: capitalize(os),
+      CPU: 'Quad core, 2.0 HHz',
+      RAM: '4 Gb',
+      GPU: '1 Gb RAM, Open GL 3.0',
+      diskSpace: '60 Gb'
+    },
+    recommended: {
+      OS: capitalize(os),
+      CPU: 'Quad core, 3.0 HHz',
+      RAM: '8 Gb',
+      GPU: '2 Gb RAM, Open GL 3.0',
+      diskSpace: '60 Gb'
+    }
+  }
+}
+
 const game: Game = {
   name: 'Shattered Planet',
   preview: 'statics/images/game-preview.jpg',
@@ -36,25 +55,6 @@ const socials: Social[] = [
   { icon: 'vk' },
   { icon: 'facebook-messenger' }
 ]
-
-function getSystemRequirements (os: string) {
-  return {
-    minimal: {
-      OS: capitalize(os),
-      CPU: 'Quad core, 2.0 HHz',
-      RAM: '4 Gb',
-      GPU: '1 Gb RAM, Open GL 3.0',
-      diskSpace: '60 Gb'
-    },
-    recommended: {
-      OS: capitalize(os),
-      CPU: 'Quad core, 3.0 HHz',
-      RAM: '8 Gb',
-      GPU: '2 Gb RAM, Open GL 3.0',
-      diskSpace: '60 Gb'
-    }
-  }
-}
 
 export default {
   game,

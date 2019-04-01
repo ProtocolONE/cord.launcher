@@ -13,6 +13,8 @@ export default class App extends Vue {
 
   @Watch('locale', { immediate: true })
   onLocaleChanged (value: string) {
+    // @ts-ignore
+    // TODO: fix it please - globally vue proto
     this.$updateLocale(value)
   }
 
