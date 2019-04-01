@@ -208,7 +208,6 @@ module.exports = function (ctx) {
         copyright: 'Copyright © 2019 ${author}',
         compression: 'normal',
         generateUpdatesFilesForAllChannels: true,
-        detectUpdateChannel: true,
         dmg: {
           contents: [
             {
