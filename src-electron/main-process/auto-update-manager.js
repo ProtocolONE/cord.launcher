@@ -1,4 +1,4 @@
-import { app, dialog, ipcMain, remote } from 'electron'
+import { app, dialog, ipcMain } from 'electron'
 import { autoUpdater } from 'electron-updater'
 import log from 'electron-log'
 
@@ -66,7 +66,7 @@ class AutoUpdaterManager {
         app.exit(0)
       })
 
-      this.checkUpdates()
+      setTimeout(() => this.checkUpdates(), 5000)
     })
   }
 

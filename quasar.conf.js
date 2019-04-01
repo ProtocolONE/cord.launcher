@@ -4,7 +4,13 @@ const { resolve } = require('path')
 const __root = resolve(__dirname)
 const isProd = (process.env.NODE_ENV === 'production')
 
+const electronPlugins = []
+
 global.__root = __root
+
+if (process.env.MODE === 'electron') {
+  electronPlugins.push('auto-update-manager')
+}
 
 module.exports = function (ctx) {
   return {
@@ -22,7 +28,12 @@ module.exports = function (ctx) {
       'trans',
       'update-locale',
       'open-url',
-      'base-components'
+      'base-components',
+
+      // --- electron plugins
+      ...(process.env.MODE === 'electron')
+        ? ['auto-update-manager']
+        : []
     ],
     css: [
       'app.styl'

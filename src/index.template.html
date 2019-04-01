@@ -22,9 +22,8 @@
       try {
         if (window && window.process && window.process.type) {
           console.log('ipcRenderer message in body script init.')
-          require('electron').ipcRenderer.on('message', (event, text) => {
-            console.info(text)
-          })
+          require('electron').ipcRenderer.on('message', (event, text) =>
+            console.info(text))
         }
       }
       catch (error) {

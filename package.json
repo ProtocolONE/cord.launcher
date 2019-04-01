@@ -1,6 +1,6 @@
 {
   "name": "cord.launcher",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Cord launcher based on Electron and Wep Application",
   "productName": "qilincord",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
@@ -12,10 +12,10 @@
   },
   "scripts": {
     "dev": "quasar dev -t mat",
-    "dev:ssr": "quasar dev -m ssr -t mat",
-    "dev:electron": "quasar dev -m electron -t mat",
+    "dev:ssr": "MODE=ssr quasar dev -m ssr -t mat",
+    "dev:electron": "MODE=electron quasar dev -m electron -t mat",
     "build": "yarn build:ssr && yarn build:electron:all",
-    "build:ssr": "quasar build -m ssr -t mat",
+    "build:ssr": "MODE=ssr quasar build -m ssr -t mat",
     "build:electron": "MODE=electron quasar build -m electron --target all -t mat",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix"
