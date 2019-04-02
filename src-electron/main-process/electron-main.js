@@ -102,16 +102,8 @@ function sendStatusToWindow (message) {
   mainWindow.webContents.send('message', message)
 }
 
-function changeChannel (channel) {
-  app.$store.set('channel', channel)
-  autoUpdater.channel = channel
-  checkUpdates()
-}
-
 autoUpdater.logger = log
 autoUpdater.logger.transports.file.level = 'info'
-autoUpdater.channel = app.$store.get('channel')
-autoUpdater.setFeedURL('https://github.com/ProtocolONE/cord.launcher.git')
 
 log.info('App starting...')
 
@@ -162,6 +154,5 @@ app.on('ready', () => {
     Menu.buildFromTemplate(templateMenu)
   )
   createWindow()
-  changeChannel(app.$store.get('channel') || 'latest')
-  ipcMain.on('change-channel', (event, value) => changeChannel(value))
+  checkUpdates()
 })
