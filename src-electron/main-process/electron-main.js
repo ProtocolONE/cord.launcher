@@ -104,6 +104,7 @@ function sendStatusToWindow (message) {
 
 autoUpdater.logger = log
 autoUpdater.logger.transports.file.level = 'info'
+autoUpdater.channel = app.$store.get('channel') || 'latest'
 
 log.info('App starting...')
 
@@ -151,6 +152,7 @@ autoUpdater.on('update-downloaded', () => {
 
 ipcMain.on('change-channel', (_, value) => {
   autoUpdater.channel = value
+  app.$store.set('channel', value)
   checkUpdates()
 })
 
