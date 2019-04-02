@@ -16,7 +16,7 @@ export default class Launcher extends Vue {
   channels = ['latest', 'beta'].map(c => ({ label: c, value: c }))
   channel = null
 
-  handleChange (value) {
+  handleChange (value: string) {
     require('electron').ipcRenderer.send('change-channel', value)
   }
 

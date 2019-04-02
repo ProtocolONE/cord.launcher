@@ -204,10 +204,8 @@ module.exports = function (ctx) {
         // https://www.electron.build/configuration/configuration
         appId: 'com.qilincord.app',
         productName: 'qilincord',
-        artifactName: '${productName}-${channel}-${version}.${ext}',
+        artifactName: '${productName}-${version}.${ext}',
         copyright: 'Copyright © 2019 ${author}',
-        compression: 'normal',
-        generateUpdatesFilesForAllChannels: true,
         dmg: {
           contents: [
             {
@@ -222,6 +220,9 @@ module.exports = function (ctx) {
               type: 'file'
             }
           ]
+        },
+        mac: {
+          category: 'com.qilincord.app.category'
         }
       }
     }

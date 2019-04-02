@@ -1,12 +1,16 @@
 import {
   app,
   BrowserWindow,
-  Menu
+  Menu,
+  dialog,
+  ipcMain
 } from 'electron'
+
+import { autoUpdater } from 'electron-updater'
+import log from 'electron-log'
 
 import templateMenu from './electron-menu'
 import Store from '../store'
-import AutoUpdateManager from './auto-update-manager'
 
 const store = new Store({
   configName: 'user-preferences',
@@ -78,19 +82,77 @@ app.on('activate', () => {
   }
 })
 
+/**
+ * Auto Updater
+ *
+ * Uncomment the following code below and install `electron-updater` to
+ * support auto updating. Code Signing with a valid certificate is required.
+ * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
+ */
+let timeout = null
+
+function checkUpdates () {
+  clearTimeout(timeout)
+  autoUpdater.checkForUpdatesAndNotify()
+  timeout = setTimeout(checkUpdates, 10 * 60 * 1000)
+}
+
+function sendStatusToWindow (message) {
+  log.info(message)
+  mainWindow.webContents.send('message', message)
+}
+
+autoUpdater.logger = log
+autoUpdater.logger.transports.file.level = 'info'
+
+log.info('App starting...')
+
+autoUpdater.on('checking-for-update', () => {
+  sendStatusToWindow('Checking for update...')
+})
+
+autoUpdater.on('update-available', () => {
+  sendStatusToWindow('Update available.')
+})
+
+autoUpdater.on('update-not-available', () => {
+  sendStatusToWindow('Update not available.')
+})
+
+autoUpdater.on('error', error => {
+  sendStatusToWindow(`Error in auto-updater. ${ error }`)
+})
+
+autoUpdater.on('download-progress', (progressObj) => {
+  let { bytesPerSecond, percent, transferred, total } = progressObj
+  let logMessage = `Download speed: ${ bytesPerSecond }`
+
+  logMessage = `${ logMessage } - Downloaded ${ percent } %`
+  logMessage = `${ logMessage } (${ transferred }/${ total })`
+
+  sendStatusToWindow(logMessage)
+})
+
+autoUpdater.on('update-downloaded', () => {
+  console.log('update-downloaded lats quitAndInstall')
+  dialog.showMessageBox({
+    type: 'info',
+    title: 'Found Updates',
+    message: 'Found updates, do you want update now?',
+    buttons: ['Sure', 'No']
+  }, buttonIndex => {
+    if (buttonIndex === 0) {
+      let isSilent = true
+      let isForceRunAfter = true
+      autoUpdater.quitAndInstall(isSilent, isForceRunAfter)
+    }
+  })
+})
+
 app.on('ready', () => {
   Menu.setApplicationMenu(
     Menu.buildFromTemplate(templateMenu)
   )
-
   createWindow()
-
-  /**
-   * Auto Updater
-   *
-   * Uncomment the following code below and install `electron-updater` to
-   * support auto updating. Code Signing with a valid certificate is required.
-   * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
-   */
-  new AutoUpdateManager(mainWindow)
+  checkUpdates()
 })
