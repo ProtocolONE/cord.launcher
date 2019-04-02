@@ -149,6 +149,11 @@ autoUpdater.on('update-downloaded', () => {
   })
 })
 
+ipcMain.on('change-channel', (_, value) => {
+  autoUpdater.channel = value
+  checkUpdates()
+})
+
 app.on('ready', () => {
   Menu.setApplicationMenu(
     Menu.buildFromTemplate(templateMenu)

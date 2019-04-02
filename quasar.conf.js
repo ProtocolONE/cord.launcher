@@ -206,6 +206,7 @@ module.exports = function (ctx) {
         productName: 'qilincord',
         artifactName: '${productName}-${version}.${ext}',
         copyright: 'Copyright © 2019 ${author}',
+        generateUpdatesFilesForAllChannels: true,
         dmg: {
           contents: [
             {
