@@ -96,10 +96,10 @@ async function getFeedURL () {
   let url = 'https://api.github.com/repos/ProtocolONE/cord.launcher/releases'
   let { data } = await axios.get(url)
   let channel = app.$store.get('channel') || ''
-  let { tag_name: tag } = data
+  let { id } = data
     .filter(({ prerelease }) => (channel === 'beta') ? prerelease : !prerelease)
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0]
-  return `${ url }/${ tag }`
+  return `${ url }/${ id }`
 }
 
 async function checkUpdates () {
