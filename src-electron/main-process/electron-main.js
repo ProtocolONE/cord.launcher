@@ -8,6 +8,7 @@ import {
 
 import { autoUpdater } from 'electron-updater'
 import log from 'electron-log'
+import axios from 'axios'
 
 import templateMenu from './electron-menu'
 import Store from '../store'
@@ -15,7 +16,7 @@ import Store from '../store'
 const store = new Store({
   configName: 'user-preferences',
   defaults: {
-    channel: 'latest',
+    channel: '',
     windowBounds: {
       x: 0,
       y: 0,
@@ -91,8 +92,19 @@ app.on('activate', () => {
  */
 let timeout = null
 
-function checkUpdates () {
+async function getFeedURL () {
+  let url = 'https://api.github.com/repos/ProtocolONE/cord.launcher/releases'
+  let { data } = await axios.get(url)
+  let channel = app.$store.get('channel') || ''
+  let { tag_name: tag } = data
+    .filter(({ prerelease }) => (channel === 'beta') ? prerelease : !prerelease)
+    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0]
+  return `${ url }/${ tag }`
+}
+
+async function checkUpdates () {
   clearTimeout(timeout)
+  autoUpdater.setFeedURL(await getFeedURL())
   autoUpdater.checkForUpdatesAndNotify()
   timeout = setTimeout(checkUpdates, 10 * 60 * 1000)
 }
@@ -150,7 +162,7 @@ autoUpdater.on('update-downloaded', () => {
 })
 
 ipcMain.on('change-channel', (_, value) => {
-  autoUpdater.channel = value
+  app.$store.set('channel', value)
   checkUpdates()
 })
 
