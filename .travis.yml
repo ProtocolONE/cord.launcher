@@ -43,7 +43,7 @@ jobs:
             - dist/electron-mat/Packaged/*
           skip_cleanup: true
           on:
-            tags: true
+            branch: master
                       
 
 notifications:
