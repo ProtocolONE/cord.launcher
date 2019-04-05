@@ -37,10 +37,10 @@ jobs:
         - provider: s3
           access_key_id: $S3_ACCESS_KEY_ID
           secret_access_key: $S3_SECRET_KEY
+          region: $S3_REGION
           bucket: $S3_BUCKET
           upload-dir: "dist/releases"
-          file: 
-            - dist/electron-mat/Packaged/*
+          local_dir: dist/electron-mat/Packaged/
           skip_cleanup: true
           on:
             branch: master
