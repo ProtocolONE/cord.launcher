@@ -24,7 +24,7 @@ jobs:
           - "$HOME/.cache/electron-builder"
       script:
         - yarn lint
-        - yarn build:electron
+        - yarn release
       deploy:
         - provider: releases
           api_key: "$GH_TOKEN"
@@ -40,7 +40,7 @@ jobs:
           region: $S3_REGION
           bucket: $S3_BUCKET
           upload-dir: "dist/releases"
-          local_dir: dist/electron-mat/Packaged/
+          local_dir: "dist/releases/"
           skip_cleanup: true
           on:
             branch: master
