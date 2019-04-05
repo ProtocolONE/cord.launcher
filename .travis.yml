@@ -26,14 +26,25 @@ jobs:
         - yarn lint
         - yarn build:electron
       deploy:
-        provider: releases
-        api_key: "$GH_TOKEN"
-        skip_cleanup: true
-        file_glob: true
-        file:
-          - dist/electron-mat/Packaged/*
-        on:
-          tags: true
+        - provider: releases
+          api_key: "$GH_TOKEN"
+          skip_cleanup: true
+          file_glob: true
+          file:
+            - dist/electron-mat/Packaged/*
+          on:
+            tags: true
+        - provider: s3
+          access_key_id: $S3_ACCESS_KEY_ID
+          secret_access_key: $S3_SECRET_KEY
+          bucket: $S3_BUCKET
+          upload-dir: "dist/releases"
+          file: 
+            - dist/electron-mat/Packaged/*
+          skip_cleanup: true
+          on:
+            tags: true
+                      
 
 notifications:
   slack:
