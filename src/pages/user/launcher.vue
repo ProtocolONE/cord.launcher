@@ -13,7 +13,7 @@ import { Vue, Component } from 'vue-property-decorator'
 
 @Component
 export default class Launcher extends Vue {
-  channels = ['latest', 'beta'].map(c => ({ label: c, value: c }))
+  channels = ['stable', 'beta', 'alpha'].map(c => ({ label: c, value: c }))
   channel = null
 
   handleChange (value: string) {
@@ -21,8 +21,8 @@ export default class Launcher extends Vue {
   }
 
   created () {
-    this.channel = require('electron').remote.app.$store.get('channel') ||
-      this.channels[0].value
+    let defaultChannel = require('electron').remote.app.$store.get('channel')
+    this.channel = defaultChannel || this.channels[0].value
   }
 }
 </script>

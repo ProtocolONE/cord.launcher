@@ -2,21 +2,17 @@ import {
   app,
   BrowserWindow,
   Menu,
-  dialog,
   ipcMain
 } from 'electron'
 
-import { autoUpdater } from 'electron-updater'
-import log from 'electron-log'
-import axios from 'axios'
-
 import templateMenu from './electron-menu'
 import Store from '../store'
+import AutoUpdateManager from './auto-update-manager'
 
 const store = new Store({
   configName: 'user-preferences',
   defaults: {
-    channel: '',
+    channel: 'stable',
     windowBounds: {
       x: 0,
       y: 0,
@@ -26,6 +22,8 @@ const store = new Store({
     }
   }
 })
+
+const autoUpdater = new AutoUpdateManager(store.get('channel') || 'stable')
 
 app.$store = store
 
@@ -69,6 +67,8 @@ function createWindow () {
   mainWindow.on('resize', handleMovedOrResize)
 
   mainWindow.on('closed', handleClosed)
+  
+  mainWindow.webContents.on('did-frame-finish-load', () => autoUpdater.init(mainWindow))
 }
 
 app.on('window-all-closed', () => {
@@ -83,87 +83,9 @@ app.on('activate', () => {
   }
 })
 
-/**
- * Auto Updater
- *
- * Uncomment the following code below and install `electron-updater` to
- * support auto updating. Code Signing with a valid certificate is required.
- * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
- */
-let timeout = null
-
-async function getFeedURL () {
-  let url = 'https://api.github.com/repos/ProtocolONE/cord.launcher/releases'
-  let { data } = await axios.get(url)
-  let channel = app.$store.get('channel') || ''
-  let { id } = data
-    .filter(({ prerelease }) => (channel === 'beta') ? prerelease : !prerelease)
-    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0]
-  return `${ url }/${ id }`
-}
-
-async function checkUpdates () {
-  clearTimeout(timeout)
-  autoUpdater.setFeedURL(await getFeedURL())
-  autoUpdater.checkForUpdatesAndNotify()
-  timeout = setTimeout(checkUpdates, 10 * 60 * 1000)
-}
-
-function sendStatusToWindow (message) {
-  log.info(message)
-  mainWindow.webContents.send('message', message)
-}
-
-autoUpdater.logger = log
-autoUpdater.logger.transports.file.level = 'info'
-
-log.info('App starting...')
-
-autoUpdater.on('checking-for-update', () => {
-  sendStatusToWindow('Checking for update...')
-})
-
-autoUpdater.on('update-available', () => {
-  sendStatusToWindow('Update available.')
-})
-
-autoUpdater.on('update-not-available', () => {
-  sendStatusToWindow('Update not available.')
-})
-
-autoUpdater.on('error', error => {
-  sendStatusToWindow(`Error in auto-updater. ${ error }`)
-})
-
-autoUpdater.on('download-progress', (progressObj) => {
-  let { bytesPerSecond, percent, transferred, total } = progressObj
-  let logMessage = `Download speed: ${ bytesPerSecond }`
-
-  logMessage = `${ logMessage } - Downloaded ${ percent } %`
-  logMessage = `${ logMessage } (${ transferred }/${ total })`
-
-  sendStatusToWindow(logMessage)
-})
-
-autoUpdater.on('update-downloaded', () => {
-  console.log('update-downloaded lats quitAndInstall')
-  dialog.showMessageBox({
-    type: 'info',
-    title: 'Found Updates',
-    message: 'Found updates, do you want update now?',
-    buttons: ['Sure', 'No']
-  }, buttonIndex => {
-    if (buttonIndex === 0) {
-      let isSilent = true
-      let isForceRunAfter = true
-      autoUpdater.quitAndInstall(isSilent, isForceRunAfter)
-    }
-  })
-})
-
 ipcMain.on('change-channel', (_, value) => {
-  app.$store.set('channel', value)
-  checkUpdates()
+  store.set('channel', value)
+  autoUpdater.updateChannel(value)
 })
 
 app.on('ready', () => {
@@ -171,5 +93,4 @@ app.on('ready', () => {
     Menu.buildFromTemplate(templateMenu)
   )
   createWindow()
-  checkUpdates()
 })
