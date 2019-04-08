@@ -25,14 +25,16 @@ jobs:
           - $HOME/.cache/electron-builder
       script:
         - yarn lint
-        - yarn release:$TRAVIS_BRANCH
+        # - yarn release:$TRAVIS_BRANCH
       deploy:
         - provider: releases
           api_key: $GH_TOKEN
           skip_cleanup: true
           file_glob: true
-          file:
-            - dist/release/$TRAVIS_BRANCH/*
+          prerelease: true
+            if: branch IN (beta, alpha)
+          # file:
+            # - dist/release/$TRAVIS_BRANCH/*
           on:
             tags: true
         - provider: s3
