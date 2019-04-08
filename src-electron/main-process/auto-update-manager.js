@@ -87,7 +87,7 @@ export default class AutoUpdateManager {
   get feedURLOptions () {
     let channel = this.autoUpdater.channel
     return {
-      url: 'https://github.com/ProtocolONE/cord.launcher/releases/' + channel,
+      url: `https://cordfiles.protocol.one/dist/releases/${ channel }`,
       provider: 'generic',
       channel
     }

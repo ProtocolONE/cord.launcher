@@ -241,7 +241,7 @@ module.exports = function (ctx) {
           ]
         },
         publish: {
-          url: `/releases/${ channel }`,
+          url: `https://cordfiles.protocol.one/dist/releases/${ channel }`,
           provider: 'generic',
           channel
         }
