@@ -47,6 +47,9 @@ jobs:
           prerelease: branch IN (beta, alpha)
           file:
             - dist/release/$TRAVIS_BRANCH/*
+          on:
+            all_branches: true
+            condition: $TRAVIS_BRANCH =~ ^stable|beta|alpha$
         - provider: s3
           access_key_id: $S3_ACCESS_KEY_ID
           secret_access_key: $S3_SECRET_KEY
@@ -54,7 +57,10 @@ jobs:
           bucket: $S3_BUCKET
           upload-dir: dist/releases
           local_dir: dist/releases/
-          skip_cleanup: true                      
+          skip_cleanup: true
+          on:
+            all_branches: true
+            condition: $TRAVIS_BRANCH =~ ^stable|beta|alpha$
 
 notifications:
   slack:
