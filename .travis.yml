@@ -25,7 +25,6 @@ jobs:
           - $HOME/.cache/electron-builder
       script:
         - yarn lint
-        # - yarn release:$TRAVIS_BRANCH
       deploy:
         - provider: releases
           api_key: $GH_TOKEN
@@ -33,10 +32,10 @@ jobs:
           file_glob: true
           prerelease: true
             if: branch IN (beta, alpha)
-          # file:
-            # - dist/release/$TRAVIS_BRANCH/*
           on:
             tags: true
+            all_branches: true
+            condition: branch IN (stable, beta, alpha)
         - provider: s3
           access_key_id: $S3_ACCESS_KEY_ID
           secret_access_key: $S3_SECRET_KEY
@@ -47,6 +46,11 @@ jobs:
           skip_cleanup: true
           on:
             tags: true
+            all_branches: true
+            condition: branch IN (stable, beta, alpha)
+
+
+
                       
 
 notifications:
