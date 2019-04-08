@@ -34,31 +34,42 @@ jobs:
       cache:
         directories:
           - node_modules
-          - "$HOME/.cache/electron"
-          - "$HOME/.cache/electron-builder"
+          - $HOME/.cache/electron
+          - $HOME/.cache/electron-builder
       script:
         - yarn lint
-        - "yarn release:$TRAVIS_BRANCH"
+        - yarn release:$TRAVIS_BRANCH
       deploy:
         - provider: releases
           api_key: $GH_TOKEN
           skip_cleanup: true
           file_glob: true
-          prerelease: true
-            if: branch IN (beta, alpha)
           file:
-            - "dist/release/$TRAVIS_BRANCH/*"
+            - dist/electron-mat/Packaged/*
           on:
-            tags: true
+            all_branches: true
+            condition: $TRAVIS_BRANCH =~ ^stable$
+        - provider: releases
+          api_key: $GH_TOKEN
+          skip_cleanup: true
+          file_glob: true
+          prerelease: true
+          file:
+            - dist/release/$TRAVIS_BRANCH/*
+          on:
+            all_branches: true
+            condition: $TRAVIS_BRANCH =~ ^beta|alpha$
         - provider: s3
           access_key_id: $S3_ACCESS_KEY_ID
           secret_access_key: $S3_SECRET_KEY
           region: $S3_REGION
           bucket: $S3_BUCKET
-          upload-dir: "dist/releases"
-          local_dir: "dist/releases/"
+          upload-dir: dist/releases
+          local_dir: dist/releases/
           skip_cleanup: true
-                      
+          on:
+            all_branches: true
+            condition: $TRAVIS_BRANCH =~ ^stable|beta|alpha$
 
 notifications:
   slack:
