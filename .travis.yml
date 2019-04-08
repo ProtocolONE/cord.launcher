@@ -55,7 +55,7 @@ jobs:
           file_glob: true
           prerelease: true
           file:
-            - dist/release/$TRAVIS_BRANCH/*
+            - dist/electron-mat/Packaged/*
           on:
             all_branches: true
             condition: $TRAVIS_BRANCH =~ ^beta|alpha$
