@@ -14,7 +14,6 @@ branches:
   - stable
   - beta
   - alpha
-  - /^v\d+\.\d+(\.\d+)?(-beta|-alpha)?(\.\d+)?$/
 
 stages:
   - name: deploy
@@ -58,6 +57,8 @@ jobs:
           upload-dir: "dist/releases"
           local_dir: "dist/releases/"
           skip_cleanup: true
+          on:
+            tags: true
                       
 
 notifications:
