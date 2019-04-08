@@ -6,9 +6,12 @@ const isProd = (process.env.NODE_ENV === 'production')
 
 const electronPlugins = []
 
+const isElectron = (process.env.MODE === 'electron')
+const channel = (process.env.CHANNEL || 'stable')
+
 global.__root = __root
 
-if (process.env.MODE === 'electron') {
+if (isElectron) {
   electronPlugins.push('auto-update-manager')
 }
 
@@ -16,9 +19,9 @@ module.exports = function (ctx) {
   return {
     // html vars
     htmlVariables: {
-      title: (process.env.MODE === 'electron')
-        ? 'qilincord ' + process.env.npm_package_version
-        : 'qilincord'
+      title: (isElectron)
+        ? 'cordlauncher ' + process.env.npm_package_version
+        : 'cordlauncher'
     },
     // app plugins (/src/plugins)
     plugins: [
@@ -31,9 +34,7 @@ module.exports = function (ctx) {
       'base-components',
 
       // --- electron plugins
-      ...(process.env.MODE === 'electron')
-        ? ['auto-update-manager']
-        : []
+      ...(isElectron ? ['auto-update-manager'] : [])
     ],
     css: [
       'app.styl'
@@ -154,14 +155,14 @@ module.exports = function (ctx) {
     // animations: 'all' --- includes all animations
     animations: [],
     ssr: {
-      pwa: (process.env.MODE === 'electron')
+      pwa: isElectron
     },
     pwa: {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {},
       manifest: {
-        name: 'qilincord',
-        short_name: 'qilincord-PWA',
+        name: 'cordlauncher',
+        short_name: 'cordlauncher-PWA',
         description: 'Cord launcher based on Electron and Wep Application',
         display: 'standalone',
         theme_color: '#027be3',
@@ -202,11 +203,11 @@ module.exports = function (ctx) {
       },
       builder: {
         // https://www.electron.build/configuration/configuration
-        appId: 'com.qilincord.app',
-        productName: 'qilincord',
-        artifactName: '${productName}-${version}.${ext}',
+        appId: 'protocol.one.cordlauncher.app',
+        productName: 'cordlauncher',
+        artifactName: '${productName}' + ((channel === 'stable') ? '-' : (`-${ channel }-`)) + '${version}.${ext}',
         copyright: 'Copyright © 2019 ${author}',
-        generateUpdatesFilesForAllChannels: true,
+        compression: 'normal',
         dmg: {
           contents: [
             {
@@ -223,7 +224,26 @@ module.exports = function (ctx) {
           ]
         },
         mac: {
-          category: 'com.qilincord.app.category'
+          category: 'public.app-category.games',
+          target: [
+            'dmg',
+            'zip'
+          ]
+        },
+        win: {
+          target: [
+            'nsis'
+          ]
+        },
+        linux: {
+          target: [
+            'AppImage'
+          ]
+        },
+        publish: {
+          url: `/releases/${ channel }`,
+          provider: 'generic',
+          channel
         }
       }
     }

@@ -2,6 +2,20 @@ language: node_js
 sudo: false
 node_js: node
 
+# blocklist
+branches:
+  except:
+  - master
+  - develop
+
+# safelist
+branches:
+  only:
+  - stable
+  - beta
+  - alpha
+  - /^v\d+\.\d+(\.\d+)?(-beta|-alpha)?(\.\d+)?$/
+
 stages:
   - name: deploy
 
@@ -24,16 +38,27 @@ jobs:
           - "$HOME/.cache/electron-builder"
       script:
         - yarn lint
-        - yarn build:electron
+        - "yarn release:$TRAVIS_BRANCH"
       deploy:
-        provider: releases
-        api_key: "$GH_TOKEN"
-        skip_cleanup: true
-        file_glob: true
-        file:
-          - dist/electron-mat/Packaged/*
-        on:
-          tags: true
+        - provider: releases
+          api_key: $GH_TOKEN
+          skip_cleanup: true
+          file_glob: true
+          prerelease: true
+            if: branch IN (beta, alpha)
+          file:
+            - "dist/release/$TRAVIS_BRANCH/*"
+          on:
+            tags: true
+        - provider: s3
+          access_key_id: $S3_ACCESS_KEY_ID
+          secret_access_key: $S3_SECRET_KEY
+          region: $S3_REGION
+          bucket: $S3_BUCKET
+          upload-dir: "dist/releases"
+          local_dir: "dist/releases/"
+          skip_cleanup: true
+                      
 
 notifications:
   slack:

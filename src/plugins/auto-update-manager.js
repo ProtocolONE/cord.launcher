@@ -7,7 +7,6 @@ export default () => {
       let { ipcRenderer } = require('electron')
       console.log('ipcRenderer message init.')
       ipcRenderer.on('message', (event, text) => {
-        console.info(text)
         Notify.create({
           message: text,
           type: 'info',
