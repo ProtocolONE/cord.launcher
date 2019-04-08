@@ -45,7 +45,7 @@ jobs:
           skip_cleanup: true
           file_glob: true
           file:
-            - dist/release/$TRAVIS_BRANCH/*
+            - dist/electron-mat/Packaged/*
           on:
             all_branches: true
             condition: $TRAVIS_BRANCH =~ ^stable$
