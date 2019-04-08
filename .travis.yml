@@ -44,12 +44,21 @@ jobs:
           api_key: $GH_TOKEN
           skip_cleanup: true
           file_glob: true
-          prerelease: branch IN (beta, alpha)
           file:
             - dist/release/$TRAVIS_BRANCH/*
           on:
             all_branches: true
-            condition: $TRAVIS_BRANCH =~ ^stable|beta|alpha$
+            condition: $TRAVIS_BRANCH =~ ^stable$
+        - provider: releases
+          api_key: $GH_TOKEN
+          skip_cleanup: true
+          file_glob: true
+          prerelease: true
+          file:
+            - dist/release/$TRAVIS_BRANCH/*
+          on:
+            all_branches: true
+            condition: $TRAVIS_BRANCH =~ ^beta|alpha$
         - provider: s3
           access_key_id: $S3_ACCESS_KEY_ID
           secret_access_key: $S3_SECRET_KEY
