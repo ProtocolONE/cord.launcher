@@ -15,7 +15,7 @@ if (isElectron) {
   electronPlugins.push('auto-update-manager')
 }
 
-module.exports = function (ctx) {
+module.exports = function () {
   return {
     // html vars
     htmlVariables: {
