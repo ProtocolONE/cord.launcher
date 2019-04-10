@@ -18,7 +18,7 @@
     "build:ssr": "MODE=ssr quasar build -m ssr -t mat",
     "build:electron": "MODE=electron quasar build -m electron -t mat",
     "build:electron:stable": "MODE=electron quasar build -m electron -t mat -T all -A x64",
-    "build:electron:stable:test": "MODE=electron quasar build -m electron -t mat -T mac -A x64",
+    "build:electron:stable:test": "MODE=electron quasar build -m electron -t mat -T darwin -A x64",
     "build:electron:beta": "MODE=electron CHANNEL=beta quasar build -m electron -t mat -T all -A x64",
     "build:electron:alpha": "MODE=electron CHANNEL=alpha quasar build -m electron -t mat -T all -A x64",
     "release": "yarn build:electron && MODE=electron node electron-release",
