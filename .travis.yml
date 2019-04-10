@@ -46,7 +46,6 @@ jobs:
           file:
             - dist/electron-mat/Packaged/*
           on:
-            tags: true
             all_branches: true
             condition: $TRAVIS_BRANCH =~ ^stable$
         - provider: releases
@@ -57,7 +56,6 @@ jobs:
           file:
             - dist/electron-mat/Packaged/*
           on:
-            tags: true
             all_branches: true
             condition: $TRAVIS_BRANCH =~ ^beta|alpha$
         - provider: s3
@@ -69,7 +67,6 @@ jobs:
           local_dir: dist/releases/
           skip_cleanup: true
           on:
-            tags: true
             all_branches: true
             condition: $TRAVIS_BRANCH =~ ^stable|beta|alpha$
 
