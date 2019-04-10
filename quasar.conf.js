@@ -233,7 +233,7 @@ module.exports = function () {
             'zip'
           ],
           // identity: CSC_LINK,
-          identity: `Developer ID Application: Valentin Vesvalo (${ CSC_LINK })`
+          identity: `Developer ID Application: Valentin Vesvalo (4NUS338MFZ)`
         },
         win: {
           target: [
