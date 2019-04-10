@@ -9,13 +9,16 @@ const electronPlugins = []
 const isElectron = (process.env.MODE === 'electron')
 const channel = (process.env.CHANNEL || 'stable')
 
+// --- passed from travis
+const CSC_LINK = process.env.CSC_LINK
+
 global.__root = __root
 
 if (isElectron) {
   electronPlugins.push('auto-update-manager')
 }
 
-module.exports = function (ctx) {
+module.exports = function () {
   return {
     // html vars
     htmlVariables: {
@@ -228,7 +231,8 @@ module.exports = function (ctx) {
           target: [
             'dmg',
             'zip'
-          ]
+          ],
+          identity: CSC_LINK
         },
         win: {
           target: [
