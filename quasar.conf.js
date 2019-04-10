@@ -10,7 +10,7 @@ const isElectron = (process.env.MODE === 'electron')
 const channel = (process.env.CHANNEL || 'stable')
 
 // --- passed from travis
-const CSC_LINK = process.env.CSC_LINK
+// const CSC_LINK = process.env.CSC_LINK
 
 global.__root = __root
 
@@ -231,8 +231,9 @@ module.exports = function () {
           target: [
             'dmg',
             'zip'
-          ],
-          identity: CSC_LINK
+          ]
+          // identity: CSC_LINK,
+          // identity: `Developer ID Application: Valentin Vesvalo (4NUS338MFZ)`
         },
         win: {
           target: [
