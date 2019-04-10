@@ -9,9 +9,6 @@ const electronPlugins = []
 const isElectron = (process.env.MODE === 'electron')
 const channel = (process.env.CHANNEL || 'stable')
 
-// --- passed from travis
-// const CSC_LINK = process.env.CSC_LINK
-
 global.__root = __root
 
 if (isElectron) {
