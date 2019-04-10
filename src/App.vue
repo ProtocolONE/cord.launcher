@@ -19,7 +19,7 @@ export default class App extends Vue {
 
   created () {
     console.log(
-      'v0.0.1'
+      'v0.0.3-beta.1'
     )
   }
 }
