@@ -16,11 +16,5 @@ export default class App extends Vue {
     // TODO: fix it please - globally vue proto
     this.$updateLocale(value)
   }
-
-  created () {
-    console.log(
-      'v0.0.1'
-    )
-  }
 }
 </script>
