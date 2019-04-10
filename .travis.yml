@@ -38,7 +38,7 @@ jobs:
           - $HOME/.cache/electron-builder
       script:
         - yarn lint
-        - yarn release:$TRAVIS_BRANCH
+        - CSC_LINK=$CSC_LINK yarn release:$TRAVIS_BRANCH
       deploy:
         - provider: releases
           api_key: $GH_TOKEN
