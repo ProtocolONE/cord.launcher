@@ -205,7 +205,6 @@ module.exports = function () {
         // https://www.electron.build/configuration/configuration
         appId: 'protocol.one.cordlauncher.app',
         productName: 'cordlauncher',
-        artifactName: '${productName}' + ((channel === 'stable') ? '-' : (`-${ channel }-`)) + '${version}.${ext}',
         copyright: 'Copyright © 2019 ${author}',
         dmg: {
           contents: [
