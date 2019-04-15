@@ -72,9 +72,8 @@ export default class AutoUpdateManager {
 
   checkForUpdates () {
     clearTimeout(this.timeout)
-    
     this.autoUpdater.checkForUpdatesAndNotify()
-    this.timeout = setTimeout(this.checkForUpdates, 10 * 60 * 1000)
+    this.timeout = setTimeout(() => this.checkForUpdates(), 10 * 60 * 1000)
   }
 
   sendMessageToWindow (message, send = true) {
