@@ -231,6 +231,8 @@ module.exports = function () {
           ]
         },
         win: {
+          verifyUpdateCodeSignature: false,
+          signAndEditExecutable: false,
           target: [
             'nsis'
           ]
