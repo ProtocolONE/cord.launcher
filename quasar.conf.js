@@ -207,7 +207,6 @@ module.exports = function () {
         productName: 'cordlauncher',
         artifactName: '${productName}' + ((channel === 'stable') ? '-' : (`-${ channel }-`)) + '${version}.${ext}',
         copyright: 'Copyright © 2019 ${author}',
-        compression: 'normal',
         dmg: {
           contents: [
             {
@@ -231,11 +230,7 @@ module.exports = function () {
           ]
         },
         win: {
-          verifyUpdateCodeSignature: false,
-          signAndEditExecutable: false,
-          target: [
-            'nsis'
-          ]
+          verifyUpdateCodeSignature: false
         },
         linux: {
           target: [
