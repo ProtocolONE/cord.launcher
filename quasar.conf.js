@@ -229,7 +229,8 @@ module.exports = function () {
           ]
         },
         win: {
-          verifyUpdateCodeSignature: false
+          verifyUpdateCodeSignature: false,
+          signingHashAlgorithms: ['sha256']
         },
         linux: {
           target: [
