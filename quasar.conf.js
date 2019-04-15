@@ -206,6 +206,7 @@ module.exports = function () {
         appId: 'protocol.one.cordlauncher.app',
         productName: 'cordlauncher',
         copyright: 'Copyright © 2019 ${author}',
+        artifactName: '${productName}.${ext}',
         dmg: {
           contents: [
             {
