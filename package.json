@@ -1,6 +1,6 @@
 {
   "name": "cordlauncher",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Cord launcher based on Electron and Wep Application",
   "productName": "qilincord",
   "author": "borisbutenko <iamborisbutenko@gmail.com>",
@@ -24,8 +24,8 @@
     "release:stable": "yarn build:electron:stable && MODE=electron node electron-release",
     "release:beta": "yarn build:electron:beta && MODE=electron CHANNEL=beta node electron-release",
     "release:alpha": "yarn build:electron:alpha && MODE=electron CHANNEL=alpha node electron-release",
-    "lint": "eslint --ext .js,.vue src",
-    "lint:fix": "eslint --ext .js,.vue src --fix"
+    "lint": "eslint --ext .js,.vue src && eslint --ext .js src-electron",
+    "lint:fix": "eslint --ext .js,.vue src --fix && eslint --ext .js src-electron --fix"
   },
   "dependencies": {
     "axios": "^0.18.0",
