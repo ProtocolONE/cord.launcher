@@ -34,7 +34,7 @@ module.exports = function () {
       'base-components',
 
       // --- electron plugins
-      ...(isElectron ? ['auto-update-manager'] : [])
+      ...(isElectron ? ['auto-update-manager', 'electron-store'] : [])
     ],
     css: [
       'app.styl'

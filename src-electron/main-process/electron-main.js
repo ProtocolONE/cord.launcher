@@ -12,6 +12,7 @@ import AutoUpdateManager from './auto-update-manager'
 const store = new Store({
   configName: 'user-preferences',
   defaults: {
+    route: null,
     channel: 'stable',
     windowBounds: {
       x: 0,

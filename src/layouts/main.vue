@@ -1,10 +1,7 @@
 <template lang="pug">
 q-layout.main
   q-layout-header.main-header: main-header
-  q-page-container.main-container
-    slot
-      router-view(v-if="online" :id="$route.name")
-      offline(v-else)
+  q-page-container.main-container: slot: router-view
   q-layout-footer.main-footer: main-footer
 </template>
 
