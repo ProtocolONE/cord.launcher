@@ -47,17 +47,23 @@ if (process.env.DEV) {
   }
 }
 
-/**
- * checking mainWindow existing instance
- */
-if (mainWindow && !app.requestSingleInstanceLock()) {
+const gotTheLock = app.requestSingleInstanceLock()
+
+if (!gotTheLock) {
   app.quit()
 }
 else {
+  app.on('second-instance', () => {
+    if (mainWindow) {
+      mainWindow.show()
+      mainWindow.focus()
+    }
+  })
+
   /**
- * Set `__statics` path to static files in production;
- * The reason we are setting it here is that the path needs to be evaluated at runtime
- */
+   * Set `__statics` path to static files in production;
+   * The reason we are setting it here is that the path needs to be evaluated at runtime
+   */
   if (process.env.PROD) {
     global.__statics = join(__dirname, 'statics').replace(/\\/g, '\\\\')
   }
@@ -123,15 +129,6 @@ else {
     autoUpdater.updateChannel(value)
   })
 
-  app.on('second-instance', () => {
-    if (mainWindow) {
-      if (mainWindow.isMinimized()) {
-        mainWindow.restore()
-      }
-      mainWindow.focus()
-    }
-  })
-
   app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
       app.quit()
@@ -148,7 +145,6 @@ else {
     Menu.setApplicationMenu(
       Menu.buildFromTemplate(templateMenu)
     )
-
     createWindow()
   })
 }
