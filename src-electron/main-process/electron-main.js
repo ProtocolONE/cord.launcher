@@ -2,10 +2,13 @@ import {
   app,
   BrowserWindow,
   Menu,
+  Tray,
   ipcMain
 } from 'electron'
 
-import templateMenu from './electron-menu'
+import { join } from 'path'
+
+import templateMenu from './template-menu'
 import Store from '../store'
 import AutoUpdateManager from './auto-update-manager'
 
@@ -26,14 +29,21 @@ const store = new Store({
 
 const autoUpdater = new AutoUpdateManager(store.get('channel') || 'stable')
 
+const icons = {
+  darwin: join(__dirname, '..', 'icons', 'icon.icns'),
+  win32: join(__dirname, '..', 'icons', 'icon.ico'),
+  linux: join(__dirname, '..', 'icons', 'linux-512x512.png')
+}
+
 app.$store = store
 
 let mainWindow = null
+let mainTray = null
 
 /**
  * checking mainWindow existing instance
  */
-if (!app.requestSingleInstanceLock()) {
+if (mainWindow && !app.requestSingleInstanceLock()) {
   app.quit()
 }
 else {
@@ -42,18 +52,12 @@ else {
  * The reason we are setting it here is that the path needs to be evaluated at runtime
  */
   if (process.env.PROD) {
-    global.__statics = require('path').join(__dirname, 'statics').replace(/\\/g, '\\\\')
+    global.__statics = join(__dirname, 'statics').replace(/\\/g, '\\\\')
   }
 
   function handleMovedOrResize () {
-    store.set('windowBounds', {
-      ...mainWindow.getBounds(),
-      fullscreen: mainWindow.isFullScreen()
-    })
-  }
-
-  function handleClosed () {
-    mainWindow = null
+    let [bounds, fullscreen] = [mainWindow.getBounds(), mainWindow.isFullScreen()]
+    store.set('windowBounds', { ...bounds, fullscreen })
   }
 
   function createWindow () {
@@ -74,9 +78,37 @@ else {
     mainWindow.on('moved', handleMovedOrResize)
     mainWindow.on('resize', handleMovedOrResize)
 
-    mainWindow.on('closed', handleClosed)
+    mainWindow.on('close', e => {
+      if (!app.isQuiting) {
+        e.preventDefault()
+        mainWindow.hide()
+      }
+      return false
+    })
+
+    mainWindow.on('closed', () => {
+      mainWindow = null
+    })
     
     mainWindow.webContents.on('did-frame-finish-load', () => autoUpdater.init(mainWindow))
+
+    mainTray = new Tray(icons[process.platform])
+    mainTray.setToolTip('Qilincord')
+    mainTray.setContextMenu(
+      Menu.buildFromTemplate([
+        {
+          label: 'Qilincord',
+          click: () => mainWindow.show()
+        },
+        {
+          label: 'Quit',
+          click () {
+            app.isQuiting = true
+            app.quit()  
+          }  
+        }
+      ])
+    )
   }
 
   ipcMain.on('change-channel', (_, value) => {
@@ -109,6 +141,7 @@ else {
     Menu.setApplicationMenu(
       Menu.buildFromTemplate(templateMenu)
     )
+
     createWindow()
   })
 }
