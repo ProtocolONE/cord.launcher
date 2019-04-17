@@ -29,16 +29,23 @@ const store = new Store({
 
 const autoUpdater = new AutoUpdateManager(store.get('channel') || 'stable')
 
-const icons = {
-  darwin: join(__dirname, '..', 'icons', 'icon.icns'),
-  win32: join(__dirname, '..', 'icons', 'icon.ico'),
-  linux: join(__dirname, '..', 'icons', 'linux-512x512.png')
-}
-
 app.$store = store
 
 let mainWindow = null
 let mainTray = null
+let mainIcons = {
+  darwin: join(__dirname, 'statics', 'icons', 'apple-icon-152x152.png'),
+  win32: join(__dirname, 'statics', 'icons', 'ms-icon-144x144.png'),
+  linux: join(__dirname, 'statics', 'icons', 'icon-512x512.png')
+}
+
+if (process.env.DEV) {
+  mainIcons = {
+    darwin: join(__dirname, '..', 'icons', 'icon.icns'),
+    win32: join(__dirname, '..', 'icons', 'icon.ico'),
+    linux: join(__dirname, '..', 'icons', 'linux-512x512.png')
+  }
+}
 
 /**
  * checking mainWindow existing instance
@@ -92,7 +99,7 @@ else {
     
     mainWindow.webContents.on('did-frame-finish-load', () => autoUpdater.init(mainWindow))
 
-    mainTray = new Tray(icons[process.platform])
+    mainTray = new Tray(mainIcons[process.platform])
     mainTray.setToolTip('Qilincord')
     mainTray.setContextMenu(
       Menu.buildFromTemplate([
