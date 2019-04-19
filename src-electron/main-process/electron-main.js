@@ -79,7 +79,10 @@ else {
      */
     mainWindow = new BrowserWindow({
       ...store.get('windowBounds'),
-      useContentSize: true
+      useContentSize: true,
+      webPreferences: {
+        preload: join(__dirname, '..', 'sentry')
+      }
       // --- TODO: do it in future !
       // --- TODO: app without frame with custom window
       // frame: false,
