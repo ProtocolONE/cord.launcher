@@ -29,28 +29,41 @@ const store = new Store({
 
 const autoUpdater = new AutoUpdateManager(store.get('channel') || 'stable')
 
-const icons = {
-  darwin: join(__dirname, '..', 'icons', 'icon.icns'),
-  win32: join(__dirname, '..', 'icons', 'icon.ico'),
-  linux: join(__dirname, '..', 'icons', 'linux-512x512.png')
-}
-
 app.$store = store
 
 let mainWindow = null
 let mainTray = null
+let mainIcons = {
+  darwin: join(__dirname, 'statics', 'icons', 'apple-icon-152x152.png'),
+  win32: join(__dirname, 'statics', 'icons', 'ms-icon-144x144.png'),
+  linux: join(__dirname, 'statics', 'icons', 'icon-512x512.png')
+}
 
-/**
- * checking mainWindow existing instance
- */
-if (mainWindow && !app.requestSingleInstanceLock()) {
+if (process.env.DEV) {
+  mainIcons = {
+    darwin: join(__dirname, '..', 'icons', 'icon.icns'),
+    win32: join(__dirname, '..', 'icons', 'icon.ico'),
+    linux: join(__dirname, '..', 'icons', 'linux-512x512.png')
+  }
+}
+
+const gotTheLock = app.requestSingleInstanceLock()
+
+if (!gotTheLock) {
   app.quit()
 }
 else {
+  app.on('second-instance', () => {
+    if (mainWindow) {
+      mainWindow.show()
+      mainWindow.focus()
+    }
+  })
+
   /**
- * Set `__statics` path to static files in production;
- * The reason we are setting it here is that the path needs to be evaluated at runtime
- */
+   * Set `__statics` path to static files in production;
+   * The reason we are setting it here is that the path needs to be evaluated at runtime
+   */
   if (process.env.PROD) {
     global.__statics = join(__dirname, 'statics').replace(/\\/g, '\\\\')
   }
@@ -92,7 +105,7 @@ else {
     
     mainWindow.webContents.on('did-frame-finish-load', () => autoUpdater.init(mainWindow))
 
-    mainTray = new Tray(icons[process.platform])
+    mainTray = new Tray(mainIcons[process.platform])
     mainTray.setToolTip('Qilincord')
     mainTray.setContextMenu(
       Menu.buildFromTemplate([
@@ -116,15 +129,6 @@ else {
     autoUpdater.updateChannel(value)
   })
 
-  app.on('second-instance', () => {
-    if (mainWindow) {
-      if (mainWindow.isMinimized()) {
-        mainWindow.restore()
-      }
-      mainWindow.focus()
-    }
-  })
-
   app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
       app.quit()
@@ -141,7 +145,6 @@ else {
     Menu.setApplicationMenu(
       Menu.buildFromTemplate(templateMenu)
     )
-
     createWindow()
   })
 }
