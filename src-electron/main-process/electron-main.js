@@ -116,13 +116,12 @@ else {
     ])
 
     if (process.platform === 'darwin') {
-      app.dock.setMenu(ctxMenu)
+      app.dock.hide()
     }
-    else {
-      mainTray = new Tray(mainIcons[process.platform])
-      mainTray.setToolTip('Qilincord')
-      mainTray.setContextMenu(ctxMenu)
-    }
+
+    mainTray = new Tray(mainIcons[process.platform])
+    mainTray.setToolTip('Qilincord')
+    mainTray.setContextMenu(ctxMenu)
   }
 
   app.on('second-instance', () => {
