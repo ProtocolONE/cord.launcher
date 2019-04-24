@@ -39,27 +39,12 @@ let mainIcons = {
   linux: join(__dirname, 'statics', 'icons', 'icon-512x512.png')
 }
 
-if (process.env.DEV) {
-  mainIcons = {
-    darwin: join(__dirname, '..', 'icons', 'icon.icns'),
-    win32: join(__dirname, '..', 'icons', 'icon.ico'),
-    linux: join(__dirname, '..', 'icons', 'linux-512x512.png')
-  }
-}
-
 const gotTheLock = app.requestSingleInstanceLock()
 
 if (!gotTheLock) {
   app.quit()
 }
 else {
-  app.on('second-instance', () => {
-    if (mainWindow) {
-      mainWindow.show()
-      mainWindow.focus()
-    }
-  })
-
   /**
    * Set `__statics` path to static files in production;
    * The reason we are setting it here is that the path needs to be evaluated at runtime
@@ -68,12 +53,12 @@ else {
     global.__statics = join(__dirname, 'statics').replace(/\\/g, '\\\\')
   }
 
-  function handleMovedOrResize () {
+  const handleMovedOrResize = () => {
     let [bounds, fullscreen] = [mainWindow.getBounds(), mainWindow.isFullScreen()]
     store.set('windowBounds', { ...bounds, fullscreen })
   }
 
-  function createWindow () {
+  const createWindow = () => {
     /**
      * Initial window options
      */
@@ -105,7 +90,7 @@ else {
     mainWindow.on('closed', () => {
       mainWindow = null
     })
-    
+
     mainWindow.webContents.on('did-frame-finish-load', () => autoUpdater.init(mainWindow))
 
     mainTray = new Tray(mainIcons[process.platform])
@@ -120,12 +105,19 @@ else {
           label: 'Quit',
           click () {
             app.isQuiting = true
-            app.quit()  
-          }  
+            app.quit()
+          }
         }
       ])
     )
   }
+
+  app.on('second-instance', () => {
+    if (mainWindow) {
+      mainWindow.show()
+      mainWindow.focus()
+    }
+  })
 
   ipcMain.on('change-channel', (_, value) => {
     store.set('channel', value)
