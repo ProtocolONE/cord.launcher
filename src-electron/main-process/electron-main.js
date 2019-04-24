@@ -91,6 +91,9 @@ else {
       if (!app.isQuiting) {
         e.preventDefault()
         mainWindow.hide()
+        if (process.platform === 'darwin') {
+          app.dock.hide()
+        }
       }
       return false
     })
@@ -104,7 +107,12 @@ else {
     let ctxMenu = Menu.buildFromTemplate([
       {
         label: 'Qilincord',
-        click: () => mainWindow.show()
+        click () {
+          mainWindow.show()
+          if (process.platform === 'darwin') {
+            app.dock.show()
+          }
+        }
       },
       {
         label: 'Quit',
@@ -114,10 +122,6 @@ else {
         }
       }
     ])
-
-    if (process.platform === 'darwin') {
-      app.dock.hide()
-    }
 
     mainTray = new Tray(mainIcons[process.platform])
     mainTray.setToolTip('Qilincord')
