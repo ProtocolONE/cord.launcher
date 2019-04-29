@@ -7,16 +7,12 @@ q-layout.main
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { State } from 'vuex-class'
 
-import Offline from 'pages/offline'
 import MainHeader from 'components/MainHeader'
 import MainFooter from 'components/MainFooter'
 
 @Component({
-  components: { Offline, MainHeader, MainFooter }
+  components: { MainHeader, MainFooter }
 })
-export default class MainLayout extends Vue {
-  @State('online') private online: boolean
-}
+export default class MainLayout extends Vue {}
 </script>
