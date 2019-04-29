@@ -1,5 +1,9 @@
 import Layout from 'layouts/main'
 import UserLayout from 'layouts/user'
+import AuthLayout from 'layouts/auth'
+
+import Login from 'pages/auth/login'
+import Sign from 'pages/auth/sign'
 
 import Home from 'pages/home'
 import Shop from 'pages/shop'
@@ -14,6 +18,19 @@ import UserPayments from 'pages/user/payments'
 import UserLauncher from 'pages/user/launcher'
 
 import Error404 from 'pages/errors/404'
+
+export const AUTH_ROUTES = [
+  {
+    name: 'login',
+    path: '/auth/login',
+    component: Login
+  },
+  {
+    name: 'sign',
+    path: '/auth/sign',
+    component: Sign
+  }
+]
 
 export const MAIN_ROUTES = [
   {
@@ -83,6 +100,12 @@ export default [
     component: UserLayout,
     children: USER_ROUTES,
     redirect: USER_ROUTES[0].path
+  },
+  {
+    path: '/auth',
+    component: AuthLayout,
+    children: AUTH_ROUTES,
+    redirect: AUTH_ROUTES[0].path
   },
   {
     name: 'error-404',

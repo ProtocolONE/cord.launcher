@@ -14,7 +14,8 @@ export default {
     userNameDate: 'Имя и дата рождения',
     password: 'Пароль',
     paymentMethods: 'Способы оплаты',
-    ordersHistory: 'История заказов'
+    ordersHistory: 'История заказов',
+    login: 'Авторизация'
   },
   links: {
     home: 'Главная',
@@ -68,7 +69,9 @@ export default {
     view: 'Посмотреть',
     order: 'Заказ',
     paidWith: 'Оплачено с',
-    channel: 'Канал'
+    channel: 'Канал',
+    orSignWith: 'Или войти с',
+    legalLinks: 'Юридические ссылки'
   },
   paragraphs: {
     nothingHere: 'Извините, здесь ничего нет',
