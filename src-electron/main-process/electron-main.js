@@ -3,7 +3,8 @@ import {
   BrowserWindow,
   Menu,
   Tray,
-  ipcMain
+  ipcMain,
+  nativeImage
 } from 'electron'
 
 import { join } from 'path'
@@ -34,16 +35,16 @@ app.$store = store
 let mainWindow = null
 let mainTray = null
 let mainIcons = {
-  darwin: join(__dirname, 'statics', 'electron-icons', 'icon.icns'),
-  win32: join(__dirname, 'statics', 'electron-icons', 'icon.ico'),
-  linux: join(__dirname, 'statics', 'electron-icons', 'linux-512x512.png')
+  darwin: join(__dirname, 'statics', 'icons', 'apple-icon-152x152.png'),
+  win32: join(__dirname, 'statics', 'icons', 'ms-icon-144x144.png'),
+  linux: join(__dirname, 'statics', 'icons', 'icon-512x512.png')
 }
 
 if (process.env.DEV) {
   mainIcons = {
-    darwin: join(__dirname, '..', 'icons', 'icon.icns'),
-    win32: join(__dirname, '..', 'icons', 'icon.ico'),
-    linux: join(__dirname, '..', 'icons', 'linux-512x512.png')
+    darwin: join(__dirname, '..', '..', 'src', 'statics', 'icons', 'apple-icon-152x152.png'),
+    win32: join(__dirname, '..', '..', 'src', 'statics', 'icons', 'ms-icon-144x144.png'),
+    linux: join(__dirname, '..', '..', 'src', 'statics', 'icons', 'icon-512x512.png')
   }
 }
 
@@ -123,7 +124,22 @@ else {
       }
     ])
 
-    mainTray = new Tray(mainIcons[process.platform])
+    let iconPath = mainIcons[process.platform]
+
+    if (process.platform === 'darwin') {
+      mainTray = new Tray(
+        nativeImage
+          .createFromPath(iconPath)
+          .resize({
+            width: 16,
+            height: 16
+          })
+      )
+    }
+    else {
+      mainTray = new Tray(iconPath)
+    }
+
     mainTray.setToolTip('Qilincord')
     mainTray.setContextMenu(ctxMenu)
   }
