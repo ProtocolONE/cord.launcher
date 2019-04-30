@@ -71,7 +71,13 @@ export default {
     paidWith: 'Paid with',
     channel: 'Channel',
     orSignWith: 'Or sign with',
-    legalLinks: 'Legal links'
+    legalLinks: 'Legal links',
+    email: 'E-mail',
+    rememberMe: 'Remember me',
+    forgotPassword: 'Forgot password',
+    notRegistered: 'Not registered?',
+    signUp: 'Sign up',
+    signIn: 'Sign in'
   },
   paragraphs: {
     nothingHere: 'Sorry, nothing here',
