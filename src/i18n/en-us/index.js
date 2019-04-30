@@ -17,7 +17,8 @@ export default {
     password: 'Password',
     paymentMethods: 'Payment methods',
     ordersHistory: 'Orders history',
-    login: 'Login'
+    login: 'Login',
+    registration: 'Registration'
   },
   links: {
     home: 'Home',
@@ -77,7 +78,8 @@ export default {
     forgotPassword: 'Forgot password',
     notRegistered: 'Not registered?',
     signUp: 'Sign up',
-    signIn: 'Sign in'
+    signIn: 'Sign in',
+    passwordRetype: 'Retype password'
   },
   paragraphs: {
     nothingHere: 'Sorry, nothing here',
