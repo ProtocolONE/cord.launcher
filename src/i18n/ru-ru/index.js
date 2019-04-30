@@ -15,7 +15,8 @@ export default {
     password: 'Пароль',
     paymentMethods: 'Способы оплаты',
     ordersHistory: 'История заказов',
-    login: 'Авторизация'
+    login: 'Авторизация',
+    registration: 'Регистрация'
   },
   links: {
     home: 'Главная',
@@ -71,7 +72,14 @@ export default {
     paidWith: 'Оплачено с',
     channel: 'Канал',
     orSignWith: 'Или войти с',
-    legalLinks: 'Юридические ссылки'
+    legalLinks: 'Юридические ссылки',
+    email: 'E-mail',
+    rememberMe: 'Запомнить',
+    forgotPassword: 'Забыли пароль',
+    notRegistered: 'Нет аккаунта?',
+    signUp: 'Зарегистрироваться',
+    signIn: 'Войти',
+    passwordRetype: 'Повторите пароль'
   },
   paragraphs: {
     nothingHere: 'Извините, здесь ничего нет',

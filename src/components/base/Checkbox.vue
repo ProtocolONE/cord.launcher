@@ -1,8 +1,7 @@
 <template lang="pug">
-q-input(
+q-checkbox(
   v-model="model"
-  :type="type"
-  :float-label="label"
+  :label="label"
   :readonly="readonly"
   :dark="true"
   color="white"
@@ -15,16 +14,15 @@ import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
 
 @Component
 export default class Input extends Vue {
-  @Prop(String) value: string
   @Prop(String) label: string
+  @Prop(Boolean) value: boolean
   @Prop(Boolean) readonly: boolean
-  @Prop({ type: String, default: 'text' }) type: string
 
-  model = this.value || null
+  model = this.value || false
 
   @Emit()
-  change (value: string) {
-    this.model = value || null
+  change (value: boolean) {
+    this.model = value || false
     this.$emit('input', this.model)
   }
 }

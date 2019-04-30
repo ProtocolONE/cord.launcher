@@ -134,6 +134,7 @@ module.exports = function () {
         'QInput',
         'QSelect',
         'QSearch',
+        'QCheckbox',
 
         // --- other components
         'QBtn',
