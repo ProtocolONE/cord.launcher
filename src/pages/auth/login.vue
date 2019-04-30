@@ -17,7 +17,7 @@ q-page.login
           .col-6
             router-link.q-link.underline(to="/auth") {{ signUpLabel }}
           .col-6.flex.justify-end
-            q-btn(type="submit" color="white" text-color="primary") {{ $trans('labels', 'signIn') }}
+            q-btn.capitalize(type="submit" color="white" text-color="primary") {{ $trans('labels', 'signIn') }}
 </template>
 
 <script lang="ts">

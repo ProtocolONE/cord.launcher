@@ -38,7 +38,7 @@ q-page.login
           .col-6
             base-checkbox.dark(v-model="accept" label="I accept <a href='#0' style='color:#4B4B4B'>terms & conditions</a>")
           .col-6.flex.justify-end
-            q-btn(type="submit" color="white" text-color="primary") {{ $trans('labels', 'signUp') }}
+            q-btn.capitalize(type="submit" color="white" text-color="primary") {{ $trans('labels', 'signUp') }}
 </template>
 
 <script lang="ts">

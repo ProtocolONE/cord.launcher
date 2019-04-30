@@ -12,7 +12,13 @@
       :aria-label="label"
       flat
     )
-    q-btn.q-ml-auto.capitalize.q-mr-lg.nav__item(
+    q-btn.q-ml-auto.capitalize.nav__item(
+      to="/auth"
+      label="Auth (for test)"
+      aria-label="Auth (for test)"
+      flat
+    )
+    q-btn.capitalize.nav__item(
       to="/user"
       label="User (for test)"
       aria-label="User (for test)"
