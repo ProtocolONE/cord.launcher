@@ -2,7 +2,7 @@
 q-page.login
   form
     .row.gutter-sm.justify-center
-      .col-lg-4.col-md-6.col-12.row
+      .col-lg-6.col-md-8.col-12.row
         .col-12: base-title {{ $trans('titles', 'login') }}
         .col-12: base-input(v-model="email" type="email" :label="$trans('labels', 'email')")
         .col-12.q-mb-lg: base-input(v-model="pwd" type="password" :label="$trans('titles', 'password')")

@@ -1,28 +1,28 @@
 <template lang="pug">
 q-page.login
   form
-    .row.gutter-sm.justify-center
-      .col-lg-4.col-md-6.col-12.row
+    .row.justify-center
+      .col-lg-6.col-md-8.col-12.q-pa-xl
 
         .col-12: base-title {{ $trans('titles', 'registration') }}
         .col-12.q-mb-md
           base-input(v-model="email" type="email" :label="$trans('labels', 'email')")
 
-        .col-12.row.q-mb-md
-          .col-lg-2.col-md-4.col-sm-4.col-xs-12.q-pr-md
+        .col-12.q-mb-md.row.gutter-sm
+          .col-lg-4.col-md-4.col-sm-4.col-xs-12
             base-select(
               v-model="birth.day"
               :label="$trans('labels', 'day')"
               :options="days"
               :disable="!birth.month"
             )
-          .col-lg-2.col-md-4.col-sm-4.col-xs-12.q-pr-md
+          .col-lg-4.col-md-4.col-sm-4.col-xs-12
             base-select(
               v-model="birth.month"
               :label="$trans('labels', 'month')"
               :options="months"
             )
-          .col-lg-2.col-md-4.col-sm-4.col-xs-12
+          .col-lg-4.col-md-4.col-sm-4.col-xs-12
             base-select(
               v-model="birth.year"
               :label="$trans('labels', 'year')"
@@ -35,8 +35,9 @@ q-page.login
           base-input(v-model="pwdRepeat" type="password" :label="$trans('labels', 'passwordRetype')")
 
         .col-12.row.q-mt-lg.items-center
-          .col-6
-            base-checkbox.dark(v-model="accept" label="I accept <a href='#0' style='color:#4B4B4B'>terms & conditions</a>")
+          .col-6.flex.dark
+            base-checkbox.q-mr-sm(v-model="accept")
+            | I accept&nbsp;<a href='#0' style='color:#4B4B4B'>terms & conditions</a>
           .col-6.flex.justify-end
             q-btn.capitalize(type="submit" color="white" text-color="primary") {{ $trans('labels', 'signUp') }}
 </template>
