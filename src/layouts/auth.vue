@@ -3,20 +3,25 @@ q-layout.auth
 
   q-layout-header.auth-header
     nav.roboto.flex
+
       q-btn.capitalize.q-pa-none.q-mr-lg(to="/auth" aria-label="logo" flat)
         box-logo.main-header__logo(background="rgba(8, 8, 8, .35)")
-      q-btn.q-ml-auto.capitalize.q-mr-sm(
+
+      q-btn.capitalize.q-ml-auto.q-mr-sm(
+        to="/"
+        label="Main"
+        aria-label="Main"
+        flat)
+      q-btn.capitalize.q-mr-sm(
         to="/auth"
         label="Login"
         aria-label="Login"
-        flat
-      )
+        flat)
       q-btn.capitalize(
         to="/auth/sign"
         label="Sign"
         aria-label="Sign"
-        flat
-      )
+        flat)
 
   q-page-container.auth-container
     slot: router-view

@@ -11,23 +11,20 @@ q-page.login
         .col-12.q-mb-md.row.gutter-sm
           .col-lg-4.col-md-4.col-sm-4.col-xs-12
             base-select(
+              v-model="birth.month"
+              :label="$trans('labels', 'month')"
+              :options="months")
+          .col-lg-4.col-md-4.col-sm-4.col-xs-12
+            base-select(
               v-model="birth.day"
               :label="$trans('labels', 'day')"
               :options="days"
-              :disable="!birth.month"
-            )
-          .col-lg-4.col-md-4.col-sm-4.col-xs-12
-            base-select(
-              v-model="birth.month"
-              :label="$trans('labels', 'month')"
-              :options="months"
-            )
+              :disable="!birth.month")
           .col-lg-4.col-md-4.col-sm-4.col-xs-12
             base-select(
               v-model="birth.year"
               :label="$trans('labels', 'year')"
-              :options="years"
-            )
+              :options="years")
 
         .col-12.q-mb-md
           base-input(v-model="pwd" type="password" :label="$trans('titles', 'password')")
@@ -68,7 +65,8 @@ export default class Sign extends Vue {
     let n = this.$moment().month(this.birth.month).daysInMonth()
     let days = []
     while (n--) {
-      days.push({ label: n.toString(), value: n.toString() })
+      let value = (n + 1).toString()
+      days.push({ label: value, value })
     }
     return days
   }
