@@ -73,10 +73,10 @@ else {
      */
     mainWindow = new BrowserWindow({
       ...store.get('windowBounds'),
-      useContentSize: true,
-      webPreferences: {
-        preload: join(__dirname, '..', 'sentry')
-      }
+      useContentSize: true
+      // webPreferences: {
+      //   preload: require('sentry.js')
+      // }
       // --- TODO: do it in future !
       // --- TODO: app without frame with custom window
       // frame: false,
@@ -142,6 +142,12 @@ else {
 
     mainTray.setToolTip('Qilincord')
     mainTray.setContextMenu(ctxMenu)
+    mainTray.on('double-click', () => {
+      if (mainWindow) {
+        mainWindow.show()
+        mainWindow.focus()
+      }
+    })
   }
 
   app.on('second-instance', () => {
