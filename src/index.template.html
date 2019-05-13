@@ -21,9 +21,21 @@
     <script>
       try {
         if (window && window.process && window.process.type) {
+          const { ipcRenderer } = require('electron')
+
           console.log('ipcRenderer message in body script init.')
-          require('electron').ipcRenderer.on('message', (event, text) =>
-            console.info(text))
+          ipcRenderer.on('message', (event, text) => console.info(text))
+
+          window.addEventListener('click', e => {
+            // disabled ctrl + click
+            // or shift + click
+            // or command + click
+            if (e.ctrlKey || e.metaKey || e.shiftKey) {
+              e.stopImmediatePropagation()
+              e.preventDefault()
+              return false
+            }
+          }, true)
         }
       }
       catch (error) {
