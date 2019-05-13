@@ -4,7 +4,8 @@ import {
   Menu,
   Tray,
   ipcMain,
-  nativeImage
+  nativeImage,
+  globalShortcut
 } from 'electron'
 
 import { join } from 'path'
@@ -142,6 +143,14 @@ else {
 
     mainTray.setToolTip('Qilincord')
     mainTray.setContextMenu(ctxMenu)
+
+    mainTray.on('click', () => {
+      if (mainWindow) {
+        mainWindow.show()
+        mainWindow.focus()
+      }
+    })
+
     mainTray.on('double-click', () => {
       if (mainWindow) {
         mainWindow.show()
@@ -178,6 +187,23 @@ else {
     Menu.setApplicationMenu(
       Menu.buildFromTemplate(templateMenu)
     )
+
     createWindow()
+
+    let keys = [
+      'CommandOrControl+w',
+      'CommandOrControl+r',
+      'CommandOrControl+shift+r',
+      'CommandOrControl+shift+i',
+      'CommandOrControl+shift+i',
+      'space',
+      'home',
+      'tab'
+    ]
+
+    keys.forEach(key => globalShortcut.register(key, () => {
+      console.log(key)
+      return false
+    }))
   })
 }
