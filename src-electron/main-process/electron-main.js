@@ -4,8 +4,7 @@ import {
   Menu,
   Tray,
   ipcMain,
-  nativeImage,
-  globalShortcut
+  nativeImage
 } from 'electron'
 
 import { join } from 'path'
@@ -74,10 +73,10 @@ else {
      */
     mainWindow = new BrowserWindow({
       ...store.get('windowBounds'),
-      useContentSize: true
-      // webPreferences: {
-      //   preload: require('sentry.js')
-      // }
+      useContentSize: true,
+      webPreferences: {
+        devTools: process.env.DEV
+      }
       // --- TODO: do it in future !
       // --- TODO: app without frame with custom window
       // frame: false,
@@ -183,21 +182,6 @@ else {
     Menu.setApplicationMenu(
       Menu.buildFromTemplate(templateMenu)
     )
-
     createWindow()
-
-    let keys = [
-      'CommandOrControl+w',
-      'CommandOrControl+r',
-      'CommandOrControl+shift+r',
-      'CommandOrControl+shift+i',
-      'CommandOrControl+shift+i',
-      'space',
-      'home',
-      'tab'
-    ]
-
-    keys.forEach(key =>
-      globalShortcut.register(key, () => false))
   })
 }
