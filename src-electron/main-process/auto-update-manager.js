@@ -51,6 +51,7 @@ export default class AutoUpdateManager {
       }, buttonIndex => {
         if (buttonIndex === 0) {
           let [isSilent, isForceRunAfter] = [true, true]
+
           app.isQuiting = true
           autoUpdater.quitAndInstall(isSilent, isForceRunAfter)
         }
