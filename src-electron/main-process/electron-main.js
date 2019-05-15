@@ -171,11 +171,7 @@ else {
     autoUpdater.updateChannel(value)
   })
 
-  app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-      app.quit()
-    }
-  })
+  app.on('window-all-closed', () => app.quit())
 
   app.on('activate', () => {
     if (mainWindow === null) {
@@ -201,9 +197,7 @@ else {
       'tab'
     ]
 
-    keys.forEach(key => globalShortcut.register(key, () => {
-      console.log(key)
-      return false
-    }))
+    keys.forEach(key =>
+      globalShortcut.register(key, () => false))
   })
 }
