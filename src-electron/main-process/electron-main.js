@@ -49,155 +49,148 @@ if (process.env.DEV) {
   }
 }
 
-const gotTheLock = app.requestSingleInstanceLock()
-
-if (!gotTheLock) {
-  app.quit()
+/**
+ * Set `__statics` path to static files in production;
+ * The reason we are setting it here is that the path needs to be evaluated at runtime
+ */
+if (process.env.PROD) {
+  global.__statics = join(__dirname, 'statics').replace(/\\/g, '\\\\')
 }
-else {
+
+const handleMovedOrResize = () => {
+  let [bounds, fullscreen] = [mainWindow.getBounds(), mainWindow.isFullScreen()]
+  store.set('windowBounds', { ...bounds, fullscreen })
+}
+
+const createWindow = () => {
   /**
-   * Set `__statics` path to static files in production;
-   * The reason we are setting it here is that the path needs to be evaluated at runtime
+   * Initial window options
    */
-  if (process.env.PROD) {
-    global.__statics = join(__dirname, 'statics').replace(/\\/g, '\\\\')
-  }
+  mainWindow = new BrowserWindow({
+    ...store.get('windowBounds'),
+    useContentSize: true
+    // webPreferences: {
+    //   preload: require('sentry.js')
+    // }
+    // --- TODO: do it in future !
+    // --- TODO: app without frame with custom window
+    // frame: false,
+    // transparent: true
+  })
 
-  const handleMovedOrResize = () => {
-    let [bounds, fullscreen] = [mainWindow.getBounds(), mainWindow.isFullScreen()]
-    store.set('windowBounds', { ...bounds, fullscreen })
-  }
+  mainWindow.loadURL(process.env.APP_URL)
 
-  const createWindow = () => {
-    /**
-     * Initial window options
-     */
-    mainWindow = new BrowserWindow({
-      ...store.get('windowBounds'),
-      useContentSize: true
-      // webPreferences: {
-      //   preload: require('sentry.js')
-      // }
-      // --- TODO: do it in future !
-      // --- TODO: app without frame with custom window
-      // frame: false,
-      // transparent: true
-    })
+  mainWindow.on('moved', handleMovedOrResize)
+  mainWindow.on('resize', handleMovedOrResize)
 
-    mainWindow.loadURL(process.env.APP_URL)
+  mainWindow.on('close', e => {
+    if (!app.isQuiting) {
+      e.preventDefault()
+      mainWindow.hide()
+      if (process.platform === 'darwin') {
+        app.dock.hide()
+      }
+    }
+    return false
+  })
 
-    mainWindow.on('moved', handleMovedOrResize)
-    mainWindow.on('resize', handleMovedOrResize)
+  mainWindow.on('closed', () => {
+    mainWindow = null
+  })
 
-    mainWindow.on('close', e => {
-      if (!app.isQuiting) {
-        e.preventDefault()
-        mainWindow.hide()
+  mainWindow.webContents.on('did-frame-finish-load', () => autoUpdater.init(mainWindow))
+
+  let ctxMenu = Menu.buildFromTemplate([
+    {
+      label: 'Qilincord',
+      click () {
+        mainWindow.show()
         if (process.platform === 'darwin') {
-          app.dock.hide()
+          app.dock.show()
         }
       }
-      return false
-    })
-
-    mainWindow.on('closed', () => {
-      mainWindow = null
-    })
-
-    mainWindow.webContents.on('did-frame-finish-load', () => autoUpdater.init(mainWindow))
-
-    let ctxMenu = Menu.buildFromTemplate([
-      {
-        label: 'Qilincord',
-        click () {
-          mainWindow.show()
-          if (process.platform === 'darwin') {
-            app.dock.show()
-          }
-        }
-      },
-      {
-        label: 'Quit',
-        click () {
-          app.isQuiting = true
-          app.quit()
-        }
+    },
+    {
+      label: 'Quit',
+      click () {
+        app.isQuiting = true
+        app.quit()
       }
-    ])
-
-    let iconPath = mainIcons[process.platform]
-
-    if (process.platform === 'darwin') {
-      mainTray = new Tray(
-        nativeImage
-          .createFromPath(iconPath)
-          .resize({
-            width: 16,
-            height: 16
-          })
-      )
     }
-    else {
-      mainTray = new Tray(iconPath)
-    }
+  ])
 
-    mainTray.setToolTip('Qilincord')
-    mainTray.setContextMenu(ctxMenu)
+  let iconPath = mainIcons[process.platform]
 
-    mainTray.on('click', () => {
-      if (mainWindow) {
-        mainWindow.show()
-        mainWindow.focus()
-      }
-    })
-
-    mainTray.on('double-click', () => {
-      if (mainWindow) {
-        mainWindow.show()
-        mainWindow.focus()
-      }
-    })
+  if (process.platform === 'darwin') {
+    mainTray = new Tray(
+      nativeImage
+        .createFromPath(iconPath)
+        .resize({
+          width: 16,
+          height: 16
+        })
+    )
+  }
+  else {
+    mainTray = new Tray(iconPath)
   }
 
-  app.on('second-instance', () => {
+  mainTray.setToolTip('Qilincord')
+  mainTray.setContextMenu(ctxMenu)
+
+  mainTray.on('click', () => {
     if (mainWindow) {
       mainWindow.show()
       mainWindow.focus()
     }
   })
 
-  ipcMain.on('change-channel', (_, value) => {
-    store.set('channel', value)
-    autoUpdater.updateChannel(value)
-  })
-
-  app.on('window-all-closed', () => app.quit())
-
-  app.on('activate', () => {
-    if (mainWindow === null) {
-      createWindow()
+  mainTray.on('double-click', () => {
+    if (mainWindow) {
+      mainWindow.show()
+      mainWindow.focus()
     }
   })
-
-  app.on('ready', () => {
-    Menu.setApplicationMenu(
-      Menu.buildFromTemplate(templateMenu)
-    )
-
-    createWindow()
-
-    let keys = [
-      'CommandOrControl+w',
-      'CommandOrControl+r',
-      'CommandOrControl+shift+r',
-      'CommandOrControl+shift+i',
-      'CommandOrControl+shift+i',
-      'space',
-      'home',
-      'tab'
-    ]
-
-    keys.forEach(key =>
-      globalShortcut.register(key, () => false))
-  })
 }
+
+app.on('second-instance', () => {
+  if (mainWindow) {
+    mainWindow.show()
+    mainWindow.focus()
+  }
+})
+
+ipcMain.on('change-channel', (_, value) => {
+  store.set('channel', value)
+  autoUpdater.updateChannel(value)
+})
+
+app.on('window-all-closed', () => app.quit())
+
+app.on('activate', () => {
+  if (mainWindow === null) {
+    createWindow()
+  }
+})
+
+app.on('ready', () => {
+  Menu.setApplicationMenu(
+    Menu.buildFromTemplate(templateMenu)
+  )
+
+  createWindow()
+
+  let keys = [
+    'CommandOrControl+w',
+    'CommandOrControl+r',
+    'CommandOrControl+shift+r',
+    'CommandOrControl+shift+i',
+    'CommandOrControl+shift+i',
+    'space',
+    'home',
+    'tab'
+  ]
+
+  keys.forEach(key =>
+    globalShortcut.register(key, () => false))
+})
