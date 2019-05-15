@@ -16,7 +16,9 @@ export default {
     linkedAccounts: 'Linked accounts',
     password: 'Password',
     paymentMethods: 'Payment methods',
-    ordersHistory: 'Orders history'
+    ordersHistory: 'Orders history',
+    login: 'Login',
+    registration: 'Registration'
   },
   links: {
     home: 'Home',
@@ -68,7 +70,16 @@ export default {
     view: 'View',
     order: 'Order',
     paidWith: 'Paid with',
-    channel: 'Channel'
+    channel: 'Channel',
+    orSignWith: 'Or sign with',
+    legalLinks: 'Legal links',
+    email: 'E-mail',
+    rememberMe: 'Remember me',
+    forgotPassword: 'Forgot password',
+    notRegistered: 'Not registered?',
+    signUp: 'Sign up',
+    signIn: 'Sign in',
+    passwordRetype: 'Retype password'
   },
   paragraphs: {
     nothingHere: 'Sorry, nothing here',

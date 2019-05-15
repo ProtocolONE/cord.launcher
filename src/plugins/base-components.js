@@ -5,6 +5,7 @@ import BaseInput from 'components/base/Input'
 import BaseSelect from 'components/base/Select'
 import BaseButton from 'components/base/Button'
 import BaseSearch from 'components/base/Search'
+import BaseCheckbox from 'components/base/Checkbox'
 
 const components = [
   ['base-title', BaseTitle],
@@ -13,7 +14,8 @@ const components = [
   ['base-input', BaseInput],
   ['base-select', BaseSelect],
   ['base-button', BaseButton],
-  ['base-search', BaseSearch]
+  ['base-search', BaseSearch],
+  ['base-checkbox', BaseCheckbox]
 ]
 
 export default ({ Vue }) => {

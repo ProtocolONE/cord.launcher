@@ -15,23 +15,20 @@ q-page.personal
   .row.gutter-sm
     .col-lg-2.col-md-4.col-sm-4.col-xs-12
       base-select(
+        v-model="user.dateBirth.month"
+        :label="$trans('labels', 'month')"
+        :options="months")
+    .col-lg-2.col-md-4.col-sm-4.col-xs-12
+      base-select(
         v-model="user.dateBirth.day"
         :label="$trans('labels', 'day')"
         :options="days"
-        :disable="!user.dateBirth.month"
-      )
-    .col-lg-2.col-md-4.col-sm-4.col-xs-12
-      base-select(
-        v-model="user.dateBirth.month"
-        :label="$trans('labels', 'month')"
-        :options="months"
-      )
+        :disable="!user.dateBirth.month")
     .col-lg-2.col-md-4.col-sm-4.col-xs-12
       base-select(
         v-model="user.dateBirth.year"
         :label="$trans('labels', 'year')"
-        :options="years"
-      )
+        :options="years")
 
   br
   base-title.text-bold.text-white.q-mt-lg.q-mb-lg(level="5")
@@ -76,12 +73,11 @@ export default class Personal extends Vue {
 
   get days () {
     let n = this.$moment().month(this.user.dateBirth.month).daysInMonth()
-
     let days = []
     while (n--) {
-      days.push({ label: n.toString(), value: n.toString() })
+      let value = (n + 1).toString()
+      days.push({ label: value, value })
     }
-
     return days
   }
 

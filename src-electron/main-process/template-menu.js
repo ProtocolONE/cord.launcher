@@ -25,6 +25,7 @@ const template = [
 if (process.platform === 'darwin') {
   let { app } = require('electron')
   let name = app.getName()
+  
   template.unshift({
     label: name,
     submenu: [
@@ -35,7 +36,7 @@ if (process.platform === 'darwin') {
       {
         label: 'Quit',
         accelerator: 'Command+Q',
-        click () { app.quit() }
+        click: () => app.quit()
       }
     ]
   })

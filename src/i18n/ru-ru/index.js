@@ -14,7 +14,9 @@ export default {
     userNameDate: 'Имя и дата рождения',
     password: 'Пароль',
     paymentMethods: 'Способы оплаты',
-    ordersHistory: 'История заказов'
+    ordersHistory: 'История заказов',
+    login: 'Авторизация',
+    registration: 'Регистрация'
   },
   links: {
     home: 'Главная',
@@ -68,7 +70,16 @@ export default {
     view: 'Посмотреть',
     order: 'Заказ',
     paidWith: 'Оплачено с',
-    channel: 'Канал'
+    channel: 'Канал',
+    orSignWith: 'Или войти с',
+    legalLinks: 'Юридические ссылки',
+    email: 'E-mail',
+    rememberMe: 'Запомнить',
+    forgotPassword: 'Забыли пароль',
+    notRegistered: 'Нет аккаунта?',
+    signUp: 'Зарегистрироваться',
+    signIn: 'Войти',
+    passwordRetype: 'Повторите пароль'
   },
   paragraphs: {
     nothingHere: 'Извините, здесь ничего нет',

@@ -16,5 +16,16 @@ export default class App extends Vue {
     // TODO: fix it please - globally vue proto
     this.$updateLocale(value)
   }
+
+  created () {
+    if (process.env.MODE === 'electron') {
+      let storedRoute = this.$appStore.get('route')
+      if (storedRoute) this.$router.push(storedRoute)
+      this.$watch('$route', (route: any) => {
+        let { name, path, query, params, meta } = route
+        this.$appStore.set('route', { name, path, query, params, meta })
+      }, { immediate: true })
+    }
+  }
 }
 </script>

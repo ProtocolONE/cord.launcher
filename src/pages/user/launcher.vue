@@ -16,13 +16,12 @@ export default class Launcher extends Vue {
   channels = ['stable', 'beta', 'alpha'].map(c => ({ label: c, value: c }))
   channel = null
 
-  handleChange (value: string) {
-    require('electron').ipcRenderer.send('change-channel', value)
+  created () {
+    this.channel = this.$appStore.get('channel') || this.channels[0].value
   }
 
-  created () {
-    let defaultChannel = require('electron').remote.app.$store.get('channel')
-    this.channel = defaultChannel || this.channels[0].value
+  handleChange (value: string) {
+    require('electron').ipcRenderer.send('change-channel', value)
   }
 }
 </script>

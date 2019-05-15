@@ -6,7 +6,7 @@
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
  */
 
-import { dialog } from 'electron'
+import { app, dialog } from 'electron'
 import { autoUpdater } from 'electron-updater'
 import log from 'electron-log'
 
@@ -51,6 +51,8 @@ export default class AutoUpdateManager {
       }, buttonIndex => {
         if (buttonIndex === 0) {
           let [isSilent, isForceRunAfter] = [true, true]
+
+          app.isQuiting = true
           autoUpdater.quitAndInstall(isSilent, isForceRunAfter)
         }
       })
