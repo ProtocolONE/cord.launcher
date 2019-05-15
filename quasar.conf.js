@@ -34,7 +34,7 @@ module.exports = function () {
       'base-components',
 
       // --- electron plugins
-      ...(isElectron ? ['auto-update-manager'] : [])
+      ...(isElectron ? ['auto-update-manager', 'electron-store'] : [])
     ],
     css: [
       'app.styl'
@@ -134,6 +134,7 @@ module.exports = function () {
         'QInput',
         'QSelect',
         'QSearch',
+        'QCheckbox',
 
         // --- other components
         'QBtn',
@@ -206,7 +207,7 @@ module.exports = function () {
         appId: 'protocol.one.cordlauncher.app',
         productName: 'cordlauncher',
         copyright: 'Copyright © 2019 ${author}',
-        artifactName: '${productName}.${ext}',
+        artifactName: '${productName}-${channel}-${version}.${ext}',
         dmg: {
           contents: [
             {

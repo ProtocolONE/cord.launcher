@@ -24,10 +24,11 @@
     "release:stable": "yarn build:electron:stable && MODE=electron node electron-release",
     "release:beta": "yarn build:electron:beta && MODE=electron CHANNEL=beta node electron-release",
     "release:alpha": "yarn build:electron:alpha && MODE=electron CHANNEL=alpha node electron-release",
-    "lint": "eslint --ext .js,.vue src",
-    "lint:fix": "eslint --ext .js,.vue src --fix"
+    "lint": "eslint --ext .js,.vue src && eslint --ext .js src-electron",
+    "lint:fix": "eslint --ext .js,.vue src --fix && eslint --ext .js src-electron --fix"
   },
   "dependencies": {
+    "@sentry/electron": "^0.17.1",
     "axios": "^0.18.0",
     "electron-log": "^3.0.1",
     "electron-packager": "^13.1.1",
