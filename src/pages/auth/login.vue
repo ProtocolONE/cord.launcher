@@ -1,6 +1,6 @@
 <template lang="pug">
 q-page.login
-  form
+  form(@submit.prevent="sign")
     .row.gutter-sm.justify-center
       .col-lg-6.col-md-8.col-12.row
         .col-12: base-title {{ $trans('titles', 'login') }}
@@ -15,7 +15,11 @@ q-page.login
 
         .col-12.row.q-mt-lg.items-center
           .col-6
-            router-link.q-link.underline(to="/auth") {{ signUpLabel }}
+            router-link.q-link.underline(
+              to="/auth/sign"
+              label="Sign"
+              aria-label="Sign")
+              | {{ signUpLabel }}
           .col-6.flex.justify-end
             q-btn.capitalize(type="submit" color="white" text-color="primary") {{ $trans('labels', 'signIn') }}
 </template>
@@ -31,6 +35,12 @@ export default class Login extends Vue {
 
   get signUpLabel () {
     return this.$trans('labels', 'notRegistered') + ' ' + this.$trans('labels', 'signUp')
+  }
+
+  sign () {
+    if (process.env.MODE === 'electron') {
+      require('electron').ipcRenderer.send('logged', true)
+    }
   }
 }
 </script>

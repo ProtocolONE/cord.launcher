@@ -12,18 +12,16 @@
       :aria-label="label"
       flat
     )
-    q-btn.q-ml-auto.capitalize.nav__item(
-      to="/auth"
-      label="Auth (for test)"
-      aria-label="Auth (for test)"
-      flat
-    )
-    q-btn.capitalize.nav__item(
+    q-btn.capitalize.q-ml-auto.nav__item(
       to="/user"
       label="User (for test)"
       aria-label="User (for test)"
+      flat)
+    q-btn.capitalize.nav__item(
+      label="Sign out"
+      aria-label="Sign out"
       flat
-    )
+      @click="signOut")
 </template>
 
 <script lang="ts">
@@ -42,6 +40,12 @@ export default class MainHeader extends Vue {
       item.label = this.$trans('links', item.name)
       return item
     })
+  }
+
+  signOut () {
+    if (process.env.MODE === 'electron') {
+      require('electron').ipcRenderer.send('logged', false)
+    }
   }
 }
 </script>
