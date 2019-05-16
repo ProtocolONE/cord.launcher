@@ -150,7 +150,7 @@ else {
       }
     })
 
-    mainTray.on('double-click', () => {
+    mainTray.on('right-click', () => {
       if (mainWindow) {
         mainWindow.show()
         mainWindow.focus()
