@@ -41,6 +41,13 @@
           window.addEventListener('keydown', stopBubble, true)
           window.addEventListener('click', stopBubble, true)
 
+          // --- middle click
+          window.addEventListener('auxclick', e => {
+            e.stopImmediatePropagation()
+            e.preventDefault()
+            return false
+          }, true)
+
           console.log('ipcRenderer message in body script init.')
           ipcRenderer.on('message', (event, text) => console.info(text))
         }
