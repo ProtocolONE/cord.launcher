@@ -1,6 +1,6 @@
 <template lang="pug">
 q-page.login
-  form
+  form(@submit.prevent="login")
     .row.gutter-sm.justify-center
       .col-lg-6.col-md-8.col-12.row
         .col-12: base-title {{ $trans('titles', 'login') }}
@@ -31,6 +31,14 @@ export default class Login extends Vue {
 
   get signUpLabel () {
     return this.$trans('labels', 'notRegistered') + ' ' + this.$trans('labels', 'signUp')
+  }
+
+  login () {
+    this.$router.push('/')
+    if (process.env.MODE === 'electron') {
+      let { width, height } = screen
+      require('electron').ipcRenderer.send('e-login', { width, height })
+    }
   }
 }
 </script>

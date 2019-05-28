@@ -19,8 +19,16 @@ export default class App extends Vue {
 
   created () {
     if (process.env.MODE === 'electron') {
-      let storedRoute = this.$appStore.get('route')
-      if (storedRoute) this.$router.push(storedRoute)
+      let isLogged = this.$appStore.get('login')
+
+      if (isLogged) {
+        let storedRoute = this.$appStore.get('route')
+        if (storedRoute) this.$router.push(storedRoute)
+      }
+      else {
+        this.$router.push({ name: 'login' })
+      }
+
       this.$watch('$route', (route: any) => {
         let { name, path, query, params, meta } = route
         this.$appStore.set('route', { name, path, query, params, meta })
