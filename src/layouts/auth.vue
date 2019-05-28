@@ -7,12 +7,7 @@ q-layout.auth
       q-btn.capitalize.q-pa-none.q-mr-lg(to="/auth" aria-label="logo" flat)
         box-logo.main-header__logo(background="rgba(8, 8, 8, .35)")
 
-      q-btn.capitalize.q-ml-auto.q-mr-sm(
-        to="/"
-        label="Main"
-        aria-label="Main"
-        flat)
-      q-btn.capitalize.q-mr-sm(
+      q-btn.capitalize.q-mr-sm.q-ml-auto(
         to="/auth"
         label="Login"
         aria-label="Login"

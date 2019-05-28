@@ -22,20 +22,34 @@
       try {
         if (window && window.process && window.process.type) {
           const { ipcRenderer } = require('electron')
+          const keyCodes = [
+            33, // PageUp
+            34, // PageDown
+            35, // End
+            36 // Home
+          ]
 
-          console.log('ipcRenderer message in body script init.')
-          ipcRenderer.on('message', (event, text) => console.info(text))
-
-          window.addEventListener('click', e => {
-            // disabled ctrl + click
-            // or shift + click
-            // or command + click
-            if (e.ctrlKey || e.metaKey || e.shiftKey) {
+          function stopBubble (e) {
+            let preventFromCode = keyCodes.includes(e.which)
+            if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey || preventFromCode) {
               e.stopImmediatePropagation()
               e.preventDefault()
               return false
             }
+          }
+
+          window.addEventListener('keydown', stopBubble, true)
+          window.addEventListener('click', stopBubble, true)
+
+          // --- middle click
+          window.addEventListener('auxclick', e => {
+            e.stopImmediatePropagation()
+            e.preventDefault()
+            return false
           }, true)
+
+          console.log('ipcRenderer message in body script init.')
+          ipcRenderer.on('message', (event, text) => console.info(text))
         }
       }
       catch (error) {

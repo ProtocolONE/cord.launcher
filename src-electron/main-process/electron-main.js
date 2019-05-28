@@ -4,8 +4,7 @@ import {
   Menu,
   Tray,
   ipcMain,
-  nativeImage,
-  globalShortcut
+  nativeImage
 } from 'electron'
 
 import { join } from 'path'
@@ -14,16 +13,18 @@ import templateMenu from './template-menu'
 import Store from '../store'
 import AutoUpdateManager from './auto-update-manager'
 
+const LOADING_WINDOW_WIDTH = 600
+const LOADING_WINDOW_HEIGHT = 600
+
 const store = new Store({
   configName: 'user-preferences',
   defaults: {
     route: null,
+    login: false,
     channel: 'stable',
     windowBounds: {
-      x: 0,
-      y: 0,
-      width: 800,
-      height: 800,
+      width: LOADING_WINDOW_WIDTH,
+      height: LOADING_WINDOW_HEIGHT,
       fullscreen: false
     }
   }
@@ -72,16 +73,23 @@ else {
     /**
      * Initial window options
      */
+    let baseConfig = (store.get('login')) ? store.get('windowBounds') : {}
+
     mainWindow = new BrowserWindow({
-      ...store.get('windowBounds'),
-      useContentSize: true
-      // webPreferences: {
-      //   preload: require('sentry.js')
-      // }
+      width: LOADING_WINDOW_WIDTH,
+      height: LOADING_WINDOW_HEIGHT,
+      route: '/auth',
+      center: true,
+      useContentSize: true,
+      webPreferences: {
+        devTools: process.env.DEV,
+        nodeIntegration: true
+      },
       // --- TODO: do it in future !
       // --- TODO: app without frame with custom window
-      // frame: false,
-      // transparent: true
+      frame: false,
+      transparent: false,
+      ...baseConfig
     })
 
     mainWindow.loadURL(process.env.APP_URL)
@@ -151,7 +159,7 @@ else {
       }
     })
 
-    mainTray.on('double-click', () => {
+    mainTray.on('right-click', () => {
       if (mainWindow) {
         mainWindow.show()
         mainWindow.focus()
@@ -171,6 +179,38 @@ else {
     autoUpdater.updateChannel(value)
   })
 
+  ipcMain.on('e-minimize', () => mainWindow.minimize())
+
+  let isMaximized = false
+  ipcMain.on('e-fullscreen', (e, data) => {
+    let { width, height } = data
+
+    if (isMaximized) {
+      width = Math.round(width / 1.5)
+      height = Math.round(height / 1.5)
+      isMaximized = false
+    }
+    else {
+      isMaximized = true
+    }
+
+    mainWindow.setSize(width, height)
+    mainWindow.center()
+  })
+
+  ipcMain.on('e-close', () => app.quit())
+
+  ipcMain.on('e-login', (e, data) => {
+    let { width, height } = data
+    mainWindow.setSize(width, height)
+    mainWindow.center()
+  })
+
+  ipcMain.on('e-logout', () => {
+    mainWindow.setSize(LOADING_WINDOW_WIDTH, LOADING_WINDOW_HEIGHT)
+    mainWindow.center()
+  })
+
   app.on('window-all-closed', () => app.quit())
 
   app.on('activate', () => {
@@ -183,21 +223,6 @@ else {
     Menu.setApplicationMenu(
       Menu.buildFromTemplate(templateMenu)
     )
-
     createWindow()
-
-    let keys = [
-      'CommandOrControl+w',
-      'CommandOrControl+r',
-      'CommandOrControl+shift+r',
-      'CommandOrControl+shift+i',
-      'CommandOrControl+shift+i',
-      'space',
-      'home',
-      'tab'
-    ]
-
-    keys.forEach(key =>
-      globalShortcut.register(key, () => false))
   })
 }
