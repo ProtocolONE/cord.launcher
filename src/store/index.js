@@ -1,12 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import state from './state'
-import mutations from './mutations'
-
-import shop from './shop'
-import game from './game'
-import user from './user'
+// import example from './module-example'
 
 Vue.use(Vuex)
 
@@ -17,13 +12,13 @@ Vue.use(Vuex)
 
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
-    state,
-    mutations,
     modules: {
-      shop,
-      game,
-      user
-    }
+      // example
+    },
+
+    // enable strict mode (adds overhead!)
+    // for dev mode only
+    strict: process.env.DEV
   })
 
   return Store

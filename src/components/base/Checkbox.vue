@@ -1,29 +1,27 @@
 <template lang="pug">
-q-checkbox(
-  v-model="model"
-  :label="label"
-  :readonly="readonly"
-  :dark="true"
-  color="white"
-  @change="change"
-)
+.text-white
+  q-checkbox(v-model="model"
+             :label="label"
+             :readonly="readonly"
+             :dark="true"
+             color="teal"
+             @change="$emit('input', !model)")
 </template>
 
-<script lang="ts">
-import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
+<script>
+export default {
+  name: 'BaseCheckbox',
 
-@Component
-export default class Input extends Vue {
-  @Prop(String) label: string
-  @Prop(Boolean) value: boolean
-  @Prop(Boolean) readonly: boolean
+  props: {
+    value: Boolean,
+    label: String,
+    readonly: Boolean
+  },
 
-  model = this.value || false
-
-  @Emit()
-  change (value: boolean) {
-    this.model = value || false
-    this.$emit('input', this.model)
+  data () {
+    return {
+      model: this.value || false
+    }
   }
 }
 </script>

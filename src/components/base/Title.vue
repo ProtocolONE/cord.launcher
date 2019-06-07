@@ -1,34 +1,41 @@
 <template lang="pug">
-component.base-title(
-  :is="tag"
-  :style="style"
-  :class="[`level-${ level }`, { [`color-${ color }`]: color }]"
-)
+component(:is="tag" :style="style" :class="className")
   slot
 </template>
 
-<script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+<script>
+export default {
+  name: 'BaseTitle',
 
-@Component
-export default class Title extends Vue {
-  @Prop({
-    type: String,
-    default: '2',
-    validator (value: string): boolean {
-      return ['1', '2', '3', '4', '5', '6'].includes(value)
+  props: {
+    level: {
+      type: [String, Number],
+      default: 2,
+      validator: v => ['1', '2', '3', '4', '5', '6'].includes(v.toString())
+    },
+    size: String,
+    color: String
+  },
+
+  computed: {
+    tag () {
+      return 'h' + this.level
+    },
+
+    style () {
+      if (!this.size) return null
+      return {
+        fontSize: this.size + 'px'
+      }
+    },
+
+    className () {
+      let classes = ['base-title', `level-${this.level}`]
+      if (this.color) {
+        classes.push(`color-${this.color}`)
+      }
+      return classes
     }
-  }) level: string
-
-  @Prop(String) size: string
-  @Prop(String) color: string
-
-  get tag () {
-    return 'h' + this.level
-  }
-
-  get style () {
-    return (this.size) ? { fontSize: (this.size + 'px') } : null
   }
 }
 </script>

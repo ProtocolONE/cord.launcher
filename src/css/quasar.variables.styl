@@ -1,0 +1,48 @@
+// Quasar Stylus Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Stylus variables found in Quasar's source Stylus files.
+
+// Check documentation for full list of Quasar variables
+
+// It's highly recommended to change the default colors
+// to match your app's branding.
+// Tip: Use the "Theme Builder" on Quasar's documentation website.
+
+$primary   = #262626
+$secondary = #121212
+$accent    = #555555
+
+$positive  = #21BA45
+$negative  = #C10015
+$info      = #31CCEC
+$warning   = #F2C037
+
+// --- colors
+$white                  = #FFFFFF
+$black                  = #000000
+$grey                   = #818181
+
+$colors = 'white', 'black', 'grey'
+
+for color in $colors
+  .color-{ color }
+    color: $ + color !important
+
+// --- body colors
+$body-color             = $white
+$body-background        = #434343
+
+// --- fonts
+$typography-font-family   = Lato, Roboto, -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif
+
+// --- base padding
+$base-padding-top         = 35px
+$base-padding-right       = 45px
+$base-padding-bottom      = 35px
+$base-padding-left        = 45px
+$base-padding             = $base-padding-top $base-padding-right $base-padding-bottom $base-padding-left
+
+// --- transitions
+$transition-duration      = .3s
+$transition-property      = cubic-bezier(.25, .8, .5, 1)

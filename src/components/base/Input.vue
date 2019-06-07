@@ -1,31 +1,28 @@
 <template lang="pug">
-q-input(
-  v-model="model"
-  :type="type"
-  :float-label="label"
-  :readonly="readonly"
-  :dark="true"
-  color="white"
-  @change="change"
-)
+q-input(v-model="model"
+        :type="type"
+        :label="label"
+        :readonly="readonly"
+        :dark="true"
+        color="white"
+        @change="$emit('input', model)")
 </template>
 
-<script lang="ts">
-import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
+<script>
+export default {
+  name: 'BaseInput',
 
-@Component
-export default class Input extends Vue {
-  @Prop(String) value: string
-  @Prop(String) label: string
-  @Prop(Boolean) readonly: boolean
-  @Prop({ type: String, default: 'text' }) type: string
+  props: {
+    value: String,
+    label: String,
+    readonly: Boolean,
+    type: String
+  },
 
-  model = this.value || null
-
-  @Emit()
-  change (value: string) {
-    this.model = value || null
-    this.$emit('input', this.model)
+  data () {
+    return {
+      model: this.value || null
+    }
   }
 }
 </script>
