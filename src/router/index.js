@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import { get } from 'lodash-es'
+
 import routes from './routes'
 
 Vue.use(VueRouter)
@@ -10,7 +12,7 @@ Vue.use(VueRouter)
  * directly export the Router instantiation
  */
 
-export default function (/* { store, ssrContext } */) {
+export default function ({ store }) {
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
     routes,
@@ -22,14 +24,25 @@ export default function (/* { store, ssrContext } */) {
     base: process.env.VUE_ROUTER_BASE
   })
 
-  // Router.beforeEach((to, from, next) => {
-  //   let access_token = localStorage.getItem('accessToken')
-  //   if (!access_token) {
-  //     next({  })
-  //     // window.location = 'http://localhost/oauth2/auth?response_type=code&client_id=5cf52565f549611e2d12802a&scope=openid&redirect_uri=http%3A//localhost%3A8080/auth&state=ly7ddc4i36o'
-  //   }
-  //   else next()
-  // })
+  Router.beforeEach(async (to, from, next) => {
+    let requires_auth = get(to, ['meta', 'requires_auth'], true)
+    let access_token = get(store, ['state', 'access_token'], null)
+
+    if (to.name === 'logout') {
+      await store.dispatch('logout')
+      return next({ name: 'auth' })
+    }
+
+    if (requires_auth && !access_token) {
+      sessionStorage.setItem('route', JSON.stringify(to))
+      return next({ name: 'auth' })
+    }
+    else if (to.name === 'auth' && access_token) {
+      return next({ name: 'home' })
+    }
+
+    return next()
+  })
 
   return Router
 }

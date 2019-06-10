@@ -9,8 +9,7 @@ module.exports = function (ctx) {
     boot: [
       'i18n',
       'axios',
-      'trans',
-      'components'
+      'trans'
     ],
 
     css: [
@@ -32,6 +31,8 @@ module.exports = function (ctx) {
       components: [
         // --- layouts
         'QLayout',
+        'QHeader',
+        'QFooter',
 
         // --- pages
         'QPageContainer',
@@ -40,13 +41,34 @@ module.exports = function (ctx) {
         // --- forms
         'QBtn',
         'QInput',
-        'QCheckbox'
+        'QCheckbox',
+
+        // --- cards
+        'QCard',
+        'QCardSection',
+        'QCardActions',
+
+        // --- list
+        'QList',
+        'QItem',
+        'QItemSection',
+
+        // --- dropdown
+        'QBtnDropdown',
+
+        // --- modals
+        'QDialog',
+
+        // --- other
+        'QSeparator',
+        'QAvatar'
       ],
 
       cssAddon: true,
 
       directives: [
-        'Ripple'
+        'Ripple',
+        'ClosePopup'
       ],
 
       // Quasar plugins
@@ -87,7 +109,7 @@ module.exports = function (ctx) {
 
     devServer: {
       // https: true,
-      port: env.PORT,
+      port: 8080,
       open: false // opens browser window automatically
     },
 

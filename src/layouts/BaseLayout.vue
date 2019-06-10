@@ -1,101 +1,89 @@
-<template>
-<q-layout view="lHh Lpr lFf">
-  <q-header elevated>
-    <q-toolbar>
-      <q-btn
-        flat
-        dense
-        round
-        @click="leftDrawerOpen = !leftDrawerOpen"
-        aria-label="Menu"
-      >
-        <q-icon name="menu" />
-      </q-btn>
+<template lang="pug">
+q-layout.main
 
-      <q-toolbar-title>
-        Quasar App
-      </q-toolbar-title>
+  q-header.main__header.header
+    nav.roboto.flex.nav
+      q-btn.q-pa-none(to="/" flat): logo.header__logo
+      q-btn.text-capitalize.q-ml-lg.nav__item(v-for="{ name, path, label } in routes"
+                                              :key="name"
+                                              :to="path"
+                                              :label="label"
+                                              :aria-label="label"
+                                              :class="{ active: $route.name === name }"
+                                              flat)
 
-      <div>Quasar v{{ $q.version }}</div>
-    </q-toolbar>
-  </q-header>
+      q-btn-dropdown.q-ml-auto.q-pa-none.q-pl-sm(flat)
+        template(v-slot:label)
+          q-avatar(size="40px"): img(src="https://cdn.quasar.dev/img/boy-avatar.png")
+        q-list(bordered separator)
+          q-item(v-close-popup clickable @click="logout")
+            q-item-section Logout
 
-  <q-drawer
-    v-model="leftDrawerOpen"
-    bordered
-    content-class="bg-grey-2"
-  >
-    <q-list>
-      <q-item-label header>Essential Links</q-item-label>
-      <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
-        <q-item-section avatar>
-          <q-icon name="school" />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Docs</q-item-label>
-          <q-item-label caption>quasar.dev</q-item-label>
-        </q-item-section>
-      </q-item>
-      <q-item clickable tag="a" target="_blank" href="https://github.com/quasarframework/">
-        <q-item-section avatar>
-          <q-icon name="code" />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Github</q-item-label>
-          <q-item-label caption>github.com/quasarframework</q-item-label>
-        </q-item-section>
-      </q-item>
-      <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
-        <q-item-section avatar>
-          <q-icon name="chat" />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Discord Chat Channel</q-item-label>
-          <q-item-label caption>chat.quasar.dev</q-item-label>
-        </q-item-section>
-      </q-item>
-      <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
-        <q-item-section avatar>
-          <q-icon name="record_voice_over" />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Forum</q-item-label>
-          <q-item-label caption>forum.quasar.dev</q-item-label>
-        </q-item-section>
-      </q-item>
-      <q-item clickable tag="a" target="_blank" href="https://twitter.com/quasarframework">
-        <q-item-section avatar>
-          <q-icon name="rss_feed" />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Twitter</q-item-label>
-          <q-item-label caption>@quasarframework</q-item-label>
-        </q-item-section>
-      </q-item>
-    </q-list>
-  </q-drawer>
+  q-page-container: router-view
 
-  <q-page-container>
-    <router-view />
-  </q-page-container>
-</q-layout>
+  q-footer.main__footer.footer
+    q-btn.q-pa-none(to="/" flat): logo.footer__logo
 </template>
 
 <script>
-import { openURL } from 'quasar'
+import Logo from 'components/Logo'
+
+import { main_routes } from 'src/router/routes'
 
 export default {
-  name: 'MyLayout',
+  name: 'BaseLayout',
+
+  components: {
+    Logo
+  },
+
   data () {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop
+      routes: main_routes.map(route => ({
+        name: route.name,
+        path: route.path,
+        label: this.$trans('links', route.name)
+      }))
     }
   },
+
   methods: {
-    openURL
+    logout () {
+      this.$router.push({ name: 'logout' })
+    }
   }
 }
 </script>
 
-<style>
+<style lang="stylus" scoped>
+$tab-border-radius = 100px
+
+.main
+  &__header
+    padding: 35px 45px
+  &__footer
+    padding: 85px 45px
+
+.header
+  &__logo
+    opacity: 0.25
+
+.footer
+  &__logo
+    height: 84px
+    opacity: 0.5
+
+.nav
+  &__item
+    height: 48px
+    border-radius: $tab-border-radius
+    font-weight: normal
+    font-size: 16px
+    color: $grey
+    transition: color $transition-duration $transition-property
+    &::before
+      border-radius: $tab-border-radius
+    &.active
+      background: $secondary
+      color: $white
 </style>

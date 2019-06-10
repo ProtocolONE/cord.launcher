@@ -1,38 +1,23 @@
 <template lang="pug">
-q-page
-  iframe(:src="src" style="width:100vw;height:100vh")
-<!--  form(@submit.prevent="login")-->
-<!--    .row.gutter-sm.justify-center-->
-<!--      .col-lg-6.col-md-8.col-12.row-->
-<!--        .col-12-->
-<!--          base-title {{ $trans('titles', 'login') }}-->
-<!--        .col-12-->
-<!--          base-input(v-model="email" type="email" :label="$trans('labels', 'email')")-->
-<!--        .col-12.q-mb-lg-->
-<!--          base-input(v-model="password" type="password" :label="$trans('titles', 'password')")-->
-
-<!--        .col-12.row.q-mb-lg.items-center-->
-<!--          .col-6-->
-<!--            base-checkbox.dark(v-model="is_remember" :label="$trans('labels', 'rememberMe')")-->
-<!--          .col-6.flex.justify-end-->
-<!--            router-link.q-link.dark(to="/auth")-->
-<!--              | {{ $trans('labels', 'forgotPassword') }}-->
-
-<!--        .col-12.row.q-mt-lg.items-center-->
-<!--          .col-6-->
-<!--            router-link.q-link.underline(to="/auth")-->
-<!--              | {{ sign_up_label }}-->
-<!--          .col-6.flex.justify-end-->
-<!--            q-btn.capitalize(type="submit" color="white" text-color="primary")-->
-<!--              | {{ $trans('labels', 'signIn') }}-->
+q-page.auth
+  q-dialog(:value="true" persistent)
+    q-card.auth-modal
+      q-card-section
+        .text-h6 {{ $trans('titles', 'auth') }}
+      q-separator
+      q-card-section.flex.auth-modal__body
+        iframe.auth-modal__frame(:src="src")
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'AuthPage',
 
   data () {
     return {
+      // --- TODO: get src from env
       src: 'http://localhost:3000/login',
       email: null,
       password: null,
@@ -49,14 +34,48 @@ export default {
   },
 
   created () {
-    window.addEventListener('message', (e) => {
-      console.log(e.data)
-    })
+    window.addEventListener('message', this.handle_post_message, false)
+  },
+
+  methods: {
+    ...mapMutations(['set_token']),
+
+    handle_post_message ({ data }) {
+      try {
+        let {
+          access_token,
+          success,
+          error
+        } = data
+
+        if (success && access_token) {
+          let route = JSON.parse(sessionStorage.getItem('route'))
+          sessionStorage.removeItem('route')
+          this.set_token(access_token)
+          this.$router.go(route || 0)
+        }
+
+        if (error) console.error(error)
+      }
+      catch (error) {
+        console.error(error)
+      }
+      console.log(data)
+    }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.p-auth
-  overflow: hidden
+.auth-modal
+  background-color: $white
+
+  &__body
+    width: 500px
+    height: 500px
+
+  &__frame
+    width: 100%
+    height: 100%
+    padding-top: 50px
 </style>

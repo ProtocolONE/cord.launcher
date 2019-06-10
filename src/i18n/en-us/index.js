@@ -18,7 +18,8 @@ export default {
     paymentMethods: 'Payment methods',
     ordersHistory: 'Orders history',
     login: 'Login',
-    registration: 'Registration'
+    registration: 'Registration',
+    auth: 'Authorization'
   },
   links: {
     home: 'Home',

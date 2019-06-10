@@ -1,10 +1,9 @@
 <template lang="pug">
-q-page
-  | Registration
+q-page {{ $route.name }}
 </template>
 
 <script>
 export default {
-  name: 'RegistrationPage'
+  name: 'LibraryPage'
 }
 </script>

@@ -16,7 +16,8 @@ export default {
     paymentMethods: 'Способы оплаты',
     ordersHistory: 'История заказов',
     login: 'Авторизация',
-    registration: 'Регистрация'
+    registration: 'Регистрация',
+    auth: 'Авторизация'
   },
   links: {
     home: 'Главная',

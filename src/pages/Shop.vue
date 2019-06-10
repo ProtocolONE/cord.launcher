@@ -4,6 +4,6 @@ q-page {{ $route.name }}
 
 <script>
 export default {
-  name: 'HomePage'
+  name: 'ShopPage'
 }
 </script>

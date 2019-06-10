@@ -1,3 +1,21 @@
+const main_routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: () => import('pages/Home.vue')
+  },
+  {
+    name: 'shop',
+    path: '/shop',
+    component: () => import('pages/Shop.vue')
+  },
+  {
+    name: 'library',
+    path: '/library',
+    component: () => import('pages/Library.vue')
+  }
+]
+
 const routes = [
   {
     path: '/auth',
@@ -6,24 +24,26 @@ const routes = [
       {
         path: '',
         name: 'auth',
-        component: () => import('pages/Auth.vue')
+        component: () => import('pages/Auth.vue'),
+        meta: {
+          requires_auth: false
+        }
       },
       {
-        path: 'registration',
-        component: () => import('pages/Registration.vue')
+        path: '/logout',
+        name: 'logout'
       }
     ]
   },
   {
     path: '/',
     component: () => import('layouts/BaseLayout.vue'),
-    children: [
-      {
-        path: '',
-        name: 'home',
-        component: () => import('pages/Home.vue')
+    children: main_routes.map(route => {
+      route.meta = {
+        requires_auth: true
       }
-    ]
+      return route
+    })
   }
 ]
 
@@ -35,4 +55,5 @@ if (process.env.MODE !== 'ssr') {
   })
 }
 
+export { main_routes }
 export default routes
