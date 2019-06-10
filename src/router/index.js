@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import { get } from 'lodash-es'
-
 import routes from './routes'
+import { get } from 'lodash-es'
 
 Vue.use(VueRouter)
 
@@ -25,19 +24,19 @@ export default function ({ store }) {
   })
 
   Router.beforeEach(async (to, from, next) => {
-    let requires_auth = get(to, ['meta', 'requires_auth'], true)
-    let access_token = get(store, ['state', 'access_token'], null)
-
     if (to.name === 'logout') {
-      await store.dispatch('logout')
-      return next({ name: 'auth' })
+      await store.dispatch('oauth2/logout')
+      return next({ name: 'oauth2' })
     }
 
-    if (requires_auth && !access_token) {
+    let access_token = store.state.oauth2.access_token
+    let requires_auth = get(to, ['meta', 'requires_auth'], true)
+
+    if (!access_token && requires_auth) {
       sessionStorage.setItem('route', JSON.stringify(to))
-      return next({ name: 'auth' })
+      return next({ name: 'oauth2' })
     }
-    else if (to.name === 'auth' && access_token) {
+    else if (access_token && to.name === 'oauth2') {
       return next({ name: 'home' })
     }
 

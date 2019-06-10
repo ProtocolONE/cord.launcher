@@ -18,13 +18,13 @@ const main_routes = [
 
 const routes = [
   {
-    path: '/auth',
+    path: '/oauth2',
     component: () => import('layouts/AuthLayout.vue'),
     children: [
       {
         path: '',
-        name: 'auth',
-        component: () => import('pages/Auth.vue'),
+        name: 'oauth2',
+        component: () => import('pages/OAuth2.vue'),
         meta: {
           requires_auth: false
         }

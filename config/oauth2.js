@@ -21,6 +21,8 @@ module.exports = {
   REDIS_HOST: env.REDIS_HOST || 'localhost',
   REDIS_PORT: env.REDIS_PORT || 6379,
 
+  OAUTH2_PORT: env.OAUTH2_PORT || 3000,
+
   NAMESPACE: env.NAMESPACE,
   ISSUER: env.ISSUER,
   CLIENT_ID: env.CLIENT_ID,

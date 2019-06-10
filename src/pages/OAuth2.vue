@@ -5,18 +5,23 @@ q-page.auth
       q-card-section
         .text-h6 {{ $trans('titles', 'auth') }}
       q-separator
-      q-card-section.flex.auth-modal__body
-        iframe.auth-modal__frame(:src="src")
+      q-card-section.flex.items-center.justify-center.auth-modal__body
+        q-spinner(name="ring"
+                  v-show="!is_form_loaded"
+                  color="accent"
+                  size="10em")
+        iframe.auth-modal__frame(v-show="is_form_loaded" :src="src")
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
 
 export default {
-  name: 'AuthPage',
+  name: 'OAuth2Page',
 
   data () {
     return {
+      is_form_loaded: false,
       // --- TODO: get src from env
       src: 'http://localhost:3000/login',
       email: null,
@@ -25,22 +30,23 @@ export default {
     }
   },
 
-  computed: {
-    sign_up_label () {
-      let unregistered = this.$trans('labels', 'notRegistered')
-      let sign_up = this.$trans('labels', 'signUp')
-      return `${unregistered} ${sign_up}`
-    }
-  },
-
   created () {
     window.addEventListener('message', this.handle_post_message, false)
   },
 
   methods: {
-    ...mapMutations(['set_token']),
+    ...mapMutations('oauth2', ['set_token']),
 
     handle_post_message ({ data }) {
+      if (!this.is_form_loaded) {
+        if (data.name === 'loaded') {
+          setTimeout(() => {
+            this.is_form_loaded = true
+          }, 500)
+        }
+        return
+      }
+
       try {
         let {
           access_token,

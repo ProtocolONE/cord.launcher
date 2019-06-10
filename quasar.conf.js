@@ -61,7 +61,8 @@ module.exports = function (ctx) {
 
         // --- other
         'QSeparator',
-        'QAvatar'
+        'QAvatar',
+        'QSpinner'
       ],
 
       cssAddon: true,
