@@ -32,9 +32,16 @@ export default function ({ store }) {
 
     // --- check token expires
     let token_expires = store.state.oauth2.token_expires
-    if (token_expires && token_expires <= Date.now()) {
-      store.commit('oauth2/remove_token')
-      store.commit('oauth2/remove_token_expires')
+    if (token_expires) {
+      token_expires = Number(token_expires)
+      if (token_expires <= Date.now()) {
+        store.commit('oauth2/remove_token')
+        store.commit('oauth2/remove_token_expires')
+      }
+      // --- refresh token if prod
+      if (process.env.PROD) {
+        await store.dispatch('oauth2/refresh_token')
+      }
     }
 
     // --- check token and requires auth for routes

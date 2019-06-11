@@ -38,6 +38,6 @@ module.exports = {
   CORS_VALID_ORIGIN: env.CORS_VALID_ORIGIN || [],
 
   SESSION_NAME: env.SESSION_NAME || 'session_name',
-  SESSION_KEY: env.SESSION_COOKIE_SIGN_KEY || 'session_key',
-  SESSION_AGE: env.SESSION_COOKIE_SIGN_KEY || 21600
+  SESSION_KEY: env.SESSION_KEY || 'session_key',
+  SESSION_AGE: env.SESSION_AGE || 21600
 }
