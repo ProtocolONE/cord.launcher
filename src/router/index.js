@@ -24,19 +24,27 @@ export default function ({ store }) {
   })
 
   Router.beforeEach(async (to, from, next) => {
+    // --- logout
     if (to.name === 'logout') {
       await store.dispatch('oauth2/logout')
       return next({ name: 'oauth2' })
     }
 
+    // --- check token expires
+    let token_expires = store.state.oauth2.token_expires
+    if (token_expires && token_expires <= Date.now()) {
+      store.commit('oauth2/remove_token')
+      store.commit('oauth2/remove_token_expires')
+    }
+
+    // --- check token and requires auth for routes
     let access_token = store.state.oauth2.access_token
     let requires_auth = get(to, ['meta', 'requires_auth'], true)
-
-    if (!access_token && requires_auth) {
+    if (requires_auth && !access_token) {
       sessionStorage.setItem('route', JSON.stringify(to))
       return next({ name: 'oauth2' })
     }
-    else if (access_token && to.name === 'oauth2') {
+    else if (to.name === 'oauth2' && access_token) {
       return next({ name: 'home' })
     }
 

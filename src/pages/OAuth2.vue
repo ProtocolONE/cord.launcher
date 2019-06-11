@@ -35,11 +35,14 @@ export default {
   },
 
   methods: {
-    ...mapMutations('oauth2', ['set_token']),
+    ...mapMutations('oauth2', ['set_token', 'set_token_expires']),
 
     handle_post_message ({ data }) {
+      let name = data.name
+      if (name === 'formResize') return
+
       if (!this.is_form_loaded) {
-        if (data.name === 'loaded') {
+        if (name === 'loaded') {
           setTimeout(() => {
             this.is_form_loaded = true
           }, 500)
@@ -48,20 +51,19 @@ export default {
       }
 
       try {
-        let {
-          access_token,
-          success,
-          error
-        } = data
-
-        if (success && access_token) {
+        if (data.success) {
+          let { access_token, expires_in } = data
           let route = JSON.parse(sessionStorage.getItem('route'))
+
           sessionStorage.removeItem('route')
+
           this.set_token(access_token)
+          this.set_token_expires(expires_in)
+
           this.$router.go(route || 0)
         }
 
-        if (error) console.error(error)
+        if (data.error) console.error(data.error)
       }
       catch (error) {
         console.error(error)
