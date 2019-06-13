@@ -1,5 +1,7 @@
 'use strict'
 
+// --- TODO: add check for .env file
+
 const app = require('./app')
 
 const { pino_logger: log } = require('./logger')
