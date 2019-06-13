@@ -18,8 +18,11 @@ const params = {
   signed: true,
   httpOnly: process.env.PROD,
   domain: url_parse(HOST).hostname,
-  maxAge: SESSION_AGE * 1000,
-  store: new Store(REDIS_PORT, REDIS_HOST, SESSION_AGE)
+  maxAge: SESSION_AGE * 1000
+}
+
+if (REDIS_PORT && REDIS_HOST) {
+  params.store = new Store(REDIS_PORT, REDIS_HOST, SESSION_AGE)
 }
 
 module.exports = session(params)

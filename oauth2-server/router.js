@@ -36,8 +36,12 @@ const endpoints_options = {
   postMessageTargetOrigin: POSTMESSAGE_TARGET_ORIGIN
 }
 
-const redis = new Redis(REDIS_HOST, REDIS_PORT)
-const storage = new StorageRedis(redis)
+let storage = null
+if (REDIS_HOST && REDIS_PORT) {
+  storage = new StorageRedis(
+    new Redis(REDIS_HOST, REDIS_PORT)
+  )
+}
 
 const jwtVerifier = new JwtVerifier(verifier_options, storage)
 const endpoints = oauthEndpoints(jwtVerifier, endpoints_options)
