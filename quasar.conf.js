@@ -39,6 +39,7 @@ module.exports = function (ctx) {
         'QPage',
 
         // --- forms
+        'QForm',
         'QBtn',
         'QInput',
         'QCheckbox',

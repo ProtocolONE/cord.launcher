@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-// import example from './module-example'
 import oauth2 from './oauth2'
+import game from './game'
 
 Vue.use(Vuex)
 
@@ -14,8 +14,8 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      // example
-      oauth2
+      oauth2,
+      game
     },
 
     // enable strict mode (adds overhead!)

@@ -41,9 +41,9 @@ export default {
   },
 
   created () {
-    let url = 'https://qilinapi.tst.protocol.one/api/v1/me'
-    url = process.env.API_URL + '/accounts/login'
-    this.$axios.post(url)
+    // let url = 'https://qilinapi.tst.protocol.one/api/v1/me'
+    // url = process.env.API_URL + '/accounts/login'
+    // this.$axios.post(url)
   }
 }
 </script>

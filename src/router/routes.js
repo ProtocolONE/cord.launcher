@@ -54,6 +54,20 @@ const routes = [
     })
   },
   {
+    path: '/game',
+    component: () => import('layouts/BaseLayout.vue'),
+    children: [
+      {
+        name: 'game',
+        path: ':game_id',
+        component: () => import('pages/Game.vue'),
+        meta: {
+          requires_auth: true
+        }
+      }
+    ]
+  },
+  {
     path: '/profile',
     component: () => import('layouts/UserLayout.vue'),
     children: user_routes.map(route => {
