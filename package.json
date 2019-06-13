@@ -7,7 +7,6 @@
   "author": "Boris",
   "private": true,
   "scripts": {
-    "oauth2": "node oauth2-server",
     "dev": "quasar dev",
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0"
