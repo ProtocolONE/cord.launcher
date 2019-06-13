@@ -1,21 +1,35 @@
 <template lang="pug">
 q-page
-  q-toolbar.base-padding.text-white.toolbar(v-if="!loading")
-    q-btn(:to="{ name: 'shop' }" :label="$trans('labels', 'back')")
-    q-toolbar-title.flex.items-center
-      .flex.column.q-mr-lg
-        | {{ game.title }}
-        q-rating(:value="game.rating" color="white" size="1em" readonly)
-      tags(:tags="game.tags")
-    div
-      | {{ game.publisher.title }}
-      | {{ game.releaseDate | localize }}
-    // pre {{ game }}
 
-  q-inner-loading(:showing="loading" dark)
-    q-spinner(name="ring"
-              color="accent"
-              size="10em")
+  // preview
+  section.preview
+    // toolbar
+    q-toolbar.toolbar.base-padding.text-white(v-if="!loading && game")
+
+      q-btn.q-btn__back(:to="{ name: 'shop' }" :label="$trans('labels', 'back')")
+
+      q-toolbar-title.flex.items-center
+        .flex.column.q-mr-lg
+          | {{ game.title }}
+          q-rating(:value="game.rating" color="white" size="1em" readonly)
+        tags(:tags="game.tags")
+
+      .release.flex.roboto
+        .release__date.q-mr-sm {{ $trans('labels', 'released_on') }} {{ game.releaseDate | localize }}
+        .release__divider.q-mr-sm
+        .release__publisher {{ game.publisher.title }}
+
+    // Requirements & Languages
+    section.base-padding.text-grey
+      .requirements
+        h4.base-title {{ $trans('titles', 'system_requirements') }}
+      .languages
+
+    // loader
+    q-inner-loading(:showing="loading || !game" dark)
+      q-spinner(name="ring"
+                color="accent"
+                size="10em")
 </template>
 
 <script>
@@ -28,10 +42,7 @@ export default {
   name: 'GamePage',
 
   filters: {
-    localize: value => {
-      console.log(date.formatDate(value, 'DD-MMM-YYYY'))
-      return value
-    }
+    localize: value => date.formatDate(value, 'MMM DD, YYYY')
   },
 
   components: {
@@ -44,14 +55,7 @@ export default {
     }
   },
 
-  computed: {
-    ...mapState('game', ['game']),
-
-    release_date () {
-      console.log(this.game.releaseDate)
-      return this.game.releaseDate
-    }
-  },
+  computed: mapState('game', ['game']),
 
   watch: {
     '$route.params.game_id': {
@@ -78,4 +82,10 @@ export default {
 <style lang="stylus" scoped>
 .toolbar
   background: rgba($primary, 0.5)
+
+.release
+  font-size: 16px
+  &__divider
+    width: 1px
+    background-color: $grey
 </style>

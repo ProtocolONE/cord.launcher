@@ -12,9 +12,6 @@ export default ({ app, Vue }) => {
    */
   Vue.prototype.$trans = function (key, value) {
     let locale = get(app, ['i18n', 'locale'], 'en-us')
-    return (
-      get(app.i18n.messages[locale], [key, value], null) ||
-      get(app.i18n.messages[locale], [key], null)
-    )
+    return get(app.i18n.messages[locale], [key, value], 'no trans')
   }
 }

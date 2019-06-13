@@ -46,7 +46,7 @@ export default {
       routes: main_routes.map(route => ({
         name: route.name,
         path: route.path,
-        label: this.$trans('links', route.name)
+        label: this.$trans('routes', route.name)
       }))
     }
   },

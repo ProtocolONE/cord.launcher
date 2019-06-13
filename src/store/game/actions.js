@@ -28,7 +28,7 @@ export async function load_game ({ commit, getters }, game_id) {
       timeout: 0,
       actions: [
         {
-          label: this._vm.$trans('labels', 'goBack'),
+          label: this._vm.$trans('labels', 'back'),
           color: 'white',
           handler: () => this.$router.go(-1)
         }
