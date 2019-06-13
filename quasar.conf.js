@@ -54,6 +54,10 @@ module.exports = function (ctx) {
         'QItem',
         'QItemSection',
 
+        // --- toolbar
+        'QToolbar',
+        'QToolbarTitle',
+
         // --- dropdown
         'QBtnDropdown',
 
@@ -63,7 +67,9 @@ module.exports = function (ctx) {
         // --- other
         'QSeparator',
         'QAvatar',
-        'QSpinner'
+        'QSpinner',
+        'QInnerLoading',
+        'QRating'
       ],
 
       cssAddon: true,

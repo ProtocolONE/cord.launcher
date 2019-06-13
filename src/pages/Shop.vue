@@ -1,5 +1,5 @@
 <template lang="pug">
-q-page.page
+q-page.base-padding
   q-form(@submit="handleSubmit")
     q-input(v-model="game_id"
             label="Enter a game id"

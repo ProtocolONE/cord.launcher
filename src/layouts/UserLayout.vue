@@ -38,13 +38,6 @@ export default {
         label: this.$trans('links', route.name)
       }))
     }
-  },
-
-  created () {
-    // --- TODO: add /me (for check user)
-    // let url = 'https://qilinapi.tst.protocol.one/api/v1/me'
-    // url = process.env.API_URL + '/accounts/login'
-    // this.$axios.post(url)
   }
 }
 </script>
