@@ -34,7 +34,7 @@ export default {
      */
     async logout ({ state, commit }) {
       let url = `${state.url}/logout`
-      await axios(url, { withCredentials: true })
+      await axios(url)
         .catch(() => null) // getting rid of 500
         .finally(() => {
           commit('remove_token_expires')
@@ -45,7 +45,7 @@ export default {
     async refresh_token ({ state, commit }) {
       try {
         let url = `${state.url}/refresh`
-        let { data } = await axios(url, { withCredentials: true })
+        let { data } = await axios(url)
         let { access_token, expires_in } = data
         if (access_token) commit('set_token', access_token)
         if (expires_in) commit('set_token_expires', expires_in)

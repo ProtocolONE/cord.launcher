@@ -80,7 +80,9 @@ export default {
     notRegistered: 'Not registered?',
     signUp: 'Sign up',
     signIn: 'Sign in',
-    passwordRetype: 'Retype password'
+    passwordRetype: 'Retype password',
+    logout: 'Logout',
+    profile: 'Profile'
   },
   paragraphs: {
     nothingHere: 'Sorry, nothing here',

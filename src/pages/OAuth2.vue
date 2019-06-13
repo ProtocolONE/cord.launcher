@@ -53,14 +53,14 @@ export default {
       try {
         if (data.success) {
           let { access_token, expires_in } = data
-          let route = JSON.parse(sessionStorage.getItem('route'))
+          let route = JSON.parse(sessionStorage.getItem('route')) || { name: 'home' }
 
           sessionStorage.removeItem('route')
 
           this.set_token(access_token)
           this.set_token_expires(expires_in)
 
-          this.$router.go(route || 0)
+          this.$router.push(route)
         }
 
         if (data.error) console.error(data.error)

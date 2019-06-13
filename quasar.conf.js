@@ -111,7 +111,12 @@ module.exports = function (ctx) {
     devServer: {
       // https: true,
       port: env.PORT,
-      open: false // opens browser window automatically
+      open: false,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+        'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+      }
     },
 
     // animations: 'all', // --- includes all animations

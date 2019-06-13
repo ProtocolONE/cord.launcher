@@ -16,6 +16,14 @@ const main_routes = [
   }
 ]
 
+const user_routes = [
+  {
+    path: '',
+    name: 'personal',
+    component: () => import('pages/UserPersonal.vue')
+  }
+]
+
 const routes = [
   {
     path: '/oauth2',
@@ -44,6 +52,16 @@ const routes = [
       }
       return route
     })
+  },
+  {
+    path: '/profile',
+    component: () => import('layouts/UserLayout.vue'),
+    children: user_routes.map(route => {
+      route.meta = {
+        requires_auth: true
+      }
+      return route
+    })
   }
 ]
 
@@ -55,5 +73,9 @@ if (process.env.MODE !== 'ssr') {
   })
 }
 
-export { main_routes }
+export {
+  main_routes,
+  user_routes
+}
+
 export default routes

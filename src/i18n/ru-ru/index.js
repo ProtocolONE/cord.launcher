@@ -80,7 +80,9 @@ export default {
     notRegistered: 'Нет аккаунта?',
     signUp: 'Зарегистрироваться',
     signIn: 'Войти',
-    passwordRetype: 'Повторите пароль'
+    passwordRetype: 'Повторите пароль',
+    logout: 'Выход',
+    profile: 'Профиль'
   },
   paragraphs: {
     nothingHere: 'Извините, здесь ничего нет',

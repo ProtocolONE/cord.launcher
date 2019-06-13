@@ -1,0 +1,47 @@
+version: "3"
+
+
+services:
+# TODO: prod/dev versions
+#  nginx:
+#    image: nginx
+#    volumes:
+#      - ./etc/nginx/default.template:/etc/nginx/conf.d/default.template
+#    ports:
+#      - "80:80"     # http
+#      - "443:443"   # https
+#      - "8080:8080" # webpack-dev-server :8080/sockjs-node/info
+#    networks:
+#      - p1devnet
+
+  oauth2-server:
+    build: .
+    volumes:
+      - ./:/app
+      - node-modules:/app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    links:
+      - redis
+    networks:
+      - p1devnet
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - p1devnet
+
+
+networks:
+  p1devnet:
+
+
+volumes:
+  redis-data:
+  node-modules:

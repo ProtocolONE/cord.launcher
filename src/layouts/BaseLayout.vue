@@ -1,4 +1,4 @@
-<template lang="pug">
+<template lang="pug" xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
 q-layout.main
 
   q-header.main__header.header
@@ -16,10 +16,14 @@ q-layout.main
         template(v-slot:label)
           q-avatar(size="40px"): img(src="https://cdn.quasar.dev/img/boy-avatar.png")
         q-list(bordered separator)
+          q-item(v-close-popup clickable @click="$router.replace({ name: 'personal' })")
+            // --- TODO: logout confirm
+            q-item-section {{ $trans('labels', 'profile') }}
           q-item(v-close-popup clickable @click="logout")
-            q-item-section Logout
+            // --- TODO: logout confirm
+            q-item-section {{ $trans('labels', 'logout') }}
 
-  q-page-container: router-view
+  q-page-container: slot: router-view
 
   q-footer.main__footer.footer
     q-btn.q-pa-none(to="/" flat): logo.footer__logo
@@ -60,9 +64,9 @@ $tab-border-radius = 100px
 
 .main
   &__header
-    padding: 35px 45px
+    padding: $base-padding
   &__footer
-    padding: 85px 45px
+    padding: ($base-padding-top * 2) $base-padding-right
 
 .header
   &__logo

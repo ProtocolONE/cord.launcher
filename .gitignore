@@ -1,4 +1,5 @@
 backup/
+app/
 .quasar
 .thumbs.db
 /dist

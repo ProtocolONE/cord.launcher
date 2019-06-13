@@ -11,6 +11,7 @@ Vue.use(VueRouter)
  * directly export the Router instantiation
  */
 
+// --- TODO: api/me
 export default function ({ store }) {
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
@@ -24,22 +25,18 @@ export default function ({ store }) {
   })
 
   Router.beforeEach(async (to, from, next) => {
+    // --- TODO: add /me (for check user)
+
     // --- logout
     if (to.name === 'logout') {
       await store.dispatch('oauth2/logout')
       return next({ name: 'oauth2' })
     }
 
-    // --- check token expires
-    let token_expires = store.state.oauth2.token_expires
-    if (token_expires) {
-      token_expires = Number(token_expires)
-      if (token_expires <= Date.now()) {
-        store.commit('oauth2/remove_token')
-        store.commit('oauth2/remove_token_expires')
-      }
-      // --- refresh token if prod
-      if (process.env.PROD) {
+    if (process.env.PROD) {
+      // --- check token expires and refresh
+      let token_expires = store.state.oauth2.token_expires
+      if (token_expires && Number(token_expires) <= Date.now()) {
         await store.dispatch('oauth2/refresh_token')
       }
     }

@@ -4,6 +4,12 @@ q-page {{ $route.name }}
 
 <script>
 export default {
-  name: 'HomePage'
+  name: 'HomePage',
+
+  async created () {
+    let url = 'https://qilinstoreapi.tst.protocol.one/api/v1/games/cb6711fb-40dd-47d0-8f90-40e84256a63a'
+    let { data } = await this.$axios(url)
+    console.log(data)
+  }
 }
 </script>
