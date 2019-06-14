@@ -1,12 +1,4 @@
 'use strict'
-const { existsSync } = require('fs')
-
-if (!existsSync('.env')) {
-  throw Error('.env file is not exist')
-}
-
-// --- TODO: add check for .env file
-
 const app = require('./app')
 
 const { pino_logger: log } = require('./logger')
