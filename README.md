@@ -28,11 +28,11 @@ Need [auth1](https://github.com/ProtocolONE/auth1.protocol.one) client registrat
 | CLIENT_ID                 |                                                   | Client id, registered in auth1                                                                      |
 | CLIENT_SECRET             |                                                   | Client secret, registered in auth1                                                                  |
 | POSTMESSAGE_TEMPLATE      | oauth2-server/templates/postmessage.html.template | Path to post message template file for post message communicating between cord host and auth1 host  |
-| POSTMESSAGE_TARGET_ORIGIN | '*'                                               | CORS origin                                                                                         |
+| POSTMESSAGE_TARGET_ORIGIN | "*"                                               | CORS origin                                                                                         |
 | REDIRECT_URL              | http://localhost:3000/callback                    | auth1 redirect url                                                                                  |
-| SCOPES                    | ['openid', 'offline']                             | auth1 scopes                                                                                        |
-| CORS_ROUTES               | ['/refresh', '/logout']                           | Allowed routes for auth1                                                                            |
-| CORS_VALID_ORIGIN         | ['*']                                             | CORS origin                                                                                         |
+| SCOPES                    | ["openid", "offline"]                             | auth1 scopes                                                                                        |
+| CORS_ROUTES               | ["/refresh", "/logout"]                           | Allowed routes for auth1                                                                            |
+| CORS_VALID_ORIGIN         | ["*"]                                             | CORS origin                                                                                         |
 | SESSION_NAME              |                                                   | Auth1 session name                                                                                  |
 | SESSION_KEY               |                                                   | Auth1 session key                                                                                   |
 | SESSION_AGE               | 21600                                             | Auth1 session age (default is 6 hours)                                                              |
