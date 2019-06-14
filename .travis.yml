@@ -1,0 +1,33 @@
+language: node_js
+sudo: false
+node_js: node
+
+
+# safelist
+branches:
+  only:
+  - master
+
+
+stages:
+  - name: deploy
+
+
+jobs:
+  include:
+    - stage: deploy
+      os: osx
+      osx_image: xcode9.4
+      language: node_js
+      node_js: '10'
+      # TODO: electron
+      cache:
+        directories:
+          - node_modules
+      script:
+        - yarn lint
+
+
+notifications:
+  slack:
+    secure: d+/4dMle1E8GTbHuq1HJpco9RXZ/Gt0gGX7ngumpuV2T4B0H6gRWVsMB15Pa4sNEfnOTbRdQy7rvLtHIO/KYxbRIJ4qPN9vl9wPI1B2ehqU6+YJ2SBhinOI7iIdK099oxJJ6hx4LBhGfVOkWNjenkvbFifzg3dXeqqlrkyuTTSW2HDNDYWiFLQ3KKGO6nad5NQU3lSjgt/Y+CuDxE+5hA2kYl5s+PS6IrWjn01czm5FuSlhSvRZYZNGL9SMEHuZHGHN96qyKCA8zqtTB0+dpWajuRh/Lw2nyAHxXsgLNvzZ7N7k+teTq0QuWJ+4uk/L2q3JDTu/72c6EBxdrzM6sIw/RZFs5CjyF8EwiZqsPYYeSoHmmQ/g11u4v7ZUF3BH7yMH3xET33xBVT6O1o7+/C4UklSSRvfNmPgNe59Vv4PZy0TrfmKSYwOcjqSvqWlA1gatSf3GrbW8/jnqVDsflDPy7jOWrO6iOSUXksFZpAPGoGYReV9RHQEOHx+yauZnT/rR1K8h2C5HTtzqxpKXZaqFzrYu+zE9OR5o6pW5s3xNe8uCJAAl7KaBBHhFnHspdG4wOrv2bkP3mpNQYTulBK6LO4bG95xHEsbcLbbdGsudMCkBi6yLn5Wd0RBypjsmZ1MZvoVU8mkss6FZNuqK9mJ0nJej+QuH73F2SRe2rQr0=
