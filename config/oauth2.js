@@ -15,29 +15,30 @@ catch (error) {
 }
 
 module.exports = {
-  HOST: env.HOST,
-  PORT: env.PORT,
+  HOST: env.HOST || 'http://localhost',
+  PORT: env.PORT || 8080,
 
-  REDIS_HOST: env.REDIS_HOST,
-  REDIS_PORT: env.REDIS_PORT,
+  REDIS_HOST: env.REDIS_HOST || 'redis',
+  REDIS_PORT: env.REDIS_PORT || 6379,
 
-  OAUTH2_PORT: env.OAUTH2_PORT,
+  OAUTH2_PORT: env.OAUTH2_PORT || 3000,
 
-  NAMESPACE: env.NAMESPACE,
-  ISSUER: env.ISSUER,
+  NAMESPACE: env.NAMESPACE || 'auth1',
+  ISSUER: env.ISSUER || 'https://auth1.tst.protocol.one',
   CLIENT_ID: env.CLIENT_ID,
   CLIENT_SECRET: env.CLIENT_SECRET,
 
-  POSTMESSAGE_TEMPLATE: postmessage_template,
+  POSTMESSAGE_TEMPLATE: postmessage_template || 'oauth2-server/templates/postmessage.html.template',
   POSTMESSAGE_TARGET_ORIGIN: env.POSTMESSAGE_TARGET_ORIGIN || '*',
 
-  REDIRECT_URL: env.REDIRECT_URL,
+  REDIRECT_URL: env.REDIRECT_URL || 'http://localhost:3000/callback',
 
-  SCOPES: env.SCOPES || [],
-  CORS_ROUTES: env.CORS_ROUTES || [],
-  CORS_VALID_ORIGIN: env.CORS_VALID_ORIGIN || [],
+  SCOPES: env.SCOPES || ['openid', 'offline'],
+
+  CORS_ROUTES: env.CORS_ROUTES || ['/refresh', '/logout'],
+  CORS_VALID_ORIGIN: env.CORS_VALID_ORIGIN || ['*'],
 
   SESSION_NAME: env.SESSION_NAME,
   SESSION_KEY: env.SESSION_KEY,
-  SESSION_AGE: env.SESSION_AGE
+  SESSION_AGE: env.SESSION_AGE || 21600 // 6 hours
 }
