@@ -1,4 +1,4 @@
-{{- $deployment := .Values.backend -}}
+{{- $deployment := .Values.frontend -}}
 {{- $deploymentName := printf "%s-%s" .Release.Name $deployment.name }}
 apiVersion: apps/v1
 kind: Deployment
@@ -35,15 +35,27 @@ spec:
         heritage: {{ .Release.Service }}
         role: {{ $deployment.role }}
     spec:
+      {{- if $deployment.configMap }}
+      volumes:
+      - name: {{ $deploymentName }}-configmap
+        configMap:
+          name: {{ $deploymentName }}
+      {{- end }}
       containers:
       - name: {{ $deployment.name }}
         image: {{ $deployment.image }}:{{ $deployment.imageTag }}
         ports:
         - containerPort: {{ $deployment.port }}
-        #livenessProbe:
-        #  httpGet:
-        #    path: /_healthz
-        #    port: {{ $deployment.port }}
-        #  initialDelaySeconds: 5
-        #  timeoutSeconds: 3
-        #  failureThreshold: 2
+        livenessProbe:
+          httpGet:
+            path: /_healthz
+            port: {{ $deployment.port }}
+          initialDelaySeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 2
+        {{- if $deployment.configMap }}
+        volumeMounts:
+        - name: {{ $deploymentName }}-configmap
+          mountPath: {{ $deployment.configMap.mountPath }}
+          readOnly: true
+        {{- end }}
