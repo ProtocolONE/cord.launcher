@@ -1,6 +1,6 @@
 <template lang="pug" xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
 base-layout
-  .row.gutter-sm
+  .row.q-col-gutter-md
 
     .col-lg-2.col-md-3.col-4
       aside.user-nav

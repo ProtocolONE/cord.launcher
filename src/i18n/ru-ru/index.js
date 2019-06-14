@@ -9,24 +9,34 @@ export default {
   titles: {
     auth: 'Авторизация',
     system_requirements: 'Системные требования',
-    profile: 'Профиль',
-    logout: 'Выйти'
+    language_support: 'Поддержка языков'
   },
 
   labels: {
     back: 'Вернуться',
     released_on: 'Выпущена',
+    profile: 'Профиль',
+    logout: 'Выйти',
     minimal: 'Минимальные',
     recommended: 'Рекомендуемые',
     cpu: 'CPU',
     disk_space: 'Место на диске',
     gpu: 'GPU',
     os: 'OS',
-    ram: 'RAM'
+    ram: 'RAM',
+    language: 'Язык',
+    text: 'Интерфейс',
+    audio: 'Озвучка'
   },
 
   locales: {
     'en-us': 'Английский',
-    'ru-ru': 'Русский'
+    'ru-ru': 'Русский',
+    ru: 'Русский',
+    fr: 'Французский',
+    de: 'Немецкий',
+    en: 'Английский',
+    es: 'Испанский',
+    pt: 'Португальский'
   }
 }

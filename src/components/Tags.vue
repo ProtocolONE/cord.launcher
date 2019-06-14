@@ -1,8 +1,10 @@
 <template lang="pug">
 .tags.roboto.text-bold
-  q-btn.tags__item(v-for="{ id, title } in tags"
-        :key="id"
-        :label="title")
+  q-btn.tags__item(v-for="(tag, i) in tags"
+                   :key="tag.id"
+                   :label="tag.title"
+                   :class="{ 'q-mr-sm': i < tags.length }"
+                   :ripple="false")
 </template>
 
 <script>
@@ -27,4 +29,5 @@ export default {
     font-size: 12px
     line-height: 14px
     letter-spacing: 0.1em
+    cursor: default
 </style>

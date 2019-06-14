@@ -8,7 +8,8 @@ export default {
 
   titles: {
     auth: 'Authorization',
-    system_requirements: 'System requirements'
+    system_requirements: 'System requirements',
+    language_support: 'Language support'
   },
 
   labels: {
@@ -22,11 +23,20 @@ export default {
     disk_space: 'Disk space',
     gpu: 'GPU',
     os: 'OS',
-    ram: 'RAM'
+    ram: 'RAM',
+    language: 'Language',
+    text: 'Text',
+    audio: 'Audio'
   },
 
   locales: {
     'en-us': 'English',
-    'ru-ru': 'Russian'
+    'ru-ru': 'Russian',
+    ru: 'Russian',
+    fr: 'France',
+    de: 'Deutsch',
+    en: 'English',
+    es: 'Spanish',
+    pt: 'Portuguese'
   }
 }

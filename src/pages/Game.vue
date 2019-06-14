@@ -12,7 +12,7 @@ q-page
         .flex.column.q-mr-lg
           | {{ game.title }}
           q-rating(:value="game.rating" color="white" size="1em" readonly)
-        tags(:tags="game.tags")
+        tags(:tags="game.genres")
 
       .release.flex.roboto
         .release__date.q-mr-sm {{ $trans('labels', 'released_on') }} {{ game.releaseDate | localize }}
@@ -21,9 +21,9 @@ q-page
 
     // Requirements & Languages
       TODO: table as Vue-component
-    section.base-padding.text-grey
+    section.row.q-col-gutter-md.base-padding.text-grey
       // requirements
-      .requirements
+      .requirements.col-lg-6.col-md-8.col-12
         h4.base-title.q-mb-lg {{ $trans('titles', 'system_requirements') }}
         q-tabs(v-model="system_requirement_tab" align="left" class="text-white")
           q-tab.q-pa-none(v-for="(system_data, system) in requirements"
@@ -39,19 +39,30 @@ q-page
             .row
               .col-md-6.col-12
                 h5.base-title.text-white.text-normal {{ $trans('labels', 'minimal') }}
-                table.requirements__table: tbody
+                table.requirements__table: tbody.vertical-top
                   q-tr(v-for="(val, key) in system_data.minimal" :key="key")
-                    q-td.q-pl-none.text-uppercase {{ key }}
+                    q-td.q-pl-none.q-pt-sm.text-uppercase {{ key }}
                     q-td.q-pa-sm.text-white {{ val }}
               // recommended
               .col-md-6.col-12
                 h5.base-title.text-white.text-normal {{ $trans('labels', 'recommended') }}
-                table.requirements__table: tbody
+                table.requirements__table: tbody.vertical-top
                   q-tr(v-for="(val, key) in system_data.recommended" :key="key")
-                    q-td.q-pl-none.text-uppercase {{ key }}
+                    q-td.q-pl-none.q-pt-sm.text-uppercase {{ key }}
                     q-td.q-pa-sm.text-white {{ val }}
       // languages
-      .languages
+      .languages.col-lg-6.col-md-4.col-12
+        h4.base-title.q-mb-lg {{ $trans('titles', 'language_support') }}
+        table.languages__table
+          thead.vertical-top: q-tr
+            q-th.q-pt-sm.q-pr-sm.q-pb-sm.text-bold(v-for="val in ['language', 'text', 'audio']" :key="val")
+              | {{ $trans('labels', val) }}
+          tbody.vertical-top
+            q-tr(v-for="lang in support_languages" :key="lang")
+              q-td.q-pt-sm.q-pr-sm.q-pb-sm.text-white.text-bold
+                | {{ $trans('locales', lang) }}
+              q-td.q-pa-sm(v-for="val in ['text', 'audio']" :key="val")
+                q-icon.languages__icon.text-white(v-show="has_support(val, lang)" name="fas fa-check")
 
   // loader
   q-inner-loading(:showing="loading || !game" dark)
@@ -88,7 +99,20 @@ export default {
     ...mapState('game', ['game']),
     ...mapGetters('game', {
       requirements: 'get_system_requirements'
-    })
+    }),
+
+    support_text () {
+      return this.game.requirements.languages.text
+    },
+
+    support_audio () {
+      return this.game.requirements.languages.audio
+    },
+
+    support_languages () {
+      let languages_list = this.support_text.concat(this.support_audio)
+      return new Set(languages_list)
+    }
   },
 
   watch: {
@@ -113,7 +137,11 @@ export default {
 
   methods: {
     ...mapActions('game', ['load_game']),
-    ...mapMutations('game', ['set_game'])
+    ...mapMutations('game', ['set_game']),
+
+    has_support (prop, lang) {
+      return this[`support_${prop}`].includes(lang)
+    }
   }
 }
 </script>
@@ -131,5 +159,15 @@ export default {
 .requirements
 
   &__table
+    width: 100%
     font-size: 16px
+
+.languages
+
+  &__table
+    width: 100%
+    font-size: 16px
+
+  &__icon
+    font-size: 14px
 </style>
