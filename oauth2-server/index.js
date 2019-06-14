@@ -1,4 +1,9 @@
 'use strict'
+const { existsSync } = require('fs')
+
+if (!existsSync('.env')) {
+  throw Error('.env file is not exist')
+}
 
 // --- TODO: add check for .env file
 

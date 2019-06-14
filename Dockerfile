@@ -1,18 +1,16 @@
-FROM node:10.12-alpine AS node
+FROM node:10.16-alpine AS node
 
-RUN apk update \
-    && apk add ca-certificates --no-cache --update \
-    && addgroup -S cordgroup \
-    && adduser -S -G cordgroup corduser
+RUN apk update && \
+    apk add ca-certificates --no-cache --update
 
 WORKDIR /app
-
-COPY yarn.lock /app
-COPY package.json /app
-COPY oauth2-server /app/oauth2-server
+COPY package.json yarn.lock /app/
 
 RUN yarn install
 
-EXPOSE 3000
+COPY . /app/
 
+RUN yarn build
+
+EXPOSE 3000
 CMD ["node", "oauth2-server"]

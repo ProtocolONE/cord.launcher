@@ -15,13 +15,13 @@ catch (error) {
 }
 
 module.exports = {
-  HOST: env.HOST || 'http://localhost',
-  PORT: env.PORT || 8080,
+  HOST: env.HOST,
+  PORT: env.PORT,
 
-  REDIS_HOST: env.REDIS_HOST || 'localhost',
-  REDIS_PORT: env.REDIS_PORT || 6379,
+  REDIS_HOST: env.REDIS_HOST,
+  REDIS_PORT: env.REDIS_PORT,
 
-  OAUTH2_PORT: env.OAUTH2_PORT || 3000,
+  OAUTH2_PORT: env.OAUTH2_PORT,
 
   NAMESPACE: env.NAMESPACE,
   ISSUER: env.ISSUER,
@@ -31,13 +31,13 @@ module.exports = {
   POSTMESSAGE_TEMPLATE: postmessage_template,
   POSTMESSAGE_TARGET_ORIGIN: env.POSTMESSAGE_TARGET_ORIGIN || '*',
 
-  REDIRECT_URL: env.REDIRECT_URL || 'http://localhost:3000/callback',
+  REDIRECT_URL: env.REDIRECT_URL,
 
   SCOPES: env.SCOPES || [],
   CORS_ROUTES: env.CORS_ROUTES || [],
   CORS_VALID_ORIGIN: env.CORS_VALID_ORIGIN || [],
 
-  SESSION_NAME: env.SESSION_NAME || 'session_name',
-  SESSION_KEY: env.SESSION_KEY || 'session_key',
-  SESSION_AGE: env.SESSION_AGE || 21600
+  SESSION_NAME: env.SESSION_NAME,
+  SESSION_KEY: env.SESSION_KEY,
+  SESSION_AGE: env.SESSION_AGE
 }

@@ -14,7 +14,7 @@ q-page.auth
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'OAuth2Page',
@@ -22,12 +22,16 @@ export default {
   data () {
     return {
       is_form_loaded: false,
-      // --- TODO: get src from env
-      src: 'http://localhost:3000/login',
       email: null,
       password: null,
       is_remember: false
     }
+  },
+
+  computed: {
+    ...mapState('oauth2', {
+      src: state => `${state.url}/login`
+    })
   },
 
   created () {
