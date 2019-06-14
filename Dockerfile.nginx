@@ -16,6 +16,6 @@ FROM nginx:1.15.4
 
 WORKDIR /var/www
 
-COPY --from=node /app/build /app/public /var/www/
+COPY --from=node /app/dist/spa /var/www/
 
 EXPOSE 80
