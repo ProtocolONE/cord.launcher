@@ -15,7 +15,14 @@ export default {
 
   labels: {
     back: 'Вернуться',
-    released_on: 'Выпущена'
+    released_on: 'Выпущена',
+    minimal: 'Минимальные',
+    recommended: 'Рекомендуемые',
+    cpu: 'CPU',
+    disk_space: 'Место на диске',
+    gpu: 'GPU',
+    os: 'OS',
+    ram: 'RAM'
   },
 
   locales: {

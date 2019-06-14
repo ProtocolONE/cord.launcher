@@ -15,7 +15,14 @@ export default {
     back: 'Back',
     released_on: 'Released on',
     profile: 'Profile',
-    logout: 'Logout'
+    logout: 'Logout',
+    minimal: 'Minimal',
+    recommended: 'Recommended',
+    cpu: 'CPU',
+    disk_space: 'Disk space',
+    gpu: 'GPU',
+    os: 'OS',
+    ram: 'RAM'
   },
 
   locales: {

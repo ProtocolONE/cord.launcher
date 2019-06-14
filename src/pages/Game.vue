@@ -20,26 +20,37 @@ q-page
         .release__publisher {{ game.publisher.title }}
 
     // Requirements & Languages
+      TODO: table as Vue-component
     section.base-padding.text-grey
+      // requirements
       .requirements
-        h4.base-title {{ $trans('titles', 'system_requirements') }}
+        h4.base-title.q-mb-lg {{ $trans('titles', 'system_requirements') }}
         q-tabs(v-model="system_requirement_tab" align="left" class="text-white")
           q-tab.q-pa-none(v-for="(system_data, system) in requirements"
                           :key="system"
                           :name="system"
                           :data-name="system")
             q-btn(:icon="system_data.icon" flat)
-
         q-tab-panels(v-model="system_requirement_tab" class="bg-transparent" animated)
-          q-tab-panel(v-for="(system_data, system) in requirements"
-                      :key="system"
-                      :name="system")
-            pre {{ system_data }}
-            q-table(:title="$trans('labels', system_data.minimal)"
-                    :data="[]"
-                    :columns="[]"
-                    dark)
-
+          q-tab-panel.q-pl-none(v-for="(system_data, system) in requirements"
+                                :key="system"
+                                :name="system")
+            // minimal
+            .row
+              .col-md-6.col-12
+                h5.base-title.text-white.text-normal {{ $trans('labels', 'minimal') }}
+                table.requirements__table: tbody
+                  q-tr(v-for="(val, key) in system_data.minimal" :key="key")
+                    q-td.q-pl-none.text-uppercase {{ key }}
+                    q-td.q-pa-sm.text-white {{ val }}
+              // recommended
+              .col-md-6.col-12
+                h5.base-title.text-white.text-normal {{ $trans('labels', 'recommended') }}
+                table.requirements__table: tbody
+                  q-tr(v-for="(val, key) in system_data.recommended" :key="key")
+                    q-td.q-pl-none.text-uppercase {{ key }}
+                    q-td.q-pa-sm.text-white {{ val }}
+      // languages
       .languages
 
   // loader
@@ -116,4 +127,9 @@ export default {
   &__divider
     width: 1px
     background-color: $grey
+
+.requirements
+
+  &__table
+    font-size: 16px
 </style>

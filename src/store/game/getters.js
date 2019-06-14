@@ -1,4 +1,11 @@
 import { pick, mapValues } from 'lodash-es'
+import { format } from 'quasar'
+
+// --- TODO: вынести в utils
+function bytes_to_size (megabytes) {
+  let bytes = megabytes * 1048576
+  return format.humanStorageSize(bytes)
+}
 
 /**
  * Returns game url
@@ -24,6 +31,19 @@ export function get_system_requirements ({ game }) {
         break
       default: break
     }
-    return system_data
+
+    return {
+      ...system_data,
+      minimal: {
+        ...system_data.minimal,
+        ram: bytes_to_size(system_data.minimal.ram),
+        disk_space: bytes_to_size(system_data.minimal.disk_space)
+      },
+      recommended: {
+        ...system_data.recommended,
+        ram: bytes_to_size(system_data.recommended.ram),
+        disk_space: bytes_to_size(system_data.recommended.disk_space)
+      }
+    }
   })
 }
