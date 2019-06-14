@@ -3,7 +3,7 @@ q-layout.main
 
   q-header.main__header.header
     nav.roboto.flex.nav
-      q-btn.q-pa-none(to="/" flat): logo.header__logo
+      q-btn.q-pa-none(to="/"): logo.header__logo
       q-btn.text-capitalize.q-ml-lg.nav__item(v-for="{ name, path, label } in routes"
                                               :key="name"
                                               :to="path"
@@ -26,7 +26,7 @@ q-layout.main
   q-page-container: slot: router-view
 
   q-footer.main__footer.footer
-    q-btn.q-pa-none(to="/" flat): logo.footer__logo
+    q-btn.q-pa-none(to="/"): logo.footer__logo
 </template>
 
 <script>

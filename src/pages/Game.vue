@@ -1,23 +1,36 @@
 <template lang="pug">
 q-page
+  template(v-if="!loading && game")
+    // preview
+    section.preview
+      // toolbar
+      q-toolbar.toolbar.base-padding.text-white
 
-  // preview
-  section.preview(v-if="!loading && game")
-    // toolbar
-    q-toolbar.toolbar.base-padding.text-white
+        q-btn.q-btn__back(:to="{ name: 'shop' }" :label="$trans('labels', 'back')")
 
-      q-btn.q-btn__back(:to="{ name: 'shop' }" :label="$trans('labels', 'back')")
+        q-toolbar-title.flex.items-center
+          .flex.column.q-mr-lg
+            | {{ game.title }}
+            q-rating(:value="game.rating" color="white" size="1em" readonly)
+          tags(:tags="game.genres")
 
-      q-toolbar-title.flex.items-center
-        .flex.column.q-mr-lg
-          | {{ game.title }}
-          q-rating(:value="game.rating" color="white" size="1em" readonly)
-        tags(:tags="game.genres")
+        .release.flex.roboto
+          .release__date.q-mr-sm {{ $trans('labels', 'released_on') }} {{ game.releaseDate | localize }}
+          .release__divider.q-mr-sm
+          .release__publisher {{ game.publisher.title }}
 
-      .release.flex.roboto
-        .release__date.q-mr-sm {{ $trans('labels', 'released_on') }} {{ game.releaseDate | localize }}
-        .release__divider.q-mr-sm
-        .release__publisher {{ game.publisher.title }}
+    // info
+    section.info
+      q-toolbar.base-padding.text-white(class="bg-primary")
+        q-btn.platform-icon.q-pa-md(v-for="(icon, i) in platform_icons"
+                                    :key="icon"
+                                    :icon="icon"
+                                    :class="{ 'q-mr-sm': i < platform_icons.length }"
+                                    :ripple="false"
+                                    flat)
+        q-space
+        q-btn.q-pa-md.q-mr-sm.bg-secondary(icon="fas fa-heart")
+        q-btn.q-pa-md.bg-secondary: b.roboto {{ `$ ${game.price}` }}
 
     // Requirements & Languages
       TODO: table as Vue-component
@@ -75,6 +88,7 @@ q-page
 import Tags from 'components/Tags'
 
 import { date } from 'quasar'
+import { map } from 'lodash-es'
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 
 export default {
@@ -100,6 +114,10 @@ export default {
     ...mapGetters('game', {
       requirements: 'get_system_requirements'
     }),
+
+    platform_icons () {
+      return map(this.requirements, ({ icon }) => icon)
+    },
 
     support_text () {
       return this.game.requirements.languages.text
@@ -147,6 +165,11 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.preview
+  min-height: calc(100vw / 2)
+  max-height: 850px
+  background-color: rgba($white, .5)
+
 .toolbar
   background: rgba($primary, 0.5)
 
@@ -155,6 +178,9 @@ export default {
   &__divider
     width: 1px
     background-color: $grey
+
+.platform-icon
+  cursor: default
 
 .requirements
 
