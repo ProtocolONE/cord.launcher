@@ -1,4 +1,4 @@
-{{- $deployment := .Values.backend -}}
+{{- $deployment := .Values.frontend -}}
 {{- $svcName := printf "%s-%s" .Release.Name $deployment.name }}
 apiVersion: v1
 kind: Service
@@ -13,9 +13,9 @@ metadata:
 spec:
   type: {{ $deployment.service.type }}
   ports:
-    - port: {{ $deployment.service.port }}
-      targetPort: {{ $deployment.port }}
-      protocol: {{ $deployment.service.protocol }}
+  - port: {{ $deployment.service.port }}
+    targetPort: {{ $deployment.port }}
+    protocol: {{ $deployment.service.protocol }}
   selector:
     app: {{ .Chart.Name }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
