@@ -7,7 +7,10 @@ export default {
   },
 
   titles: {
-    system_requirements: 'Системные требования'
+    auth: 'Авторизация',
+    system_requirements: 'Системные требования',
+    profile: 'Профиль',
+    logout: 'Выйти'
   },
 
   labels: {

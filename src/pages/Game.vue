@@ -2,9 +2,9 @@
 q-page
 
   // preview
-  section.preview
+  section.preview(v-if="!loading && game")
     // toolbar
-    q-toolbar.toolbar.base-padding.text-white(v-if="!loading && game")
+    q-toolbar.toolbar.base-padding.text-white
 
       q-btn.q-btn__back(:to="{ name: 'shop' }" :label="$trans('labels', 'back')")
 
@@ -23,20 +23,37 @@ q-page
     section.base-padding.text-grey
       .requirements
         h4.base-title {{ $trans('titles', 'system_requirements') }}
+        q-tabs(v-model="system_requirement_tab" align="left" class="text-white")
+          q-tab.q-pa-none(v-for="(system_data, system) in requirements"
+                          :key="system"
+                          :name="system"
+                          :data-name="system")
+            q-btn(:icon="system_data.icon" flat)
+
+        q-tab-panels(v-model="system_requirement_tab" class="bg-transparent" animated)
+          q-tab-panel(v-for="(system_data, system) in requirements"
+                      :key="system"
+                      :name="system")
+            pre {{ system_data }}
+            q-table(:title="$trans('labels', system_data.minimal)"
+                    :data="[]"
+                    :columns="[]"
+                    dark)
+
       .languages
 
-    // loader
-    q-inner-loading(:showing="loading || !game" dark)
-      q-spinner(name="ring"
-                color="accent"
-                size="10em")
+  // loader
+  q-inner-loading(:showing="loading || !game" dark)
+    q-spinner(name="ring"
+              color="accent"
+              size="10em")
 </template>
 
 <script>
 import Tags from 'components/Tags'
 
 import { date } from 'quasar'
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 
 export default {
   name: 'GamePage',
@@ -51,20 +68,31 @@ export default {
 
   data () {
     return {
-      loading: true
+      loading: true,
+      system_requirement_tab: null
     }
   },
 
-  computed: mapState('game', ['game']),
+  computed: {
+    ...mapState('game', ['game']),
+    ...mapGetters('game', {
+      requirements: 'get_system_requirements'
+    })
+  },
 
   watch: {
     '$route.params.game_id': {
       immediate: true,
       async handler (game_id) {
         await this.load_game(game_id)
+
         // --- timeout for loading animation
         setTimeout(() => { this.loading = false }, 1000)
       }
+    },
+
+    'game.platforms' (platforms) {
+      this.system_requirement_tab = platforms[0]
     }
   },
 

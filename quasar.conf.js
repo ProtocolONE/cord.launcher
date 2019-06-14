@@ -18,10 +18,11 @@ module.exports = function (ctx) {
 
     extras: [
       'roboto-font',
-      'material-icons' // optional, you are not bound to it
+      // optional, you are not bound to it
+      'material-icons',
       // 'ionicons-v4',
       // 'mdi-v3',
-      // 'fontawesome-v5',
+      'fontawesome-v5'
       // 'eva-icons'
     ],
 
@@ -49,6 +50,18 @@ module.exports = function (ctx) {
         'QCardSection',
         'QCardActions',
 
+        // --- tabs
+        'QTabs',
+        'QTab',
+        'QTabPanels',
+        'QTabPanel',
+
+        // --- tables
+        'QTable',
+        'QTh',
+        'QTr',
+        'QTd',
+
         // --- list
         'QList',
         'QItem',
@@ -69,7 +82,9 @@ module.exports = function (ctx) {
         'QAvatar',
         'QSpinner',
         'QInnerLoading',
-        'QRating'
+        'QRating',
+        'QSpace',
+        'QIcon'
       ],
 
       cssAddon: true,
