@@ -6,7 +6,7 @@ const env = get_env(false)
 
 let postmessage_template = ''
 try {
-  let path = env.POSTMESSAGE_TEMPLATE || 'server/templates/postmessage.html.template'
+  let path = env.POSTMESSAGE_TEMPLATE || 'oauth2-server/templates/postmessage.html.template'
   let file = resolve(path)
   postmessage_template = readFileSync(file).toString('utf8')
 }
@@ -28,7 +28,7 @@ module.exports = {
   CLIENT_ID: env.CLIENT_ID,
   CLIENT_SECRET: env.CLIENT_SECRET,
 
-  POSTMESSAGE_TEMPLATE: postmessage_template || 'oauth2-server/templates/postmessage.html.template',
+  POSTMESSAGE_TEMPLATE: postmessage_template,
   POSTMESSAGE_TARGET_ORIGIN: env.POSTMESSAGE_TARGET_ORIGIN || '*',
 
   REDIRECT_URL: env.REDIRECT_URL || 'http://localhost:3000/callback',

@@ -9,11 +9,10 @@ function bytes_to_size (megabytes) {
 
 /**
  * Returns game url
- * @param state
  * @returns {function(game_id: string): string}
  */
-export function get_game_url ({ url }) {
-  return game_id => `${url}/games/${game_id}`
+export function get_game_url () {
+  return game_id => `${process.env.API_URL}/games/${game_id}`
 }
 
 export function get_system_requirements ({ game }) {
