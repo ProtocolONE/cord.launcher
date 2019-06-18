@@ -3,20 +3,21 @@ sudo: false
 node_js: node
 
 # blocklist
-branches:
-  except:
-  - master
-  - develop
+#branches:
+#  except:
+#  - master
+#  - develop
 
 # safelist
-branches:
-  only:
-  - stable
-  - beta
-  - alpha
+#branches:
+#  only:
+#  - stable
+#  - beta
+#  - alpha
 
 stages:
   - name: deploy
+    if: branch IN (stable,beta,alpha)
   - name: deployk8s
     if: branch = master
 
