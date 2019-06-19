@@ -32,6 +32,7 @@ services:
       - PORT=${PORT}
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
+      - OAUTH2_HOST=${OAUTH2_HOST}
       - OAUTH2_PORT=${OAUTH2_PORT}
       - NAMESPACE=${NAMESPACE}
       - ISSUER=${ISSUER}
