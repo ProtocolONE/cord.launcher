@@ -47,7 +47,7 @@ services:
       - SESSION_NAME=${SESSION_NAME}
       - SESSION_KEY=${SESSION_KEY}
       - SESSION_AGE=${SESSION_AGE}
-      - API_URL=${API_URL}
+      - API_URL=https://qilinstoreapi.tst.protocol.one/api/v1
 
   redis:
     image: redis:alpine
