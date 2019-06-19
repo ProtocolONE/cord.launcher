@@ -21,6 +21,7 @@ module.exports = {
   REDIS_HOST: env.REDIS_HOST || 'redis',
   REDIS_PORT: env.REDIS_PORT || 6379,
 
+  OAUTH2_HOST: env.OAUTH2_HOST || 'https://qilin.tst.protocol.one/auth1',
   OAUTH2_PORT: env.OAUTH2_PORT || 3000,
 
   NAMESPACE: env.NAMESPACE || 'auth1',
@@ -40,5 +41,7 @@ module.exports = {
 
   SESSION_NAME: env.SESSION_NAME,
   SESSION_KEY: env.SESSION_KEY,
-  SESSION_AGE: env.SESSION_AGE || 21600 // 6 hours
+  SESSION_AGE: env.SESSION_AGE || 21600, // 6 hours
+
+  API_URL: env.API_URL || 'https://qilinstoreapi.tst.protocol.one/api/v1'
 }

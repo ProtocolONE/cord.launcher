@@ -21,7 +21,7 @@ export default function (/* { ssrContext } */) {
     },
 
     getters: {
-      get_api_url: () => process.env.API_URL,
+      get_api_url: () => process.env.API_URL || 'https://qilinstoreapi.tst.protocol.one/api/v1',
       get_access_token: () => localStorage.getItem('access_token')
     },
 

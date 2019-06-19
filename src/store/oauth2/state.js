@@ -1,5 +1,6 @@
-let oauth2_url = process.env.HOST
-if (process.env.OAUTH2_PORT) {
+let auth1_url = 'https://qilin.tst.protocol.one/auth1'
+let oauth2_url = process.env.HOST || process.env.OAUTH2_HOST || auth1_url
+if (oauth2_url !== auth1_url && process.env.OAUTH2_PORT) {
   oauth2_url += `:${process.env.OAUTH2_PORT}`
 }
 
