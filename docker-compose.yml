@@ -27,6 +27,26 @@ services:
       - redis
     networks:
       - p1devnet
+    environment:
+      - HOST=${HOST}
+      - PORT=${PORT}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - OAUTH2_PORT=${OAUTH2_PORT}
+      - NAMESPACE=${NAMESPACE}
+      - ISSUER=${ISSUER}
+      - CLIENT_ID=${CLIENT_ID}
+      - CLIENT_SECRET=${CLIENT_SECRET}
+      - POSTMESSAGE_TEMPLATE=${POSTMESSAGE_TEMPLATE}
+      - POSTMESSAGE_TARGET_ORIGIN=${POSTMESSAGE_TARGET_ORIGIN}
+      - REDIRECT_URL=${REDIRECT_URL}
+      - SCOPES=${SCOPES}
+      - CORS_ROUTES=${CORS_ROUTES}
+      - CORS_VALID_ORIGIN=${CORS_VALID_ORIGIN}
+      - SESSION_NAME=${SESSION_NAME}
+      - SESSION_KEY=${SESSION_KEY}
+      - SESSION_AGE=${SESSION_AGE}
+      - API_URL=${API_URL}
 
   redis:
     image: redis:alpine
