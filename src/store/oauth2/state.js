@@ -1,8 +1,5 @@
-// TODO: fix env HOST
 let oauth2_url = process.env.HOST || 'https://cordlauncher.tst.protocol.one'
-if (process.env.OAUTH2_PORT) {
-  oauth2_url += `:${process.env.OAUTH2_PORT}`
-}
+oauth2_url += `:${process.env.OAUTH2_PORT || 3000}`
 
 export default {
   /**
