@@ -12,6 +12,7 @@ function bytes_to_size (megabytes) {
  * @returns {function(game_id: string): string}
  */
 export function get_game_url () {
+  console.log(process.env.API_URL)
   return game_id => `${process.env.API_URL}/games/${game_id}`
 }
 
