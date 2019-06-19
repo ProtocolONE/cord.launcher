@@ -41,5 +41,7 @@ module.exports = {
 
   SESSION_NAME: env.SESSION_NAME,
   SESSION_KEY: env.SESSION_KEY,
-  SESSION_AGE: env.SESSION_AGE || 21600 // 6 hours
+  SESSION_AGE: env.SESSION_AGE || 21600, // 6 hours
+
+  API_URL: env.API_URL || 'https://qilinstoreapi.tst.protocol.one/api/v1'
 }

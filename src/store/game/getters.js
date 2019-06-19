@@ -12,8 +12,13 @@ function bytes_to_size (megabytes) {
  * @returns {function(game_id: string): string}
  */
 export function get_game_url () {
-  console.log(process.env.API_URL)
-  return game_id => `${process.env.API_URL}/games/${game_id}`
+  // TODO: fix this
+  let url = process.env.API_URL
+  if (!url) {
+    console.log(url)
+    url = 'https://qilinstoreapi.tst.protocol.one/api/v1'
+  }
+  return game_id => `${url}/games/${game_id}`
 }
 
 export function get_system_requirements ({ game }) {
