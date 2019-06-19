@@ -14,7 +14,7 @@ q-page.auth
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'OAuth2Page',
@@ -39,6 +39,7 @@ export default {
   },
 
   methods: {
+    ...mapActions('user', ['login_user']),
     ...mapMutations('oauth2', ['set_token', 'set_token_expires']),
 
     handle_post_message ({ data }) {
@@ -63,6 +64,7 @@ export default {
 
           this.set_token(access_token)
           this.set_token_expires(expires_in)
+          this.login_user(access_token)
 
           this.$router.push(route)
         }

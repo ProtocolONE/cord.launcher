@@ -4,6 +4,10 @@ q-page {{ $route.name }}
 
 <script>
 export default {
-  name: 'HomePage'
+  name: 'HomePage',
+
+  created () {
+    this.$store.dispatch('user/login_user')
+  }
 }
 </script>

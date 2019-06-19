@@ -26,7 +26,7 @@ export default function ({ store }) {
 
   Router.beforeEach(async (to, from, next) => {
     // --- TODO: add /me (for check user)
-    await store.dispatch('user/check_user')
+    // await store.dispatch('user/check_user')
 
     // --- logout
     if (to.name === 'logout') {

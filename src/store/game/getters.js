@@ -11,8 +11,8 @@ function bytes_to_size (megabytes) {
  * Returns game url
  * @returns {function(game_id: string): string}
  */
-export function get_game_url () {
-  return game_id => `${process.env.API_URL}/games/${game_id}`
+export function get_game_url (state, getters, rootState, rootGetters) {
+  return game_id => `${rootGetters.get_api_url}/games/${game_id}`
 }
 
 export function get_system_requirements ({ game }) {
