@@ -34,7 +34,7 @@ export default function ({ store }) {
       return next({ name: 'oauth2' })
     }
 
-    if (process.env.PROD) {
+    if (process.env.NODE_ENV === 'production') {
       // --- check token expires and refresh
       let token_expires = store.state.oauth2.token_expires
       if (token_expires && Number(token_expires) <= Date.now()) {

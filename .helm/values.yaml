@@ -9,10 +9,10 @@ prodRelease: false
 
 ingress:
   hostname: cordlauncher.tst.protocol.one
-  pathBackend: 
-   - /auth1/
-  pathFrontend: 
-   - / 
+  pathBackend:
+    - /auth1/
+  pathFrontend:
+    - /
 
 certIssuer:
   email: admin@protocol.one
@@ -43,23 +43,12 @@ backend:
     port: 80
     protocol: TCP
   env:
-  - NODE_ENV
-  - CLIENT_ID
-  - CLIENT_SECRET
-  - SCOPES
-  - ISSUER
-  - CORS_VALID_ORIGIN
-  - CORS_ROUTES
-  - POSTMESSAGE_TARGET_ORIGIN
-  - POSTMESSAGE_TEMPLATE
-  - HOST
-  - REDIS_HOST
-  - REDIS_PORT
-  - REDIRECT_URL
-  - SESSION_NAME
-  - SESSION_KEY
-  - SESSION_AGE
-  - NAMESPACE
+    - AUTH1_CLIENT_ID
+    - AUTH1_CLIENT_SECRET
+    - REDIS_HOST
+    - REDIS_PORT
+    - SESSION_NAME
+    - SESSION_KEY
 
 
 resources: {}

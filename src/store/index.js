@@ -21,13 +21,13 @@ export default function (/* { ssrContext } */) {
     },
 
     getters: {
-      get_api_url: () => process.env.API_URL || 'https://qilinstoreapi.tst.protocol.one/api/v1',
+      get_api_url: () => process.env.QILINSTORE_API_URL,
       get_access_token: () => localStorage.getItem('access_token')
     },
 
     // enable strict mode (adds overhead!)
     // for dev mode only
-    strict: process.env.DEV
+    strict: process.env.NODE_ENV === 'development'
   })
 
   return Store

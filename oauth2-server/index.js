@@ -2,6 +2,6 @@
 const app = require('./app')
 
 const { pino_logger: log } = require('./logger')
-const { OAUTH2_PORT } = require('../config/oauth2')
+const { AUTH1_PORT: port } = require('../config/env')
 
-module.exports = app.listen(OAUTH2_PORT, () => log.info(`Server listening on port: ${OAUTH2_PORT}`))
+module.exports = app.listen(port, () => log.info(`Server listening on port: ${port}`))

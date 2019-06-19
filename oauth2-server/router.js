@@ -10,30 +10,30 @@ const {
 } = require('authone-jwt-verifier-node')
 
 const {
-  NAMESPACE,
-  POSTMESSAGE_TEMPLATE,
-  POSTMESSAGE_TARGET_ORIGIN,
-  ISSUER,
-  CLIENT_ID,
-  CLIENT_SECRET,
-  REDIRECT_URL,
-  SCOPES,
+  AUTH1_NAMESPACE,
+  AUTH1_POSTMESSAGE_TEMPLATE,
+  AUTH1_POSTMESSAGE_TARGET_ORIGIN,
+  AUTH1_ISSUER,
+  AUTH1_CLIENT_ID,
+  AUTH1_CLIENT_SECRET,
+  AUTH1_REDIRECT_URL,
+  AUTH1_SCOPES,
   REDIS_HOST,
   REDIS_PORT
-} = require('../config/oauth2')
+} = require('../config/env')
 
 const verifier_options = {
-  issuer: ISSUER,
-  clientId: CLIENT_ID,
-  clientSecret: CLIENT_SECRET,
-  redirectUrl: REDIRECT_URL,
-  scopes: SCOPES
+  issuer: AUTH1_ISSUER,
+  clientId: AUTH1_CLIENT_ID,
+  clientSecret: AUTH1_CLIENT_SECRET,
+  redirectUrl: AUTH1_REDIRECT_URL,
+  scopes: AUTH1_SCOPES.split(',')
 }
 
 const endpoints_options = {
-  namespace: NAMESPACE,
-  postMessageHtmlTemplate: POSTMESSAGE_TEMPLATE,
-  postMessageTargetOrigin: POSTMESSAGE_TARGET_ORIGIN
+  namespace: AUTH1_NAMESPACE,
+  postMessageHtmlTemplate: AUTH1_POSTMESSAGE_TEMPLATE,
+  postMessageTargetOrigin: AUTH1_POSTMESSAGE_TARGET_ORIGIN
 }
 
 let storage = null

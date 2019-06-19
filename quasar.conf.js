@@ -1,6 +1,6 @@
 // Configuration for your app
-const get_env = require('./config/env')
-const env = get_env()
+const { mapValues } = require('lodash')
+const env = require('./config/env')
 
 module.exports = function (ctx) {
   return {
@@ -106,7 +106,13 @@ module.exports = function (ctx) {
     supportIE: false,
 
     build: {
-      env,
+      env: mapValues(env, val => {
+        if (typeof val === 'string') {
+          return JSON.stringify(val)
+        }
+        return val
+      }),
+      // env: JSON.stringify(env),
       scopeHoisting: true,
       publicPath: '/',
       vueRouterMode: 'history',
@@ -132,7 +138,7 @@ module.exports = function (ctx) {
 
     devServer: {
       // https: true,
-      port: env.PORT,
+      // port: env.PUBLIC_PORT,
       open: false,
       headers: {
         'Access-Control-Allow-Origin': '*',

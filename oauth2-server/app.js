@@ -7,7 +7,7 @@ const session = require('./session')
 const router = require('./router')
 
 const { logger } = require('./logger')
-const { SESSION_KEY } = require('../config/oauth2')
+const { SESSION_KEY } = require('../config/env')
 
 const app = new Koa()
 

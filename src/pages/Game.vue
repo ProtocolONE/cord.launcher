@@ -17,7 +17,7 @@ q-page
         .release.flex.roboto
           .release__date.q-mr-sm {{ $trans('labels', 'released_on') }} {{ game.releaseDate | localize }}
           .release__divider.q-mr-sm
-          .release__publisher {{ game.publisher.title }}
+          .release__publisher {{ publisher_developer_title }}
 
     // info
     section.info
@@ -117,6 +117,14 @@ export default {
 
     platform_icons () {
       return map(this.requirements, ({ icon }) => icon)
+    },
+
+    publisher_developer_title () {
+      let { publisher, developer } = this.game
+      if (publisher.title === developer.title) {
+        return publisher.title
+      }
+      return `${publisher.title} / ${developer.title}`
     },
 
     support_text () {

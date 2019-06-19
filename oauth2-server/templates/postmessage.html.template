@@ -9,9 +9,9 @@
             access_token: '{accessToken}',
             expires_in: {expiresIn},
             success: {isSuccess}
-        }
-        const targetOrigin = '{targetOrigin}'
-        parent.postMessage(result, targetOrigin)
+        };
+        const targetOrigin = '{targetOrigin}';
+        parent.postMessage(result, targetOrigin);
     </script>
 </head>
 <body></body>

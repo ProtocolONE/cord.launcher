@@ -1,22 +1,51 @@
-const DotEnv = require('dotenv')
-const { pickBy, identity } = require('lodash')
+const dotenv = require('dotenv')
+const fs = require('fs')
+const path = require('path')
 
-module.exports = function get_env (parse = true) {
-  let parsed_env = DotEnv.config().parsed
+const {
+  merge,
+  pick,
+  pickBy,
+  keys,
+  identity
+} = require('lodash')
 
-  for (let key in parsed_env) {
-    if (!parsed_env.hasOwnProperty(key)) continue
-    // --- check for non-string data
+const data = []
+
+// --- custom .env before if stage is development
+if (fs.existsSync(path.resolve('.env'))) {
+  data.push(dotenv.config())
+}
+
+// --- other .env after
+data.push(
+  dotenv.config({
+    path: path.resolve('.env.production')
+  })
+)
+
+module.exports = (function () {
+  let _data = data
+    .map(config => config.parsed)
+    // --- coz .env is first
+    .reduceRight((out, next) => merge(out, pickBy(next, identity)), {})
+
+  let path_to_template = _data.AUTH1_POSTMESSAGE_TEMPLATE
+  if (path_to_template) {
     try {
-      parsed_env[key] = JSON.parse(parsed_env[key])
+      _data.AUTH1_POSTMESSAGE_TEMPLATE = fs
+        .readFileSync(path.resolve(path_to_template))
+        .toString('utf8')
     }
-    catch {
-      if (!parse) continue
-      if (parsed_env[key] && typeof parsed_env[key] === 'string') {
-        parsed_env[key] = JSON.stringify(parsed_env[key])
-      }
+    catch (error) {
+      console.error(error)
     }
   }
 
-  return pickBy(parsed_env, identity)
-}
+  let _example_data = dotenv.config({
+    path: path.resolve('.env.example')
+  })
+  let _keys = keys(_example_data.parsed)
+
+  return merge(pick(process.env, _keys), _data)
+})()
