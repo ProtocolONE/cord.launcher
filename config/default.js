@@ -11,6 +11,6 @@ module.exports = {
   AUTH1_CORS_VALID_ORIGIN: '*',
   AUTH1_CORS_ROUTES: '/refresh,/logout',
   AUTH1_SCOPES: 'openid,offline',
-  AUTH1_REDIRECT_URL: 'https://cordlauncher.tst.protocol.one/auth1',
+  AUTH1_REDIRECT_URL: 'https://cordlauncher.tst.protocol.one/auth1/callback',
   SESSION_AGE: 21600
 }
