@@ -46,7 +46,6 @@ export default function ({ store }) {
     let access_token = store.state.oauth2.access_token
     let requires_auth = get(to, ['meta', 'requires_auth'], true)
     if (requires_auth && !access_token) {
-      sessionStorage.setItem('route', JSON.stringify(to))
       return next({ name: 'oauth2' })
     }
     else if (to.name === 'oauth2' && access_token) {

@@ -2,7 +2,12 @@ const dotenv = require('dotenv')
 const fs = require('fs')
 const path = require('path')
 
-const { merge, pickBy, identity } = require('lodash')
+const {
+  merge,
+  pick,
+  pickBy,
+  identity
+} = require('lodash')
 
 const default_config = {
   NODE_ENV: 'production',
@@ -35,4 +40,32 @@ if (_path_to_template) {
   }
 }
 
-module.exports = merge(default_config, _data)
+// --- TODO: bad idea
+let _keys = [
+  'NODE_ENV',
+  'PUBLIC_HOST',
+  'PUBLIC_PORT',
+  'QILINSTORE_API_URL',
+  'AUTH1_NAMESPACE',
+  'AUTH1_PORT',
+  'AUTH1_ISSUER',
+  'AUTH1_POSTMESSAGE_TEMPLATE',
+  'AUTH1_POSTMESSAGE_TARGET_ORIGIN',
+  'AUTH1_CORS_VALID_ORIGIN',
+  'AUTH1_CORS_ROUTES',
+  'AUTH1_SCOPES',
+  'AUTH1_REDIRECT_URL',
+  'AUTH1_CLIENT_ID',
+  'AUTH1_CLIENT_SECRET',
+  'REDIS_HOST',
+  'REDIS_PORT',
+  'SESSION_NAME',
+  'SESSION_KEY',
+  'SESSION_AGE'
+]
+
+module.exports = merge(
+  default_config,
+  pick(process.env, _keys),
+  _data
+)

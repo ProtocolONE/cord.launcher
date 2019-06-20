@@ -26,7 +26,11 @@ export default {
     ram: 'RAM',
     language: 'Language',
     text: 'Text',
-    audio: 'Audio'
+    audio: 'Audio',
+    field_is_required: 'Field is required',
+    user_email: 'User email',
+    user_name: 'User name',
+    continue: 'Continue'
   },
 
   locales: {

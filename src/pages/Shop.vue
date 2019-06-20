@@ -7,7 +7,7 @@ q-page.base-padding
             standout
             dark)
     br
-    q-btn(label="Submit" type="submit" color="primary")
+    q-btn(label="Submit" type="submit" color="white" text-color="black")
 </template>
 
 <script>

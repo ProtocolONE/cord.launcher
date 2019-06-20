@@ -26,7 +26,11 @@ export default {
     ram: 'RAM',
     language: 'Язык',
     text: 'Интерфейс',
-    audio: 'Озвучка'
+    audio: 'Озвучка',
+    field_is_required: 'Это поле обязательно',
+    user_email: 'Email пользователя',
+    user_name: 'Имя пользователя',
+    continue: 'Продолжить'
   },
 
   locales: {

@@ -38,6 +38,14 @@ const routes = [
         }
       },
       {
+        path: '/registration',
+        name: 'registration',
+        component: () => import('pages/Registration.vue'),
+        meta: {
+          requires_auth: true
+        }
+      },
+      {
         path: '/logout',
         name: 'logout'
       }
