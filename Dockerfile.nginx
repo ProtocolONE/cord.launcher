@@ -6,12 +6,12 @@ RUN apk update && \
 WORKDIR /app
 COPY package.json yarn.lock /app/
 
-ENV NODE_ENV=production \
-    PUBLIC_HOST=https://cordlauncher.tst.protocol.one/auth1
-
 RUN yarn install
 
 COPY . /app/
+
+ENV NODE_ENV=production \
+    PUBLIC_HOST=https://cordlauncher.tst.protocol.one/auth1
 
 RUN yarn build
 
