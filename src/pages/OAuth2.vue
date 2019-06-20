@@ -61,7 +61,9 @@ export default {
           this.set_token(access_token)
           this.set_token_expires(expires_in)
 
-          this.$router.push({ name: 'registration' })
+          // this.$router.push({ name: 'registration' })
+          // --- TODO: add registration step
+          this.$router.push({ name: 'home' })
         }
 
         if (data.error) console.error(data.error)
