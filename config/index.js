@@ -11,20 +11,6 @@ const {
 
 const default_config = require('./default')
 
-let _data = pickBy(dotenv.config().parsed, identity)
-let _path_to_template = _data.AUTH1_POSTMESSAGE_TEMPLATE
-
-if (_path_to_template) {
-  try {
-    _data.AUTH1_POSTMESSAGE_TEMPLATE = fs
-      .readFileSync(path.resolve(_path_to_template))
-      .toString('utf8')
-  }
-  catch (error) {
-    console.error(error)
-  }
-}
-
 // --- TODO: bad idea
 let _keys = [
   'NODE_ENV',
@@ -49,8 +35,21 @@ let _keys = [
   'SESSION_AGE'
 ]
 
-module.exports = merge(
-  default_config,
-  pick(process.env, _keys),
-  _data
+let _data = pickBy(
+  merge(default_config, pick(process.env, _keys), dotenv.config().parsed),
+  identity
 )
+
+let _path_to_template = _data.AUTH1_POSTMESSAGE_TEMPLATE
+if (_path_to_template) {
+  try {
+    _data.AUTH1_POSTMESSAGE_TEMPLATE = fs
+      .readFileSync(path.resolve(_path_to_template))
+      .toString('utf8')
+  }
+  catch (error) {
+    console.error(error)
+  }
+}
+
+module.exports = _data
