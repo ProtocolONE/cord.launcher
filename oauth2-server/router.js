@@ -48,14 +48,19 @@ const endpoints = oauthEndpoints(jwtVerifier, endpoints_options)
 
 const router = new Router()
 
+let prefix = ''
+if (process.env.NODE_ENV === 'production') {
+  prefix = process.env.AUTH1_NAMESPACE
+}
+
 router
   .get('/_healthz', async (ctx, next) => {
     ctx.body = {}
     next()
   })
-  .get('/login', endpoints.login)
-  .get('/callback', endpoints.authorize)
-  .get('/refresh', endpoints.refresh)
-  .get('/logout', endpoints.logout)
+  .get(`${prefix}/login`, endpoints.login)
+  .get(`${prefix}/callback`, endpoints.authorize)
+  .get(`${prefix}/refresh`, endpoints.refresh)
+  .get(`${prefix}/logout`, endpoints.logout)
 
 module.exports = router
