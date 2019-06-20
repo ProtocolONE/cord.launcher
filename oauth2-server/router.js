@@ -20,7 +20,7 @@ const {
   AUTH1_SCOPES,
   REDIS_HOST,
   REDIS_PORT
-} = require('../config/env')
+} = require('../config')
 
 const verifier_options = {
   issuer: AUTH1_ISSUER,

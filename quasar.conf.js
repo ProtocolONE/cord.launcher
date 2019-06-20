@@ -1,6 +1,6 @@
 // Configuration for your app
 const { mapValues } = require('lodash')
-const env = require('./config/env')
+const env = require('./config')
 
 module.exports = function (ctx) {
   return {

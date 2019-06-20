@@ -11,7 +11,7 @@ const {
   REDIS_PORT,
   SESSION_NAME,
   SESSION_AGE
-} = require('../config/env')
+} = require('../config')
 
 const params = {
   key: SESSION_NAME,

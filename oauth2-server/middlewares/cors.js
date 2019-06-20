@@ -11,7 +11,7 @@ module.exports = cors({
     // --- TODO: bad idea, need fix in future
     // --- bypass local CORS
     if (process.env.NODE_ENV === 'production') {
-      let { AUTH1_CORS_ROUTES, AUTH1_CORS_VALID_ORIGIN } = require('../../config/env')
+      let { AUTH1_CORS_ROUTES, AUTH1_CORS_VALID_ORIGIN } = require('../../config')
 
       return function (ctx) {
         if (!AUTH1_CORS_ROUTES.includes(ctx.url)) return false
