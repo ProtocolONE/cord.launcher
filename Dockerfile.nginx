@@ -10,9 +10,6 @@ RUN yarn install
 
 COPY . /app/
 
-ENV NODE_ENV=production \
-    PUBLIC_HOST=https://cordlauncher.tst.protocol.one/auth1
-
 RUN yarn build
 
 FROM nginx:1.15.4
