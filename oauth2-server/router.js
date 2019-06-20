@@ -49,6 +49,10 @@ const endpoints = oauthEndpoints(jwtVerifier, endpoints_options)
 const router = new Router()
 
 router
+  .get('/_healthz', async (ctx, next) => {
+    ctx.body = {}
+    next()
+  })
   .get('/login', endpoints.login)
   .get('/callback', endpoints.authorize)
   .get('/refresh', endpoints.refresh)
