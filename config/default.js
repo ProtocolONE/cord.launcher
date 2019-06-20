@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   NODE_ENV: 'production',
   PUBLIC_HOST: 'https://cordlauncher.tst.protocol.one',
   PUBLIC_PORT: 80,

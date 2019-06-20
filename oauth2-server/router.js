@@ -47,11 +47,7 @@ const jwtVerifier = new JwtVerifier(verifier_options, storage)
 const endpoints = oauthEndpoints(jwtVerifier, endpoints_options)
 
 const router = new Router()
-
-let prefix = ''
-if (process.env.NODE_ENV === 'production') {
-  prefix = process.env.AUTH1_NAMESPACE
-}
+const prefix = (process.env.NODE_ENV === 'production') ? process.env.AUTH1_NAMESPACE : ''
 
 router
   .get('/_healthz', async (ctx, next) => {
