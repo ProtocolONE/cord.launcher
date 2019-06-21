@@ -84,7 +84,9 @@ module.exports = function (ctx) {
         'QInnerLoading',
         'QRating',
         'QSpace',
-        'QIcon'
+        'QIcon',
+        'QImg',
+        'QVideo'
       ],
 
       cssAddon: true,
@@ -96,7 +98,8 @@ module.exports = function (ctx) {
 
       // Quasar plugins
       plugins: [
-        'Notify'
+        'Notify',
+        'LocalStorage'
       ]
 
       // iconSet: 'ionicons-v4'

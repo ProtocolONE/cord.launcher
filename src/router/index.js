@@ -34,6 +34,7 @@ export default function ({ store }) {
       return next({ name: 'oauth2' })
     }
 
+    // --- TODO: this method dont work...
     if (process.env.NODE_ENV === 'production') {
       // --- check token expires and refresh
       let token_expires = store.state.oauth2.token_expires

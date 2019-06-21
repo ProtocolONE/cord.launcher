@@ -1,4 +1,9 @@
-import { pick, mapValues } from 'lodash-es'
+import {
+  uniqueId,
+  pick,
+  mapValues
+} from 'lodash-es'
+
 import { format } from 'quasar'
 
 // --- TODO: вынести в utils
@@ -8,13 +13,15 @@ function bytes_to_size (megabytes) {
 }
 
 /**
- * Returns game url
- * @returns {function(game_id: string): string}
+ * Get current game url by id
  */
 export function get_game_url (state, getters, rootState, rootGetters) {
   return game_id => `${rootGetters.get_api_url}/games/${game_id}`
 }
 
+/**
+ * Get system requirements with fontawesome icons
+ */
 export function get_system_requirements ({ game }) {
   let requirements = pick(game.requirements.systems, game.platforms)
   return mapValues(requirements, (system_data, system) => {
@@ -45,4 +52,25 @@ export function get_system_requirements ({ game }) {
       }
     }
   })
+}
+
+/**
+ * Get game media
+ * Trailers first then screenshots
+ */
+export function get_game_media ({ game }) {
+  function get_item (url, is_video = false) {
+    return {
+      url,
+      is_video,
+      id: uniqueId('game-media-item-')
+    }
+  }
+
+  let { screenshots, trailers } = game.media
+
+  trailers = trailers.map(url => get_item(url, true))
+  screenshots = screenshots.map(url => get_item(url))
+
+  return [...trailers, ...screenshots]
 }

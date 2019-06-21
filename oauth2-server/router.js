@@ -55,8 +55,9 @@ router
     next()
   })
   .get(`${prefix}/login`, endpoints.login)
-  .get(`${prefix}/callback`, endpoints.authorize)
   .get(`${prefix}/refresh`, endpoints.refresh)
   .get(`${prefix}/logout`, endpoints.logout)
+  .get(`${prefix}/callback`, endpoints.authorize)
+  .get(`${prefix}/userinfo`, endpoints.userinfo)
 
 module.exports = router

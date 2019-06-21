@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import { LocalStorage } from 'quasar'
+
 import oauth2 from './oauth2'
 import user from './user'
 import game from './game'
@@ -12,7 +14,7 @@ Vue.use(Vuex)
  * directly export the Store instantiation
  */
 
-export default function (/* { ssrContext } */) {
+export default function () {
   const Store = new Vuex.Store({
     modules: {
       oauth2,
@@ -22,7 +24,7 @@ export default function (/* { ssrContext } */) {
 
     getters: {
       get_api_url: () => process.env.QILINSTORE_API_URL,
-      get_access_token: () => localStorage.getItem('access_token')
+      get_access_token: () => LocalStorage.getItem('access_token')
     },
 
     // enable strict mode (adds overhead!)

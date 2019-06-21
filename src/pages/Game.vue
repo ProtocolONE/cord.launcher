@@ -1,4 +1,5 @@
 <template lang="pug">
+// --- TODO: раскидать на компоненты
 q-page
   template(v-if="!loading && game")
     // preview
@@ -30,7 +31,19 @@ q-page
                                     flat)
         q-space
         q-btn.q-pa-md.q-mr-sm.bg-secondary(icon="fas fa-heart")
-        q-btn.q-pa-md.bg-secondary: b.roboto {{ `$ ${game.price}` }}
+        q-btn.q-pa-md.bg-secondary: b.game-price.roboto {{ `$ ${game.price}` }}
+
+    // trailers and screenshots
+    section.media.base-padding
+      .row.q-col-gutter-md
+        .col-3(v-for="{ id, url, is_video } in media" :key="id")
+          q-card(class="bg-grey-9" dark)
+            q-card-section.q-pa-none
+              .media__item
+                .q-video(v-if="is_video")
+                  video(width="100%" height="100%" controls)
+                    source(:src="url" type="video/mp4")
+                q-img(v-else :src="url")
 
     // Requirements & Languages
       TODO: table as Vue-component
@@ -105,14 +118,17 @@ export default {
   data () {
     return {
       loading: true,
-      system_requirement_tab: null
+      system_requirement_tab: null,
+      preview_media: null
     }
   },
 
   computed: {
     ...mapState('game', ['game']),
+
     ...mapGetters('game', {
-      requirements: 'get_system_requirements'
+      requirements: 'get_system_requirements',
+      media: 'get_game_media'
     }),
 
     platform_icons () {
@@ -189,6 +205,23 @@ export default {
 
 .platform-icon
   cursor: default
+
+.game-price
+  font-size: 16px
+  letter-spacing: 0.05em
+
+.media
+
+  &__item
+    width: 100%
+    height: 150px
+    border-radius: 4px
+    background-color: $black
+
+    > *
+      width: 100%
+      height: 100%
+      border-radius: inherit
 
 .requirements
 

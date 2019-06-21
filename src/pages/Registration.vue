@@ -47,6 +47,10 @@ export default {
     }
   },
 
+  created () {
+    this.$axios('http://localhost:3000/userinfo')
+  },
+
   methods: {
     ...mapActions('user', ['register_user']),
 

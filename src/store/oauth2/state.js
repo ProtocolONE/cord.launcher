@@ -1,3 +1,5 @@
+import { LocalStorage } from 'quasar'
+
 export default {
   /**
    * p1 auth1 url for auth2 service
@@ -14,11 +16,11 @@ export default {
    * user access token
    * @type {String|null}
    */
-  access_token: localStorage.getItem('access_token'),
+  access_token: LocalStorage.getItem('access_token'),
 
   /**
    * token expires date
    * @type {String|null}
    */
-  token_expires: localStorage.getItem('token_expires')
+  token_expires: LocalStorage.getItem('token_expires')
 }

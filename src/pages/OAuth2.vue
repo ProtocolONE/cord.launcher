@@ -61,9 +61,14 @@ export default {
           this.set_token(access_token)
           this.set_token_expires(expires_in)
 
+          // TODO: check user is registered
           // this.$router.push({ name: 'registration' })
-          // --- TODO: add registration step
-          this.$router.push({ name: 'home' })
+          this.$router.push({
+            name: 'game',
+            params: {
+              game_id: 'cb6711fb-40dd-47d0-8f90-40e84256a63a'
+            }
+          })
         }
 
         if (data.error) console.error(data.error)
