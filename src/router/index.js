@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import routes from './routes'
+import { LocalStorage } from 'quasar'
 import { get } from 'lodash-es'
+
+import routes from './routes'
 
 Vue.use(VueRouter)
 
@@ -29,15 +31,15 @@ export default function ({ store }) {
   // --- добавить проверку на логин/регу/логаут, чтобы не дергать методы лишний раз
 
   Router.beforeEach(async (to, from, next) => {
-    // --- TODO: check user is logged in auth1
     // --- check token expires and refresh token if its needed
     let token_expires = store.state.oauth2.token_expires
     if (token_expires && Number(token_expires) <= Date.now()) {
+      // --- TODO: check user is logged in auth1
       try {
         await store.dispatch('oauth2/refresh_token')
       }
       catch (err) {
-        console.error(err)
+        LocalStorage.clear()
       }
     }
 
