@@ -27,11 +27,18 @@ export default function ({ store }) {
   // --- TODO: разбить на более мелкие куски кода, а то уже простыня...
   // --- возможно стоит перенести в роуты как beforeEnter
   // --- добавить проверку на логин/регу/логаут, чтобы не дергать методы лишний раз
+
   Router.beforeEach(async (to, from, next) => {
+    // --- TODO: check user is logged in auth1
     // --- check token expires and refresh token if its needed
     let token_expires = store.state.oauth2.token_expires
     if (token_expires && Number(token_expires) <= Date.now()) {
-      await store.dispatch('oauth2/refresh_token')
+      try {
+        await store.dispatch('oauth2/refresh_token')
+      }
+      catch (err) {
+        console.error(err)
+      }
     }
 
     // --- check token and requires auth for routes
