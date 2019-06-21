@@ -2,8 +2,9 @@
 // --- TODO: раскидать на компоненты
 q-page
   template(v-if="!loading && game")
+
     // preview
-    section.preview
+    section.preview(:class="{ 'no-preview': !preview }")
       // toolbar
       q-toolbar.toolbar.base-padding.text-white
 
@@ -19,6 +20,8 @@ q-page
           .release__date.q-mr-sm {{ $trans('labels', 'released_on') }} {{ game.releaseDate | localize }}
           .release__divider.q-mr-sm
           .release__publisher {{ publisher_developer_title }}
+
+      .preview__container: q-img.game-preview(:src="preview")
 
     // info
     section.info
@@ -36,14 +39,15 @@ q-page
     // trailers and screenshots
     section.media.base-padding
       .row.q-col-gutter-md
-        .col-3(v-for="{ id, url, is_video } in media" :key="id")
+        .col-12.col-sm-6.col-md-3(v-for="{ id, url, is_video } in media" :key="id")
           q-card(class="bg-grey-9" dark)
             q-card-section.q-pa-none
               .media__item
                 .q-video(v-if="is_video")
                   video(width="100%" height="100%" controls)
                     source(:src="url" type="video/mp4")
-                q-img(v-else :src="url")
+                // TODO: spinner, loading state when image is changing
+                q-img(v-else :src="url" @click="preview = url")
 
     // Requirements & Languages
       TODO: table as Vue-component
@@ -119,7 +123,7 @@ export default {
     return {
       loading: true,
       system_requirement_tab: null,
-      preview_media: null
+      preview: null
     }
   },
 
@@ -165,6 +169,10 @@ export default {
 
         // --- timeout for loading animation
         setTimeout(() => { this.loading = false }, 1000)
+
+        // set game preview
+        let { preview, media } = this.game
+        this.preview = preview || media.screenshots[0] || null
       }
     },
 
@@ -190,12 +198,28 @@ export default {
 
 <style lang="stylus" scoped>
 .preview
+  position: relative
   min-height: calc(100vw / 2)
-  max-height: 850px
+  max-height: 650px
   background-color: rgba($white, .5)
 
+  &__container
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+
+.game-preview
+  width: 100%
+  height: 100%
+
 .toolbar
-  background: rgba($primary, 0.5)
+  position: relative
+  z-index: 1
+  width: 100%
+  min-height: 120px
+  background: rgba($primary, 0.6)
 
 .release
   font-size: 16px
