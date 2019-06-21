@@ -13,6 +13,12 @@ export default {
   })(),
 
   /**
+   * auth1 full user data
+   * @type {Object|null}
+   */
+  user_info: null,
+
+  /**
    * user access token
    * @type {String|null}
    */

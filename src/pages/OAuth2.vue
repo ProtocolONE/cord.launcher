@@ -14,7 +14,7 @@ q-page.auth
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'OAuth2Page',
@@ -39,9 +39,10 @@ export default {
   },
 
   methods: {
+    ...mapActions('oauth2', ['update_user_info']),
     ...mapMutations('oauth2', ['set_token', 'set_token_expires']),
 
-    handle_post_message ({ data }) {
+    async handle_post_message ({ data }) {
       let name = data.name
       if (name === 'formResize') return
 
@@ -61,14 +62,9 @@ export default {
           this.set_token(access_token)
           this.set_token_expires(expires_in)
 
-          // TODO: check user is registered
-          // this.$router.push({ name: 'registration' })
-          this.$router.push({
-            name: 'game',
-            params: {
-              game_id: 'cb6711fb-40dd-47d0-8f90-40e84256a63a'
-            }
-          })
+          await this.update_user_info()
+
+          this.$router.push({ name: 'registration' })
         }
 
         if (data.error) console.error(data.error)

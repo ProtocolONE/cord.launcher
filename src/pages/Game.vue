@@ -44,6 +44,8 @@ q-page
             q-card-section.q-pa-none
               .media__item
                 .q-video(v-if="is_video")
+                  // TODO: spinner, loading state when video is changing
+                  // TODO: добавить постер вместо видео, и менять превью при клике (проигрывать на превью)
                   video(width="100%" height="100%" controls)
                     source(:src="url" type="video/mp4")
                 // TODO: spinner, loading state when image is changing

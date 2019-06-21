@@ -24,23 +24,14 @@ export default function ({ store }) {
     base: process.env.VUE_ROUTER_BASE
   })
 
+  // --- TODO: разбить на более мелкие куски кода, а то уже простыня...
+  // --- возможно стоит перенести в роуты как beforeEnter
+  // --- добавить проверку на логин/регу/логаут, чтобы не дергать методы лишний раз
   Router.beforeEach(async (to, from, next) => {
-    // --- TODO: add /me (for check user)
-    // await store.dispatch('user/check_user')
-
-    // --- logout
-    if (to.name === 'logout') {
-      await store.dispatch('oauth2/logout')
-      return next({ name: 'oauth2' })
-    }
-
-    // --- TODO: this method dont work...
-    if (process.env.NODE_ENV === 'production') {
-      // --- check token expires and refresh
-      let token_expires = store.state.oauth2.token_expires
-      if (token_expires && Number(token_expires) <= Date.now()) {
-        await store.dispatch('oauth2/refresh_token')
-      }
+    // --- check token expires and refresh token if its needed
+    let token_expires = store.state.oauth2.token_expires
+    if (token_expires && Number(token_expires) <= Date.now()) {
+      await store.dispatch('oauth2/refresh_token')
     }
 
     // --- check token and requires auth for routes
@@ -51,6 +42,28 @@ export default function ({ store }) {
     }
     else if (to.name === 'oauth2' && access_token) {
       return next({ name: 'home' })
+    }
+
+    // --- registration
+    if (to.name === 'registration') {
+      let user_is_registered = await store.dispatch('user/check_is_registered')
+      if (user_is_registered) {
+        return next({ name: 'login' })
+      }
+      return next()
+    }
+
+    // --- login
+    if (to.name === 'login') {
+      await store.dispatch('user/login')
+      return next({ name: 'home' })
+    }
+
+    // --- logout
+    if (to.name === 'logout') {
+      await store.dispatch('oauth2/logout')
+      await store.dispatch('user/logout')
+      return next({ name: 'oauth2' })
     }
 
     return next()

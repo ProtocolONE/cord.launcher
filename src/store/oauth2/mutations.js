@@ -46,3 +46,10 @@ export function remove_token_expires (state) {
   LocalStorage.remove('token_expires')
   state.token_expires = null
 }
+
+/**
+ * Save user info
+ */
+export function set_user_info (state, user_info) {
+  state.user_info = user_info
+}

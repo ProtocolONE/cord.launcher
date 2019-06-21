@@ -5,6 +5,7 @@ q-layout.l-auth
 </template>
 
 <script>
+// --- TODO: set loading indicator
 export default {
   name: 'AuthLayout'
 }

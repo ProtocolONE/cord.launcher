@@ -1,10 +1,10 @@
-// import state from './state'
+import state from './state'
 import * as actions from './actions'
-// import * as mutations from './mutations'
+import * as mutations from './mutations'
 
 export default {
   namespaced: true,
-  // state,
-  actions
-  // mutations
+  state,
+  actions,
+  mutations
 }

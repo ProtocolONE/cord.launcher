@@ -2,7 +2,7 @@
 q-page.flex.items-center.base-padding
   .row.full-width.justify-center
     .col-lg-6.col-md-6.col-12
-      q-form.q-gutter-md.text-center(@submit="handleSubmit")
+      q-form.q-gutter-sm.text-center(@submit="handleSubmit")
         q-input(v-model="user_email"
                 :label="$trans('labels', 'user_email')"
                 :rules="not_empty"
@@ -23,7 +23,7 @@ q-page.flex.items-center.base-padding
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import { input_validators } from 'src/mixins'
 
 export default {
@@ -39,6 +39,8 @@ export default {
   },
 
   computed: {
+    ...mapState('oauth2', ['user_info']),
+
     user_data () {
       return {
         name: this.user_name,
@@ -48,14 +50,23 @@ export default {
   },
 
   created () {
-    this.$axios('http://localhost:3000/userinfo')
+    if (this.user_info) {
+      this.user_email = this.user_info.email
+      try {
+        // --- get user name like anything until "@"
+        this.user_name = this.user_info.email.match(/[^@]*/i)[0]
+      }
+      catch (err) {
+        console.error(err)
+      }
+    }
   },
 
   methods: {
-    ...mapActions('user', ['register_user']),
+    ...mapActions('user', ['register']),
 
     async handleSubmit () {
-      await this.register_user(this.user_data)
+      await this.register(this.user_data)
     }
   }
 }

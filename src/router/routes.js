@@ -40,10 +40,11 @@ const routes = [
       {
         path: '/registration',
         name: 'registration',
-        component: () => import('pages/Registration.vue'),
-        meta: {
-          requires_auth: true
-        }
+        component: () => import('pages/Registration.vue')
+      },
+      {
+        path: '/login',
+        name: 'login'
       },
       {
         path: '/logout',
@@ -54,12 +55,7 @@ const routes = [
   {
     path: '/',
     component: () => import('layouts/BaseLayout.vue'),
-    children: main_routes.map(route => {
-      route.meta = {
-        requires_auth: true
-      }
-      return route
-    })
+    children: main_routes
   },
   {
     path: '/game',
@@ -68,22 +64,14 @@ const routes = [
       {
         name: 'game',
         path: ':game_id',
-        component: () => import('pages/Game.vue'),
-        meta: {
-          requires_auth: true
-        }
+        component: () => import('pages/Game.vue')
       }
     ]
   },
   {
     path: '/profile',
     component: () => import('layouts/UserLayout.vue'),
-    children: user_routes.map(route => {
-      route.meta = {
-        requires_auth: true
-      }
-      return route
-    })
+    children: user_routes
   },
   {
     path: '*',
