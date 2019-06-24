@@ -30,7 +30,8 @@ export default {
     field_is_required: 'Field is required',
     user_email: 'User email',
     user_name: 'User name',
-    continue: 'Continue'
+    continue: 'Continue',
+    remember_me: 'Remember me'
   },
 
   locales: {

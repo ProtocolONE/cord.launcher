@@ -30,7 +30,8 @@ export default {
     field_is_required: 'Это поле обязательно',
     user_email: 'Email пользователя',
     user_name: 'Имя пользователя',
-    continue: 'Продолжить'
+    continue: 'Продолжить',
+    remember_me: 'Запомнить меня'
   },
 
   locales: {

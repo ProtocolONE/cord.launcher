@@ -9,7 +9,7 @@ base-layout
                  v-ripple
                  :key="name"
                  :active="$route.name === name"
-                 active-class="bg-white text-black"
+                 active-class="bg-grey-7 text-grey-3"
                  clickable
                  @click="$router.push(path)")
             q-item-section {{ label }}

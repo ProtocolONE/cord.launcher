@@ -2,7 +2,7 @@
 q-page.flex.items-center.base-padding
   .row.full-width.justify-center
     .col-lg-6.col-md-6.col-12
-      q-form.q-gutter-sm.text-center(@submit="handleSubmit")
+      q-form.q-gutter-sm.text-center.text-white(@submit="handleSubmit")
         q-input(v-model="user_email"
                 :label="$trans('labels', 'user_email')"
                 :rules="not_empty"
@@ -16,10 +16,15 @@ q-page.flex.items-center.base-padding
                 clearable
                 standout
                 dark)
-        q-btn(:label="$trans('labels', 'continue')"
-              type="submit"
-              color="white"
-              text-color="black")
+        .flex.justify-between
+          q-checkbox.q-checkbox(v-model="remember_user"
+                                :label="$trans('labels', 'remember_me')"
+                                text-color="teal"
+                                dark)
+          q-btn(:label="$trans('labels', 'continue')"
+                type="submit"
+                color="white"
+                text-color="black")
 </template>
 
 <script>
@@ -34,7 +39,8 @@ export default {
   data () {
     return {
       user_email: null,
-      user_name: null
+      user_name: null,
+      remember_user: false
     }
   },
 
@@ -71,3 +77,9 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.q-checkbox
+  position: relative
+  right: 10px
+</style>
