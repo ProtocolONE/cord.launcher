@@ -3,7 +3,8 @@ export default {
     home: 'Home',
     shop: 'Shop',
     library: 'Library',
-    personal: 'Personal'
+    personal: 'Personal',
+    account: 'Account'
   },
 
   titles: {
@@ -31,7 +32,29 @@ export default {
     user_email: 'User email',
     user_name: 'User name',
     continue: 'Continue',
-    remember_me: 'Remember me'
+    remember_me: 'Remember me',
+    name: 'Name',
+    date_of_birth: 'Date of birth',
+    first_name: 'First name',
+    last_name: 'Last name',
+    month: 'Month',
+    day: 'Day',
+    year: 'Year',
+    save: 'Save',
+    address: 'Address',
+    country: 'Country',
+    city: 'City',
+    postal_code: 'Postal code',
+    region: 'Region',
+    address_line: 'Address line',
+    account_name: 'Account name',
+    account_nickname: 'Account nickname',
+    primary_language: 'Primary language',
+    additional_language: 'Additional language'
+  },
+
+  paragraphs: {
+    accounts_data_successfully_updated: 'Данные аккаунта успешно обновлены'
   },
 
   locales: {

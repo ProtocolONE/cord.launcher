@@ -6,10 +6,11 @@ q-page.auth
         .text-h6 {{ $trans('titles', 'auth') }}
       q-separator
       q-card-section.flex.items-center.justify-center.auth-modal__body
-        q-spinner(name="ring"
-                  v-show="!is_form_loaded"
-                  color="accent"
-                  size="10em")
+        q-spinner(
+            v-show="!is_form_loaded"
+            name="ring"
+            color="accent"
+            size="10em")
         iframe.auth-modal__frame(v-show="is_form_loaded" :src="src")
 </template>
 

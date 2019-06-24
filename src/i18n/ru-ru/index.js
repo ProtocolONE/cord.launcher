@@ -3,7 +3,8 @@ export default {
     home: 'Главная',
     shop: 'Магазин',
     library: 'Библиотека',
-    personal: 'Основное'
+    personal: 'Основное',
+    account: 'Аккаунт'
   },
 
   titles: {
@@ -31,7 +32,29 @@ export default {
     user_email: 'Email пользователя',
     user_name: 'Имя пользователя',
     continue: 'Продолжить',
-    remember_me: 'Запомнить меня'
+    remember_me: 'Запомнить меня',
+    name: 'Имя',
+    date_of_birth: 'Дата рождения',
+    first_name: 'Имя',
+    last_name: 'Фамилия',
+    month: 'Месяц',
+    day: 'День',
+    year: 'Год',
+    save: 'Сохранить',
+    address: 'Адрес',
+    country: 'Страна',
+    city: 'Город',
+    postal_code: 'Почтовый индекс',
+    region: 'Регион',
+    address_line: 'Адресная строка',
+    account_name: 'Данные аккаунта',
+    account_nickname: 'Имя пользователя',
+    primary_language: 'Основной язык',
+    additional_language: 'Дополнительный язык'
+  },
+
+  paragraphs: {
+    accounts_data_successfully_updated: 'Account details successfully updated'
   },
 
   locales: {

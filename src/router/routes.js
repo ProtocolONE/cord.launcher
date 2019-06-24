@@ -21,6 +21,11 @@ const user_routes = [
     path: '',
     name: 'personal',
     component: () => import('pages/UserPersonal.vue')
+  },
+  {
+    path: 'account',
+    name: 'account',
+    component: () => import('pages/UserAccount.vue')
   }
 ]
 
@@ -38,16 +43,16 @@ const routes = [
         }
       },
       {
-        path: '/registration',
+        path: 'registration',
         name: 'registration',
         component: () => import('pages/Registration.vue')
       },
       {
-        path: '/login',
+        path: 'login',
         name: 'login'
       },
       {
-        path: '/logout',
+        path: 'logout',
         name: 'logout'
       }
     ]

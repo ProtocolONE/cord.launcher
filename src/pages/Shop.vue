@@ -1,13 +1,18 @@
 <template lang="pug">
 q-page.base-padding
-  q-form(@submit="handleSubmit")
-    q-input(v-model="game_id"
-            label="Enter a game id"
-            clearable
-            standout
-            dark)
+  q-form(@submit="handle_submit")
+    q-input(
+        v-model="game_id"
+        label="Enter a game id"
+        clearable
+        standout
+        dark)
     br
-    q-btn(label="Submit" type="submit" color="white" text-color="black")
+    q-btn(
+        label="Submit"
+        type="submit"
+        color="white"
+        text-color="black")
 </template>
 
 <script>
@@ -21,7 +26,7 @@ export default {
   },
 
   methods: {
-    handleSubmit () {
+    handle_submit () {
       this.$router.push({
         name: 'game',
         params: {

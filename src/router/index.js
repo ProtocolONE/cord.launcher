@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import { LocalStorage } from 'quasar'
-import { get } from 'lodash-es'
+import { get, pick } from 'lodash-es'
 
 import routes from './routes'
 
@@ -29,6 +29,7 @@ export default function ({ store }) {
   // --- TODO: разбить на более мелкие куски кода, а то уже простыня...
   // --- возможно стоит перенести в роуты как beforeEnter
   // --- добавить проверку на логин/регу/логаут, чтобы не дергать методы лишний раз
+  let electron_is_redirected = false
 
   Router.beforeEach(async (to, from, next) => {
     // --- check token expires and refresh token if its needed
@@ -40,6 +41,7 @@ export default function ({ store }) {
       }
       catch (err) {
         LocalStorage.clear()
+        return next({ name: 'oauth2' })
       }
     }
 
@@ -73,6 +75,31 @@ export default function ({ store }) {
       await store.dispatch('oauth2/logout')
       await store.dispatch('user/logout')
       return next({ name: 'oauth2' })
+    }
+
+    // --- update route url for electron storage
+    if (process.env.MODE === 'electron') {
+      let { ipcRenderer } = require('electron')
+
+      if (!electron_is_redirected) {
+        let electron_store = store.getters.get_electron_store
+        let electron_last_route = electron_store.get('route')
+
+        electron_is_redirected = true
+
+        if (electron_last_route) {
+          return next(electron_last_route)
+        }
+      }
+
+      let dummy_routes = ['login', 'logout', 'registration', 'oauth2']
+      if (dummy_routes.includes(to.name)) {
+        ipcRenderer.send('update-route-url', null)
+      }
+      else {
+        let route = pick(to, ['name', 'path', 'query', 'params', 'meta'])
+        ipcRenderer.send('update-route-url', route)
+      }
     }
 
     return next()
