@@ -1,6 +1,8 @@
 // Configuration for your app
 const { mapValues } = require('lodash')
+
 const env = require('./config')
+const channel = (process.env.CHANNEL || 'stable')
 
 module.exports = function (ctx) {
   return {
@@ -204,30 +206,57 @@ module.exports = function (ctx) {
     },
 
     electron: {
-      // bundler: 'builder', // or 'packager'
+      bundler: 'builder', // or 'packager'
 
       extendWebpack (cfg) {
         // do something with Electron main process Webpack cfg
         // chainWebpack also available besides this extendWebpack
       },
 
-      packager: {
-        // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
-        // OS X / Mac App Store
-        // appBundleId: '',
-        // appCategoryType: '',
-        // osxSign: '',
-        // protocol: 'myapp://path',
-
-        // Window only
-        // win32metadata: { ... }
-      },
-
       builder: {
         // https://www.electron.build/configuration/configuration
-
-        // appId: 'quasar-app'
+        appId: 'protocol.one.cordlauncher.app',
+        productName: 'cordlauncher',
+        // eslint-disable-next-line no-template-curly-in-string
+        copyright: 'Copyright © 2019 ${author}',
+        artifactName: (function () {
+          return (channel === 'stable')
+            // eslint-disable-next-line no-template-curly-in-string
+            ? '${productName}-${version}.${ext}'
+            // eslint-disable-next-line no-template-curly-in-string
+            : '${productName}-${channel}-${version}.${ext}'
+        })(),
+        dmg: {
+          contents: [
+            {
+              x: 410,
+              y: 150,
+              type: 'link',
+              path: '/Applications'
+            },
+            {
+              x: 130,
+              y: 150,
+              type: 'file'
+            }
+          ]
+        },
+        mac: {
+          category: 'public.app-category.games',
+          target: ['dmg', 'zip']
+        },
+        win: {
+          verifyUpdateCodeSignature: false,
+          signingHashAlgorithms: ['sha256']
+        },
+        linux: {
+          target: ['AppImage']
+        },
+        publish: {
+          url: `https://cordfiles.protocol.one/dist/releases/${channel}`,
+          provider: 'generic',
+          channel
+        }
       }
     }
   }

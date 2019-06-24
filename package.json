@@ -10,6 +10,8 @@
     "dev": "quasar dev",
     "dev:electron": "quasar dev -m electron",
     "build": "quasar build",
+    "build:electron:stable": "MODE=electron quasar build -m electron -t mat -T all -A x64",
+    "release:electron:stable": "yarn build:electron:stable && MODE=electron node electron-release",
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0"
   },
@@ -36,6 +38,7 @@
     "devtron": "^1.4.0",
     "dotenv": "^8.0.0",
     "electron": "^4.0.5",
+    "electron-builder": "^20.44.4",
     "electron-debug": "^2.1.0",
     "electron-devtools-installer": "^2.2.4",
     "eslint": "^5.10.0",

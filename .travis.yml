@@ -2,19 +2,6 @@ language: node_js
 sudo: false
 node_js: node
 
-# blocklist
-#branches:
-#  except:
-#  - master
-#  - develop
-
-# safelist
-#branches:
-#  only:
-#  - stable
-#  - beta
-#  - alpha
-
 stages:
   - name: deploy
     if: branch IN (stable,beta,alpha)
@@ -40,7 +27,7 @@ jobs:
           - $HOME/.cache/electron-builder
       script:
         - yarn lint
-        - yarn release:$TRAVIS_BRANCH
+        - yarn release:electron:$TRAVIS_BRANCH
       deploy:
         - provider: releases
           api_key: $GH_TOKEN
