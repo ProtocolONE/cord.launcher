@@ -3,7 +3,8 @@ export default {
     home: 'Home',
     shop: 'Shop',
     library: 'Library',
-    personal: 'Personal'
+    personal: 'Personal',
+    account: 'Account'
   },
 
   titles: {
@@ -45,7 +46,11 @@ export default {
     city: 'City',
     postal_code: 'Postal code',
     region: 'Region',
-    address_line: 'Address line'
+    address_line: 'Address line',
+    account_name: 'Account name',
+    account_nickname: 'Account nickname',
+    primary_language: 'Primary language',
+    additional_language: 'Additional language'
   },
 
   locales: {

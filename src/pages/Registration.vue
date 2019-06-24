@@ -80,6 +80,7 @@ export default {
 
     async handleSubmit () {
       await this.register(this.user_data)
+      this.$router.push({ name: 'home' })
     }
   }
 }

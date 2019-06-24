@@ -15,15 +15,15 @@ base-layout
               type="submit")
 
       aside.user-nav
-        q-list(dark bordered separator)
-          q-item(
+        q-list(dark)
+          q-item.user-nav__item(
               v-for="{ name, label, path } in routes"
               v-ripple
               :key="name"
               :active="$route.name === name"
-              active-class="text-grey-3"
+              active-class="text-white text-bold"
               clickable
-              @click="$router.push(path)")
+              @click="$router.push({ name })")
             q-item-section {{ label }}
 
     .col-lg-10.col-md-9.col-8
@@ -102,4 +102,7 @@ $toolbar-height = 120px
 
 .user-nav
   padding-top: 30px
+
+  &__item
+    color: $grey
 </style>

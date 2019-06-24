@@ -3,7 +3,8 @@ export default {
     home: 'Главная',
     shop: 'Магазин',
     library: 'Библиотека',
-    personal: 'Основное'
+    personal: 'Основное',
+    account: 'Аккаунт'
   },
 
   titles: {
@@ -45,7 +46,11 @@ export default {
     city: 'Город',
     postal_code: 'Почтовый индекс',
     region: 'Регион',
-    address_line: 'Адресная строка'
+    address_line: 'Адресная строка',
+    account_name: 'Данные аккаунта',
+    account_nickname: 'Имя пользователя',
+    primary_language: 'Основной язык',
+    additional_language: 'Дополнительный язык'
   },
 
   locales: {

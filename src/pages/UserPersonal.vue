@@ -1,9 +1,9 @@
 <template lang="pug">
 q-page.row.text-white
   .col-12.col-md-10.col-lg-8
-    form(:id="formId" @submit.prevent="handleSubmit")
+    q-form(:id="formId" @submit="handleSubmit")
 
-      h6.base-title.q-mt-none {{ page_title }}
+      h6.base-title.text-bold.q-mt-none {{ page_title }}
 
       .row.q-col-gutter-md
         .col-12.col-md-6
@@ -53,7 +53,7 @@ q-page.row.text-white
               dark
               clearable)
 
-      h6.base-title.q-mt-lg {{ $trans('labels', 'address') }}
+      h6.base-title.text-bold.q-mt-lg {{ $trans('labels', 'address') }}
 
       .row: .col-12.col-md-6
         .row.q-col-gutter-md
