@@ -93,14 +93,14 @@ q-page.row.text-white
           .col-md-8.col-lg-8.col-12
             q-select(
                 v-model="personal.address.region"
-                :options="cities"
+                :options="regions"
                 :label="$trans('labels', 'region')"
-                :disable="!personal.address.city"
+                :disable="!personal.address.country"
                 color="white"
                 use-input
                 dark
                 clearable
-                @filter="search_city")
+                @filter="search_region")
 
           .col-12
             q-input(
@@ -123,12 +123,22 @@ q-page.row.text-white
 import moment from 'moment'
 import { cloneDeep, map, merge } from 'lodash-es'
 
+// --- TODO: перенести на какое-нибудь api
 import countries from 'src/statics/countries'
+import regions from 'src/statics/regions'
 
 const countries_list = map(countries, (_, country) => country)
 
 function get_cities_list (country) {
   return countries[country]
+}
+
+function get_regions_list (country) {
+  let _regions = regions.filter(({ countryName }) => countryName === country)
+  if (_regions.length) {
+    return _regions[0].regions.map(region => region.name)
+  }
+  return []
 }
 
 export default {
@@ -162,7 +172,8 @@ export default {
         year
       },
       countries: countries_list,
-      cities: []
+      cities: [],
+      regions: []
     }
   },
 
@@ -225,6 +236,7 @@ export default {
 
     'personal.address.country' (country) {
       this.cities = get_cities_list(country)
+      this.regions = get_regions_list(country)
     }
   },
 
@@ -257,6 +269,21 @@ export default {
           else {
             let query = val.toLowerCase()
             this.cities = cities_list.filter(v => Boolean(~v.toLowerCase().indexOf(query)))
+          }
+        })
+      }, 300)
+    },
+
+    search_region (val, update) {
+      setTimeout(() => {
+        update(() => {
+          let regions_list = get_regions_list(this.personal.address.country)
+          if (!val) {
+            this.regions = regions_list
+          }
+          else {
+            let query = val.toLowerCase()
+            this.regions = regions_list.filter(v => Boolean(~v.toLowerCase().indexOf(query)))
           }
         })
       }, 300)
