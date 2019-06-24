@@ -34,7 +34,7 @@ jobs:
           skip_cleanup: true
           file_glob: true
           file:
-            - dist/electron-mat/Packaged/*
+            - dist/electron/Packaged/*
           on:
             all_branches: true
             condition: $TRAVIS_BRANCH =~ ^stable$
@@ -44,7 +44,7 @@ jobs:
           file_glob: true
           prerelease: true
           file:
-            - dist/electron-mat/Packaged/*
+            - dist/electron/Packaged/*
           on:
             all_branches: true
             condition: $TRAVIS_BRANCH =~ ^beta|alpha$
