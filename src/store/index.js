@@ -15,6 +15,16 @@ Vue.use(Vuex)
  */
 
 export default function () {
+  const getters = {
+    get_api_url: () => process.env.QILINSTORE_API_URL,
+    get_access_token: () => LocalStorage.getItem('access_token')
+  }
+
+  if (process.env.MODE === 'electron') {
+    let { remote } = require('electron')
+    getters.get_electron_store = () => remote.getGlobal('$electron_store')
+  }
+
   const Store = new Vuex.Store({
     modules: {
       oauth2,
@@ -22,10 +32,7 @@ export default function () {
       game
     },
 
-    getters: {
-      get_api_url: () => process.env.QILINSTORE_API_URL,
-      get_access_token: () => LocalStorage.getItem('access_token')
-    },
+    getters,
 
     // enable strict mode (adds overhead!)
     // for dev mode only

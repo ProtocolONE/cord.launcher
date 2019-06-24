@@ -1,6 +1,6 @@
 <template lang="pug">
 q-page.base-padding
-  q-form(@submit="handleSubmit")
+  q-form(@submit="handle_submit")
     q-input(
         v-model="game_id"
         label="Enter a game id"
@@ -26,7 +26,7 @@ export default {
   },
 
   methods: {
-    handleSubmit () {
+    handle_submit () {
       this.$router.push({
         name: 'game',
         params: {

@@ -1,7 +1,7 @@
 <template lang="pug">
 q-page.row.text-white
   .col-12.col-md-10.col-lg-8
-    q-form(:id="formId" @submit="handleSubmit")
+    q-form(:id="formId" @submit="handle_submit")
 
       h6.base-title.text-bold.q-mt-none {{ page_title }}
 
@@ -55,7 +55,7 @@ q-page.row.text-white
 
       h6.base-title.text-bold.q-mt-lg {{ $trans('labels', 'address') }}
 
-      .row: .col-12.col-md-6
+      .row.q-col-gutter-md: .col-12.col-md-6
         .row.q-col-gutter-md
           .col-12
             q-select(
@@ -85,6 +85,7 @@ q-page.row.text-white
             q-input(
                 v-model="personal.address.postal_code"
                 :label="$trans('labels', 'postal_code')"
+                mask="######"
                 color="white"
                 dark
                 clearable)
@@ -120,7 +121,7 @@ q-page.row.text-white
 
 <script>
 import moment from 'moment'
-import { cloneDeep, map } from 'lodash-es'
+import { cloneDeep, map, merge } from 'lodash-es'
 
 import countries from 'src/statics/countries'
 
@@ -139,12 +140,26 @@ export default {
   },
 
   data () {
+    let personal = this.get_personal_data()
+    let birth_date = personal.birth_date
+    let [month, day, year] = [null, null, null]
+
+    if (birth_date) {
+      birth_date = moment(birth_date)
+      day = birth_date.get('date')
+      year = birth_date.get('year')
+      month = {
+        label: birth_date.format('MMMM'),
+        value: birth_date.get('month')
+      }
+    }
+
     return {
-      personal: this.get_personal_data(),
+      personal,
       birth_date: {
-        month: null,
-        day: null,
-        year: null
+        month,
+        day,
+        year
       },
       countries: countries_list,
       cities: []
@@ -186,7 +201,15 @@ export default {
 
     data_for_save () {
       return {
-        personal: this.personal
+        personal: merge(this.personal, {
+          birth_date: (() => {
+            let { year, month, day } = this.birth_date
+            if (year && month && day) {
+              return new Date(year, month.value, day).toISOString()
+            }
+            return null
+          })()
+        })
       }
     }
   },
@@ -239,7 +262,7 @@ export default {
       }, 300)
     },
 
-    handleSubmit () {
+    handle_submit () {
       this.$emit('save', this.data_for_save)
     }
   }

@@ -2,7 +2,7 @@
 q-page.flex.items-center.base-padding
   .row.full-width.justify-center
     .col-lg-6.col-md-6.col-12
-      q-form.q-gutter-sm.text-center.text-white(@submit="handleSubmit")
+      q-form.q-gutter-sm.text-center.text-white(@submit="handle_submit")
 
         q-input(
             v-model="user_email"
@@ -78,7 +78,7 @@ export default {
   methods: {
     ...mapActions('user', ['register']),
 
-    async handleSubmit () {
+    async handle_submit () {
       await this.register(this.user_data)
       this.$router.push({ name: 'home' })
     }

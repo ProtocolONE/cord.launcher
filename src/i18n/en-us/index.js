@@ -53,6 +53,10 @@ export default {
     additional_language: 'Additional language'
   },
 
+  paragraphs: {
+    accounts_data_successfully_updated: 'Данные аккаунта успешно обновлены'
+  },
+
   locales: {
     'en-us': 'English',
     'ru-ru': 'Russian',

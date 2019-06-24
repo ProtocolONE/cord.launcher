@@ -72,10 +72,18 @@ export default {
   methods: {
     ...mapActions('user', ['load_user_data', 'save_user_data']),
 
-    handleSave (data) {
+    async handleSave (data) {
       let user_data = cloneDeep(this.user_data)
       let updated_user_data = merge(user_data, data)
-      this.save_user_data(updated_user_data)
+
+      await this.save_user_data(updated_user_data)
+
+      this.$q.notify({
+        icon: 'info',
+        color: 'neutral',
+        position: 'top-right',
+        message: this.$trans('paragraphs', 'accounts_data_successfully_updated')
+      })
     }
   }
 }
@@ -102,6 +110,7 @@ $toolbar-height = 120px
 
 .user-nav
   padding-top: 30px
+  font-size: 16px
 
   &__item
     color: $grey

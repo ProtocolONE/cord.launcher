@@ -1,7 +1,7 @@
 <template lang="pug">
 q-page.row.text-white
   .col-12.col-md-10.col-lg-8
-    q-form(:id="formId" @submit="handleSubmit")
+    q-form(:id="formId" @submit="handle_submit")
 
       h6.base-title.text-bold.q-mt-none {{ $trans('labels', 'account_name') }}
 
@@ -16,11 +16,11 @@ q-page.row.text-white
 
       h6.base-title.text-bold.q-mt-lg {{ $trans('labels', 'language') }}
 
-      .row: .col-12.col-md-6
+      .row.q-col-gutter-md: .col-12.col-md-6
         .row.q-col-gutter-md
           .col-12
             q-select(
-                v-model="account.primary_language"
+                v-model="primary_language"
                 :options="languages"
                 :label="$trans('labels', 'primary_language')"
                 color="white"
@@ -29,7 +29,7 @@ q-page.row.text-white
 </template>
 
 <script>
-import { cloneDeep, map } from 'lodash-es'
+import { cloneDeep, map, merge } from 'lodash-es'
 
 export default {
   name: 'UserAccountPage',
@@ -40,24 +40,33 @@ export default {
   },
 
   data () {
+    let account = this.get_account_data()
+    let primary_language = null
+    let languages = map(this.$i18n.messages, (_, locale) => ({
+      label: this.$trans('locales', locale),
+      value: locale
+    }))
+
+    if (account.primary_language) {
+      let val = account.primary_language
+      primary_language = {
+        label: languages.find(({ value }) => value === val).label,
+        value: val
+      }
+    }
+
     return {
-      account: this.get_account_data(),
-      languages: map(this.$i18n.messages, (_, locale) => ({
-        label: this.$trans('locales', locale),
-        value: locale
-      }))
+      account,
+      primary_language,
+      languages
     }
   },
 
   computed: {
     data_for_save () {
-      let { nickname, primary_language } = this.account
-      return {
-        account: {
-          nickname,
-          primary_language: primary_language && primary_language.value
-        }
-      }
+      return merge(this.account, {
+        primary_language: this.primary_language && this.primary_language.value
+      })
     }
   },
 
@@ -76,7 +85,7 @@ export default {
       return cloneDeep(user.account)
     },
 
-    handleSubmit () {
+    handle_submit () {
       this.$emit('save', this.data_for_save)
     }
   }
