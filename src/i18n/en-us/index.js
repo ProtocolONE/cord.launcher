@@ -31,7 +31,21 @@ export default {
     user_email: 'User email',
     user_name: 'User name',
     continue: 'Continue',
-    remember_me: 'Remember me'
+    remember_me: 'Remember me',
+    name: 'Name',
+    date_of_birth: 'Date of birth',
+    first_name: 'First name',
+    last_name: 'Last name',
+    month: 'Month',
+    day: 'Day',
+    year: 'Year',
+    save: 'Save',
+    address: 'Address',
+    country: 'Country',
+    city: 'City',
+    postal_code: 'Postal code',
+    region: 'Region',
+    address_line: 'Address line'
   },
 
   locales: {

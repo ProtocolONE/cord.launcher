@@ -45,6 +45,7 @@ module.exports = function (ctx) {
         'QForm',
         'QBtn',
         'QInput',
+        'QSelect',
         'QCheckbox',
 
         // --- cards

@@ -9,17 +9,17 @@ q-page.flex.items-center.base-padding
             :label="$trans('labels', 'user_email')"
             :rules="not_empty"
             type="email"
-            clearable
-            standout
-            dark)
+            color="white"
+            dark
+            clearable)
 
         q-input(
             v-model="user_name"
             :label="$trans('labels', 'user_name')"
             :rules="not_empty"
-            clearable
-            standout
-            dark)
+            color="white"
+            dark
+            clearable)
 
         .flex.justify-between
           q-checkbox.q-checkbox(
