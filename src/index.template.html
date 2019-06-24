@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title><%= htmlWebpackPlugin.options.productName %></title>
 
     <meta charset="utf-8">
     <meta name="description" content="<%= htmlWebpackPlugin.options.productDescription %>">
@@ -9,52 +9,14 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width<% if (htmlWebpackPlugin.options.ctx.mode.cordova) { %>, viewport-fit=cover<% } %>">
 
-    <link rel="icon" href="statics/quasar-logo.png" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="32x32" href="statics/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" href="statics/app-logo-128x128.png">
     <link rel="icon" type="image/png" sizes="16x16" href="statics/icons/favicon-16x16.png">
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="icon" type="image/png" sizes="32x32" href="statics/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="statics/icons/favicon-96x96.png">
+    <link rel="icon" type="image/ico" href="statics/icons/favicon.ico">
   </head>
   <body>
     <!-- DO NOT touch the following DIV -->
     <div id="q-app"></div>
-    <script>
-      try {
-        if (window && window.process && window.process.type) {
-          const { ipcRenderer } = require('electron')
-          const keyCodes = [
-            33, // PageUp
-            34, // PageDown
-            35, // End
-            36 // Home
-          ]
-
-          function stopBubble (e) {
-            let preventFromCode = keyCodes.includes(e.which)
-            if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey || preventFromCode) {
-              e.stopImmediatePropagation()
-              e.preventDefault()
-              return false
-            }
-          }
-
-          window.addEventListener('keydown', stopBubble, true)
-          window.addEventListener('click', stopBubble, true)
-
-          // --- middle click
-          window.addEventListener('auxclick', e => {
-            e.stopImmediatePropagation()
-            e.preventDefault()
-            return false
-          }, true)
-
-          console.log('ipcRenderer message in body script init.')
-          ipcRenderer.on('message', (event, text) => console.info(text))
-        }
-      }
-      catch (error) {
-        console.error(error)
-      }
-    </script>
   </body>
 </html>

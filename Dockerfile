@@ -1,18 +1,16 @@
-FROM node:10.10-alpine AS node
+FROM node:10.16-alpine AS node
 
-RUN apk update && apk add --no-cache --update ca-certificates
-
-ENV PORT=8080 
+RUN apk update && \
+    apk add ca-certificates --no-cache --update
 
 WORKDIR /app
 COPY package.json yarn.lock /app/
 
-RUN yarn
+RUN yarn install --pure-lockfile
 
 COPY . /app/
 
-RUN yarn build:ssr
+RUN yarn build
 
-EXPOSE 8080
-
-CMD ["node", "./dist/ssr-mat/server"]
+EXPOSE 3000
+CMD ["node", "oauth2-server"]

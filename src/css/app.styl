@@ -1,6 +1,5 @@
 // app global css
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700')
-@import '_fontawesome.styl'
 
 ::-webkit-scrollbar
   width: .45em
@@ -12,6 +11,31 @@
   background-color: rgba($grey, .8)
   outline: 1px solid $grey
 
+body
+  background-color: $main-background
+  font-family: $typography-font-family
+  font-size: 14px
+  letter-spacing: -0.02em
+
+.base-padding
+  padding: $base-padding
+
+.base-title
+  font-weight: 300
+  line-height: normal
+  letter-spacing: -0.02em
+  &.text-bold
+    font-weight: 500
+  &.text-normal
+    font-weight: 400
+  &:not([class*="q-mt"])
+    margin-top: 0.5em
+  &:not([class*="q-mb"])
+    margin-bottom: 0.5em
+
+.text-normal
+  font-weight: 400
+
 .lato
   font-family: Lato
 
@@ -22,3 +46,13 @@
   margin: 0
   padding: 0
   list-style-type: none
+
+// --- TODO: design for btn as svg/img
+.q-btn__back
+  padding: 0 $space-base 0 ($space-base * 2)
+  background: url(/statics/images/arrow-left-bg.png) no-repeat left center
+  box-shadow: none
+  color: rgba($white, .75)
+  font-weight: normal
+  letter-spacing: -0.02em
+  text-transform: capitalize

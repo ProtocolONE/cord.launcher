@@ -1,80 +1,135 @@
-const webpack = require('webpack')
-const { resolve } = require('path')
+// Configuration for your app
+const { mapValues } = require('lodash')
 
-const __root = resolve(__dirname)
-const isProd = (process.env.NODE_ENV === 'production')
-
-const electronPlugins = []
-
-const isElectron = (process.env.MODE === 'electron')
+const env = require('./config')
 const channel = (process.env.CHANNEL || 'stable')
 
-global.__root = __root
-
-if (isElectron) {
-  electronPlugins.push('auto-update-manager')
-}
-
-module.exports = function () {
+module.exports = function (ctx) {
   return {
-    // html vars
-    htmlVariables: {
-      title: (isElectron)
-        ? 'cordlauncher ' + process.env.npm_package_version
-        : 'cordlauncher'
-    },
-    // app plugins (/src/plugins)
-    plugins: [
-      'toggle-online-state',
-      'moment',
+    // app boot file (/src/boot)
+    // --> boot files are part of "main.js"
+    boot: [
       'i18n',
-      'trans',
-      'update-locale',
-      'open-url',
-      'base-components',
-
-      // --- electron plugins
-      ...(isElectron ? ['auto-update-manager', 'electron-store'] : [])
+      'axios',
+      'trans'
     ],
+
     css: [
       'app.styl'
     ],
+
     extras: [
       'roboto-font',
-      'fontawesome'
+      // optional, you are not bound to it
+      'material-icons',
+      // 'ionicons-v4',
+      // 'mdi-v3',
+      'fontawesome-v5'
+      // 'eva-icons'
     ],
+
+    framework: {
+      // all: true, // --- includes everything; for dev only!
+
+      components: [
+        // --- layouts
+        'QLayout',
+        'QHeader',
+        'QFooter',
+
+        // --- pages
+        'QPageContainer',
+        'QPage',
+
+        // --- forms
+        'QForm',
+        'QBtn',
+        'QInput',
+        'QCheckbox',
+
+        // --- cards
+        'QCard',
+        'QCardSection',
+        'QCardActions',
+
+        // --- tabs
+        'QTabs',
+        'QTab',
+        'QTabPanels',
+        'QTabPanel',
+
+        // --- tables
+        'QTable',
+        'QTh',
+        'QTr',
+        'QTd',
+
+        // --- list
+        'QList',
+        'QItem',
+        'QItemSection',
+
+        // --- toolbar
+        'QToolbar',
+        'QToolbarTitle',
+
+        // --- dropdown
+        'QBtnDropdown',
+
+        // --- modals
+        'QDialog',
+
+        // --- other
+        'QSeparator',
+        'QAvatar',
+        'QSpinner',
+        'QInnerLoading',
+        'QRating',
+        'QSpace',
+        'QIcon',
+        'QImg',
+        'QVideo'
+      ],
+
+      cssAddon: true,
+
+      directives: [
+        'Ripple',
+        'ClosePopup'
+      ],
+
+      // Quasar plugins
+      plugins: [
+        'Notify',
+        'LocalStorage'
+      ]
+
+      // iconSet: 'ionicons-v4'
+      // lang: 'de' // Quasar language
+    },
+
     supportIE: false,
+
     build: {
-      // --- https://quasar-framework.org/guide/app-quasar.conf.js.html
-      showProgress: true,
+      env: mapValues(env, val => {
+        if (typeof val === 'string') {
+          return JSON.stringify(val)
+        }
+        return val
+      }),
+      // env: JSON.stringify(env),
       scopeHoisting: true,
-
-      vueCompiler: true,
-      vueRouterMode: 'abstract',
-
-      analyze: process.env.ANALYZE,
-      preloadChunks: true,
-
-      minify: isProd,
-      extractCSS: isProd,
-
-      sourceMap: !isProd,
-      devtool: 'cheap-eval-source-map',
-
+      publicPath: '/',
+      vueRouterMode: 'history',
+      // vueCompiler: true,
+      // gzip: true,
+      // analyze: true,
+      // extractCSS: false,
       extendWebpack (cfg) {
-        cfg.resolve.extensions.push('.ts')
         cfg.module.rules.push(...[
           {
             test: /\.pug$/,
             loader: 'pug-plain-loader'
-          },
-          {
-            test: /\.ts$/,
-            loader: 'ts-loader',
-            options: {
-              appendTsSuffixTo: [/\.vue$/],
-              transpileOnly: true
-            }
           },
           {
             enforce: 'pre',
@@ -83,91 +138,38 @@ module.exports = function () {
             exclude: /node_modules/
           }
         ])
-        cfg.resolve.alias['@'] = resolve(__root, 'src')
-        cfg.plugins.push(
-          new webpack.LoaderOptionsPlugin({
-            minimize: isProd,
-            options: {
-              context: resolve(__root, 'src'),
-              stylus: {
-                import: [
-                  resolve(__root, 'src', 'css', 'global.styl')
-                ]
-              }
-            }
-          })
-        )
       }
     },
-    // framework: 'all' --- includes everything; for dev only!
+
     devServer: {
-      port: 8080,
-      open: false
+      // https: true,
+      // port: env.PUBLIC_PORT,
+      open: false,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+        'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+      }
     },
-    framework: {
-      components: [
-        // --- layouts
-        'QLayout',
-        'QLayoutHeader',
-        'QLayoutFooter',
 
-        // --- pages
-        'QPageContainer',
-        'QPage',
-
-        // --- sliders
-        'QCarousel',
-        'QCarouselSlide',
-
-        // --- tabs
-        'QTabs',
-        'QTab',
-        'QTabPane',
-
-        // --- cards
-        'QCard',
-        'QCardTitle',
-        'QCardSeparator',
-        'QCardMain',
-
-        // --- forms
-        'QInput',
-        'QSelect',
-        'QSearch',
-        'QCheckbox',
-
-        // --- other components
-        'QBtn',
-        'QIcon',
-        'QTooltip',
-        'QRating'
-      ],
-      cssAddon: true,
-      directives: [
-        'Ripple'
-      ],
-      // Quasar plugins
-      plugins: [
-        'Notify'
-      ],
-      iconSet: 'fontawesome',
-      i18n: 'en-us' // Quasar language
-    },
-    // animations: 'all' --- includes all animations
+    // animations: 'all', // --- includes all animations
     animations: [],
+
     ssr: {
-      pwa: isElectron
+      pwa: false
     },
+
     pwa: {
       // workboxPluginMode: 'InjectManifest',
-      // workboxOptions: {},
+      // workboxOptions: {}, // only for NON InjectManifest
       manifest: {
-        name: 'cordlauncher',
-        short_name: 'cordlauncher-PWA',
-        description: 'Cord launcher based on Electron and Wep Application',
+        // name: 'Quasar App',
+        // short_name: 'Quasar-PWA',
+        // description: 'Best PWA App in town!',
         display: 'standalone',
-        theme_color: '#027be3',
+        orientation: 'portrait',
         background_color: '#ffffff',
+        theme_color: '#027be3',
         icons: [
           {
             'src': 'statics/icons/icon-128x128.png',
@@ -197,17 +199,33 @@ module.exports = function () {
         ]
       }
     },
+
+    cordova: {
+      // id: 'org.cordova.quasar.app'
+      // noIosLegacyBuildFlag: true // uncomment only if you know what you are doing
+    },
+
     electron: {
-      bundler: 'builder',
+      bundler: 'builder', // or 'packager'
+
       extendWebpack (cfg) {
-        // do something with Electron process Webpack cfg
+        // do something with Electron main process Webpack cfg
+        // chainWebpack also available besides this extendWebpack
       },
+
       builder: {
         // https://www.electron.build/configuration/configuration
         appId: 'protocol.one.cordlauncher.app',
         productName: 'cordlauncher',
+        // eslint-disable-next-line no-template-curly-in-string
         copyright: 'Copyright © 2019 ${author}',
-        artifactName: '${productName}-${channel}-${version}.${ext}',
+        artifactName: (function () {
+          return (channel === 'stable')
+            // eslint-disable-next-line no-template-curly-in-string
+            ? '${productName}-${version}.${ext}'
+            // eslint-disable-next-line no-template-curly-in-string
+            : '${productName}-${channel}-${version}.${ext}'
+        })(),
         dmg: {
           contents: [
             {
@@ -225,22 +243,17 @@ module.exports = function () {
         },
         mac: {
           category: 'public.app-category.games',
-          target: [
-            'dmg',
-            'zip'
-          ]
+          target: ['dmg', 'zip']
         },
         win: {
           verifyUpdateCodeSignature: false,
           signingHashAlgorithms: ['sha256']
         },
         linux: {
-          target: [
-            'AppImage'
-          ]
+          target: ['AppImage']
         },
         publish: {
-          url: `https://cordfiles.protocol.one/dist/releases/${ channel }`,
+          url: `https://cordfiles.protocol.one/dist/releases/${channel}`,
           provider: 'generic',
           channel
         }
