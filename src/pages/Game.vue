@@ -26,12 +26,13 @@ q-page
     // info
     section.info
       q-toolbar.base-padding.text-white(class="bg-primary")
-        q-btn.platform-icon.q-pa-md(v-for="(icon, i) in platform_icons"
-                                    :key="icon"
-                                    :icon="icon"
-                                    :class="{ 'q-mr-sm': i < platform_icons.length }"
-                                    :ripple="false"
-                                    flat)
+        q-btn.platform-icon.q-pa-md(
+            v-for="(icon, i) in platform_icons"
+            :key="icon"
+            :icon="icon"
+            :class="{ 'q-mr-sm': i < platform_icons.length }"
+            :ripple="false"
+            flat)
         q-space
         q-btn.q-pa-md.q-mr-sm.bg-secondary(icon="fas fa-heart")
         q-btn.q-pa-md.bg-secondary: b.game-price.roboto {{ `$ ${game.price}` }}
@@ -55,35 +56,37 @@ q-page
       TODO: table as Vue-component
     section.row.q-col-gutter-md.base-padding.text-grey
       // requirements
-      .requirements.col-lg-6.col-md-8.col-12
+      .requirements.col-12.col-md-8
         h4.base-title.q-mb-lg {{ $trans('titles', 'system_requirements') }}
         q-tabs(v-model="system_requirement_tab" align="left" class="text-white")
-          q-tab.q-pa-none(v-for="(system_data, system) in requirements"
-                          :key="system"
-                          :name="system"
-                          :data-name="system")
+          q-tab.q-pa-none(
+              v-for="(system_data, system) in requirements"
+              :key="system"
+              :name="system"
+              :data-name="system")
             q-btn(:icon="system_data.icon" flat)
         q-tab-panels(v-model="system_requirement_tab" class="bg-transparent" animated)
-          q-tab-panel.q-pl-none(v-for="(system_data, system) in requirements"
-                                :key="system"
-                                :name="system")
+          q-tab-panel.q-pl-none(
+              v-for="(system_data, system) in requirements"
+              :key="system"
+              :name="system")
             // minimal
             .row
-              .col-md-6.col-12
+              .col-12.col-md-6
                 h5.base-title.text-white.text-normal {{ $trans('labels', 'minimal') }}
                 table.requirements__table: tbody.vertical-top
                   q-tr(v-for="(val, key) in system_data.minimal" :key="key")
                     q-td.q-pl-none.q-pt-sm.text-uppercase {{ key }}
                     q-td.q-pa-sm.text-white {{ val }}
               // recommended
-              .col-md-6.col-12
+              .col-12.col-md-6
                 h5.base-title.text-white.text-normal {{ $trans('labels', 'recommended') }}
                 table.requirements__table: tbody.vertical-top
                   q-tr(v-for="(val, key) in system_data.recommended" :key="key")
                     q-td.q-pl-none.q-pt-sm.text-uppercase {{ key }}
                     q-td.q-pa-sm.text-white {{ val }}
       // languages
-      .languages.col-lg-6.col-md-4.col-12
+      .languages.col-12.col-md-4
         h4.base-title.q-mb-lg {{ $trans('titles', 'language_support') }}
         table.languages__table
           thead.vertical-top: q-tr
@@ -98,9 +101,10 @@ q-page
 
   // loader
   q-inner-loading(:showing="loading || !game" dark)
-    q-spinner(name="ring"
-              color="accent"
-              size="10em")
+    q-spinner(
+        name="ring"
+        color="accent"
+        size="10em")
 </template>
 
 <script>

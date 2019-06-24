@@ -3,28 +3,35 @@ q-page.flex.items-center.base-padding
   .row.full-width.justify-center
     .col-lg-6.col-md-6.col-12
       q-form.q-gutter-sm.text-center.text-white(@submit="handleSubmit")
-        q-input(v-model="user_email"
-                :label="$trans('labels', 'user_email')"
-                :rules="not_empty"
-                type="email"
-                clearable
-                standout
-                dark)
-        q-input(v-model="user_name"
-                :label="$trans('labels', 'user_name')"
-                :rules="not_empty"
-                clearable
-                standout
-                dark)
+
+        q-input(
+            v-model="user_email"
+            :label="$trans('labels', 'user_email')"
+            :rules="not_empty"
+            type="email"
+            clearable
+            standout
+            dark)
+
+        q-input(
+            v-model="user_name"
+            :label="$trans('labels', 'user_name')"
+            :rules="not_empty"
+            clearable
+            standout
+            dark)
+
         .flex.justify-between
-          q-checkbox.q-checkbox(v-model="remember_user"
-                                :label="$trans('labels', 'remember_me')"
-                                text-color="teal"
-                                dark)
-          q-btn(:label="$trans('labels', 'continue')"
-                type="submit"
-                color="white"
-                text-color="black")
+          q-checkbox.q-checkbox(
+              v-model="remember_user"
+              :label="$trans('labels', 'remember_me')"
+              text-color="teal"
+              dark)
+          q-btn(
+              :label="$trans('labels', 'continue')"
+              type="submit"
+              color="white"
+              text-color="black")
 </template>
 
 <script>

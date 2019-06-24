@@ -3,18 +3,21 @@ q-layout.main
 
   q-header.main__header.header
     nav.roboto.flex.nav
+
       q-btn.q-pa-none(to="/"): logo.header__logo
-      q-btn.text-capitalize.q-ml-lg.nav__item(v-for="{ name, path, label } in routes"
-                                              :key="name"
-                                              :to="path"
-                                              :label="label"
-                                              :aria-label="label"
-                                              :class="{ active: $route.name === name }"
-                                              flat)
+      q-btn.text-capitalize.q-ml-lg.nav__item(
+          v-for="{ name, path, label } in routes"
+          :key="name"
+          :to="path"
+          :label="label"
+          :aria-label="label"
+          :class="{ active: $route.name === name }"
+          flat)
 
       q-btn-dropdown.q-ml-auto.q-pa-none.q-pl-sm(flat)
         template(v-slot:label)
           q-avatar(size="40px"): img(src="https://cdn.quasar.dev/img/boy-avatar.png")
+
         q-list(bordered separator)
           q-item(v-close-popup clickable @click="$router.replace({ name: 'personal' })")
             // --- TODO: logout confirm

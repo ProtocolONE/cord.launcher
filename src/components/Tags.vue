@@ -1,10 +1,11 @@
 <template lang="pug">
 .tags.roboto.text-bold
-  q-btn.tags__item(v-for="(tag, i) in tags"
-                   :key="tag.id"
-                   :label="tag.title"
-                   :class="{ 'q-mr-sm': i < tags.length }"
-                   :ripple="false")
+  q-btn.tags__item(
+      v-for="(tag, i) in tags"
+      :key="tag.id"
+      :label="tag.title"
+      :class="{ 'q-mr-sm': i < tags.length }"
+      :ripple="false")
 </template>
 
 <script>

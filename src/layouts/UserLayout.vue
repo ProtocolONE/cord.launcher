@@ -5,13 +5,14 @@ base-layout
     .col-lg-2.col-md-3.col-4
       aside.user-nav
         q-list(dark bordered separator)
-          q-item(v-for="{ name, label, path } in routes"
-                 v-ripple
-                 :key="name"
-                 :active="$route.name === name"
-                 active-class="bg-grey-7 text-grey-3"
-                 clickable
-                 @click="$router.push(path)")
+          q-item(
+              v-for="{ name, label, path } in routes"
+              v-ripple
+              :key="name"
+              :active="$route.name === name"
+              active-class="bg-grey-7 text-grey-3"
+              clickable
+              @click="$router.push(path)")
             q-item-section {{ label }}
 
     .col-lg-10.col-md-9.col-8
