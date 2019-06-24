@@ -11,7 +11,7 @@
     "dev:electron": "quasar dev -m electron",
     "build": "quasar build",
     "build:electron:stable": "MODE=electron quasar build -m electron -t mat -T all -A x64",
-    "release:electron:stable": "yarn build:electron:stable && MODE=electron node src-electron/release",
+    "release:electron:stable": "yarn build:electron:stable && MODE=electron node src-electron/gh-release",
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0"
   },
