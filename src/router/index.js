@@ -57,9 +57,9 @@ export default function ({ store }) {
 
     // --- registration
     if (to.name === 'registration') {
-      let user_is_registered = await store.dispatch('user/check_is_registered')
-      if (user_is_registered) {
-        return next({ name: 'login' })
+      let user_exist = await store.dispatch('user/login')
+      if (user_exist) {
+        return next({ name: 'home' })
       }
       return next()
     }

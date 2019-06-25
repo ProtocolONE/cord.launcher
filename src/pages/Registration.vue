@@ -27,6 +27,9 @@ q-page.flex.items-center.base-padding
               :label="$trans('labels', 'remember_me')"
               text-color="teal"
               dark)
+          q-btn.q-ml-auto.q-mr-sm(
+              :label="$trans('labels', 'cancel')"
+              @click="$router.push({ name: 'logout' })")
           q-btn(
               :label="$trans('labels', 'continue')"
               type="submit"
@@ -80,7 +83,7 @@ export default {
 
     async handle_submit () {
       await this.register(this.user_data)
-      this.$router.push({ name: 'home' })
+      this.$router.push({ name: 'login' })
     }
   }
 }

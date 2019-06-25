@@ -33,6 +33,7 @@ export default {
     user_email: 'User email',
     user_name: 'User name',
     continue: 'Continue',
+    cancel: 'Cancel',
     remember_me: 'Remember me',
     name: 'Name',
     date_of_birth: 'Date of birth',

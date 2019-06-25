@@ -1,28 +1,6 @@
 import axios from 'axios'
 
 /**
- * Check user is registered
- *
- * @param rootGetters
- * @returns {Boolean} user_is_registered
- */
-export async function check_is_registered ({ rootGetters }) {
-  let url = `${rootGetters.get_api_url}/profiles/me`
-  try {
-    // --- get user data
-    await axios(url)
-    // --- user found
-    return true
-  }
-  catch (err) {
-    // --- user not found
-    if (err.response.data.code === 404) {
-      return false
-    }
-  }
-}
-
-/**
  * Register user
  */
 export async function register ({ rootGetters }, user_data) {
@@ -32,11 +10,24 @@ export async function register ({ rootGetters }, user_data) {
 
 /**
  * Login user
+ * Also check user does it exist
+ * @returns {Boolean} - successfully login true/fale
  */
 export async function login ({ rootGetters, commit }) {
   let url = `${rootGetters.get_api_url}/accounts/login`
-  await axios.post(url, {})
-    .then(({ data }) => commit('set_user', data))
+  try {
+    await axios.post(url, {})
+      .then(({ data }) => commit('set_user', data))
+    return true
+  }
+  catch (err) {
+    if (err.response.data.code === 404) {
+      return false
+    }
+    else {
+      console.error(err, Object.keys(err))
+    }
+  }
 }
 
 /**

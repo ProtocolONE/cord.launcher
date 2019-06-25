@@ -33,6 +33,7 @@ export default {
     user_email: 'Email пользователя',
     user_name: 'Имя пользователя',
     continue: 'Продолжить',
+    cancel: 'Отменить',
     remember_me: 'Запомнить меня',
     name: 'Имя',
     date_of_birth: 'Дата рождения',
