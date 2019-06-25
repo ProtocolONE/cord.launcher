@@ -7,7 +7,7 @@ q-page.flex.items-center.base-padding
         q-input(
             v-model="user_email"
             :label="$trans('labels', 'user_email')"
-            :rules="not_empty"
+            :rules="validate('empty', 'email')"
             type="email"
             color="white"
             dark
@@ -16,7 +16,7 @@ q-page.flex.items-center.base-padding
         q-input(
             v-model="user_name"
             :label="$trans('labels', 'user_name')"
-            :rules="not_empty"
+            :rules="validate_empty"
             color="white"
             dark
             clearable)

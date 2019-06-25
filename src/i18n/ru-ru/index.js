@@ -29,6 +29,7 @@ export default {
     text: 'Интерфейс',
     audio: 'Озвучка',
     field_is_required: 'Это поле обязательно',
+    email_is_not_corrected: 'Email не корректнен',
     user_email: 'Email пользователя',
     user_name: 'Имя пользователя',
     continue: 'Продолжить',

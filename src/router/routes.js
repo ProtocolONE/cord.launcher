@@ -31,7 +31,7 @@ const user_routes = [
 
 const routes = [
   {
-    path: '/oauth2',
+    path: '/auth',
     component: () => import('layouts/AuthLayout.vue'),
     children: [
       {
