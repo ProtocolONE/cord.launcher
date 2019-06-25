@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { LocalStorage } from 'quasar'
-
 import oauth2 from './oauth2'
 import user from './user'
 import game from './game'
@@ -17,7 +15,7 @@ Vue.use(Vuex)
 export default function () {
   const getters = {
     get_api_url: () => process.env.QILINSTORE_API_URL,
-    get_access_token: () => LocalStorage.getItem('access_token')
+    get_access_token: ({ oauth2 }) => oauth2.access_token
   }
 
   if (process.env.MODE === 'electron') {
