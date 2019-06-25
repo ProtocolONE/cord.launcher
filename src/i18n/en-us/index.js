@@ -29,6 +29,7 @@ export default {
     text: 'Text',
     audio: 'Audio',
     field_is_required: 'Field is required',
+    email_is_not_corrected: 'Email is not corrected',
     user_email: 'User email',
     user_name: 'User name',
     continue: 'Continue',
