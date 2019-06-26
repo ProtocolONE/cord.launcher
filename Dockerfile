@@ -6,7 +6,8 @@ RUN apk update && \
 WORKDIR /app
 COPY package.json yarn.lock /app/
 
-RUN yarn install --pure-lockfile
+RUN yarn install --pure-lockfile && \
+    yarn upgrade --pure-lockfile
 
 COPY . /app/
 

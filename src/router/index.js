@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import { LocalStorage } from 'quasar'
 import { get, pick } from 'lodash-es'
 
 import routes from './routes'
@@ -32,17 +31,12 @@ export default function ({ store }) {
   let electron_is_redirected = false
 
   Router.beforeEach(async (to, from, next) => {
-    // --- check token expires and refresh token if its needed
+    // --- check token expires and clear token if its exist
     let token_expires = store.state.oauth2.token_expires
     if (token_expires && Number(token_expires) <= Date.now()) {
       // --- TODO: check user is logged in auth1
-      try {
-        await store.dispatch('oauth2/refresh_token')
-      }
-      catch (err) {
-        LocalStorage.clear()
-        return next({ name: 'oauth2' })
-      }
+      store.commit('oauth2/access_token', null)
+      store.commit('oauth2/token_expires', null)
     }
 
     // --- check token and requires auth for routes
