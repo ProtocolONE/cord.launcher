@@ -44,6 +44,8 @@ export default {
     ...mapMutations('oauth2', ['set_token', 'set_token_expires']),
 
     async handle_post_message ({ data }) {
+      console.log(arguments[0])
+
       let name = data.name
       if (name === 'formResize') return
 
@@ -65,7 +67,7 @@ export default {
 
           await this.update_user_info()
 
-          this.$router.push({ name: 'registration' })
+          // this.$router.push({ name: 'registration' })
         }
 
         if (data.error) console.error(data.error)
