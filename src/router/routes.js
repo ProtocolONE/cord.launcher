@@ -1,92 +1,92 @@
-import Layout from 'layouts/main'
-import UserLayout from 'layouts/user'
-
-import Home from 'pages/home'
-import Shop from 'pages/shop'
-import Library from 'pages/library'
-
-import GamePreview from 'pages/game/preview'
-
-import UserPersonal from 'pages/user/personal'
-import UserAccount from 'pages/user/account'
-import UserSecurity from 'pages/user/security'
-import UserPayments from 'pages/user/payments'
-import UserLauncher from 'pages/user/launcher'
-
-import Error404 from 'pages/errors/404'
-
-export const MAIN_ROUTES = [
+const main_routes = [
   {
-    name: 'home',
     path: '/',
-    component: Home
+    name: 'home',
+    component: () => import('pages/Home.vue')
   },
   {
     name: 'shop',
     path: '/shop',
-    component: Shop
+    component: () => import('pages/Shop.vue')
   },
   {
     name: 'library',
     path: '/library',
-    component: Library
+    component: () => import('pages/Library.vue')
   }
 ]
 
-export const GAME_ROUTES = [
+const user_routes = [
   {
-    name: 'game-preview',
-    path: '/game/:id',
-    component: GamePreview
-  }
-]
-
-export const USER_ROUTES = [
-  {
+    path: '',
     name: 'personal',
-    path: '/user/personal',
-    component: UserPersonal
+    component: () => import('pages/UserPersonal.vue')
   },
   {
+    path: 'account',
     name: 'account',
-    path: '/user/account',
-    component: UserAccount
-  },
-  {
-    name: 'security',
-    path: '/user/security',
-    component: UserSecurity
-  },
-  {
-    name: 'payments',
-    path: '/user/payments',
-    component: UserPayments
+    component: () => import('pages/UserAccount.vue')
   }
 ]
 
-if (process.env.MODE === 'electron') {
-  USER_ROUTES.push({
-    name: 'launcher',
-    path: '/user/launcher',
-    component: UserLauncher
-  })
-}
-
-export default [
+const routes = [
+  {
+    path: '/auth',
+    component: () => import('layouts/AuthLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'oauth2',
+        component: () => import('pages/OAuth2.vue'),
+        meta: {
+          requires_auth: false
+        }
+      },
+      {
+        path: 'registration',
+        name: 'registration',
+        component: () => import('pages/Registration.vue')
+      },
+      {
+        path: 'login',
+        name: 'login'
+      },
+      {
+        path: 'logout',
+        name: 'logout'
+      }
+    ]
+  },
   {
     path: '/',
-    component: Layout,
-    children: MAIN_ROUTES.concat(GAME_ROUTES)
+    component: () => import('layouts/BaseLayout.vue'),
+    children: main_routes
   },
   {
-    path: '/user',
-    component: UserLayout,
-    children: USER_ROUTES,
-    redirect: USER_ROUTES[0].path
+    path: '/game',
+    component: () => import('layouts/BaseLayout.vue'),
+    children: [
+      {
+        name: 'game',
+        path: ':game_id',
+        component: () => import('pages/Game.vue')
+      }
+    ]
   },
   {
-    name: 'error-404',
+    path: '/profile',
+    component: () => import('layouts/UserLayout.vue'),
+    children: user_routes
+  },
+  {
     path: '*',
-    component: Error404
+    component: () => import('pages/Error404.vue')
   }
 ]
+
+export {
+  main_routes,
+  user_routes
+}
+
+export default routes

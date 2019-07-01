@@ -1,4 +1,5 @@
 backup/
+app/
 .quasar
 .thumbs.db
 /dist
@@ -601,4 +602,3 @@ ASALocalRun/
 healthchecksdb
 
 # End of https://www.gitignore.io/api/windows,linux,macos,webstorm+all,visualstudio,visualstudiocode,node
-n

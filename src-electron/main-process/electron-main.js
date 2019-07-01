@@ -1,74 +1,54 @@
-import {
-  app,
-  BrowserWindow,
-  Menu,
-  ipcMain
-} from 'electron'
+import { app, BrowserWindow } from 'electron'
+import { join } from 'path'
 
-import templateMenu from './electron-menu'
-import Store from '../store'
-import AutoUpdateManager from './auto-update-manager'
+import './ipc-main'
 
-const store = new Store({
-  configName: 'user-preferences',
-  defaults: {
-    channel: 'stable',
-    windowBounds: {
-      x: 0,
-      y: 0,
-      width: 800,
-      height: 800,
-      fullscreen: false
-    }
-  }
-})
+import store from './store'
 
-const autoUpdater = new AutoUpdateManager(store.get('channel') || 'stable')
-
-app.$store = store
-
-let mainWindow = null
+global.$electron_store = store
 
 /**
  * Set `__statics` path to static files in production;
  * The reason we are setting it here is that the path needs to be evaluated at runtime
  */
 if (process.env.PROD) {
-  global.__statics = require('path').join(__dirname, 'statics').replace(/\\/g, '\\\\')
+  global.__statics = join(__dirname, 'statics').replace(/\\/g, '\\\\')
 }
 
-function handleMovedOrResize () {
-  store.set('windowBounds', {
-    ...mainWindow.getBounds(),
-    fullscreen: mainWindow.isFullScreen()
-  })
-}
+let main_window
 
-function handleClosed () {
-  mainWindow = null
+function handle_move_and_resize () {
+  store.set('window_bounds', { ...main_window.getBounds() })
 }
 
 function createWindow () {
+  let { x, y, width, height } = store.get('window_bounds')
+
   /**
    * Initial window options
    */
-  mainWindow = new BrowserWindow({
-    ...store.get('windowBounds'),
-    useContentSize: true
-    // --- TODO: do it in future !
-    // --- TODO: app without frame with custom window
-    // frame: false,
-    // transparent: true
+  main_window = new BrowserWindow({
+    x,
+    y,
+    width,
+    height,
+    center: (x === null && y === null),
+    useContentSize: true,
+    webPreferences: {
+      // --- TODO: off devtools in future
+      devTools: true,
+      nodeIntegration: true
+    }
   })
 
-  mainWindow.loadURL(process.env.APP_URL)
+  main_window.loadURL(process.env.APP_URL)
 
-  mainWindow.on('moved', handleMovedOrResize)
-  mainWindow.on('resize', handleMovedOrResize)
+  main_window.on('moved', handle_move_and_resize)
+  main_window.on('resize', handle_move_and_resize)
 
-  mainWindow.on('closed', handleClosed)
-  
-  mainWindow.webContents.on('did-frame-finish-load', () => autoUpdater.init(mainWindow))
+  main_window.on('closed', () => {
+    main_window = null
+  })
 }
 
 app.on('window-all-closed', () => {
@@ -78,19 +58,9 @@ app.on('window-all-closed', () => {
 })
 
 app.on('activate', () => {
-  if (mainWindow === null) {
+  if (main_window === null) {
     createWindow()
   }
 })
 
-ipcMain.on('change-channel', (_, value) => {
-  store.set('channel', value)
-  autoUpdater.updateChannel(value)
-})
-
-app.on('ready', () => {
-  Menu.setApplicationMenu(
-    Menu.buildFromTemplate(templateMenu)
-  )
-  createWindow()
-})
+app.on('ready', createWindow)

@@ -1,0 +1,21 @@
+FROM node:10.16-alpine AS node
+
+RUN apk update && \
+    apk add ca-certificates --no-cache --update
+
+WORKDIR /app
+COPY package.json yarn.lock /app/
+
+RUN yarn install
+
+COPY . /app/
+
+RUN yarn build
+
+FROM nginx:1.15.4
+
+WORKDIR /var/www
+
+COPY --from=node /app/dist/spa /var/www/
+
+EXPOSE 80

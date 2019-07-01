@@ -2,26 +2,68 @@
 # Declare variables to be passed into your templates.
 
 enableCertIssuer: true
+enableRedis: true
+
+# to release to production environment set prodRelease = true
+prodRelease: false
 
 ingress:
   hostname: cordlauncher.tst.protocol.one
-  path: /
+  pathBackend:
+    - /auth1/
+  pathFrontend:
+    - /
 
 certIssuer:
   email: admin@protocol.one
+
+frontend:
+  name: nginx
+  role: frontend
+  image: "p1hub/cordlauncher-nginx"
+  imageTag: latest
+  port: 80
+  replicas: 1
+  service: 
+    type: ClusterIP
+    port: 80
+    protocol: TCP
+  configMap: 
+    mountPath: /etc/nginx/conf.d/
 
 backend:
   name: nodejs
   role: backend
   image: "p1hub/cordlauncher"
   imageTag: latest
-  port: 8080
+  port: 80
   replicas: 1
   service: 
     type: ClusterIP
-    port: 8080
+    port: 80
     protocol: TCP
-  
+  env:
+    - NODE_ENV
+    - PUBLIC_HOST
+    - PUBLIC_PORT
+    - QILINSTORE_API_URL
+    - AUTH1_NAMESPACE
+    - AUTH1_ISSUER
+    - AUTH1_POSTMESSAGE_TEMPLATE
+    - AUTH1_POSTMESSAGE_TARGET_ORIGIN
+    - AUTH1_CORS_VALID_ORIGIN
+    - AUTH1_CORS_ROUTES
+    - AUTH1_SCOPES
+    - AUTH1_REDIRECT_URL
+    - AUTH1_CLIENT_ID
+    - AUTH1_CLIENT_SECRET
+    - AUTH1_PORT
+    - REDIS_HOST
+    - REDIS_PORT
+    - SESSION_NAME
+    - SESSION_KEY
+    - SESSION_AGE
+
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
