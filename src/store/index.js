@@ -15,7 +15,13 @@ Vue.use(Vuex)
 export default function () {
   const getters = {
     get_api_url: () => process.env.QILINSTORE_API_URL,
-    get_access_token: ({ oauth2 }) => oauth2.access_token
+    get_access_token: ({ oauth2 }) => oauth2.access_token,
+    get_origin_url: () => {
+      if (process.env.NODE_ENV === 'production') {
+        return process.env.PUBLIC_HOST
+      }
+      return `${process.env.PUBLIC_HOST}:${process.env.PUBLIC_PORT}`
+    }
   }
 
   if (process.env.MODE === 'electron') {

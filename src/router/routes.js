@@ -36,25 +36,33 @@ const routes = [
     children: [
       {
         path: '',
-        name: 'oauth2',
-        component: () => import('pages/OAuth2.vue'),
+        name: 'login',
+        component: () => import('pages/Login.vue'),
         meta: {
           requires_auth: false
         }
-      },
-      {
-        path: 'registration',
-        name: 'registration',
-        component: () => import('pages/Registration.vue')
-      },
-      {
-        path: 'login',
-        name: 'login'
-      },
-      {
-        path: 'logout',
-        name: 'logout'
       }
+      // {
+      //   path: '',
+      //   name: 'oauth2',
+      //   component: () => import('pages/OAuth2.vue'),
+      //   meta: {
+      //     requires_auth: false
+      //   }
+      // },
+      // {
+      //   path: 'registration',
+      //   name: 'registration',
+      //   component: () => import('pages/Registration.vue')
+      // },
+      // {
+      //   path: 'login',
+      //   name: 'login'
+      // },
+      // {
+      //   path: 'logout',
+      //   name: 'logout'
+      // }
     ]
   },
   {

@@ -10,7 +10,8 @@ export default {
   titles: {
     auth: 'Авторизация',
     system_requirements: 'Системные требования',
-    language_support: 'Поддержка языков'
+    language_support: 'Поддержка языков',
+    login: 'Вход'
   },
 
   labels: {
@@ -52,7 +53,11 @@ export default {
     account_name: 'Данные аккаунта',
     account_nickname: 'Имя пользователя',
     primary_language: 'Основной язык',
-    additional_language: 'Дополнительный язык'
+    additional_language: 'Дополнительный язык',
+    forgot_password: 'Забыли пароль',
+    not_registered: 'Не зарегистрированы',
+    sign_up: 'Зарегистрироваться',
+    sign_in: 'Войти'
   },
 
   paragraphs: {

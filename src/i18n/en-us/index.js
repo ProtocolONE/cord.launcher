@@ -10,7 +10,8 @@ export default {
   titles: {
     auth: 'Authorization',
     system_requirements: 'System requirements',
-    language_support: 'Language support'
+    language_support: 'Language support',
+    login: 'Login'
   },
 
   labels: {
@@ -52,7 +53,11 @@ export default {
     account_name: 'Account name',
     account_nickname: 'Account nickname',
     primary_language: 'Primary language',
-    additional_language: 'Additional language'
+    additional_language: 'Additional language',
+    forgot_password: 'Forgot password',
+    not_registered: 'Not registered',
+    sign_up: 'Sign up',
+    sign_in: 'Sign in'
   },
 
   paragraphs: {
