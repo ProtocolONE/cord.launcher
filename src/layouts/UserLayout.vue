@@ -32,7 +32,7 @@ base-layout
           :id="$route.name"
           :user="user_data"
           :form-id="form_id"
-          @save="handleSave")
+          @save="update_user_data")
 </template>
 
 <script>
@@ -72,7 +72,7 @@ export default {
   methods: {
     ...mapActions('user', ['load_user_data', 'save_user_data']),
 
-    async handleSave (data) {
+    async update_user_data (data) {
       let user_data = cloneDeep(this.user_data)
       let updated_user_data = merge(user_data, data)
 

@@ -10,9 +10,9 @@ q-page.row.text-white
           q-input(
               v-model="account.nickname"
               :label="$trans('labels', 'account_nickname')"
+              :rules="validate_empty"
               color="white"
-              dark
-              clearable)
+              dark)
 
       h6.base-title.text-bold.q-mt-lg {{ $trans('labels', 'language') }}
 
@@ -24,15 +24,17 @@ q-page.row.text-white
                 :options="languages"
                 :label="$trans('labels', 'primary_language')"
                 color="white"
-                dark
-                clearable)
+                dark)
 </template>
 
 <script>
 import { cloneDeep, map, merge } from 'lodash-es'
+import { input_validators } from 'src/mixins'
 
 export default {
   name: 'UserAccountPage',
+
+  mixins: [input_validators],
 
   props: {
     user: Object,
@@ -64,9 +66,11 @@ export default {
 
   computed: {
     data_for_save () {
-      return merge(this.account, {
-        primary_language: this.primary_language && this.primary_language.value
-      })
+      return {
+        account: merge(this.account, {
+          primary_language: this.primary_language && this.primary_language.value
+        })
+      }
     }
   },
 

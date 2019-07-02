@@ -5,9 +5,14 @@ import axios from 'axios'
  */
 export async function logout ({ state, commit }) {
   let url = `${state.url}/logout`
-  await axios(url)
-  commit('remove_token_expires')
-  commit('remove_token')
+  try {
+    await axios(url)
+  }
+  catch {}
+  finally {
+    commit('remove_token_expires')
+    commit('remove_token')
+  }
 }
 
 /**

@@ -11,15 +11,13 @@ q-page.row.text-white
               v-model="personal.first_name"
               :label="$trans('labels', 'first_name')"
               color="white"
-              dark
-              clearable)
+              dark)
         .col-12.col-md-6
           q-input(
               v-model="personal.last_name"
               :label="$trans('labels', 'last_name')"
               color="white"
-              dark
-              clearable)
+              dark)
 
         .col-12
           span.subtitle.text-grey-7.text-bold {{ $trans('labels', 'date_of_birth') }}
@@ -31,7 +29,6 @@ q-page.row.text-white
               :label="$trans('labels', 'month')"
               color="white"
               dark
-              clearable
               @input="birth_date.day = null")
 
         .col-4.col-md-2
@@ -41,8 +38,7 @@ q-page.row.text-white
               :label="$trans('labels', 'day')"
               :disable="!birth_date.month"
               color="white"
-              dark
-              clearable)
+              dark)
 
         .col-4.col-md-3
           q-select(
@@ -50,8 +46,7 @@ q-page.row.text-white
               :options="years"
               :label="$trans('labels', 'year')"
               color="white"
-              dark
-              clearable)
+              dark)
 
       h6.base-title.text-bold.q-mt-lg {{ $trans('labels', 'address') }}
 
@@ -65,9 +60,7 @@ q-page.row.text-white
                 color="white"
                 use-input
                 dark
-                clearable
-                @filter="search_country"
-                @input="personal.address.city = null")
+                @filter="search_country")
 
           .col-12
             q-select(
@@ -78,7 +71,6 @@ q-page.row.text-white
                 color="white"
                 use-input
                 dark
-                clearable
                 @filter="search_city")
 
           .col-md-4.col-lg-4.col-12
@@ -87,8 +79,7 @@ q-page.row.text-white
                 :label="$trans('labels', 'postal_code')"
                 mask="######"
                 color="white"
-                dark
-                clearable)
+                dark)
 
           .col-md-8.col-lg-8.col-12
             q-select(
@@ -99,7 +90,6 @@ q-page.row.text-white
                 color="white"
                 use-input
                 dark
-                clearable
                 @filter="search_region")
 
           .col-12
@@ -107,16 +97,14 @@ q-page.row.text-white
                 v-model="personal.address.line_1"
                 :label="`${$trans('labels', 'address_line')} 1`"
                 color="white"
-                dark
-                clearable)
+                dark)
 
           .col-12
             q-input(
                 v-model="personal.address.line_2"
                 :label="`${$trans('labels', 'address_line')} 2`"
                 color="white"
-                dark
-                clearable)
+                dark)
 </template>
 
 <script>
