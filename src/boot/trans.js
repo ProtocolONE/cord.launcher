@@ -11,7 +11,7 @@ export default ({ app, Vue }) => {
    * @returns translated label {String}
    */
   Vue.prototype.$trans = function (key, value) {
-    let locale = get(app, ['i18n', 'locale'], 'en-us')
-    return get(app.i18n.messages[locale], [key, value], 'no trans')
+    let { locale, messages } = this.$i18n
+    return get(messages[locale], [key, value], 'no trans')
   }
 }

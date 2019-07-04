@@ -11,7 +11,8 @@ module.exports = function (ctx) {
     boot: [
       'i18n',
       'axios',
-      'trans'
+      'trans',
+      'moment'
     ],
 
     css: [

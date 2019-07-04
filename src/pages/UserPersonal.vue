@@ -108,7 +108,6 @@ q-page.row.text-white
 </template>
 
 <script>
-import moment from 'moment'
 import { cloneDeep, map, merge } from 'lodash-es'
 
 // --- TODO: перенести на какое-нибудь api
@@ -143,7 +142,7 @@ export default {
     let [month, day, year] = [null, null, null]
 
     if (birth_date) {
-      birth_date = moment(birth_date)
+      birth_date = this.$moment(birth_date)
       day = birth_date.get('date')
       year = birth_date.get('year')
       month = {
@@ -173,7 +172,7 @@ export default {
     },
 
     months () {
-      let months = this.$q.lang.date.months
+      let months = this.$moment.months()
       return months.map((month, i) => ({
         label: month,
         value: i
@@ -184,7 +183,7 @@ export default {
       let currentMonth = this.birth_date.month && this.birth_date.month.label
       if (!currentMonth) return []
 
-      let days = moment().month(currentMonth).daysInMonth()
+      let days = this.$moment().month(currentMonth).daysInMonth()
       return Array
         .apply(null, { length: days })
         .map(() => days--)

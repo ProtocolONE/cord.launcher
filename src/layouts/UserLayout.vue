@@ -40,6 +40,7 @@ import BaseLayout from 'layouts/BaseLayout'
 
 import { mapState, mapActions } from 'vuex'
 import { uniqueId, cloneDeep, merge } from 'lodash-es'
+import { LocalStorage } from 'quasar'
 
 import { user_routes } from 'src/router/routes'
 
@@ -65,12 +66,12 @@ export default {
     ...mapState('user', ['user_data'])
   },
 
-  watch: {
-    'user_data.account.primary_language': '$set_locale'
-  },
-
-  created () {
-    this.load_user_data()
+  async created () {
+    await this.load_user_data()
+    this.$watch('user_data.account.primary_language', locale => {
+      LocalStorage.set('locale', locale)
+      this.$router.go({ force: true })
+    })
   },
 
   methods: {
