@@ -10,4 +10,20 @@ export default async ({ app, Vue }) => {
     fallbackLocale: 'en-us',
     messages
   })
+
+  /**
+   * Change locale
+   *
+   * @param locale {String}
+   */
+  Vue.prototype.$set_locale = async function (locale) {
+    try {
+      // let messages = await require(`src/i18n/${locale}`).default
+      // app.i18n.locale = locale
+      // this.$q.lang.set(messages)
+    }
+    catch (err) {
+      console.error(err)
+    }
+  }
 }

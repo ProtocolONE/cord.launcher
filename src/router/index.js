@@ -35,7 +35,8 @@ export default function ({ store }) {
     let token_expires = store.state.oauth2.token_expires
     if (token_expires && Number(token_expires) <= Date.now()) {
       // --- TODO: check user is logged in auth1
-      return next({ name: 'logout' })
+      await store.dispatch('oauth2/logout')
+      await store.dispatch('user/logout')
     }
 
     // --- check token and requires auth for routes

@@ -56,7 +56,7 @@ export default {
   },
 
   paragraphs: {
-    accounts_data_successfully_updated: 'Данные аккаунта успешно обновлены'
+    accounts_data_successfully_updated: 'Account details successfully updated'
   },
 
   locales: {

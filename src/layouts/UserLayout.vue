@@ -65,6 +65,10 @@ export default {
     ...mapState('user', ['user_data'])
   },
 
+  watch: {
+    'user_data.account.primary_language': '$set_locale'
+  },
+
   created () {
     this.load_user_data()
   },
