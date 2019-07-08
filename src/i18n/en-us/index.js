@@ -52,7 +52,8 @@ export default {
     account_name: 'Account name',
     account_nickname: 'Account nickname',
     primary_language: 'Primary language',
-    additional_language: 'Additional language'
+    additional_language: 'Additional language',
+    len_char_over: 'Number of characters over'
   },
 
   paragraphs: {

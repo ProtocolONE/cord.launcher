@@ -10,7 +10,8 @@ q-page.row.text-white
           q-input(
               v-model="account.nickname"
               :label="$trans('labels', 'account_nickname')"
-              :rules="validate_empty"
+              :rules="[...validate_empty, validate_len(50)]"
+              maxlength="50"
               color="white"
               dark)
 
