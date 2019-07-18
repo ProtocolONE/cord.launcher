@@ -4,7 +4,8 @@ export default {
     shop: 'Shop',
     library: 'Library',
     personal: 'Personal',
-    account: 'Account'
+    account: 'Account',
+    'auth-web-form-example': 'Auth web form example'
   },
 
   titles: {

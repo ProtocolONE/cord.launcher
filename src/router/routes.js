@@ -2,17 +2,22 @@ const main_routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('pages/Home.vue')
+    component: () => import('pages/Home')
   },
   {
     name: 'shop',
     path: '/shop',
-    component: () => import('pages/Shop.vue')
+    component: () => import('pages/Shop')
   },
   {
     name: 'library',
     path: '/library',
-    component: () => import('pages/Library.vue')
+    component: () => import('pages/Library')
+  },
+  {
+    name: 'auth-web-form-example',
+    path: '/auth-web-form-example',
+    component: () => import('pages/AuthWebFormExample')
   }
 ]
 
@@ -20,24 +25,24 @@ const user_routes = [
   {
     path: '',
     name: 'personal',
-    component: () => import('pages/UserPersonal.vue')
+    component: () => import('pages/UserPersonal')
   },
   {
     path: 'account',
     name: 'account',
-    component: () => import('pages/UserAccount.vue')
+    component: () => import('pages/UserAccount')
   }
 ]
 
 const routes = [
   {
     path: '/auth',
-    component: () => import('layouts/AuthLayout.vue'),
+    component: () => import('layouts/AuthLayout'),
     children: [
       {
         path: '',
         name: 'oauth2',
-        component: () => import('pages/OAuth2.vue'),
+        component: () => import('pages/OAuth2'),
         meta: {
           requires_auth: false
         }
@@ -45,7 +50,7 @@ const routes = [
       {
         path: 'registration',
         name: 'registration',
-        component: () => import('pages/Registration.vue')
+        component: () => import('pages/Registration')
       },
       {
         path: 'login',
@@ -59,28 +64,28 @@ const routes = [
   },
   {
     path: '/',
-    component: () => import('layouts/BaseLayout.vue'),
+    component: () => import('layouts/BaseLayout'),
     children: main_routes
   },
   {
     path: '/game',
-    component: () => import('layouts/BaseLayout.vue'),
+    component: () => import('layouts/BaseLayout'),
     children: [
       {
         name: 'game',
         path: ':game_id',
-        component: () => import('pages/Game.vue')
+        component: () => import('pages/Game')
       }
     ]
   },
   {
     path: '/profile',
-    component: () => import('layouts/UserLayout.vue'),
+    component: () => import('layouts/UserLayout'),
     children: user_routes
   },
   {
     path: '*',
-    component: () => import('pages/Error404.vue')
+    component: () => import('pages/Error404')
   }
 ]
 

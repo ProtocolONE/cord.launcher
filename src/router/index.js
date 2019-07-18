@@ -31,6 +31,12 @@ export default function ({ store }) {
   let electron_is_redirected = false
 
   Router.beforeEach(async (to, from, next) => {
+    // --- auth web form example
+    // --- skip all route actions
+    if (to.name === 'auth-web-form-example') {
+      return next()
+    }
+
     // --- check token expires and clear token if its exist
     let token_expires = store.state.oauth2.token_expires
     if (token_expires && Number(token_expires) <= Date.now()) {
