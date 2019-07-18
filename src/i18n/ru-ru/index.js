@@ -53,7 +53,8 @@ export default {
     account_name: 'Данные аккаунта',
     account_nickname: 'Имя пользователя',
     primary_language: 'Основной язык',
-    additional_language: 'Дополнительный язык'
+    additional_language: 'Дополнительный язык',
+    len_char_over: 'Количество символов более'
   },
 
   paragraphs: {

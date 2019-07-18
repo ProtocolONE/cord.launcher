@@ -14,6 +14,14 @@ export const input_validators = {
 
       validate_email: [
         val => patterns.email.test(val.toLowerCase()) || this.$trans('labels', 'email_is_not_corrected')
+      ],
+
+      validate_len: chars_len => [
+        val => {
+          val = val.trim()
+          if (!val) return true
+          return val.length <= chars_len || `${this.$trans('labels', 'len_char_over')} ${chars_len}`
+        }
       ]
     }
   },

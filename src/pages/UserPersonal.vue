@@ -5,17 +5,21 @@ q-page.row.text-white
 
       h6.base-title.text-bold.q-mt-none {{ page_title }}
 
-      .row.q-col-gutter-md
+      .row.q-col-gutter-sm
         .col-12.col-md-6
           q-input(
               v-model="personal.first_name"
               :label="$trans('labels', 'first_name')"
+              :rules="[...validate_empty, validate_len(50)]"
+              maxlength="50"
               color="white"
               dark)
         .col-12.col-md-6
           q-input(
               v-model="personal.last_name"
               :label="$trans('labels', 'last_name')"
+              :rules="[...validate_empty, validate_len(50)]"
+              maxlength="50"
               color="white"
               dark)
 
@@ -109,6 +113,7 @@ q-page.row.text-white
 
 <script>
 import { cloneDeep, map, merge } from 'lodash-es'
+import { input_validators } from 'src/mixins'
 
 // --- TODO: перенести на какое-нибудь api
 import countries from 'src/statics/countries'
@@ -130,6 +135,8 @@ function get_regions_list (country) {
 
 export default {
   name: 'UserPersonalPage',
+
+  mixins: [input_validators],
 
   props: {
     user: Object,
