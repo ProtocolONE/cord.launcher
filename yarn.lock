@@ -863,10 +863,10 @@
   resolved "https://registry.yarnpkg.com/@positron/stack-trace/-/stack-trace-1.0.0.tgz#14fcc712a530038ef9be1ce6952315a839f466a8"
   integrity sha1-FPzHEqUwA475vhzmlSMVqDn0Zqg=
 
-"@protocol-one/auth-web-form@^0.0.25":
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/@protocol-one/auth-web-form/-/auth-web-form-0.0.25.tgz#98ae0156b3a66bd6a077f1865bd4c7b7909882b0"
-  integrity sha512-wdoDckE/gQsx0yuagxDzy5E9RoT6H20ziZvvlDZjJ8a+6EyxR1PbpwgLq06M5nxF1bfP6UxNCJhWjZREkedqhw==
+"@protocol-one/auth-web-form@^0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@protocol-one/auth-web-form/-/auth-web-form-0.0.26.tgz#f89808e4dc27204c4ae98814ba84d4e2ed123c4e"
+  integrity sha512-GKt3OPDgOBtqoJcyRw1+3MZ+5BnE/7OTGcoPctGip+BdoOZPOk+T9j4Tr5EzVi/nEY2Hhz6m/1+B4A7pgcRV+Q==
   dependencies:
     "@protocol-one/auth-web-form" "^0.0.8"
     "@protocol-one/ui-kit" "^1.25.2"
