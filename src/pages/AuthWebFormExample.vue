@@ -1,8 +1,8 @@
 <template lang="pug">
 #auth-web-form-example
-  q-dialog(value full-width full-height persistent)
+  q-dialog(:full-width="!isMobile" :full-height="!isMobile" value persistent)
     q-card
-      auth-web-form(title="Cord launcher")
+      auth-web-form(title="Cord launcher" :mobile="isMobile")
 </template>
 
 <script>
@@ -13,6 +13,19 @@ export default {
 
   components: {
     AuthWebForm
+  },
+
+  computed: {
+    screenResolution () {
+      if (this.$route.query.type && this.$route.query.type === 'mobile') {
+        return 'mobile'
+      }
+      return 'desktop'
+    },
+
+    isMobile () {
+      return this.screenResolution === 'mobile'
+    }
   }
 }
 </script>

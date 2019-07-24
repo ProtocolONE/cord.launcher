@@ -863,19 +863,6 @@
   resolved "https://registry.yarnpkg.com/@positron/stack-trace/-/stack-trace-1.0.0.tgz#14fcc712a530038ef9be1ce6952315a839f466a8"
   integrity sha1-FPzHEqUwA475vhzmlSMVqDn0Zqg=
 
-"@protocol-one/auth-web-form@^0.0.26":
-  version "0.0.26"
-  resolved "https://registry.yarnpkg.com/@protocol-one/auth-web-form/-/auth-web-form-0.0.26.tgz#f89808e4dc27204c4ae98814ba84d4e2ed123c4e"
-  integrity sha512-GKt3OPDgOBtqoJcyRw1+3MZ+5BnE/7OTGcoPctGip+BdoOZPOk+T9j4Tr5EzVi/nEY2Hhz6m/1+B4A7pgcRV+Q==
-  dependencies:
-    "@protocol-one/auth-web-form" "^0.0.8"
-    "@protocol-one/ui-kit" "^1.25.2"
-    core-js "^2.6.5"
-    lodash-es "^4.17.11"
-    vue "^2.6.10"
-    vue-router "^3.0.3"
-    vuex "^3.0.1"
-
 "@protocol-one/auth-web-form@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@protocol-one/auth-web-form/-/auth-web-form-0.0.3.tgz#30bb3abb6c2e1e1ccc633b3f78eb1d81e54c22f6"
@@ -886,6 +873,19 @@
     lodash-es "^4.17.11"
     vue "^2.6.10"
     vue-i18n "^8.12.0"
+    vue-router "^3.0.3"
+    vuex "^3.0.1"
+
+"@protocol-one/auth-web-form@^0.0.32":
+  version "0.0.32"
+  resolved "https://registry.yarnpkg.com/@protocol-one/auth-web-form/-/auth-web-form-0.0.32.tgz#faacfb3cef0d144c201d69ce2a49706b8cd71638"
+  integrity sha512-ZS+Zgtln6YKhouKjh/29zOmXrEx/1UG9P/AsduwsDYF2byK40YNJKWiOBMWIy6bWq59saYdrU1d/Ov8K0sLM7A==
+  dependencies:
+    "@protocol-one/auth-web-form" "^0.0.8"
+    "@protocol-one/ui-kit" "^1.25.2"
+    core-js "^2.6.5"
+    lodash-es "^4.17.11"
+    vue "^2.6.10"
     vue-router "^3.0.3"
     vuex "^3.0.1"
 
