@@ -876,10 +876,10 @@
     vue-router "^3.0.3"
     vuex "^3.0.1"
 
-"@protocol-one/auth-web-form@^0.0.32":
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/@protocol-one/auth-web-form/-/auth-web-form-0.0.32.tgz#faacfb3cef0d144c201d69ce2a49706b8cd71638"
-  integrity sha512-ZS+Zgtln6YKhouKjh/29zOmXrEx/1UG9P/AsduwsDYF2byK40YNJKWiOBMWIy6bWq59saYdrU1d/Ov8K0sLM7A==
+"@protocol-one/auth-web-form@^0.0.33":
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/@protocol-one/auth-web-form/-/auth-web-form-0.0.33.tgz#6de181b021c54bf0381a8d555f89c4acf37e51b4"
+  integrity sha512-96+8inJ3SaCplek8t8loPG8iNNYhPDlJ+kMteIsNOrlYqkdJpZvM1fFGVfefZ9jbymjYqEqxYzDCJ0unymJjbw==
   dependencies:
     "@protocol-one/auth-web-form" "^0.0.8"
     "@protocol-one/ui-kit" "^1.25.2"
