@@ -5,7 +5,7 @@ module.exports = {
   QILINSTORE_API_URL: 'https://qilinstoreapi.tst.protocol.one/api/v1',
   AUTH1_NAMESPACE: 'auth1',
   AUTH1_PORT: 3000,
-  AUTH1_ISSUER: 'https://auth1.tst.protocol.one',
+  AUTH1_ISSUER: 'https://dev-auth1.tst.protocol.one/',
   AUTH1_POSTMESSAGE_TEMPLATE: 'oauth2-server/templates/postmessage.html.template',
   AUTH1_POSTMESSAGE_TARGET_ORIGIN: '*',
   AUTH1_CORS_VALID_ORIGIN: '*',
