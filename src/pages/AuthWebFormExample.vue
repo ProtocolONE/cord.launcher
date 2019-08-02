@@ -1,21 +1,21 @@
 <template lang="pug">
-#auth-web-form-example
-  q-dialog(:full-width="!isMobile" :full-height="!isMobile" value persistent)
-    q-card
-      auth-web-form(title="Cord launcher" :mobile="isMobile")
+q-page#auth-web-form-example.auth
+  q-dialog(:value="true" persistent full-width full-height)
+    div
+      iframe.auth-modal__frame(:src="src")
 </template>
 
 <script>
-import AuthWebForm from '@protocol-one/auth-web-form'
+import { mapState } from 'vuex'
 
 export default {
   name: 'AuthWebFormExample',
 
-  components: {
-    AuthWebForm
-  },
-
   computed: {
+    ...mapState('oauth2', {
+      src: state => `${state.url}/login`
+    }),
+
     screenResolution () {
       if (this.$route.query.type && this.$route.query.type === 'mobile') {
         return 'mobile'
@@ -29,3 +29,17 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.auth-modal
+  background-color: $white
+
+  &__body
+    width: 500px
+    height: 500px
+
+  &__frame
+    width: 100%
+    height: 100%
+    padding-top: 50px
+</style>
